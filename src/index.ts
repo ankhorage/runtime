@@ -1,18 +1,18 @@
 export const RUNTIME_CAPABILITIES = [
-  'runtime.render',
-  'runtime.actions',
-  'runtime.bindings',
-  'runtime.adapters',
+  "runtime.render",
+  "runtime.actions",
+  "runtime.bindings",
+  "runtime.adapters",
 ] as const;
 
-export const RUNTIME_MANIFEST_KIND = 'ankhorage-runtime-manifest';
+export const RUNTIME_MANIFEST_KIND = "ankhorage-runtime-manifest";
 
 export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];
 
 export interface RuntimeDiagnostic {
   readonly code: string;
   readonly message: string;
-  readonly severity: 'error' | 'info' | 'warning';
+  readonly severity: "error" | "info" | "warning";
 }
 
 export interface RuntimeConfig {
@@ -78,7 +78,9 @@ export function defineRuntimeBinding<Value = unknown>(
   return binding;
 }
 
-export function createRuntimeManifest(input: RuntimeManifestInput): RuntimeManifest {
+export function createRuntimeManifest(
+  input: RuntimeManifestInput,
+): RuntimeManifest {
   return {
     actions: input.actions ?? [],
     adapters: input.adapters ?? [],

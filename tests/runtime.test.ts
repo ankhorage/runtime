@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from "bun:test";
 
 import {
   createRuntimeManifest,
@@ -7,35 +7,35 @@ import {
   defineRuntimeBinding,
   listRuntimeCapabilities,
   RUNTIME_MANIFEST_KIND,
-} from '../src/index.js';
+} from "../src/index.js";
 
-describe('runtime contracts', () => {
-  it('lists metadata capabilities', () => {
+describe("runtime contracts", () => {
+  it("lists metadata capabilities", () => {
     expect(listRuntimeCapabilities()).toEqual([
-      'runtime.render',
-      'runtime.actions',
-      'runtime.bindings',
-      'runtime.adapters',
+      "runtime.render",
+      "runtime.actions",
+      "runtime.bindings",
+      "runtime.adapters",
     ]);
   });
 
-  it('creates a serializable runtime manifest', () => {
+  it("creates a serializable runtime manifest", () => {
     const action = defineRuntimeAction({
-      capability: 'runtime.actions',
+      capability: "runtime.actions",
       data: {
-        method: 'open',
+        method: "open",
       },
-      id: 'open-profile',
+      id: "open-profile",
     });
     const binding = defineRuntimeBinding({
       actionId: action.id,
-      id: 'bind-profile-button',
-      source: 'profile-button',
-      target: 'open-profile',
+      id: "bind-profile-button",
+      source: "profile-button",
+      target: "open-profile",
     });
     const adapter = defineRuntimeAdapter({
-      id: 'web-adapter',
-      kind: 'web',
+      id: "web-adapter",
+      kind: "web",
     });
 
     const manifest = createRuntimeManifest({
@@ -43,8 +43,8 @@ describe('runtime contracts', () => {
       adapters: [adapter],
       bindings: [binding],
       config: {
-        appId: 'demo',
-        environment: 'test',
+        appId: "demo",
+        environment: "test",
       },
     });
 
@@ -53,8 +53,8 @@ describe('runtime contracts', () => {
       adapters: [adapter],
       bindings: [binding],
       config: {
-        appId: 'demo',
-        environment: 'test',
+        appId: "demo",
+        environment: "test",
       },
       diagnostics: [],
       kind: RUNTIME_MANIFEST_KIND,

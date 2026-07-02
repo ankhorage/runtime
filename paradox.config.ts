@@ -1,18 +1,19 @@
-import { defineParadoxConfig } from '@ankhorage/paradox';
+import { defineParadoxConfig } from "@ankhorage/paradox";
 
 export default defineParadoxConfig({
-  mode: 'write',
+  mode: "write",
   docs: {
-    title: '@ankhorage/runtime',
-    description: 'Platform-neutral runtime contracts and helpers for Ankhorage generated apps.',
+    title: "@ankhorage/runtime",
+    description:
+      "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
     usage: {
-      entrypoints: ['src/readme-usage.ts'],
+      entrypoints: ["src/readme-usage.ts"],
     },
   },
   package: {
-    entrypoints: ['src/index.ts'],
+    entrypoints: ["src/index.ts"],
   },
   output: {
-    dir: 'paradox',
+    dir: "paradox",
   },
 });
