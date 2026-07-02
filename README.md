@@ -33,10 +33,9 @@ Source: `src/readme-usage.ts`
 import { createRuntimeManifest } from "./index.js";
 
 createRuntimeManifest({
-  appId: "demo",
-  bindings: [],
-  actions: [],
-  adapters: [],
+  config: {
+    appId: "demo",
+  },
 });
 ```
 
