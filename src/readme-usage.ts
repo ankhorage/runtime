@@ -1,12 +1,12 @@
 import { createRuntimeManifest } from './index.js';
 
 /***
- * Generic runtime boundary
+ * Framework-neutral runtime boundary
  *
- * `@ankhorage/runtime` owns platform-neutral runtime contracts for generated apps.
+ * `@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.
  *
- * This first package slice is intentionally metadata-only plus public contracts so
- * `ankhorage4#430` can move real runtime implementation into a stable target.
+ * Host apps keep router, theme, and other framework-specific behavior outside this package and
+ * inject it at the runtime boundary.
  *
  * @usage
  */

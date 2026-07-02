@@ -1,0 +1,13 @@
+sequenceDiagram
+  participant participant_createError as createError
+  participant participant_isFieldValueEntry as isFieldValueEntry
+  participant participant_isRecord as isRecord
+  participant participant_resolveDbPersistInput as resolveDbPersistInput
+  participant_resolveDbPersistInput->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_resolveDbPersistInput: return
+  participant_resolveDbPersistInput->>participant_createError: createError()
+  participant_createError-->>participant_resolveDbPersistInput: return
+  participant_resolveDbPersistInput->>participant_isFieldValueEntry: isFieldValueEntry()
+  participant_isFieldValueEntry->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isFieldValueEntry: return
+  participant_isFieldValueEntry-->>participant_resolveDbPersistInput: return

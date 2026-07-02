@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_eventNameToCallbackProp as eventNameToCallbackProp
+  participant participant_wrapRuntimeEventProps as wrapRuntimeEventProps
+  participant_wrapRuntimeEventProps->>participant_eventNameToCallbackProp: eventNameToCallbackProp()
+  participant_eventNameToCallbackProp-->>participant_wrapRuntimeEventProps: return

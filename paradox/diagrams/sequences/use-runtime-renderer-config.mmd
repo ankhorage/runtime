@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_useContext as useContext
+  participant participant_useRuntimeRendererConfig as useRuntimeRendererConfig
+  participant_useRuntimeRendererConfig->>participant_useContext: useContext()
+  participant_useContext-->>participant_useRuntimeRendererConfig: return

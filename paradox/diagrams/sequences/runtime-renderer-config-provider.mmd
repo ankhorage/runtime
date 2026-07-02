@@ -1,0 +1,17 @@
+sequenceDiagram
+  participant participant_composeRuntimeNodePropsResolver as composeRuntimeNodePropsResolver
+  participant participant_composeRuntimeRendererWrapNode as composeRuntimeRendererWrapNode
+  participant participant_mergeRecordConfig as mergeRecordConfig
+  participant participant_mergeRuntimeRendererConfig as mergeRuntimeRendererConfig
+  participant participant_RuntimeRendererConfigProvider as RuntimeRendererConfigProvider
+  participant participant_useContext as useContext
+  participant_RuntimeRendererConfigProvider->>participant_useContext: useContext()
+  participant_useContext-->>participant_RuntimeRendererConfigProvider: return
+  participant_RuntimeRendererConfigProvider->>participant_mergeRuntimeRendererConfig: mergeRuntimeRendererConfig()
+  participant_mergeRuntimeRendererConfig->>participant_mergeRecordConfig: mergeRecordConfig()
+  participant_mergeRecordConfig-->>participant_mergeRuntimeRendererConfig: return
+  participant_mergeRuntimeRendererConfig->>participant_composeRuntimeRendererWrapNode: composeRuntimeRendererWrapNode()
+  participant_composeRuntimeRendererWrapNode-->>participant_mergeRuntimeRendererConfig: return
+  participant_mergeRuntimeRendererConfig->>participant_composeRuntimeNodePropsResolver: composeRuntimeNodePropsResolver()
+  participant_composeRuntimeNodePropsResolver-->>participant_mergeRuntimeRendererConfig: return
+  participant_mergeRuntimeRendererConfig-->>participant_RuntimeRendererConfigProvider: return
