@@ -1,0 +1,952 @@
+{
+  "packageName": "@ankhorage/runtime",
+  "packageId": "@ankhorage/runtime",
+  "description": "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
+  "badges": [
+    {
+      "id": "license",
+      "label": "license",
+      "value": "MIT",
+      "color": "2563eb"
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "value": "v0.0.0",
+      "color": "cb3837"
+    },
+    {
+      "id": "runtime",
+      "label": "runtime",
+      "value": "bun",
+      "color": "f59e0b"
+    },
+    {
+      "id": "typescript",
+      "label": "typescript",
+      "value": "strict",
+      "color": "2563eb"
+    },
+    {
+      "id": "eslint",
+      "label": "eslint",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "prettier",
+      "label": "prettier",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "build",
+      "label": "build",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "value": "checked",
+      "color": "0a7f3f"
+    },
+    {
+      "id": "docs",
+      "label": "docs",
+      "value": "paradox",
+      "color": "0f766e"
+    }
+  ],
+  "usage": null,
+  "readmeUsage": [
+    {
+      "title": "Generic runtime boundary",
+      "description": "Generic runtime boundary\n\n`@ankhorage/runtime` owns platform-neutral runtime contracts for generated apps.\n\nThis first package slice is intentionally metadata-only plus public contracts so\n`ankhorage4#430` can move real runtime implementation into a stable target.",
+      "language": "ts",
+      "code": "import { createRuntimeManifest } from './index.js';\n\ncreateRuntimeManifest({\n  config: {\n    appId: 'demo',\n  },\n});",
+      "sourcePath": "src/readme-usage.ts"
+    }
+  ],
+  "config": null,
+  "entrypoints": ["src/index.ts"],
+  "modules": [
+    {
+      "path": "paradox.config.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": ["default"]
+    },
+    {
+      "path": "src/index.ts",
+      "isEntrypoint": true,
+      "dependencies": [],
+      "exports": [
+        "createRuntimeManifest",
+        "defineRuntimeAction",
+        "defineRuntimeAdapter",
+        "defineRuntimeBinding",
+        "listRuntimeCapabilities",
+        "RUNTIME_CAPABILITIES",
+        "RUNTIME_MANIFEST_KIND",
+        "RuntimeActionDescriptor",
+        "RuntimeAdapterDescriptor",
+        "RuntimeBindingDescriptor",
+        "RuntimeCapability",
+        "RuntimeConfig",
+        "RuntimeDiagnostic",
+        "RuntimeManifest",
+        "RuntimeManifestInput"
+      ]
+    },
+    {
+      "path": "tests/runtime.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/index.ts"],
+      "exports": []
+    }
+  ],
+  "exports": [
+    {
+      "name": "createRuntimeManifest",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 81,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeManifest", "RuntimeManifestInput"],
+      "signatures": [
+        {
+          "label": "(input: RuntimeManifestInput) => RuntimeManifest",
+          "parameters": [
+            {
+              "name": "input",
+              "type": "RuntimeManifestInput",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeManifest",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "defineRuntimeAction",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 63,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeActionDescriptor"],
+      "signatures": [
+        {
+          "label": "(action: RuntimeActionDescriptor<Data>) => RuntimeActionDescriptor<Data>",
+          "parameters": [
+            {
+              "name": "action",
+              "type": "RuntimeActionDescriptor<Data>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeActionDescriptor<Data>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "defineRuntimeAdapter",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 69,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeAdapterDescriptor"],
+      "signatures": [
+        {
+          "label": "(adapter: RuntimeAdapterDescriptor<Options>) => RuntimeAdapterDescriptor<Options>",
+          "parameters": [
+            {
+              "name": "adapter",
+              "type": "RuntimeAdapterDescriptor<Options>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeAdapterDescriptor<Options>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "defineRuntimeBinding",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 75,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeBindingDescriptor"],
+      "signatures": [
+        {
+          "label": "(binding: RuntimeBindingDescriptor<Value>) => RuntimeBindingDescriptor<Value>",
+          "parameters": [
+            {
+              "name": "binding",
+              "type": "RuntimeBindingDescriptor<Value>",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeBindingDescriptor<Value>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "listRuntimeCapabilities",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 93,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "() => readonly (\"runtime.render\" | \"runtime.actions\" | \"runtime.bindings\" | \"runtime.adapters\")[]",
+          "parameters": [],
+          "returnType": "readonly (\"runtime.render\" | \"runtime.actions\" | \"runtime.bindings\" | \"runtime.adapters\")[]",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RUNTIME_CAPABILITIES",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 1,
+        "column": 14
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RUNTIME_MANIFEST_KIND",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 8,
+        "column": 14
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeActionDescriptor",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 24,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "capability",
+          "kind": "property",
+          "type": "\"runtime.render\" | \"runtime.actions\" | \"runtime.bindings\" | \"runtime.adapters\" | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "data",
+          "kind": "property",
+          "type": "Data | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "description",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAdapterDescriptor",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 39,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "options",
+          "kind": "property",
+          "type": "Options | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeBindingDescriptor",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 31,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "actionId",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "source",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "target",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "value",
+          "kind": "property",
+          "type": "Value | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeCapability",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 10,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeConfig",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 18,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "appId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "environment",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "values",
+          "kind": "property",
+          "type": "Readonly<Record<string, unknown>> | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeDiagnostic",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 12,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "code",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "message",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "severity",
+          "kind": "property",
+          "type": "\"error\" | \"info\" | \"warning\"",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeManifest",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [
+        "RuntimeActionDescriptor",
+        "RuntimeAdapterDescriptor",
+        "RuntimeBindingDescriptor",
+        "RuntimeConfig",
+        "RuntimeDiagnostic"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "actions",
+          "kind": "property",
+          "type": "readonly RuntimeActionDescriptor<unknown>[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "adapters",
+          "kind": "property",
+          "type": "readonly RuntimeAdapterDescriptor<unknown>[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "bindings",
+          "kind": "property",
+          "type": "readonly RuntimeBindingDescriptor<unknown>[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "config",
+          "kind": "property",
+          "type": "RuntimeConfig",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly RuntimeDiagnostic[]",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "kind",
+          "kind": "property",
+          "type": "\"ankhorage-runtime-manifest\"",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "version",
+          "kind": "property",
+          "type": "1",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeManifestInput",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/index.ts",
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 55,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [
+        "RuntimeActionDescriptor",
+        "RuntimeAdapterDescriptor",
+        "RuntimeBindingDescriptor",
+        "RuntimeConfig",
+        "RuntimeDiagnostic"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "actions",
+          "kind": "property",
+          "type": "readonly RuntimeActionDescriptor<unknown>[] | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "adapters",
+          "kind": "property",
+          "type": "readonly RuntimeAdapterDescriptor<unknown>[] | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "bindings",
+          "kind": "property",
+          "type": "readonly RuntimeBindingDescriptor<unknown>[] | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "config",
+          "kind": "property",
+          "type": "RuntimeConfig",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "diagnostics",
+          "kind": "property",
+          "type": "readonly RuntimeDiagnostic[] | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    }
+  ],
+  "components": [],
+  "sourceFunctions": [
+    {
+      "name": "defineRuntimeAction",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 63,
+        "column": 1
+      }
+    },
+    {
+      "name": "defineRuntimeAdapter",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 69,
+        "column": 1
+      }
+    },
+    {
+      "name": "defineRuntimeBinding",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 75,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRuntimeManifest",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 81,
+        "column": 1
+      }
+    },
+    {
+      "name": "listRuntimeCapabilities",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/index.ts",
+        "line": 93,
+        "column": 1
+      }
+    }
+  ],
+  "sequenceScenarios": [
+    {
+      "kind": "export",
+      "name": "createRuntimeManifest",
+      "sourcePath": "src/index.ts",
+      "symbolName": "createRuntimeManifest",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "defineRuntimeAction",
+      "sourcePath": "src/index.ts",
+      "symbolName": "defineRuntimeAction",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "defineRuntimeAdapter",
+      "sourcePath": "src/index.ts",
+      "symbolName": "defineRuntimeAdapter",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "defineRuntimeBinding",
+      "sourcePath": "src/index.ts",
+      "symbolName": "defineRuntimeBinding",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "listRuntimeCapabilities",
+      "sourcePath": "src/index.ts",
+      "symbolName": "listRuntimeCapabilities",
+      "description": null,
+      "isReadme": false
+    }
+  ],
+  "graphs": {
+    "imports": [
+      {
+        "fromPath": "src/readme-usage.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "src/readme-usage.ts"
+      },
+      {
+        "fromPath": "tests/runtime.test.ts",
+        "toPath": "src/index.ts",
+        "sourcePath": "tests/runtime.test.ts"
+      }
+    ],
+    "calls": [
+      {
+        "fromSymbol": "paradox.config.ts",
+        "toSymbol": "defineParadoxConfig",
+        "callExpression": "defineParadoxConfig",
+        "sourcePath": "paradox.config.ts"
+      },
+      {
+        "fromSymbol": "src/readme-usage.ts",
+        "toSymbol": "createRuntimeManifest",
+        "callExpression": "createRuntimeManifest",
+        "sourcePath": "src/readme-usage.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "listRuntimeCapabilities",
+        "callExpression": "listRuntimeCapabilities",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "defineRuntimeAction",
+        "callExpression": "defineRuntimeAction",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "defineRuntimeBinding",
+        "callExpression": "defineRuntimeBinding",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "defineRuntimeAdapter",
+        "callExpression": "defineRuntimeAdapter",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "createRuntimeManifest",
+        "callExpression": "createRuntimeManifest",
+        "sourcePath": "tests/runtime.test.ts"
+      }
+    ],
+    "typeReferences": [
+      {
+        "fromSymbol": "defineRuntimeAction",
+        "toType": "Data",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "defineRuntimeAction",
+        "toType": "RuntimeActionDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "defineRuntimeAdapter",
+        "toType": "Options",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "defineRuntimeAdapter",
+        "toType": "RuntimeAdapterDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "defineRuntimeBinding",
+        "toType": "RuntimeBindingDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "defineRuntimeBinding",
+        "toType": "Value",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeManifest",
+        "toType": "RuntimeManifest",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeManifest",
+        "toType": "RuntimeManifestInput",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeConfig",
+        "toType": "Readonly",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeActionDescriptor",
+        "toType": "Data",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeBindingDescriptor",
+        "toType": "Value",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAdapterDescriptor",
+        "toType": "Options",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifest",
+        "toType": "RuntimeActionDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifest",
+        "toType": "RuntimeAdapterDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifest",
+        "toType": "RuntimeBindingDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifest",
+        "toType": "RuntimeConfig",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifest",
+        "toType": "RuntimeDiagnostic",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifestInput",
+        "toType": "RuntimeActionDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifestInput",
+        "toType": "RuntimeAdapterDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifestInput",
+        "toType": "RuntimeBindingDescriptor",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifestInput",
+        "toType": "RuntimeConfig",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromSymbol": "RuntimeManifestInput",
+        "toType": "RuntimeDiagnostic",
+        "sourcePath": "src/index.ts"
+      }
+    ],
+    "componentComposition": []
+  }
+}

@@ -1,0 +1,10 @@
+graph TD
+  package__ankhorage_runtime["@ankhorage/runtime"]
+  entrypoint_src_index_ts["src/index.ts"]
+  package__ankhorage_runtime --> entrypoint_src_index_ts
+  module_paradox_config_ts["paradox.config.ts"]
+  package__ankhorage_runtime -.-> module_paradox_config_ts
+  module_src_index_ts["src/index.ts"]
+  module_tests_runtime_test_ts["tests/runtime.test.ts"]
+  package__ankhorage_runtime -.-> module_tests_runtime_test_ts
+  module_tests_runtime_test_ts --> module_src_index_ts

@@ -1,4 +1,4 @@
-import { createRuntimeManifest } from "./index.js";
+import { createRuntimeManifest } from './index.js';
 
 /***
  * Generic runtime boundary
@@ -12,6 +12,6 @@ import { createRuntimeManifest } from "./index.js";
  */
 createRuntimeManifest({
   config: {
-    appId: "demo",
+    appId: 'demo',
   },
 });

@@ -1,5 +1,5 @@
 ---
-"@ankhorage/runtime": minor
+'@ankhorage/runtime': minor
 ---
 
 Bootstrap the standalone platform-neutral runtime package.
