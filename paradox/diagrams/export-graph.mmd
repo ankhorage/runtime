@@ -10,8 +10,6 @@ graph LR
   module_src_rendering_ts["src/rendering.ts"]
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
-  module_src_runtimeActions_test_ts["src/runtimeActions.test.ts"]
-  module_src_runtimeActions_ts["src/runtimeActions.ts"]
   module_src_runtimeApiLoaders_test_ts["src/runtimeApiLoaders.test.ts"]
   module_src_runtimeApiLoaders_ts["src/runtimeApiLoaders.ts"]
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
@@ -112,9 +110,6 @@ graph LR
   module_src_runtimeDbPersist_ts --> export_executeDbPersistAction
   export_executeDbPersistAction -.-> export_RuntimeActionHandlerArgs
   export_executeDbPersistAction -.-> export_RuntimeDbPersistExecutionResult
-  export_executeRuntimeAction["executeRuntimeAction"]
-  module_src_runtimeActions_ts --> export_executeRuntimeAction
-  export_executeRuntimeAction -.-> export_RuntimeActionHandlers
   export_executeRuntimeApiLoaders["executeRuntimeApiLoaders"]
   module_src_runtimeApiLoaders_ts --> export_executeRuntimeApiLoaders
   export_executeRuntimeApiLoaders -.-> export_RuntimeApiLoaderDefinition

@@ -8,7 +8,7 @@
     "modulePath": "src/appExtensionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/appExtensionRegistry.ts",
-      "line": 6,
+      "line": 3,
       "column": 14
     },
     "exportPaths": ["src/index.ts"],
@@ -663,38 +663,6 @@
           }
         ],
         "returnType": "Promise<RuntimeDbPersistExecutionResult>",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "executeRuntimeAction",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeActions.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeActions.ts",
-      "line": 39,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeActionHandlers"],
-    "signatures": [
-      {
-        "label": "(args: { action: unknown; router: RouterLike; mode: \"light\" | \"dark\"; setMode: (mode: \"light\" | \"dark\") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, \"log\">; }) => Promise<void>",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "{ action: unknown; router: RouterLike; mode: \"light\" | \"dark\"; setMode: (mode: \"light\" | \"dark\") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, \"log\">; }",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "Promise<void>",
         "returnDescription": null
       }
     ],

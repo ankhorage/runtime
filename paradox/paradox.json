@@ -116,7 +116,6 @@
         "dispatchRuntimeComponentEvent",
         "dispatchRuntimeComponentEventWithReporting",
         "executeDbPersistAction",
-        "executeRuntimeAction",
         "executeRuntimeApiLoaders",
         "executeRuntimeScreenOperationLoaders",
         "listRuntimeCapabilities",
@@ -267,18 +266,6 @@
         "RuntimeEventPropWrapArgs",
         "wrapRuntimeEventProps"
       ]
-    },
-    {
-      "path": "src/runtimeActions.test.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/runtimeActions.ts", "src/runtimeRepeatDiagnostics.ts"],
-      "exports": []
-    },
-    {
-      "path": "src/runtimeActions.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/RuntimeRendererConfig.tsx"],
-      "exports": ["executeRuntimeAction"]
     },
     {
       "path": "src/runtimeApiLoaders.test.ts",
@@ -589,7 +576,7 @@
       "modulePath": "src/appExtensionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/appExtensionRegistry.ts",
-        "line": 6,
+        "line": 3,
         "column": 14
       },
       "exportPaths": ["src/index.ts"],
@@ -1244,38 +1231,6 @@
             }
           ],
           "returnType": "Promise<RuntimeDbPersistExecutionResult>",
-          "returnDescription": null
-        }
-      ],
-      "members": [],
-      "structuredRows": []
-    },
-    {
-      "name": "executeRuntimeAction",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "function",
-      "modulePath": "src/runtimeActions.ts",
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.ts",
-        "line": 39,
-        "column": 1
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": ["RuntimeActionHandlers"],
-      "signatures": [
-        {
-          "label": "(args: { action: unknown; router: RouterLike; mode: \"light\" | \"dark\"; setMode: (mode: \"light\" | \"dark\") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, \"log\">; }) => Promise<void>",
-          "parameters": [
-            {
-              "name": "args",
-              "type": "{ action: unknown; router: RouterLike; mode: \"light\" | \"dark\"; setMode: (mode: \"light\" | \"dark\") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, \"log\">; }",
-              "required": true,
-              "description": null
-            }
-          ],
-          "returnType": "Promise<void>",
           "returnDescription": null
         }
       ],
@@ -4840,51 +4795,6 @@
       }
     },
     {
-      "name": "readStringProperty",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.test.ts",
-        "line": 12,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolvePath",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.ts",
-        "line": 5,
-        "column": 1
-      }
-    },
-    {
-      "name": "isAction",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.ts",
-        "line": 27,
-        "column": 1
-      }
-    },
-    {
-      "name": "isActionCallback",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.ts",
-        "line": 31,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeRuntimeAction",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActions.ts",
-        "line": 39,
-        "column": 1
-      }
-    },
-    {
       "name": "materializeRuntimeApiLoaderState",
       "description": null,
       "sourceLocation": {
@@ -6318,14 +6228,6 @@
     },
     {
       "kind": "export",
-      "name": "executeRuntimeAction",
-      "sourcePath": "src/runtimeActions.ts",
-      "symbolName": "executeRuntimeAction",
-      "description": null,
-      "isReadme": false
-    },
-    {
-      "kind": "export",
       "name": "executeRuntimeApiLoaders",
       "sourcePath": "src/runtimeApiLoaders.ts",
       "symbolName": "executeRuntimeApiLoaders",
@@ -6573,11 +6475,6 @@
       },
       {
         "fromPath": "src/index.ts",
-        "toPath": "src/runtimeActions.ts",
-        "sourcePath": "src/index.ts"
-      },
-      {
-        "fromPath": "src/index.ts",
         "toPath": "src/runtimeApiLoaders.ts",
         "sourcePath": "src/index.ts"
       },
@@ -6690,21 +6587,6 @@
         "fromPath": "src/runtimeActionRegistry.ts",
         "toPath": "src/RuntimeRendererConfig.tsx",
         "sourcePath": "src/runtimeActionRegistry.ts"
-      },
-      {
-        "fromPath": "src/runtimeActions.test.ts",
-        "toPath": "src/runtimeActions.ts",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromPath": "src/runtimeActions.test.ts",
-        "toPath": "src/runtimeRepeatDiagnostics.ts",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromPath": "src/runtimeActions.ts",
-        "toPath": "src/RuntimeRendererConfig.tsx",
-        "sourcePath": "src/runtimeActions.ts"
       },
       {
         "fromPath": "src/runtimeApiLoaders.test.ts",
@@ -7389,114 +7271,6 @@
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
         "sourcePath": "src/runtimeActionRegistry.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "readFileSync",
-        "callExpression": "readFileSync",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "join",
-        "callExpression": "join",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "describe",
-        "callExpression": "describe",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "it",
-        "callExpression": "it",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "executeRuntimeAction",
-        "callExpression": "executeRuntimeAction",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "requestAnimationFrameImpl",
-        "toSymbol": "callback",
-        "callExpression": "callback",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "expect",
-        "callExpression": "expect",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "setLanguage",
-        "toSymbol": "readStringProperty",
-        "callExpression": "readStringProperty",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.test.ts",
-        "toSymbol": "createRepeatDiagnosticsKey",
-        "callExpression": "createRepeatDiagnosticsKey",
-        "sourcePath": "src/runtimeActions.test.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "isActionCallback",
-        "callExpression": "isActionCallback",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "action",
-        "callExpression": "action",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "isAction",
-        "callExpression": "isAction",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "requestAnimationFrameImpl",
-        "callExpression": "requestAnimationFrameImpl",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.ts",
-        "toSymbol": "resolvePath",
-        "callExpression": "resolvePath",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActions.ts",
-        "toSymbol": "push",
-        "callExpression": "router.push",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "setMode",
-        "callExpression": "setMode",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "alertImpl",
-        "callExpression": "alertImpl",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toSymbol": "configuredHandler",
-        "callExpression": "configuredHandler",
-        "sourcePath": "src/runtimeActions.ts"
       },
       {
         "fromSymbol": "src/runtimeApiLoaders.test.ts",
@@ -9636,21 +9410,6 @@
         "fromSymbol": "wrapRuntimeEventProps",
         "toType": "RuntimeEventPropWrapArgs",
         "sourcePath": "src/runtimeActionRegistry.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toType": "Pick",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toType": "RouterLike",
-        "sourcePath": "src/runtimeActions.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeAction",
-        "toType": "RuntimeActionHandlers",
-        "sourcePath": "src/runtimeActions.ts"
       },
       {
         "fromSymbol": "RuntimeApiLoaderExecutionResult",

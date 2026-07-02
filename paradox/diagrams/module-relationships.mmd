@@ -10,8 +10,6 @@ graph LR
   module_src_rendering_ts["src/rendering.ts"]
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
-  module_src_runtimeActions_test_ts["src/runtimeActions.test.ts"]
-  module_src_runtimeActions_ts["src/runtimeActions.ts"]
   module_src_runtimeApiLoaders_test_ts["src/runtimeApiLoaders.test.ts"]
   module_src_runtimeApiLoaders_ts["src/runtimeApiLoaders.ts"]
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
@@ -52,9 +50,6 @@ graph LR
   module_src_runtimeActionRegistry_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_RuntimeRendererConfig_tsx
-  module_src_runtimeActions_test_ts --> module_src_runtimeActions_ts
-  module_src_runtimeActions_test_ts --> module_src_runtimeRepeatDiagnostics_ts
-  module_src_runtimeActions_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeApiLoaders_test_ts --> module_src_runtimeApiLoaders_ts
   module_src_runtimeApiLoaders_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeApiLoaders_test_ts --> module_src_runtimeStateAdapter_ts

@@ -4,7 +4,7 @@
 
 Kind: `value`
 Module: `src/appExtensionRegistry.ts`
-Source: `src/appExtensionRegistry.ts:6:14`
+Source: `src/appExtensionRegistry.ts:3:14`
 
 ## ComponentRegistry
 
@@ -241,18 +241,6 @@ Source: `src/runtimeDbPersist.ts:48:1`
 - `(args: { readonly dbAdapter: DbAdapter; readonly handlerArgs: RuntimeActionHandlerArgs; }) => Promise<RuntimeDbPersistExecutionResult>`
   - args: `{ readonly dbAdapter: DbAdapter; readonly handlerArgs: RuntimeActionHandlerArgs; }`
   - returns: `Promise<RuntimeDbPersistExecutionResult>`
-
-## executeRuntimeAction
-
-Kind: `function`
-Module: `src/runtimeActions.ts`
-Source: `src/runtimeActions.ts:39:1`
-
-### Signatures
-
-- `(args: { action: unknown; router: RouterLike; mode: "light" | "dark"; setMode: (mode: "light" | "dark") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, "log">; }) => Promise<void>`
-  - args: `{ action: unknown; router: RouterLike; mode: "light" | "dark"; setMode: (mode: "light" | "dark") => void; actionHandlers?: RuntimeActionHandlers; requestAnimationFrameImpl?: typeof requestAnimationFrame; alertImpl?: typeof alert; consoleImpl?: Pick<typeof console, "log">; }`
-  - returns: `Promise<void>`
 
 ## executeRuntimeApiLoaders
 
