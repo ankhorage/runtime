@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/runtime",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
   "license": "MIT",
   "publishConfig": {
