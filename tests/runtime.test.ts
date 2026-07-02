@@ -1,3 +1,5 @@
+import { describe, expect, it } from "bun:test";
+
 import {
   createRuntimeManifest,
   defineRuntimeAction,
@@ -6,8 +8,6 @@ import {
   listRuntimeCapabilities,
   RUNTIME_MANIFEST_KIND,
 } from "../src/index.js";
-
-import { describe, expect, it } from "bun:test";
 
 describe("runtime contracts", () => {
   it("lists metadata capabilities", () => {
