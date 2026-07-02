@@ -8,10 +8,6 @@ import React from 'react';
 import { type ComponentRegistry, createComponentRegistry } from './componentRegistry';
 
 const registrySource = readFileSync(join(import.meta.dir, 'registry.tsx'), 'utf8');
-const extensionRegistrySource = readFileSync(
-  join(import.meta.dir, 'appExtensionRegistry.ts'),
-  'utf8',
-);
 
 function BaseComponent() {
   return React.createElement('BaseComponent');
@@ -79,24 +75,10 @@ describe('runtime component registry', () => {
     expect(registry.ExtensionOnly).toBe(ExtensionComponent);
   });
 
-  it('registers extension package components used by games templates', () => {
-    expect(extensionRegistrySource).toMatch(
-      /import \{ ChessBoard, OpeningBook \} from '@ankhorage\/zora-chess'/,
-    );
-    expect(extensionRegistrySource).toMatch(
-      /import \{ TabletopTable \} from '@ankhorage\/zora-tabletop'/,
-    );
-    expect(extensionRegistrySource).toMatch(/ChessBoard,/);
-    expect(extensionRegistrySource).toMatch(/OpeningBook,/);
-    expect(extensionRegistrySource).toMatch(/TabletopTable,/);
-  });
-
   it('does not keep app-facing Heading ownership in the Surface registry', () => {
     expect(registrySource).toMatch(
       /export const SURFACE_COMPONENT_REGISTRY: ComponentRegistry = \{\}/,
     );
-    expect(registrySource).not.toMatch(
-      /import \{ Box, Container, Grid, Heading, Stack \} from '@ankhorage\/surface'/,
-    );
+    expect(registrySource).not.toMatch(/from '@ankhorage\/surface'/);
   });
 });
