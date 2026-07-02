@@ -28,7 +28,6 @@ export {
   resolveRuntimeActionValue,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
-export { executeRuntimeAction } from './runtimeActions';
 export type {
   RuntimeApiLoaderDefinition,
   RuntimeApiLoaderDiagnostic,
