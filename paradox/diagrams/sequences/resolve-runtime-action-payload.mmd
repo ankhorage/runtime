@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_isRecord as isRecord
+  participant participant_resolveRuntimeActionPayload as resolveRuntimeActionPayload
+  participant participant_resolveRuntimeActionValue as resolveRuntimeActionValue
+  participant_resolveRuntimeActionPayload->>participant_resolveRuntimeActionValue: resolveRuntimeActionValue()
+  participant_resolveRuntimeActionValue->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_resolveRuntimeActionValue: return
+  participant_resolveRuntimeActionValue-->>participant_resolveRuntimeActionPayload: return

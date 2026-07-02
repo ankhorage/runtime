@@ -1,95 +1,134 @@
-export const RUNTIME_CAPABILITIES = [
-  'runtime.render',
-  'runtime.actions',
-  'runtime.bindings',
-  'runtime.adapters',
-] as const;
-
-export const RUNTIME_MANIFEST_KIND = 'ankhorage-runtime-manifest';
-
-export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];
-
-export interface RuntimeDiagnostic {
-  readonly code: string;
-  readonly message: string;
-  readonly severity: 'error' | 'info' | 'warning';
-}
-
-export interface RuntimeConfig {
-  readonly appId: string;
-  readonly environment?: string;
-  readonly values?: Readonly<Record<string, unknown>>;
-}
-
-export interface RuntimeActionDescriptor<Data = unknown> {
-  readonly capability?: RuntimeCapability;
-  readonly description?: string;
-  readonly id: string;
-  readonly data?: Data;
-}
-
-export interface RuntimeBindingDescriptor<Value = unknown> {
-  readonly actionId?: string;
-  readonly id: string;
-  readonly source: string;
-  readonly target: string;
-  readonly value?: Value;
-}
-
-export interface RuntimeAdapterDescriptor<Options = unknown> {
-  readonly id: string;
-  readonly kind: string;
-  readonly options?: Options;
-}
-
-export interface RuntimeManifest {
-  readonly actions: readonly RuntimeActionDescriptor[];
-  readonly adapters: readonly RuntimeAdapterDescriptor[];
-  readonly bindings: readonly RuntimeBindingDescriptor[];
-  readonly config: RuntimeConfig;
-  readonly diagnostics: readonly RuntimeDiagnostic[];
-  readonly kind: typeof RUNTIME_MANIFEST_KIND;
-  readonly version: 1;
-}
-
-export interface RuntimeManifestInput {
-  readonly actions?: readonly RuntimeActionDescriptor[];
-  readonly adapters?: readonly RuntimeAdapterDescriptor[];
-  readonly bindings?: readonly RuntimeBindingDescriptor[];
-  readonly config: RuntimeConfig;
-  readonly diagnostics?: readonly RuntimeDiagnostic[];
-}
-
-export function defineRuntimeAction<Data = unknown>(
-  action: RuntimeActionDescriptor<Data>,
-): RuntimeActionDescriptor<Data> {
-  return action;
-}
-
-export function defineRuntimeAdapter<Options = unknown>(
-  adapter: RuntimeAdapterDescriptor<Options>,
-): RuntimeAdapterDescriptor<Options> {
-  return adapter;
-}
-
-export function defineRuntimeBinding<Value = unknown>(
-  binding: RuntimeBindingDescriptor<Value>,
-): RuntimeBindingDescriptor<Value> {
-  return binding;
-}
-
-export function createRuntimeManifest(input: RuntimeManifestInput): RuntimeManifest {
-  return {
-    actions: input.actions ?? [],
-    adapters: input.adapters ?? [],
-    bindings: input.bindings ?? [],
-    config: input.config,
-    diagnostics: input.diagnostics ?? [],
-    kind: RUNTIME_MANIFEST_KIND,
-    version: 1,
-  };
-}
-
-export function listRuntimeCapabilities(): readonly RuntimeCapability[] {
-  return RUNTIME_CAPABILITIES;
-}
+export {
+  ManifestContext,
+  ManifestProvider,
+  useManifest,
+  useManifestContext,
+  useOptionalManifestContext,
+} from './ManifestContext';
+export type { ComponentRegistry } from './registry';
+export {
+  APP_EXTENSION_COMPONENT_REGISTRY,
+  createComponentRegistry,
+  SURFACE_COMPONENT_REGISTRY,
+  ZORA_COMPONENT_REGISTRY,
+} from './registry';
+export { ZORA_COMPONENT_REGISTRY as DEFAULT_COMPONENT_REGISTRY } from './registry';
+export type {
+  RuntimeActionRegistry,
+  RuntimeActionResolutionArgs,
+  RuntimeActionResolutionScope,
+  RuntimeComponentEventDispatchArgs,
+  RuntimeEventPropWrapArgs,
+} from './runtimeActionRegistry';
+export {
+  createComponentEventFromHandlerArgs,
+  createRuntimeActionRegistry,
+  dispatchRuntimeComponentEvent,
+  resolveRuntimeActionPayload,
+  resolveRuntimeActionValue,
+  wrapRuntimeEventProps,
+} from './runtimeActionRegistry';
+export { executeRuntimeAction } from './runtimeActions';
+export type {
+  RuntimeApiLoaderDefinition,
+  RuntimeApiLoaderDiagnostic,
+  RuntimeApiLoaderExecutionResult,
+  RuntimeApiLoaderMaterializationResult,
+  RuntimeApiLoaderMode,
+} from './runtimeApiLoaders';
+export {
+  executeRuntimeApiLoaders,
+  materializeRuntimeApiLoaderState,
+  useRuntimeApiStateLoaders,
+} from './runtimeApiLoaders';
+export type {
+  RuntimeBindingOperationExecutionArgs,
+  RuntimeBindingOperationExecutionResult,
+  RuntimeBindingOperationExecutor,
+  RuntimeBindingOperationKey,
+  RuntimeBindingOperationResultCache,
+  RuntimeBindingOperationResultWriter,
+  RuntimeBindingResolutionArgs,
+  RuntimeBindingResolutionContext,
+  RuntimeBindingResolutionResult,
+} from './runtimeBindings';
+export {
+  createRuntimeBindingOperationKey,
+  resolveBindingInputMap,
+  resolveRuntimeBindings,
+  resolveRuntimeBindingsAsync,
+  resolveRuntimeBindingValue,
+  resolveRuntimeBindingValueSync,
+  validateRuntimeBindingOperationRef,
+} from './runtimeBindings';
+export type { RuntimeDataSourceOperationExecutorOptions } from './runtimeDataSourceOperations';
+export { createRuntimeDataSourceOperationExecutor } from './runtimeDataSourceOperations';
+export type {
+  RuntimeDbPersistError,
+  RuntimeDbPersistExecutionResult,
+  RuntimeDbPersistResult,
+} from './runtimeDbPersist';
+export {
+  createDbPersistActionHandler,
+  createDbPersistAdapterError,
+  executeDbPersistAction,
+  resolveDbPersistInput,
+} from './runtimeDbPersist';
+export {
+  dispatchRuntimeComponentEventWithReporting,
+  type RuntimeEventDiagnosticsReporter,
+} from './runtimeEventExecution';
+export type {
+  RuntimeActionDescriptor,
+  RuntimeAdapterDescriptor,
+  RuntimeBindingDescriptor,
+  RuntimeCapability,
+  RuntimeDiagnostic,
+  RuntimeManifest,
+  RuntimeManifestConfig,
+  RuntimeManifestInput,
+} from './runtimeManifest';
+export {
+  createRuntimeManifest,
+  defineRuntimeAction,
+  defineRuntimeAdapter,
+  defineRuntimeBinding,
+  listRuntimeCapabilities,
+  RUNTIME_CAPABILITIES,
+  RUNTIME_MANIFEST_KIND,
+} from './runtimeManifest';
+export type { RuntimeRendererProps } from './RuntimeRenderer';
+export { RuntimeRenderer } from './RuntimeRenderer';
+export {
+  composeRuntimeNodePropsResolver,
+  composeRuntimeRendererWrapNode,
+  mergeRuntimeRendererConfig,
+  type RuntimeAction,
+  type RuntimeActionExecutor,
+  type RuntimeActionHandler,
+  type RuntimeActionHandlerArgs,
+  type RuntimeActionHandlers,
+  type RuntimeNodePropsResolver,
+  type RuntimeRendererConfig,
+  RuntimeRendererConfigProvider,
+  type RuntimeRendererWrapArgs,
+  type RuntimeResolveNodePropsArgs,
+  useRuntimeRendererConfig,
+} from './RuntimeRendererConfig';
+export { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
+export type { RuntimeScreenProps } from './RuntimeScreen';
+export { RuntimeScreen } from './RuntimeScreen';
+export type {
+  RuntimeScreenOperationLoaderExecutionResult,
+  RuntimeScreenOperationLoaderState,
+} from './runtimeScreenLoaders';
+export {
+  createPendingRuntimeScreenOperationLoaderState,
+  createRuntimeScreenLoaderRequestKey,
+  executeRuntimeScreenOperationLoaders,
+  resolveScreenApiLoaders,
+  resolveScreenOperationLoaders,
+  useRuntimeScreenOperationLoaders,
+} from './runtimeScreenLoaders';
+export type { RuntimeMemoryStateAdapterOptions } from './runtimeStateAdapter';
+export { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';

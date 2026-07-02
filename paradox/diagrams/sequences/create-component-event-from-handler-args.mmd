@@ -1,0 +1,24 @@
+sequenceDiagram
+  participant participant_asRecord as asRecord
+  participant participant_createBarcodeScannedPayload as createBarcodeScannedPayload
+  participant participant_createComponentEventFromHandlerArgs as createComponentEventFromHandlerArgs
+  participant participant_createPayloadForEvent as createPayloadForEvent
+  participant participant_isRecord as isRecord
+  participant participant_localEventNameToEventType as localEventNameToEventType
+  participant participant_readItemId as readItemId
+  participant_createComponentEventFromHandlerArgs->>participant_createPayloadForEvent: createPayloadForEvent()
+  participant_createPayloadForEvent->>participant_createBarcodeScannedPayload: createBarcodeScannedPayload()
+  participant_createBarcodeScannedPayload->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_createBarcodeScannedPayload: return
+  participant_createBarcodeScannedPayload-->>participant_createPayloadForEvent: return
+  participant_createPayloadForEvent->>participant_asRecord: asRecord()
+  participant_asRecord->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_asRecord: return
+  participant_asRecord-->>participant_createPayloadForEvent: return
+  participant_createPayloadForEvent->>participant_readItemId: readItemId()
+  participant_readItemId->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_readItemId: return
+  participant_readItemId-->>participant_createPayloadForEvent: return
+  participant_createPayloadForEvent-->>participant_createComponentEventFromHandlerArgs: return
+  participant_createComponentEventFromHandlerArgs->>participant_localEventNameToEventType: localEventNameToEventType()
+  participant_localEventNameToEventType-->>participant_createComponentEventFromHandlerArgs: return

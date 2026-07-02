@@ -7,7 +7,7 @@ import {
   defineRuntimeBinding,
   listRuntimeCapabilities,
   RUNTIME_MANIFEST_KIND,
-} from '../src/index.js';
+} from '../src/runtimeManifest';
 
 describe('runtime contracts', () => {
   it('lists metadata capabilities', () => {

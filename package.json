@@ -1,7 +1,7 @@
 {
   "name": "@ankhorage/runtime",
   "version": "0.1.1",
-  "description": "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
+  "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -63,12 +63,38 @@
     "changeset:status": "changeset status --since=origin/main",
     "version-packages": "changeset version"
   },
+  "dependencies": {
+    "@ankhorage/contracts": "^1.18.3",
+    "@ankhorage/data-sources": "^0.5.1",
+    "@ankhorage/zora": "^2.8.1",
+    "@ankhorage/zora-chess": "^0.1.2",
+    "@ankhorage/zora-tabletop": "^0.0.5"
+  },
+  "peerDependencies": {
+    "react": "19.1.0",
+    "react-native": "0.81.5"
+  },
   "devDependencies": {
     "@ankhorage/devtools": "^1.0.6",
     "@ankhorage/paradox": "^0.1.10",
     "@changesets/cli": "^2.31.0",
+    "@expo/vector-icons": "^15.0.3",
+    "@react-native-picker/picker": "2.11.1",
     "@types/bun": "^1.3.13",
     "@types/node": "^25.6.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.1.9",
+    "expo": "~54.0.35",
+    "expo-constants": "~18.0.13",
+    "expo-font": "~14.0.12",
+    "expo-linear-gradient": "^56.0.4",
+    "expo-status-bar": "^3.0.9",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native": "0.81.5",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
     "typescript": "^5.9.3"
   },
   "sideEffects": false,

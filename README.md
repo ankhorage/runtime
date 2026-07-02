@@ -3,18 +3,18 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v0.1.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.1.1](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
 
 Platform-neutral runtime contracts and helpers for Ankhorage generated apps.
 
 ## Usage
 
-### Generic runtime boundary
+### Framework-neutral runtime boundary
 
-`@ankhorage/runtime` owns platform-neutral runtime contracts for generated apps.
+`@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.
 
-This first package slice is intentionally metadata-only plus public contracts so
-`ankhorage4#430` can move real runtime implementation into a stable target.
+Host apps keep router, theme, and other framework-specific behavior outside this package and
+inject it at the runtime boundary.
 
 Source: `src/readme-usage.ts`
 
@@ -36,3 +36,18 @@ createRuntimeManifest({
 - [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
+- [createComponentEventFromHandlerArgs sequence](./paradox/diagrams/sequences/create-component-event-from-handler-args.mmd)
+- [executeDbPersistAction sequence](./paradox/diagrams/sequences/execute-db-persist-action.mmd)
+- [mergeRuntimeRendererConfig sequence](./paradox/diagrams/sequences/merge-runtime-renderer-config.mmd)
+- [resolveDbPersistInput sequence](./paradox/diagrams/sequences/resolve-db-persist-input.mmd)
+- [resolveRuntimeActionPayload sequence](./paradox/diagrams/sequences/resolve-runtime-action-payload.mmd)
+- [resolveRuntimeActionValue sequence](./paradox/diagrams/sequences/resolve-runtime-action-value.mmd)
+- [RuntimeRendererConfigProvider sequence](./paradox/diagrams/sequences/runtime-renderer-config-provider.mmd)
+- [RuntimeScreen sequence](./paradox/diagrams/sequences/runtime-screen.mmd)
+- [useManifest sequence](./paradox/diagrams/sequences/use-manifest.mmd)
+- [useManifestContext sequence](./paradox/diagrams/sequences/use-manifest-context.mmd)
+- [useOptionalManifestContext sequence](./paradox/diagrams/sequences/use-optional-manifest-context.mmd)
+- [useRuntimeRendererConfig sequence](./paradox/diagrams/sequences/use-runtime-renderer-config.mmd)
+- [useRuntimeScreenOperationLoaders sequence](./paradox/diagrams/sequences/use-runtime-screen-operation-loaders.mmd)
+- [validateRuntimeBindingOperationRef sequence](./paradox/diagrams/sequences/validate-runtime-binding-operation-ref.mmd)
+- [wrapRuntimeEventProps sequence](./paradox/diagrams/sequences/wrap-runtime-event-props.mmd)
