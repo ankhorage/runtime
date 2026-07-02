@@ -3,46 +3,29 @@
 
 # @ankhorage/runtime
 
+![license: MIT](./paradox/badges/license.svg) ![npm: v0.0.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+
 Platform-neutral runtime contracts and helpers for Ankhorage generated apps.
 
 ## Usage
 
 ### Generic runtime boundary
 
-`@ankhorage/runtime` owns platform-neutral runtime behavior extracted from
-`ankhorage4/packages/runtime`.
+`@ankhorage/runtime` owns platform-neutral runtime contracts for generated apps.
 
-It is allowed to define:
-
-- manifest rendering boundaries
-- runtime action descriptors
-- binding descriptors
-- component registry contracts
-- runtime config
-- adapter boundaries
-
-It must not define Expo-specific runtime planning, native package decisions,
-Studio authoring wrappers, root CLI routing, or infra deployment behavior.
-
-The first package slice is intentionally metadata-only plus public contracts so
+This first package slice is intentionally metadata-only plus public contracts so
 `ankhorage4#430` can move real runtime implementation into a stable target.
 
 Source: `src/readme-usage.ts`
 
 ```ts
-import { createRuntimeManifest } from "./index.js";
+import { createRuntimeManifest } from './index.js';
 
 createRuntimeManifest({
   config: {
-    appId: "demo",
+    appId: 'demo',
   },
 });
-```
-
-## Installation
-
-```bash
-bun add @ankhorage/runtime
 ```
 
 ## Generated documentation
