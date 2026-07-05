@@ -5,7 +5,7 @@
     "": {
       "name": "@ankhorage/runtime",
       "dependencies": {
-        "@ankhorage/contracts": "^1.18.3",
+        "@ankhorage/contracts": "^1.19.2",
         "@ankhorage/data-sources": "^0.5.1",
         "@ankhorage/zora": "^2.8.1",
       },
@@ -36,7 +36,7 @@
 
     "@ankhorage/color-theory": ["@ankhorage/color-theory@0.0.7", "", { "dependencies": { "culori": "^4.0.2" } }, "sha512-fcdJZMmhfbvc9Yhz5vjTolmWYAaCsUaUOq4/P6YDZLHhXer8Mv8y0LaOhWgaXcwq48nrxILGUMOxOl48tRhTmA=="],
 
-    "@ankhorage/contracts": ["@ankhorage/contracts@1.19.1", "", { "dependencies": { "@ankhorage/color-theory": "^0.0.7" } }, "sha512-GwmrUhEAvhjllsV38P/zLrPliru1hzZQsI5sgHDRP5OmvfKL9/gUJ53UuBageYqhW7aeXywacvMXRX9LiqZJfw=="],
+    "@ankhorage/contracts": ["@ankhorage/contracts@1.19.2", "", { "dependencies": { "@ankhorage/color-theory": "^0.0.7" } }, "sha512-HSkpXBsDgOFTq5tW6rYJNJn1cNzBxJCIm/JMypKaZcVy8rgvMK4PDBYKVyyEL4IwPHRyuWqVC9HKa0SosYeGXQ=="],
 
     "@ankhorage/data-sources": ["@ankhorage/data-sources@0.5.1", "", { "dependencies": { "@ankhorage/contracts": "^1.18.0" } }, "sha512-l1q6qEFtAKlfuxfVe4iXV03Du8aa7x7BERFZELp3VbtY7R82JuKOnckIqvebGug4+hbh6QXlOeI8cnuHag+QAg=="],
 
@@ -1681,6 +1681,12 @@
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
     "zod": ["zod@4.4.3", "", {}, "sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ=="],
+
+    "@ankhorage/data-sources/@ankhorage/contracts": ["@ankhorage/contracts@1.19.1", "", { "dependencies": { "@ankhorage/color-theory": "^0.0.7" } }, "sha512-GwmrUhEAvhjllsV38P/zLrPliru1hzZQsI5sgHDRP5OmvfKL9/gUJ53UuBageYqhW7aeXywacvMXRX9LiqZJfw=="],
+
+    "@ankhorage/surface/@ankhorage/contracts": ["@ankhorage/contracts@1.19.1", "", { "dependencies": { "@ankhorage/color-theory": "^0.0.7" } }, "sha512-GwmrUhEAvhjllsV38P/zLrPliru1hzZQsI5sgHDRP5OmvfKL9/gUJ53UuBageYqhW7aeXywacvMXRX9LiqZJfw=="],
+
+    "@ankhorage/zora/@ankhorage/contracts": ["@ankhorage/contracts@1.19.1", "", { "dependencies": { "@ankhorage/color-theory": "^0.0.7" } }, "sha512-GwmrUhEAvhjllsV38P/zLrPliru1hzZQsI5sgHDRP5OmvfKL9/gUJ53UuBageYqhW7aeXywacvMXRX9LiqZJfw=="],
 
     "@babel/core/@babel/code-frame": ["@babel/code-frame@7.29.7", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.29.7", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw=="],
 

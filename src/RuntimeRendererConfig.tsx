@@ -22,7 +22,10 @@ import type {
   RuntimeBindingOperationResultWriter,
 } from './runtimeBindings';
 
-export type { RuntimeNodePropsResolver, RuntimeResolveNodePropsArgs } from '@ankhorage/contracts/runtime';
+export type {
+  RuntimeNodePropsResolver,
+  RuntimeResolveNodePropsArgs,
+} from '@ankhorage/contracts/runtime';
 
 export interface RuntimeRendererWrapArgs {
   node: UiNode;
