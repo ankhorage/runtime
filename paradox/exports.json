@@ -44,7 +44,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 88,
+      "line": 85,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -82,7 +82,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 73,
+      "line": 70,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -854,7 +854,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 106,
+      "line": 103,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1296,7 +1296,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 43,
+      "line": 40,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1361,7 +1361,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 46,
+      "line": 43,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1379,7 +1379,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 44,
+      "line": 41,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1397,7 +1397,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 36,
+      "line": 33,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1444,7 +1444,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 45,
+      "line": 42,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2725,10 +2725,10 @@
     "isReadme": false,
     "examples": [],
     "kind": "unknown",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
+    "modulePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
     "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 32,
+      "filePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
+      "line": 6,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2778,7 +2778,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 48,
+      "line": 45,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2917,7 +2917,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 152,
+      "line": 149,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3079,7 +3079,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 21,
+      "line": 27,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3116,10 +3116,10 @@
     "isReadme": false,
     "examples": [],
     "kind": "type",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
+    "modulePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
     "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 27,
+      "filePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
+      "line": 2,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3475,7 +3475,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 167,
+      "line": 164,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
