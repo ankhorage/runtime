@@ -9,6 +9,10 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
+import type {
+  RuntimeNodePropsResolver,
+  RuntimeResolveNodePropsArgs,
+} from '@ankhorage/contracts/runtime';
 import React, { createContext, useContext } from 'react';
 
 import type { ComponentRegistry } from './registry';
@@ -18,20 +22,13 @@ import type {
   RuntimeBindingOperationResultWriter,
 } from './runtimeBindings';
 
+export type { RuntimeNodePropsResolver, RuntimeResolveNodePropsArgs } from '@ankhorage/contracts/runtime';
+
 export interface RuntimeRendererWrapArgs {
   node: UiNode;
   rendered: React.ReactNode;
   isRoot: boolean;
 }
-
-export interface RuntimeResolveNodePropsArgs {
-  node: UiNode;
-  props: Record<string, unknown>;
-}
-
-export type RuntimeNodePropsResolver = (
-  args: RuntimeResolveNodePropsArgs,
-) => Record<string, unknown>;
 
 export interface RuntimeActionHandlerArgs {
   action: RuntimeAction;
