@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 0.2.1
+
+### Patch Changes
+
+- 21fd6e9: Consume and re-export shared runtime callback contracts from `@ankhorage/contracts/runtime`.
+
 ## 0.2.0
 
 ### Minor Changes
