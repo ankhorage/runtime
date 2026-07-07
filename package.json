@@ -42,12 +42,7 @@
   "ankh": {
     "category": "runtime",
     "provider": null,
-    "capabilities": [
-      "runtime.render",
-      "runtime.actions",
-      "runtime.bindings",
-      "runtime.adapters"
-    ]
+    "capabilities": []
   },
   "scripts": {
     "build": "rm -rf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo && bun x tsc -p tsconfig.build.json",
