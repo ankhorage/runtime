@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 0.2.2
+
+### Patch Changes
+
+- c1315d1: Update package command metadata.
+
 ## 0.2.1
 
 ### Patch Changes
