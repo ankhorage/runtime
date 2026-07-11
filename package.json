@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/runtime",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
   "license": "MIT",
   "publishConfig": {
@@ -42,12 +42,7 @@
   "ankh": {
     "category": "runtime",
     "provider": null,
-    "capabilities": [
-      "runtime.render",
-      "runtime.actions",
-      "runtime.bindings",
-      "runtime.adapters"
-    ]
+    "capabilities": []
   },
   "scripts": {
     "build": "rm -rf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo && bun x tsc -p tsconfig.build.json",
