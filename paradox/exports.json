@@ -44,7 +44,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 85,
+      "line": 88,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -82,7 +82,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 70,
+      "line": 73,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -854,7 +854,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 103,
+      "line": 106,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1296,7 +1296,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 40,
+      "line": 43,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1361,7 +1361,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 43,
+      "line": 46,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1379,7 +1379,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 41,
+      "line": 44,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1397,7 +1397,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 33,
+      "line": 36,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1444,7 +1444,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 42,
+      "line": 45,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2778,7 +2778,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 45,
+      "line": 48,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2917,7 +2917,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 149,
+      "line": 152,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3079,7 +3079,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 27,
+      "line": 30,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3475,7 +3475,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 164,
+      "line": 167,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
