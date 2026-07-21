@@ -40,9 +40,7 @@ graph LR
   module_src_runtimeStateAdapterConfig_test_ts["src/runtimeStateAdapterConfig.test.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
   module_src_appExtensionRegistry_ts --> module_src_componentRegistry_ts
-  module_src_registry_test_ts --> module_src_componentRegistry_ts
-  module_src_registry_tsx --> module_src_appExtensionRegistry_ts
-  module_src_registry_tsx --> module_src_componentRegistry_ts
+  module_src_registry_test_ts --> module_src_registry_tsx
   module_src_rendering_test_ts --> module_src_registry_tsx
   module_src_rendering_test_ts --> module_src_rendering_ts
   module_src_rendering_ts --> module_src_registry_tsx

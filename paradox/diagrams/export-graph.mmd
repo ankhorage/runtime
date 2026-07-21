@@ -53,7 +53,6 @@ graph LR
   module_src_runtimeActionRegistry_ts --> export_createComponentEventFromHandlerArgs
   export_createComponentRegistry["createComponentRegistry"]
   module_src_componentRegistry_ts --> export_createComponentRegistry
-  export_createComponentRegistry -.-> export_ComponentRegistry
   export_createDbPersistActionHandler["createDbPersistActionHandler"]
   module_src_runtimeDbPersist_ts --> export_createDbPersistActionHandler
   export_createDbPersistActionHandler -.-> export_RuntimeActionHandler
@@ -271,7 +270,6 @@ graph LR
   export_RuntimeRenderer -.-> export_RuntimeRendererProps
   export_RuntimeRendererConfig["RuntimeRendererConfig"]
   module_src_RuntimeRendererConfig_tsx --> export_RuntimeRendererConfig
-  export_RuntimeRendererConfig -.-> export_ComponentRegistry
   export_RuntimeRendererConfig -.-> export_RuntimeActionHandler
   export_RuntimeRendererConfig -.-> export_RuntimeActionHandlers
   export_RuntimeRendererConfig -.-> export_RuntimeBindingOperationExecutor
@@ -283,7 +281,6 @@ graph LR
   export_RuntimeRendererConfigProvider -.-> export_RuntimeRendererConfig
   export_RuntimeRendererProps["RuntimeRendererProps"]
   module_src_RuntimeRenderer_tsx --> export_RuntimeRendererProps
-  export_RuntimeRendererProps -.-> export_ComponentRegistry
   export_RuntimeRendererProps -.-> export_RuntimeActionHandler
   export_RuntimeRendererProps -.-> export_RuntimeBindingOperationExecutor
   export_RuntimeRendererProps -.-> export_RuntimeRendererConfig
@@ -301,11 +298,8 @@ graph LR
   module_src_runtimeScreenLoaders_ts --> export_RuntimeScreenOperationLoaderState
   export_RuntimeScreenProps["RuntimeScreenProps"]
   module_src_RuntimeScreen_tsx --> export_RuntimeScreenProps
-  export_RuntimeScreenProps -.-> export_ComponentRegistry
   export_shouldRenderRuntimeRepeatEmptyState["shouldRenderRuntimeRepeatEmptyState"]
   module_src_runtimeRepeatEmptyState_ts --> export_shouldRenderRuntimeRepeatEmptyState
-  export_SURFACE_COMPONENT_REGISTRY["SURFACE_COMPONENT_REGISTRY"]
-  module_src_registry_tsx --> export_SURFACE_COMPONENT_REGISTRY
   export_useManifest["useManifest"]
   module_src_ManifestContext_tsx --> export_useManifest
   export_useManifestContext["useManifestContext"]
@@ -330,5 +324,3 @@ graph LR
   export_wrapRuntimeEventProps["wrapRuntimeEventProps"]
   module_src_runtimeActionRegistry_ts --> export_wrapRuntimeEventProps
   export_wrapRuntimeEventProps -.-> export_RuntimeEventPropWrapArgs
-  export_ZORA_COMPONENT_REGISTRY["ZORA_COMPONENT_REGISTRY"]
-  module_src_registry_tsx --> export_ZORA_COMPONENT_REGISTRY

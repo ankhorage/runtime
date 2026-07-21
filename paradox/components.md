@@ -26,7 +26,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeRenderer
 
-Source: `src/RuntimeRenderer.tsx:68:1`
+Source: `src/RuntimeRenderer.tsx:67:1`
 
 Export paths: `src/index.ts`
 

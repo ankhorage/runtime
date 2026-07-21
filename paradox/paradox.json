@@ -12,7 +12,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.2",
+      "value": "v0.2.3",
       "color": "cb3837"
     },
     {
@@ -109,7 +109,6 @@
         "createRuntimeManifest",
         "createRuntimeMemoryStateAdapter",
         "createRuntimeScreenLoaderRequestKey",
-        "DEFAULT_COMPONENT_REGISTRY",
         "defineRuntimeAction",
         "defineRuntimeAdapter",
         "defineRuntimeBinding",
@@ -185,7 +184,6 @@
         "RuntimeScreenOperationLoaderState",
         "RuntimeScreenProps",
         "shouldRenderRuntimeRepeatEmptyState",
-        "SURFACE_COMPONENT_REGISTRY",
         "useManifest",
         "useManifestContext",
         "useOptionalManifestContext",
@@ -193,8 +191,7 @@
         "useRuntimeRendererConfig",
         "useRuntimeScreenOperationLoaders",
         "validateRuntimeBindingOperationRef",
-        "wrapRuntimeEventProps",
-        "ZORA_COMPONENT_REGISTRY"
+        "wrapRuntimeEventProps"
       ]
     },
     {
@@ -212,19 +209,17 @@
     {
       "path": "src/registry.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/componentRegistry.ts"],
+      "dependencies": ["src/registry.tsx"],
       "exports": []
     },
     {
       "path": "src/registry.tsx",
       "isEntrypoint": false,
-      "dependencies": ["src/appExtensionRegistry.ts", "src/componentRegistry.ts"],
+      "dependencies": [],
       "exports": [
         "APP_EXTENSION_COMPONENT_REGISTRY",
         "ComponentRegistry",
-        "createComponentRegistry",
-        "SURFACE_COMPONENT_REGISTRY",
-        "ZORA_COMPONENT_REGISTRY"
+        "createComponentRegistry"
       ]
     },
     {
@@ -724,19 +719,19 @@
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
-      "relatedSymbols": ["ComponentRegistry"],
+      "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(registries?: readonly ComponentRegistry[]) => ComponentRegistry",
+          "label": "(registries?: readonly Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>[]) => Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>",
           "parameters": [
             {
               "name": "registries",
-              "type": "readonly ComponentRegistry[]",
+              "type": "readonly Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>[]",
               "required": false,
               "description": null
             }
           ],
-          "returnType": "ComponentRegistry",
+          "returnType": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>",
           "returnDescription": null
         }
       ],
@@ -3314,7 +3309,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 68,
+        "line": 67,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3351,7 +3346,6 @@
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
-        "ComponentRegistry",
         "RuntimeActionHandler",
         "RuntimeActionHandlers",
         "RuntimeBindingOperationExecutor",
@@ -3441,7 +3435,7 @@
         {
           "name": "registry",
           "kind": "property",
-          "type": "ComponentRegistry | undefined",
+          "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
           "required": false,
           "description": null
         },
@@ -3517,12 +3511,11 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 50,
+        "line": 49,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
-        "ComponentRegistry",
         "RuntimeActionHandler",
         "RuntimeBindingOperationExecutor",
         "RuntimeRendererConfig",
@@ -3617,7 +3610,7 @@
         {
           "name": "registry",
           "kind": "property",
-          "type": "ComponentRegistry | undefined",
+          "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
           "required": false,
           "description": null
         },
@@ -3843,7 +3836,7 @@
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
-      "relatedSymbols": ["ComponentRegistry"],
+      "relatedSymbols": [],
       "signatures": [],
       "members": [
         {
@@ -3856,7 +3849,7 @@
         {
           "name": "registry",
           "kind": "property",
-          "type": "ComponentRegistry | undefined",
+          "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
           "required": false,
           "description": null
         },
@@ -3906,24 +3899,6 @@
           "returnDescription": null
         }
       ],
-      "members": [],
-      "structuredRows": []
-    },
-    {
-      "name": "SURFACE_COMPONENT_REGISTRY",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "value",
-      "modulePath": "src/registry.tsx",
-      "sourceLocation": {
-        "filePath": "src/registry.tsx",
-        "line": 51,
-        "column": 14
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [],
-      "signatures": [],
       "members": [],
       "structuredRows": []
     },
@@ -4165,24 +4140,6 @@
       ],
       "members": [],
       "structuredRows": []
-    },
-    {
-      "name": "ZORA_COMPONENT_REGISTRY",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "value",
-      "modulePath": "src/registry.tsx",
-      "sourceLocation": {
-        "filePath": "src/registry.tsx",
-        "line": 95,
-        "column": 14
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [],
-      "signatures": [],
-      "members": [],
-      "structuredRows": []
     }
   ],
   "components": [
@@ -4260,7 +4217,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 68,
+        "line": 67,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -4475,7 +4432,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
-        "line": 12,
+        "line": 10,
         "column": 1
       }
     },
@@ -4484,25 +4441,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
-        "line": 16,
-        "column": 1
-      }
-    },
-    {
-      "name": "getDirectZoraManifestNodeNames",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/registry.test.ts",
-        "line": 20,
-        "column": 1
-      }
-    },
-    {
-      "name": "createZoraRegistryEntries",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/registry.tsx",
-        "line": 53,
+        "line": 14,
         "column": 1
       }
     },
@@ -4538,7 +4477,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/rendering.test.ts",
-        "line": 48,
+        "line": 47,
         "column": 11
       }
     },
@@ -4547,7 +4486,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/rendering.ts",
-        "line": 5,
+        "line": 7,
         "column": 1
       }
     },
@@ -4556,7 +4495,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/rendering.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       }
     },
@@ -4565,7 +4504,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/rendering.ts",
-        "line": 27,
+        "line": 28,
         "column": 1
       }
     },
@@ -5447,7 +5386,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 68,
+        "line": 67,
         "column": 1
       }
     },
@@ -6540,7 +6479,7 @@
       },
       {
         "fromPath": "src/registry.test.ts",
-        "toPath": "src/componentRegistry.ts",
+        "toPath": "src/registry.tsx",
         "sourcePath": "src/registry.test.ts"
       },
       {
@@ -6878,18 +6817,6 @@
       },
       {
         "fromSymbol": "src/registry.test.ts",
-        "toSymbol": "readFileSync",
-        "callExpression": "readFileSync",
-        "sourcePath": "src/registry.test.ts"
-      },
-      {
-        "fromSymbol": "src/registry.test.ts",
-        "toSymbol": "join",
-        "callExpression": "join",
-        "sourcePath": "src/registry.test.ts"
-      },
-      {
-        "fromSymbol": "src/registry.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
         "sourcePath": "src/registry.test.ts"
@@ -6898,12 +6825,6 @@
         "fromSymbol": "src/registry.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
-        "sourcePath": "src/registry.test.ts"
-      },
-      {
-        "fromSymbol": "src/registry.test.ts",
-        "toSymbol": "getDirectZoraManifestNodeNames",
-        "callExpression": "getDirectZoraManifestNodeNames",
         "sourcePath": "src/registry.test.ts"
       },
       {
@@ -6917,18 +6838,6 @@
         "toSymbol": "createComponentRegistry",
         "callExpression": "createComponentRegistry",
         "sourcePath": "src/registry.test.ts"
-      },
-      {
-        "fromSymbol": "src/registry.tsx",
-        "toSymbol": "createComponentRegistry",
-        "callExpression": "createComponentRegistry",
-        "sourcePath": "src/registry.tsx"
-      },
-      {
-        "fromSymbol": "src/registry.tsx",
-        "toSymbol": "createZoraRegistryEntries",
-        "callExpression": "createZoraRegistryEntries",
-        "sourcePath": "src/registry.tsx"
       },
       {
         "fromSymbol": "src/rendering.test.ts",
@@ -9208,7 +9117,22 @@
       },
       {
         "fromSymbol": "createComponentRegistry",
-        "toType": "ComponentRegistry",
+        "toType": "ElementType",
+        "sourcePath": "src/componentRegistry.ts"
+      },
+      {
+        "fromSymbol": "createComponentRegistry",
+        "toType": "IntrinsicElements",
+        "sourcePath": "src/componentRegistry.ts"
+      },
+      {
+        "fromSymbol": "createComponentRegistry",
+        "toType": "React",
+        "sourcePath": "src/componentRegistry.ts"
+      },
+      {
+        "fromSymbol": "createComponentRegistry",
+        "toType": "Readonly",
         "sourcePath": "src/componentRegistry.ts"
       },
       {
@@ -9943,11 +9867,6 @@
       },
       {
         "fromSymbol": "RuntimeRendererProps",
-        "toType": "ComponentRegistry",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererProps",
         "toType": "DataSourceConfig",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
@@ -9964,6 +9883,16 @@
       {
         "fromSymbol": "RuntimeRendererProps",
         "toType": "DbRealtimeAdapter",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererProps",
+        "toType": "ElementType",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererProps",
+        "toType": "IntrinsicElements",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -10078,11 +10007,6 @@
       },
       {
         "fromSymbol": "RuntimeRendererConfig",
-        "toType": "ComponentRegistry",
-        "sourcePath": "src/RuntimeRendererConfig.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererConfig",
         "toType": "DataSourceConfig",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
@@ -10099,6 +10023,16 @@
       {
         "fromSymbol": "RuntimeRendererConfig",
         "toType": "DbRealtimeAdapter",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
+        "toType": "ElementType",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
+        "toType": "IntrinsicElements",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -10213,7 +10147,22 @@
       },
       {
         "fromSymbol": "RuntimeScreenProps",
-        "toType": "ComponentRegistry",
+        "toType": "ElementType",
+        "sourcePath": "src/RuntimeScreen.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeScreenProps",
+        "toType": "IntrinsicElements",
+        "sourcePath": "src/RuntimeScreen.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeScreenProps",
+        "toType": "React",
+        "sourcePath": "src/RuntimeScreen.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeScreenProps",
+        "toType": "Readonly",
         "sourcePath": "src/RuntimeScreen.tsx"
       },
       {

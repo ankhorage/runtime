@@ -14,11 +14,9 @@ graph TD
   package__ankhorage_runtime -.-> module_src_ManifestContext_tsx
   module_src_registry_test_ts["src/registry.test.ts"]
   package__ankhorage_runtime -.-> module_src_registry_test_ts
-  module_src_registry_test_ts --> module_src_componentRegistry_ts
+  module_src_registry_test_ts --> module_src_registry_tsx
   module_src_registry_tsx["src/registry.tsx"]
   package__ankhorage_runtime -.-> module_src_registry_tsx
-  module_src_registry_tsx --> module_src_appExtensionRegistry_ts
-  module_src_registry_tsx --> module_src_componentRegistry_ts
   module_src_rendering_test_ts["src/rendering.test.ts"]
   package__ankhorage_runtime -.-> module_src_rendering_test_ts
   module_src_rendering_test_ts --> module_src_registry_tsx

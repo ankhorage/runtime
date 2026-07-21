@@ -58,9 +58,9 @@ Source: `src/componentRegistry.ts:5:1`
 
 ### Signatures
 
-- `(registries?: readonly ComponentRegistry[]) => ComponentRegistry`
-  - registries: `readonly ComponentRegistry[]` (optional)
-  - returns: `ComponentRegistry`
+- `(registries?: readonly Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>[]) => Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>`
+  - registries: `readonly Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>[]` (optional)
+  - returns: `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>>`
 
 ## createDbPersistActionHandler
 
@@ -924,7 +924,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:6:1`
 
 Kind: `function`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:68:1`
+Source: `src/RuntimeRenderer.tsx:67:1`
 
 ### Signatures
 
@@ -953,7 +953,7 @@ Source: `src/RuntimeRendererConfig.tsx:48:1`
 | executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                                                                                                | no       |             |
 | onDiagnostics        | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                                                                                       | no       |             |
 | operationResults     | property | `Readonly<Record<string, import("/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings").BindingValue \| undefined>> \| undefined` | no       |             |
-| registry             | property | `ComponentRegistry \| undefined`                                                                                                                              | no       |             |
+| registry             | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined`                                                            | no       |             |
 | resolveNodeProps     | property | `RuntimeNodePropsResolver \| undefined`                                                                                                                       | no       |             |
 | stateAdapter         | property | `StateAdapter \| undefined`                                                                                                                                   | no       |             |
 | wrapNode             | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                                                                           | no       |             |
@@ -975,7 +975,7 @@ Source: `src/RuntimeRendererConfig.tsx:152:1`
 
 Kind: `type`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:50:1`
+Source: `src/RuntimeRenderer.tsx:49:1`
 
 ### Members
 
@@ -993,7 +993,7 @@ Source: `src/RuntimeRenderer.tsx:50:1`
 | node              | property | `UiNode`                                                                                                                                                 | yes      |             |
 | onDiagnostics     | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                                                                                  | no       |             |
 | operationResults  | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                                                                       | no       |             |
-| registry          | property | `ComponentRegistry \| undefined`                                                                                                                         | no       |             |
+| registry          | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined`                                                       | no       |             |
 | stateAdapter      | property | `StateAdapter \| undefined`                                                                                                                              | no       |             |
 | wrapNode          | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                                                                      | no       |             |
 
@@ -1073,12 +1073,12 @@ Source: `src/RuntimeScreen.tsx:17:1`
 
 ### Members
 
-| Name         | Kind     | Type                             | Required | Description |
-| ------------ | -------- | -------------------------------- | -------- | ----------- |
-| manifest     | property | `AppManifest`                    | yes      |             |
-| registry     | property | `ComponentRegistry \| undefined` | no       |             |
-| screen       | property | `ScreenSpec`                     | yes      |             |
-| stateAdapter | property | `StateAdapter \| undefined`      | no       |             |
+| Name         | Kind     | Type                                                                                               | Required | Description |
+| ------------ | -------- | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| manifest     | property | `AppManifest`                                                                                      | yes      |             |
+| registry     | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no       |             |
+| screen       | property | `ScreenSpec`                                                                                       | yes      |             |
+| stateAdapter | property | `StateAdapter \| undefined`                                                                        | no       |             |
 
 ## shouldRenderRuntimeRepeatEmptyState
 
@@ -1091,12 +1091,6 @@ Source: `src/runtimeRepeatEmptyState.ts:3:1`
 - `(args: { readonly diagnostics?: readonly DataSourceDiagnostic[]; readonly items?: readonly BindingValue[]; readonly status?: "pending" | "ready"; }) => boolean`
   - args: `{ readonly diagnostics?: readonly DataSourceDiagnostic[]; readonly items?: readonly BindingValue[]; readonly status?: "pending" | "ready"; }`
   - returns: `boolean`
-
-## SURFACE_COMPONENT_REGISTRY
-
-Kind: `value`
-Module: `src/registry.tsx`
-Source: `src/registry.tsx:51:14`
 
 ## useManifest
 
@@ -1190,9 +1184,3 @@ Source: `src/runtimeActionRegistry.ts:180:1`
 - `(args: RuntimeEventPropWrapArgs) => Record<string, unknown>`
   - args: `RuntimeEventPropWrapArgs`
   - returns: `Record<string, unknown>`
-
-## ZORA_COMPONENT_REGISTRY
-
-Kind: `value`
-Module: `src/registry.tsx`
-Source: `src/registry.tsx:95:14`

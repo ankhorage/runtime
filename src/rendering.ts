@@ -2,13 +2,14 @@ import type React from 'react';
 
 import type { ComponentRegistry } from './registry';
 
+const EMPTY_COMPONENT_REGISTRY: ComponentRegistry = {};
+
 export function resolveRuntimeRegistry(args: {
   propRegistry?: ComponentRegistry;
   configRegistry?: ComponentRegistry;
-  fallbackRegistry: ComponentRegistry;
 }): ComponentRegistry {
-  const { propRegistry, configRegistry, fallbackRegistry } = args;
-  return propRegistry ?? configRegistry ?? fallbackRegistry;
+  const { propRegistry, configRegistry } = args;
+  return propRegistry ?? configRegistry ?? EMPTY_COMPONENT_REGISTRY;
 }
 
 export function resolveRenderedChildren(args: {
@@ -43,6 +44,6 @@ export function getUnknownComponentDiagnostic(
         ? 'No component registry is active for this render tree.'
         : `Registered types: ${preview}${remainingCount > 0 ? `, +${remainingCount} more` : ''}.`,
     suggestion:
-      'Check the active runtime component registry. ZORA manifests require a ZORA-aware registry.',
+      'Check the active runtime component registry. Runtime renderers require the host app to inject concrete components.',
   };
 }

@@ -28,20 +28,19 @@ const StackFixture = ({ children }: FixtureProps): React.ReactElement =>
   React.createElement(React.Fragment, null, children);
 
 describe('runtime rendering helpers', () => {
-  it('prefers explicit registries over config and fallback registries', () => {
+  it('prefers explicit prop registries over config registries', () => {
     const zoraLikeRegistry = {
       Box: BoxFixture,
       Page: PageFixture,
     } satisfies ComponentRegistry;
-    const fallbackRegistry = { Box: BoxFixture } satisfies ComponentRegistry;
     const resolvedRegistry = resolveRuntimeRegistry({
       propRegistry: zoraLikeRegistry,
-      configRegistry: undefined,
-      fallbackRegistry,
+      configRegistry: { Stack: StackFixture },
     });
 
     expect(resolvedRegistry.Page).toBeDefined();
     expect(resolvedRegistry.Box).toBeDefined();
+    expect(resolvedRegistry.Stack).toBeUndefined();
   });
 
   it('preserves Text entries supplied through an explicit registry', () => {
@@ -55,10 +54,32 @@ describe('runtime rendering helpers', () => {
     const resolvedRegistry = resolveRuntimeRegistry({
       propRegistry: textRegistry,
       configRegistry: undefined,
-      fallbackRegistry: {},
     });
 
     expect(resolvedRegistry.Text).toBe(TextFixture);
+  });
+
+  it('uses config registries when no prop registry is supplied', () => {
+    const configRegistry = {
+      Stack: StackFixture,
+    } satisfies ComponentRegistry;
+
+    const resolvedRegistry = resolveRuntimeRegistry({
+      configRegistry,
+      propRegistry: undefined,
+    });
+
+    expect(resolvedRegistry.Stack).toBe(StackFixture);
+  });
+
+  it('does not provide a concrete component fallback registry', () => {
+    const resolvedRegistry = resolveRuntimeRegistry({
+      configRegistry: undefined,
+      propRegistry: undefined,
+    });
+
+    expect(resolvedRegistry.Box).toBeUndefined();
+    expect(Object.keys(resolvedRegistry)).toEqual([]);
   });
 
   it('preserves prop children when manifests encode content in props', () => {
@@ -87,6 +108,6 @@ describe('runtime rendering helpers', () => {
     expect(diagnostic.title).toContain('Page');
     expect(diagnostic.detail).toContain('Box');
     expect(diagnostic.suggestion).toContain('registry');
-    expect(diagnostic.suggestion).toContain('ZORA');
+    expect(diagnostic.suggestion).toContain('inject');
   });
 });

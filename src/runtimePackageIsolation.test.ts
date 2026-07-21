@@ -35,6 +35,14 @@ describe('@ankhorage/runtime package isolation', () => {
     ).toBe(false);
   });
 
+  it('does not import concrete ZORA components anywhere in src', () => {
+    const sourceFiles = listSourceFiles(import.meta.dir);
+
+    expect(
+      sourceFiles.some((filePath) => readFileSync(filePath, 'utf8').includes("'@ankhorage/zora")),
+    ).toBe(false);
+  });
+
   it('does not declare expo-router as a dependency or peer dependency', () => {
     const packageJson = JSON.parse(
       readFileSync(path.join(import.meta.dir, '..', 'package.json'), 'utf8'),
@@ -45,5 +53,17 @@ describe('@ankhorage/runtime package isolation', () => {
 
     expect(packageJson.dependencies?.['expo-router']).toBeUndefined();
     expect(packageJson.peerDependencies?.['expo-router']).toBeUndefined();
+  });
+
+  it('does not declare ZORA as a dependency or peer dependency', () => {
+    const packageJson = JSON.parse(
+      readFileSync(path.join(import.meta.dir, '..', 'package.json'), 'utf8'),
+    ) as {
+      dependencies?: Record<string, string>;
+      peerDependencies?: Record<string, string>;
+    };
+
+    expect(packageJson.dependencies?.['@ankhorage/zora']).toBeUndefined();
+    expect(packageJson.peerDependencies?.['@ankhorage/zora']).toBeUndefined();
   });
 });

@@ -12,7 +12,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import type { ComponentRegistry } from './registry';
-import { ZORA_COMPONENT_REGISTRY } from './registry';
 import {
   getUnknownComponentDiagnostic,
   resolveRenderedChildren,
@@ -205,7 +204,6 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       resolveRuntimeRegistry({
         propRegistry: registry,
         configRegistry: effectiveConfig.registry,
-        fallbackRegistry: ZORA_COMPONENT_REGISTRY,
       }),
     [effectiveConfig.registry, registry],
   );

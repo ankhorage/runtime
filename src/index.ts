@@ -6,13 +6,7 @@ export {
   useOptionalManifestContext,
 } from './ManifestContext';
 export type { ComponentRegistry } from './registry';
-export {
-  APP_EXTENSION_COMPONENT_REGISTRY,
-  createComponentRegistry,
-  SURFACE_COMPONENT_REGISTRY,
-  ZORA_COMPONENT_REGISTRY,
-} from './registry';
-export { ZORA_COMPONENT_REGISTRY as DEFAULT_COMPONENT_REGISTRY } from './registry';
+export { APP_EXTENSION_COMPONENT_REGISTRY, createComponentRegistry } from './registry';
 export type {
   RuntimeActionRegistry,
   RuntimeActionResolutionArgs,
