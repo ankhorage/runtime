@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 0.2.4
+
+### Patch Changes
+
+- 81fe6a0: Remove Runtime-owned ZORA component registry exports and require hosts to inject concrete component registries.
+
 ## 0.2.3
 
 ### Patch Changes
