@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 0.2.3
+
+### Patch Changes
+
+- 053bfe1: update ZORA
+
 ## 0.2.2
 
 ### Patch Changes
