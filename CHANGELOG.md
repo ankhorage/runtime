@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 0.3.0
+
+### Minor Changes
+
+- 290ca3a: Remove Runtime-owned concrete and app-extension component registry exports so hosts inject all component registries explicitly.
+
 ## 0.2.4
 
 ### Patch Changes
