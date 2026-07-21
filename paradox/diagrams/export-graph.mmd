@@ -1,6 +1,5 @@
 graph LR
   module_paradox_config_ts["paradox.config.ts"]
-  module_src_appExtensionRegistry_ts["src/appExtensionRegistry.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
@@ -39,8 +38,6 @@ graph LR
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateAdapterConfig_test_ts["src/runtimeStateAdapterConfig.test.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
-  export_APP_EXTENSION_COMPONENT_REGISTRY["APP_EXTENSION_COMPONENT_REGISTRY"]
-  module_src_appExtensionRegistry_ts --> export_APP_EXTENSION_COMPONENT_REGISTRY
   export_ComponentRegistry["ComponentRegistry"]
   module_src_componentRegistry_ts --> export_ComponentRegistry
   export_composeRuntimeNodePropsResolver["composeRuntimeNodePropsResolver"]

@@ -1,23 +1,5 @@
 [
   {
-    "name": "APP_EXTENSION_COMPONENT_REGISTRY",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "value",
-    "modulePath": "src/appExtensionRegistry.ts",
-    "sourceLocation": {
-      "filePath": "src/appExtensionRegistry.ts",
-      "line": 3,
-      "column": 14
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "ComponentRegistry",
     "description": null,
     "isReadme": false,

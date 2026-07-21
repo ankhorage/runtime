@@ -12,7 +12,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v0.2.3",
+      "value": "v0.2.4",
       "color": "cb3837"
     },
     {
@@ -78,12 +78,6 @@
       "exports": ["default"]
     },
     {
-      "path": "src/appExtensionRegistry.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/componentRegistry.ts"],
-      "exports": ["APP_EXTENSION_COMPONENT_REGISTRY"]
-    },
-    {
       "path": "src/componentRegistry.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -94,7 +88,6 @@
       "isEntrypoint": true,
       "dependencies": [],
       "exports": [
-        "APP_EXTENSION_COMPONENT_REGISTRY",
         "ComponentRegistry",
         "composeRuntimeNodePropsResolver",
         "composeRuntimeRendererWrapNode",
@@ -216,11 +209,7 @@
       "path": "src/registry.tsx",
       "isEntrypoint": false,
       "dependencies": [],
-      "exports": [
-        "APP_EXTENSION_COMPONENT_REGISTRY",
-        "ComponentRegistry",
-        "createComponentRegistry"
-      ]
+      "exports": ["ComponentRegistry", "createComponentRegistry"]
     },
     {
       "path": "src/rendering.test.ts",
@@ -562,24 +551,6 @@
     }
   ],
   "exports": [
-    {
-      "name": "APP_EXTENSION_COMPONENT_REGISTRY",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "value",
-      "modulePath": "src/appExtensionRegistry.ts",
-      "sourceLocation": {
-        "filePath": "src/appExtensionRegistry.ts",
-        "line": 3,
-        "column": 14
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [],
-      "signatures": [],
-      "members": [],
-      "structuredRows": []
-    },
     {
       "name": "ComponentRegistry",
       "description": null,
@@ -4432,7 +4403,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
-        "line": 10,
+        "line": 6,
         "column": 1
       }
     },
@@ -4441,7 +4412,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
-        "line": 14,
+        "line": 10,
         "column": 1
       }
     },
@@ -6393,11 +6364,6 @@
   "graphs": {
     "imports": [
       {
-        "fromPath": "src/appExtensionRegistry.ts",
-        "toPath": "src/componentRegistry.ts",
-        "sourcePath": "src/appExtensionRegistry.ts"
-      },
-      {
         "fromPath": "src/index.ts",
         "toPath": "src/ManifestContext.tsx",
         "sourcePath": "src/index.ts"
@@ -6481,11 +6447,6 @@
         "fromPath": "src/registry.test.ts",
         "toPath": "src/registry.tsx",
         "sourcePath": "src/registry.test.ts"
-      },
-      {
-        "fromPath": "src/registry.tsx",
-        "toPath": "src/appExtensionRegistry.ts",
-        "sourcePath": "src/registry.tsx"
       },
       {
         "fromPath": "src/registry.tsx",
@@ -6829,14 +6790,14 @@
       },
       {
         "fromSymbol": "src/registry.test.ts",
-        "toSymbol": "expect",
-        "callExpression": "expect",
+        "toSymbol": "createComponentRegistry",
+        "callExpression": "createComponentRegistry",
         "sourcePath": "src/registry.test.ts"
       },
       {
         "fromSymbol": "src/registry.test.ts",
-        "toSymbol": "createComponentRegistry",
-        "callExpression": "createComponentRegistry",
+        "toSymbol": "expect",
+        "callExpression": "expect",
         "sourcePath": "src/registry.test.ts"
       },
       {

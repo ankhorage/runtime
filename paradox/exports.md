@@ -1,11 +1,5 @@
 # Public API
 
-## APP_EXTENSION_COMPONENT_REGISTRY
-
-Kind: `value`
-Module: `src/appExtensionRegistry.ts`
-Source: `src/appExtensionRegistry.ts:3:14`
-
 ## ComponentRegistry
 
 Kind: `unknown`

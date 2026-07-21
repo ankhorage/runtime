@@ -1,11 +1,7 @@
 import { describe, expect, it } from 'bun:test';
 import React from 'react';
 
-import {
-  APP_EXTENSION_COMPONENT_REGISTRY,
-  type ComponentRegistry,
-  createComponentRegistry,
-} from './registry';
+import { type ComponentRegistry, createComponentRegistry } from './registry';
 
 function BaseComponent() {
   return React.createElement('BaseComponent');
@@ -16,10 +12,6 @@ function ExtensionComponent() {
 }
 
 describe('runtime component registry', () => {
-  it('exports an empty app extension registry by default', () => {
-    expect(APP_EXTENSION_COMPONENT_REGISTRY).toEqual({});
-  });
-
   it('composes injected app registry entries after base registry entries', () => {
     const baseRegistry = {
       Shared: BaseComponent,

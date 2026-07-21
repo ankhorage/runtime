@@ -6,7 +6,7 @@ export {
   useOptionalManifestContext,
 } from './ManifestContext';
 export type { ComponentRegistry } from './registry';
-export { APP_EXTENSION_COMPONENT_REGISTRY, createComponentRegistry } from './registry';
+export { createComponentRegistry } from './registry';
 export type {
   RuntimeActionRegistry,
   RuntimeActionResolutionArgs,
