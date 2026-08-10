@@ -1,12 +1,14 @@
-import type { BindingValue, DataSourceDiagnostic } from '@ankhorage/contracts';
+import type { BindingValue, DataSourceDiagnostic, DbAdapter } from '@ankhorage/contracts';
 import type { EndpointTestCredentialResolver, EndpointTestFetch } from '@ankhorage/data-sources';
 import { testEndpoint } from '@ankhorage/data-sources';
 
 import type { RuntimeBindingOperationExecutor } from './runtimeBindings';
+import { executeRuntimeDatabaseOperation } from './runtimeDatabaseOperationExecutor';
 
 export interface RuntimeDataSourceOperationExecutorOptions {
-  readonly fetch: EndpointTestFetch;
+  readonly fetch?: EndpointTestFetch;
   readonly credentialResolver?: EndpointTestCredentialResolver;
+  readonly databaseAdapters?: Readonly<Record<string, DbAdapter>>;
 }
 
 export function createRuntimeDataSourceOperationExecutor(
@@ -14,32 +16,26 @@ export function createRuntimeDataSourceOperationExecutor(
 ): RuntimeBindingOperationExecutor {
   return async ({ dataSource, endpoint, input, operation }) => {
     if (endpoint === undefined) {
-      return {
-        ok: false,
-        diagnostics: [
-          createRuntimeDataSourceOperationDiagnostic(
-            operation.dataSourceId,
-            operation.endpointId,
-            operation.operationId,
-            `Endpoint '${operation.endpointId ?? '<default>'}' could not be found.`,
-          ),
-        ],
-      };
+      return missingEndpoint(operation.dataSourceId, operation.endpointId, operation.operationId);
+    }
+
+    const operationConfig = endpoint.operations[operation.operationId];
+    if (operationConfig === undefined) {
+      return missingOperation(operation.dataSourceId, endpoint.id, operation.operationId);
     }
 
     const values = asBindingValueRecord(input);
     if (input !== undefined && values === undefined) {
-      return {
-        ok: false,
-        diagnostics: [
-          createRuntimeDataSourceOperationDiagnostic(
-            operation.dataSourceId,
-            endpoint.id,
-            operation.operationId,
-            'Operation input must resolve to an object.',
-          ),
-        ],
-      };
+      return invalidInput(operation.dataSourceId, endpoint.id, operation.operationId);
+    }
+
+    if (operationConfig.protocol === 'database') {
+      return executeRuntimeDatabaseOperation({
+        dataSource,
+        operation: operationConfig,
+        input: values,
+        databaseAdapters: options.databaseAdapters,
+      });
     }
 
     const result = await testEndpoint({
@@ -51,35 +47,58 @@ export function createRuntimeDataSourceOperationExecutor(
       values,
     });
 
-    if (!result.ok) {
-      return {
-        ok: false,
-        diagnostics: result.diagnostics,
-      };
-    }
-
-    return {
-      ok: true,
-      data: result.data ?? null,
-      diagnostics: result.diagnostics,
-    };
+    return result.ok
+      ? { ok: true, data: result.data ?? null, diagnostics: result.diagnostics }
+      : { ok: false, diagnostics: result.diagnostics };
   };
 }
 
-function createRuntimeDataSourceOperationDiagnostic(
+function missingEndpoint(dataSourceId: string, endpointId: string | undefined, operationId: string) {
+  return failure(
+    dataSourceId,
+    endpointId,
+    operationId,
+    'missing-endpoint',
+    `Endpoint '${endpointId ?? '<default>'}' could not be found.`,
+  );
+}
+
+function missingOperation(dataSourceId: string, endpointId: string, operationId: string) {
+  return failure(
+    dataSourceId,
+    endpointId,
+    operationId,
+    'missing-operation',
+    `Operation '${operationId}' could not be found.`,
+  );
+}
+
+function invalidInput(dataSourceId: string, endpointId: string, operationId: string) {
+  return failure(
+    dataSourceId,
+    endpointId,
+    operationId,
+    'invalid-config',
+    'Operation input must resolve to an object.',
+  );
+}
+
+function failure(
   dataSourceId: string,
   endpointId: string | undefined,
   operationId: string,
+  code: string,
   message: string,
-): DataSourceDiagnostic {
-  return {
-    code: 'invalid-config',
+) {
+  const diagnostic: DataSourceDiagnostic = {
+    code,
     dataSourceId,
     endpointId,
     operationId,
     message,
     severity: 'error',
   };
+  return { ok: false as const, diagnostics: [diagnostic] };
 }
 
 function asBindingValueRecord(
