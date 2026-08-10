@@ -6,7 +6,7 @@ on:
       - agent/adm-5-generated-api-runtime
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   refresh:
@@ -14,13 +14,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: '1.3.13'
 
-      - name: Update released ADM 5 dependencies
+      - name: Refresh released dependencies
         run: |
           node <<'NODE'
           const fs = require('node:fs');
@@ -30,18 +32,13 @@ jobs:
           pkg.dependencies['@ankhorage/data-sources'] = '^1.0.0';
           fs.writeFileSync(path, `${JSON.stringify(pkg, null, 2)}\n`);
           NODE
+          bun install
 
-      - name: Refresh lockfile
-        run: bun install
-
-      - name: Capture worktree
-        run: zip -qr runtime-worktree.zip . -x '.git/*' 'node_modules/*'
-
-      - name: Upload refreshed worktree
-        uses: actions/upload-artifact@v4
-        with:
-          name: adm5-runtime-worktree
-          path: |
-            package.json
-            bun.lock
-            runtime-worktree.zip
+      - name: Commit dependency boundary
+        run: |
+          rm .github/workflows/refresh-adm5-lock.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add package.json bun.lock .github/workflows/refresh-adm5-lock.yml
+          git commit -m 'chore: consume adm 5 contracts and data sources'
+          git push origin HEAD:agent/adm-5-generated-api-runtime
