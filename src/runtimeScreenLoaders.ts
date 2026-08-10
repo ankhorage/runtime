@@ -1,5 +1,4 @@
 import type {
-  ApiScreenDataLoaderDefinition,
   BindingValue,
   DataSourceDiagnostic,
   OperationScreenDataLoaderDefinition,
@@ -41,20 +40,10 @@ const EMPTY_RUNTIME_SCREEN_OPERATION_RESULTS = Object.freeze(
   {},
 ) as RuntimeBindingOperationResultCache;
 
-export function resolveScreenApiLoaders(
-  screen: ScreenSpec,
-): readonly ApiScreenDataLoaderDefinition[] {
-  return (screen.dataLoaders ?? []).filter(
-    (loader): loader is ApiScreenDataLoaderDefinition => loader.kind === 'api',
-  );
-}
-
 export function resolveScreenOperationLoaders(
   screen: ScreenSpec,
 ): readonly OperationScreenDataLoaderDefinition[] {
-  return (screen.dataLoaders ?? []).filter(
-    (loader): loader is OperationScreenDataLoaderDefinition => loader.kind === 'operation',
-  );
+  return screen.dataLoaders ?? [];
 }
 
 export function createRuntimeScreenLoaderRequestKey(args: {

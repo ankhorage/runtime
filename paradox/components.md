@@ -61,7 +61,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeScreen
 
-Source: `src/RuntimeScreen.tsx:24:1`
+Source: `src/RuntimeScreen.tsx:17:1`
 
 Export paths: `src/index.ts`
 

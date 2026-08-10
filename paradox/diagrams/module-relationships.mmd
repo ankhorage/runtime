@@ -9,10 +9,9 @@ graph LR
   module_src_rendering_ts["src/rendering.ts"]
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
-  module_src_runtimeApiLoaders_test_ts["src/runtimeApiLoaders.test.ts"]
-  module_src_runtimeApiLoaders_ts["src/runtimeApiLoaders.ts"]
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
+  module_src_runtimeDatabaseOperationExecutor_ts["src/runtimeDatabaseOperationExecutor.ts"]
   module_src_runtimeDataSourceOperations_test_ts["src/runtimeDataSourceOperations.test.ts"]
   module_src_runtimeDataSourceOperations_ts["src/runtimeDataSourceOperations.ts"]
   module_src_runtimeDbPersist_test_ts["src/runtimeDbPersist.test.ts"]
@@ -46,14 +45,12 @@ graph LR
   module_src_runtimeActionRegistry_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_RuntimeRendererConfig_tsx
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeApiLoaders_ts
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeBindings_ts
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeStateAdapter_ts
-  module_src_runtimeApiLoaders_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeNodeProps_ts
+  module_src_runtimeDatabaseOperationExecutor_ts --> module_src_runtimeBindings_ts
   module_src_runtimeDataSourceOperations_test_ts --> module_src_runtimeDataSourceOperations_ts
   module_src_runtimeDataSourceOperations_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeDataSourceOperations_ts --> module_src_runtimeDatabaseOperationExecutor_ts
   module_src_runtimeDbPersist_test_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeDbPersist_test_ts --> module_src_runtimeDbPersist_ts
   module_src_runtimeDbPersist_ts --> module_src_RuntimeRendererConfig_tsx
@@ -83,10 +80,10 @@ graph LR
   module_src_runtimeRepeat_test_ts --> module_src_runtimeRepeat_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
-  module_src_RuntimeScreen_tsx --> module_src_runtimeApiLoaders_ts
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRenderer_tsx
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeScreenLoaders_ts
+  module_src_RuntimeScreen_tsx --> module_src_runtimeStateAdapter_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts --> module_src_runtimeScreenLoaders_ts
   module_src_runtimeScreenLoaders_test_ts --> module_src_runtimeBindings_ts
