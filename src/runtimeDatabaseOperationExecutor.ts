@@ -21,7 +21,11 @@ export async function executeRuntimeDatabaseOperation(args: {
 
   const adapter = args.databaseAdapters?.[plan.adapterId];
   if (adapter === undefined) {
-    return failure(args, 'missing-adapter', `Database adapter '${plan.adapterId}' is not available.`);
+    return failure(
+      args,
+      'missing-adapter',
+      `Database adapter '${plan.adapterId}' is not available.`,
+    );
   }
 
   const input = args.input ?? {};
@@ -78,11 +82,7 @@ function resolveOperationPlan(
     );
   }
   if (typeof collection !== 'string' || collection.trim().length === 0) {
-    return invalidPlan(
-      dataSource,
-      operation,
-      'Database operation metadata requires a collection.',
-    );
+    return invalidPlan(dataSource, operation, 'Database operation metadata requires a collection.');
   }
   if (!isGeneratedCrudOperation(operationKind)) {
     return invalidPlan(
@@ -238,7 +238,7 @@ function resolveDbResult<TData>(
 
 function resolveAdapterId(dataSource: DataSourceConfig): string | undefined {
   if (dataSource.kind === 'database') return dataSource.adapter.id;
-  if (dataSource.kind === 'api' && dataSource.origin === 'generated') return dataSource.adapter.id;
+  if (dataSource.origin === 'generated') return dataSource.adapter.id;
   return undefined;
 }
 
@@ -267,16 +267,13 @@ function resolveIdentity(
       };
 }
 
-function resolvePage(
-  input: Readonly<Record<string, BindingValue>>,
-):
+function resolvePage(input: Readonly<Record<string, BindingValue>>):
   | {
       readonly ok: true;
       readonly value: { readonly limit?: number; readonly offset?: number } | undefined;
     }
   | { readonly ok: false; readonly message: string } {
-  const limit = input.limit;
-  const offset = input.offset;
+  const { limit, offset } = input;
   if (!isOptionalPageNumber(limit) || !isOptionalPageNumber(offset)) {
     return {
       ok: false,
@@ -288,17 +285,16 @@ function resolvePage(
 }
 
 function isOptionalPageNumber(value: BindingValue | undefined): value is number | undefined {
-  return value === undefined || (typeof value === 'number' && Number.isInteger(value) && value >= 0);
+  return (
+    value === undefined || (typeof value === 'number' && Number.isInteger(value) && value >= 0)
+  );
 }
 
 function createIdentityFilter(field: string | undefined, value: string | number): DbFilter {
   return { field: field ?? 'id', operator: 'eq', value };
 }
 
-function omitKey(
-  input: Readonly<Record<string, BindingValue>>,
-  key: string | undefined,
-): DbRecord {
+function omitKey(input: Readonly<Record<string, BindingValue>>, key: string | undefined): DbRecord {
   const values: DbRecord = {};
   for (const [field, value] of Object.entries(input)) {
     if (field !== key) values[field] = value;

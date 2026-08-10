@@ -58,7 +58,9 @@ function createDataSources(): DataSourceRegistry {
   return {
     cms: {
       id: 'cms',
-      kind: 'rest',
+      kind: 'api',
+      origin: 'external',
+      protocol: 'rest',
       baseUrl: 'https://cms.example.com',
       endpoints: {
         posts: {

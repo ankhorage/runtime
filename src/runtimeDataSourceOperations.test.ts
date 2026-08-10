@@ -87,17 +87,21 @@ function getFixtureDataSource(registry: DataSourceRegistry): DataSourceConfig {
   return dataSource;
 }
 
-function getFixtureEndpoint(dataSource: DataSourceConfig, endpointId = 'opening'): DataEndpointConfig {
+function getFixtureEndpoint(
+  dataSource: DataSourceConfig,
+  endpointId = 'opening',
+): DataEndpointConfig {
   const endpoint = dataSource.endpoints[endpointId];
-  if (endpoint === undefined) throw new Error(`Expected '${endpointId}' endpoint fixture to exist.`);
+  if (endpoint === undefined)
+    throw new Error(`Expected '${endpointId}' endpoint fixture to exist.`);
   return endpoint;
 }
 
 interface DatabaseCalls {
   readonly select: DbSelectInput[];
   readonly findById: DbFindByIdInput[];
-  readonly insert: DbInsertInput[];
-  readonly update: DbUpdateInput[];
+  readonly insert: DbInsertInput<object>[];
+  readonly update: DbUpdateInput<object>[];
   readonly delete: DbDeleteInput[];
 }
 
@@ -118,19 +122,22 @@ function createDatabaseFixture(): { readonly adapter: DbAdapter; readonly calls:
     insert<TRecord extends object = DbRecord>(
       input: DbInsertInput<TRecord>,
     ): Promise<DbResult<TRecord[]>> {
-      calls.insert.push(input as DbInsertInput);
-      const values = Array.isArray(input.values) ? input.values[0] : input.values;
-      return Promise.resolve({ ok: true, data: [{ id: 'post-2', ...values } as TRecord] });
+      calls.insert.push(input);
+      return Promise.resolve({
+        ok: true,
+        data: [{ id: 'post-2', title: 'Created' } as TRecord],
+      });
     },
     update<TRecord extends object = DbRecord>(
       input: DbUpdateInput<TRecord>,
     ): Promise<DbResult<TRecord[]>> {
-      calls.update.push(input as DbUpdateInput);
-      return Promise.resolve({ ok: true, data: [{ id: 'post-1', ...input.values } as TRecord] });
+      calls.update.push(input);
+      return Promise.resolve({
+        ok: true,
+        data: [{ id: 'post-1', title: 'Updated' } as TRecord],
+      });
     },
-    delete<TRecord extends object = DbRecord>(
-      input: DbDeleteInput,
-    ): Promise<DbResult<TRecord[]>> {
+    delete<TRecord extends object = DbRecord>(input: DbDeleteInput): Promise<DbResult<TRecord[]>> {
       calls.delete.push(input);
       return Promise.resolve({ ok: true, data: [{ id: 'post-1', title: 'First' } as TRecord] });
     },
@@ -192,7 +199,9 @@ describe('createRuntimeDataSourceOperationExecutor', () => {
   it('routes generated list/read operations through the referenced database adapter', async () => {
     const { adapter, calls } = createDatabaseFixture();
 
-    expect(await executeGeneratedOperation('posts.list', { limit: 10, offset: 2 }, adapter)).toEqual({
+    expect(
+      await executeGeneratedOperation('posts.list', { limit: 10, offset: 2 }, adapter),
+    ).toEqual({
       ok: true,
       data: [{ id: 'post-1', title: 'First' }],
       diagnostics: [],

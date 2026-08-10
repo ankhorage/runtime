@@ -53,7 +53,11 @@ export function createRuntimeDataSourceOperationExecutor(
   };
 }
 
-function missingEndpoint(dataSourceId: string, endpointId: string | undefined, operationId: string) {
+function missingEndpoint(
+  dataSourceId: string,
+  endpointId: string | undefined,
+  operationId: string,
+) {
   return failure(
     dataSourceId,
     endpointId,

@@ -19,7 +19,9 @@ function createDataSources(): DataSourceRegistry {
   return {
     'nutrition-api': {
       id: 'nutrition-api',
-      kind: 'rest',
+      kind: 'api',
+      origin: 'external',
+      protocol: 'rest',
       baseUrl: 'https://nutrition.example.com',
       endpoints: {
         products: {

@@ -29,26 +29,22 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_RuntimeRendererConfig_tsx
-  module_src_runtimeApiLoaders_test_ts["src/runtimeApiLoaders.test.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeApiLoaders_test_ts
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeApiLoaders_ts
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeBindings_ts
-  module_src_runtimeApiLoaders_test_ts --> module_src_runtimeStateAdapter_ts
-  module_src_runtimeApiLoaders_ts["src/runtimeApiLoaders.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeApiLoaders_ts
-  module_src_runtimeApiLoaders_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeBindings_test_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeBindings_ts
+  module_src_runtimeDatabaseOperationExecutor_ts["src/runtimeDatabaseOperationExecutor.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeDatabaseOperationExecutor_ts
+  module_src_runtimeDatabaseOperationExecutor_ts --> module_src_runtimeBindings_ts
   module_src_runtimeDataSourceOperations_test_ts["src/runtimeDataSourceOperations.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeDataSourceOperations_test_ts
   module_src_runtimeDataSourceOperations_test_ts --> module_src_runtimeDataSourceOperations_ts
   module_src_runtimeDataSourceOperations_ts["src/runtimeDataSourceOperations.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeDataSourceOperations_ts
   module_src_runtimeDataSourceOperations_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeDataSourceOperations_ts --> module_src_runtimeDatabaseOperationExecutor_ts
   module_src_runtimeDbPersist_test_ts["src/runtimeDbPersist.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeDbPersist_test_ts
   module_src_runtimeDbPersist_test_ts --> module_src_runtimeActionRegistry_ts
@@ -112,10 +108,10 @@ graph TD
   module_src_RuntimeScreen_tsx["src/RuntimeScreen.tsx"]
   package__ankhorage_runtime -.-> module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
-  module_src_RuntimeScreen_tsx --> module_src_runtimeApiLoaders_ts
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRenderer_tsx
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeScreenLoaders_ts
+  module_src_RuntimeScreen_tsx --> module_src_runtimeStateAdapter_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts["src/runtimeScreenLoaders.arrayPath.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_arrayPath_test_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts --> module_src_runtimeBindings_ts

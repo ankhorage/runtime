@@ -230,7 +230,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 93,
+      "line": 82,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -333,7 +333,7 @@
     "modulePath": "src/runtimeDataSourceOperations.ts",
     "sourceLocation": {
       "filePath": "src/runtimeDataSourceOperations.ts",
-      "line": 12,
+      "line": 14,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -432,7 +432,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 60,
+      "line": 49,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -652,38 +652,6 @@
     "structuredRows": []
   },
   {
-    "name": "executeRuntimeApiLoaders",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 100,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeApiLoaderDefinition", "RuntimeApiLoaderExecutionResult"],
-    "signatures": [
-      {
-        "label": "(args: { readonly data?: AppDataManifest; readonly loaders: readonly RuntimeApiLoaderDefinition[]; readonly stateAdapter: StateAdapter; }) => RuntimeApiLoaderExecutionResult",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "{ readonly data?: AppDataManifest; readonly loaders: readonly RuntimeApiLoaderDefinition[]; readonly stateAdapter: StateAdapter; }",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeApiLoaderExecutionResult",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "executeRuntimeScreenOperationLoaders",
     "description": null,
     "isReadme": false,
@@ -692,7 +660,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 189,
+      "line": 178,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -789,38 +757,6 @@
           }
         ],
         "returnType": "React.JSX.Element",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "materializeRuntimeApiLoaderState",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 40,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeApiLoaderDefinition", "RuntimeApiLoaderMaterializationResult"],
-    "signatures": [
-      {
-        "label": "(args: { readonly data?: AppDataManifest; readonly loaders: readonly RuntimeApiLoaderDefinition[]; }) => RuntimeApiLoaderMaterializationResult",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "{ readonly data?: AppDataManifest; readonly loaders: readonly RuntimeApiLoaderDefinition[]; }",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeApiLoaderMaterializationResult",
         "returnDescription": null
       }
     ],
@@ -1170,38 +1106,6 @@
     "structuredRows": []
   },
   {
-    "name": "resolveScreenApiLoaders",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeScreenLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 44,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "(screen: ScreenSpec) => readonly ApiScreenDataLoaderDefinition[]",
-        "parameters": [
-          {
-            "name": "screen",
-            "type": "ScreenSpec",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "readonly ApiScreenDataLoaderDefinition[]",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "resolveScreenOperationLoaders",
     "description": null,
     "isReadme": false,
@@ -1210,7 +1114,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 52,
+      "line": 43,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1596,148 +1500,6 @@
     "structuredRows": []
   },
   {
-    "name": "RuntimeApiLoaderDefinition",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 17,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeApiLoaderDiagnostic",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 19,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "apiId",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "code",
-        "kind": "property",
-        "type": "\"invalid-record\" | \"missing-api\" | \"missing-target-path\" | \"state-set-failed\" | \"unsupported-loader\"",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "message",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "targetPath",
-        "kind": "property",
-        "type": "string | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeApiLoaderExecutionResult",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 31,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeApiLoaderDiagnostic"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "diagnostics",
-        "kind": "property",
-        "type": "readonly RuntimeApiLoaderDiagnostic[]",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeApiLoaderMaterializationResult",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "type",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 35,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeApiLoaderDiagnostic"],
-    "signatures": [],
-    "members": [
-      {
-        "name": "diagnostics",
-        "kind": "property",
-        "type": "readonly RuntimeApiLoaderDiagnostic[]",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "state",
-        "kind": "property",
-        "type": "Readonly<Record<string, StateValue>>",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeApiLoaderMode",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 15,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "RuntimeBindingDescriptor",
     "description": null,
     "isReadme": false,
@@ -1961,7 +1723,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2043,7 +1805,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2166,7 +1928,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2245,7 +2007,7 @@
     "modulePath": "src/runtimeDataSourceOperations.ts",
     "sourceLocation": {
       "filePath": "src/runtimeDataSourceOperations.ts",
-      "line": 7,
+      "line": 8,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2260,10 +2022,17 @@
         "description": null
       },
       {
+        "name": "databaseAdapters",
+        "kind": "property",
+        "type": "Readonly<Record<string, DbAdapter>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "fetch",
         "kind": "property",
-        "type": "EndpointTestFetch",
-        "required": true,
+        "type": "EndpointTestFetch | undefined",
+        "required": false,
         "description": null
       }
     ],
@@ -2452,7 +2221,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2791,14 +2560,14 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
       {
         "name": "dataSources",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
         "required": false,
         "description": null
       },
@@ -2847,7 +2616,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").BindingValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2952,14 +2721,14 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
       {
         "name": "dataSources",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/Users/a_rtiphishl_e/git/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
+        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
         "required": false,
         "description": null
       },
@@ -2987,7 +2756,7 @@
       {
         "name": "executeAction",
         "kind": "property",
-        "type": "import(\"/Users/a_rtiphishl_e/git/runtime/src/RuntimeRendererConfig\").RuntimeActionHandler | undefined",
+        "type": "import(\"/home/runner/work/runtime/runtime/src/RuntimeRendererConfig\").RuntimeActionHandler | undefined",
         "required": false,
         "description": null
       },
@@ -3132,7 +2901,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 24,
+      "line": 17,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3164,7 +2933,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 26,
+      "line": 25,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3204,7 +2973,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 19,
+      "line": 18,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3251,7 +3020,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 17,
+      "line": 10,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -3397,38 +3166,6 @@
     "structuredRows": []
   },
   {
-    "name": "useRuntimeApiStateLoaders",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeApiLoaders.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiLoaders.ts",
-      "line": 125,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeApiLoaderDefinition", "RuntimeApiLoaderDiagnostic"],
-    "signatures": [
-      {
-        "label": "(args: { readonly data?: AppDataManifest; readonly loaders?: readonly RuntimeApiLoaderDefinition[]; readonly stateAdapter?: StateAdapter; }) => { readonly diagnostics: readonly RuntimeApiLoaderDiagnostic[]; readonly stateAdapter: StateAdapter; readonly stateVersion: number; }",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "{ readonly data?: AppDataManifest; readonly loaders?: readonly RuntimeApiLoaderDefinition[]; readonly stateAdapter?: StateAdapter; }",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "{ readonly diagnostics: readonly RuntimeApiLoaderDiagnostic[]; readonly stateAdapter: StateAdapter; readonly stateVersion: number; }",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "useRuntimeRendererConfig",
     "description": null,
     "isReadme": false,
@@ -3462,7 +3199,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 284,
+      "line": 273,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

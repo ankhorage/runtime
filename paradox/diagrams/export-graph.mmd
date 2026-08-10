@@ -9,10 +9,9 @@ graph LR
   module_src_rendering_ts["src/rendering.ts"]
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
-  module_src_runtimeApiLoaders_test_ts["src/runtimeApiLoaders.test.ts"]
-  module_src_runtimeApiLoaders_ts["src/runtimeApiLoaders.ts"]
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
+  module_src_runtimeDatabaseOperationExecutor_ts["src/runtimeDatabaseOperationExecutor.ts"]
   module_src_runtimeDataSourceOperations_test_ts["src/runtimeDataSourceOperations.test.ts"]
   module_src_runtimeDataSourceOperations_ts["src/runtimeDataSourceOperations.ts"]
   module_src_runtimeDbPersist_test_ts["src/runtimeDbPersist.test.ts"]
@@ -106,10 +105,6 @@ graph LR
   module_src_runtimeDbPersist_ts --> export_executeDbPersistAction
   export_executeDbPersistAction -.-> export_RuntimeActionHandlerArgs
   export_executeDbPersistAction -.-> export_RuntimeDbPersistExecutionResult
-  export_executeRuntimeApiLoaders["executeRuntimeApiLoaders"]
-  module_src_runtimeApiLoaders_ts --> export_executeRuntimeApiLoaders
-  export_executeRuntimeApiLoaders -.-> export_RuntimeApiLoaderDefinition
-  export_executeRuntimeApiLoaders -.-> export_RuntimeApiLoaderExecutionResult
   export_executeRuntimeScreenOperationLoaders["executeRuntimeScreenOperationLoaders"]
   module_src_runtimeScreenLoaders_ts --> export_executeRuntimeScreenOperationLoaders
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeBindingOperationExecutor
@@ -122,10 +117,6 @@ graph LR
   module_src_ManifestContext_tsx --> export_ManifestContext
   export_ManifestProvider["ManifestProvider"]
   module_src_ManifestContext_tsx --> export_ManifestProvider
-  export_materializeRuntimeApiLoaderState["materializeRuntimeApiLoaderState"]
-  module_src_runtimeApiLoaders_ts --> export_materializeRuntimeApiLoaderState
-  export_materializeRuntimeApiLoaderState -.-> export_RuntimeApiLoaderDefinition
-  export_materializeRuntimeApiLoaderState -.-> export_RuntimeApiLoaderMaterializationResult
   export_mergeRuntimeRendererConfig["mergeRuntimeRendererConfig"]
   module_src_RuntimeRendererConfig_tsx --> export_mergeRuntimeRendererConfig
   export_mergeRuntimeRendererConfig -.-> export_RuntimeRendererConfig
@@ -155,8 +146,6 @@ graph LR
   export_resolveRuntimeBindingValueSync["resolveRuntimeBindingValueSync"]
   module_src_runtimeBindings_ts --> export_resolveRuntimeBindingValueSync
   export_resolveRuntimeBindingValueSync -.-> export_RuntimeBindingResolutionContext
-  export_resolveScreenApiLoaders["resolveScreenApiLoaders"]
-  module_src_runtimeScreenLoaders_ts --> export_resolveScreenApiLoaders
   export_resolveScreenOperationLoaders["resolveScreenOperationLoaders"]
   module_src_runtimeScreenLoaders_ts --> export_resolveScreenOperationLoaders
   export_RUNTIME_CAPABILITIES["RUNTIME_CAPABILITIES"]
@@ -186,18 +175,6 @@ graph LR
   module_src_runtimeActionRegistry_ts --> export_RuntimeActionResolutionScope
   export_RuntimeAdapterDescriptor["RuntimeAdapterDescriptor"]
   module_src_runtimeManifest_ts --> export_RuntimeAdapterDescriptor
-  export_RuntimeApiLoaderDefinition["RuntimeApiLoaderDefinition"]
-  module_src_runtimeApiLoaders_ts --> export_RuntimeApiLoaderDefinition
-  export_RuntimeApiLoaderDiagnostic["RuntimeApiLoaderDiagnostic"]
-  module_src_runtimeApiLoaders_ts --> export_RuntimeApiLoaderDiagnostic
-  export_RuntimeApiLoaderExecutionResult["RuntimeApiLoaderExecutionResult"]
-  module_src_runtimeApiLoaders_ts --> export_RuntimeApiLoaderExecutionResult
-  export_RuntimeApiLoaderExecutionResult -.-> export_RuntimeApiLoaderDiagnostic
-  export_RuntimeApiLoaderMaterializationResult["RuntimeApiLoaderMaterializationResult"]
-  module_src_runtimeApiLoaders_ts --> export_RuntimeApiLoaderMaterializationResult
-  export_RuntimeApiLoaderMaterializationResult -.-> export_RuntimeApiLoaderDiagnostic
-  export_RuntimeApiLoaderMode["RuntimeApiLoaderMode"]
-  module_src_runtimeApiLoaders_ts --> export_RuntimeApiLoaderMode
   export_RuntimeBindingDescriptor["RuntimeBindingDescriptor"]
   module_src_runtimeManifest_ts --> export_RuntimeBindingDescriptor
   export_RuntimeBindingOperationExecutionArgs["RuntimeBindingOperationExecutionArgs"]
@@ -303,10 +280,6 @@ graph LR
   module_src_ManifestContext_tsx --> export_useManifestContext
   export_useOptionalManifestContext["useOptionalManifestContext"]
   module_src_ManifestContext_tsx --> export_useOptionalManifestContext
-  export_useRuntimeApiStateLoaders["useRuntimeApiStateLoaders"]
-  module_src_runtimeApiLoaders_ts --> export_useRuntimeApiStateLoaders
-  export_useRuntimeApiStateLoaders -.-> export_RuntimeApiLoaderDefinition
-  export_useRuntimeApiStateLoaders -.-> export_RuntimeApiLoaderDiagnostic
   export_useRuntimeRendererConfig["useRuntimeRendererConfig"]
   module_src_RuntimeRendererConfig_tsx --> export_useRuntimeRendererConfig
   export_useRuntimeRendererConfig -.-> export_RuntimeRendererConfig
