@@ -146,14 +146,16 @@ jobs:
       - name: Generate docs
         run: bun run docs
 
-      - name: Check changeset
-        run: bun run changeset:status
-
-      - name: Commit validated migration
+      - name: Prepare validated migration commit
         run: |
           rm .github/workflows/finalize-adm5-runtime.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git commit -m 'feat: execute canonical generated api operations'
-          git push origin HEAD:agent/adm-5-generated-api-runtime
+
+      - name: Check changeset
+        run: bun run changeset:status
+
+      - name: Push validated migration
+        run: git push origin HEAD:agent/adm-5-generated-api-runtime
