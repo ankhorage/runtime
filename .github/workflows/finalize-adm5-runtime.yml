@@ -68,6 +68,10 @@ jobs:
           data_source_test = Path('src/runtimeDataSourceOperations.test.ts')
           text = data_source_test.read_text()
           text = text.replace(
+              '  readonly insert: DbInsertInput[];\n  readonly update: DbUpdateInput[];',
+              '  readonly insert: DbInsertInput<object>[];\n  readonly update: DbUpdateInput<object>[];',
+          )
+          text = text.replace(
               """      calls.insert.push(input as DbInsertInput);
                 const values = Array.isArray(input.values) ? input.values[0] : input.values;
                 return Promise.resolve({ ok: true, data: [{ id: 'post-2', ...values } as TRecord] });
