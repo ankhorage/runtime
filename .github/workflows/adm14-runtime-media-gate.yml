@@ -47,7 +47,7 @@ jobs:
         run: bun run docs
 
       - name: Validate repository conventions
-        run: bunx --bun @ankhorage/devtools@1.0.6 ankh doctor validate .
+        run: bunx @ankhorage/doctor@0.8.0 validate .
 
       - name: Verify formatting
         run: bun run format:check
