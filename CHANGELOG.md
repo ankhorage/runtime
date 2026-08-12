@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 1.1.0
+
+### Minor Changes
+
+- e898519: Resolve canonical `{ mediaId }` component-property references through the app media registry. External URLs resolve immediately, while storage and bundled assets use a provider-neutral host resolver with cached async resolution and safe unresolved fallbacks.
+
 ## 1.0.0
 
 ### Major Changes
