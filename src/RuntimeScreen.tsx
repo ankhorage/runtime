@@ -37,6 +37,7 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       stateAdapter={stateAdapter}
       dataBindings={manifest.dataBindings}
       dataSources={manifest.dataSources}
+      mediaAssets={manifest.media?.assets}
       operationResults={screenOperationLoaders.operationResults}
     />
   );
