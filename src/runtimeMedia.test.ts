@@ -23,6 +23,13 @@ const storedImage: MediaAsset = {
   source: { kind: 'storage', storageId: 'primary', bucket: 'media', path: 'hero.png' },
 };
 
+const bundledImage: MediaAsset = {
+  id: 'bundled',
+  name: 'Bundled',
+  kind: 'image',
+  source: { kind: 'bundled', path: 'assets/hero.png' },
+};
+
 describe('runtime media', () => {
   it('collects canonical media references recursively', () => {
     expect(
@@ -60,6 +67,16 @@ describe('runtime media', () => {
     expect(first).toBe(second);
     expect(await first).toBe('https://signed.example.test/hero.png');
     expect(calls).toBe(1);
+  });
+
+  it('delegates bundled media to the host without interpreting app-relative paths', async () => {
+    const resolved = await resolveRuntimeMediaAsset(
+      bundledImage,
+      ({ asset }) => (asset.source.kind === 'bundled' ? 42 : null),
+      createRuntimeMediaResolutionCache(),
+    );
+
+    expect(resolved).toBe(42);
   });
 
   it('does not reuse cached results when the host resolver changes', async () => {
