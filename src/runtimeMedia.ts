@@ -96,7 +96,7 @@ function collectMediaReferenceIds(value: unknown, ids: Set<string>): void {
 function replaceMediaValue(
   value: unknown,
   resolvedById: ReadonlyMap<string, RuntimeResolvedMediaValue>,
-): unknown | typeof OMIT_MEDIA_VALUE {
+): unknown {
   if (isMediaAssetReference(value)) {
     return resolvedById.get(value.mediaId.trim()) ?? OMIT_MEDIA_VALUE;
   }
