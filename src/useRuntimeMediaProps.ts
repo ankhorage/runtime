@@ -58,14 +58,14 @@ export function useRuntimeMediaProps(args: {
 }
 
 function filterResolvedValues(
-  current: ReadonlyMap<string, RuntimeResolvedMediaValue>,
+  current: Map<string, RuntimeResolvedMediaValue>,
   ids: ReadonlySet<string>,
 ): Map<string, RuntimeResolvedMediaValue> {
   const next = new Map<string, RuntimeResolvedMediaValue>();
   current.forEach((value, id) => {
     if (ids.has(id)) next.set(id, value);
   });
-  return mapsEqual(current, next) ? (current as Map<string, RuntimeResolvedMediaValue>) : next;
+  return mapsEqual(current, next) ? current : next;
 }
 
 function mapsEqual(
