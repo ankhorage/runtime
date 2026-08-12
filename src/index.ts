@@ -69,15 +69,11 @@ export type {
   RuntimeManifestConfig,
   RuntimeManifestInput,
 } from './runtimeManifest';
-export {
-  createRuntimeManifest,
-  defineRuntimeAction,
-  defineRuntimeAdapter,
-  defineRuntimeBinding,
-  listRuntimeCapabilities,
-  RUNTIME_CAPABILITIES,
-  RUNTIME_MANIFEST_KIND,
-} from './runtimeManifest';
+export type {
+  RuntimeMediaAssetResolver,
+  RuntimeMediaAssetResolverArgs,
+  RuntimeResolvedMediaValue,
+} from './runtimeMedia';
 export type { RuntimeRendererProps } from './RuntimeRenderer';
 export { RuntimeRenderer } from './RuntimeRenderer';
 export {
