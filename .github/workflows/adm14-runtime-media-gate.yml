@@ -1,9 +1,9 @@
 name: ADM-14 Runtime Media Gate
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - agent/adm14-runtime-media-resolution
 
 permissions:
   contents: write
@@ -12,11 +12,10 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout pull request branch
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.head_ref }}
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -84,4 +83,4 @@ jobs:
             exit 0
           fi
           git commit -m 'Validate ADM-14 runtime media resolution'
-          git push origin HEAD:${{ github.head_ref }}
+          git push
