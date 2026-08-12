@@ -26,7 +26,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeRenderer
 
-Source: `src/RuntimeRenderer.tsx:67:1`
+Source: `src/RuntimeRenderer.tsx:76:1`
 
 Export paths: `src/index.ts`
 
@@ -41,16 +41,18 @@ Export paths: `src/index.ts`
 | executeAction     | `RuntimeActionExecutor \| undefined`                                  | no       | —       |             |
 | executeOperation  | `RuntimeBindingOperationExecutor \| undefined`                        | no       | —       |             |
 | isRoot            | `boolean \| undefined`                                                | no       | —       |             |
+| mediaAssets       | `MediaAssetRegistry \| undefined`                                     | no       | —       |             |
 | node              | `UiNode`                                                              | yes      | —       |             |
 | onDiagnostics     | `(diagnostics: readonly DataSourceDiagnostic[]) => void \| undefined` | no       | —       |             |
 | operationResults  | `RuntimeBindingOperationResultCache \| undefined`                     | no       | —       |             |
 | registry          | `ComponentRegistry \| undefined`                                      | no       | —       |             |
+| resolveMediaAsset | `RuntimeMediaAssetResolver \| undefined`                              | no       | —       |             |
 | stateAdapter      | `StateAdapter \| undefined`                                           | no       | —       |             |
 | wrapNode          | `(args: RuntimeRendererWrapArgs) => React.ReactNode \| undefined`     | no       | —       |             |
 
 ## RuntimeRendererConfigProvider
 
-Source: `src/RuntimeRendererConfig.tsx:152:1`
+Source: `src/RuntimeRendererConfig.tsx:158:1`
 
 Export paths: `src/index.ts`
 

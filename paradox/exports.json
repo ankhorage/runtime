@@ -26,7 +26,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 88,
+      "line": 92,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -64,7 +64,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 73,
+      "line": 77,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -360,38 +360,6 @@
     "structuredRows": []
   },
   {
-    "name": "createRuntimeManifest",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 81,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeManifest", "RuntimeManifestInput"],
-    "signatures": [
-      {
-        "label": "(input: RuntimeManifestInput) => RuntimeManifest",
-        "parameters": [
-          {
-            "name": "input",
-            "type": "RuntimeManifestInput",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeManifest",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "createRuntimeMemoryStateAdapter",
     "description": null,
     "isReadme": false,
@@ -449,102 +417,6 @@
           }
         ],
         "returnType": "string",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "defineRuntimeAction",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 63,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeActionDescriptor"],
-    "signatures": [
-      {
-        "label": "(action: RuntimeActionDescriptor<Data>) => RuntimeActionDescriptor<Data>",
-        "parameters": [
-          {
-            "name": "action",
-            "type": "RuntimeActionDescriptor<Data>",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeActionDescriptor<Data>",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "defineRuntimeAdapter",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 69,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeAdapterDescriptor"],
-    "signatures": [
-      {
-        "label": "(adapter: RuntimeAdapterDescriptor<Options>) => RuntimeAdapterDescriptor<Options>",
-        "parameters": [
-          {
-            "name": "adapter",
-            "type": "RuntimeAdapterDescriptor<Options>",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeAdapterDescriptor<Options>",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "defineRuntimeBinding",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 75,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": ["RuntimeBindingDescriptor"],
-    "signatures": [
-      {
-        "label": "(binding: RuntimeBindingDescriptor<Value>) => RuntimeBindingDescriptor<Value>",
-        "parameters": [
-          {
-            "name": "binding",
-            "type": "RuntimeBindingDescriptor<Value>",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeBindingDescriptor<Value>",
         "returnDescription": null
       }
     ],
@@ -689,31 +561,6 @@
     "structuredRows": []
   },
   {
-    "name": "listRuntimeCapabilities",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "function",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 93,
-      "column": 1
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "() => readonly (\"runtime.render\" | \"runtime.actions\" | \"runtime.bindings\" | \"runtime.adapters\")[]",
-        "parameters": [],
-        "returnType": "readonly (\"runtime.render\" | \"runtime.actions\" | \"runtime.bindings\" | \"runtime.adapters\")[]",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "ManifestContext",
     "description": null,
     "isReadme": false,
@@ -772,7 +619,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 106,
+      "line": 110,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1138,42 +985,6 @@
     "structuredRows": []
   },
   {
-    "name": "RUNTIME_CAPABILITIES",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "value",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 1,
-      "column": 14
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RUNTIME_MANIFEST_KIND",
-    "description": null,
-    "isReadme": false,
-    "examples": [],
-    "kind": "value",
-    "modulePath": "src/runtimeManifest.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeManifest.ts",
-      "line": 8,
-      "column": 14
-    },
-    "exportPaths": ["src/index.ts"],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "RuntimeAction",
     "description": null,
     "isReadme": false,
@@ -1182,7 +993,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 43,
+      "line": 45,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1247,7 +1058,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 46,
+      "line": 48,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1265,7 +1076,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 44,
+      "line": 46,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1283,7 +1094,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 36,
+      "line": 38,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1330,7 +1141,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 45,
+      "line": 47,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1723,7 +1534,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -1805,7 +1616,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -1928,7 +1739,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2221,7 +2032,7 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
@@ -2445,6 +2256,50 @@
     "structuredRows": []
   },
   {
+    "name": "RuntimeMediaAssetResolver",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeMedia.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeMedia.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeMediaAssetResolverArgs",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "type",
+    "modulePath": "src/runtimeMedia.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeMedia.ts",
+      "line": 9,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "asset",
+        "kind": "property",
+        "type": "MediaAsset",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "RuntimeMemoryStateAdapterOptions",
     "description": null,
     "isReadme": false,
@@ -2497,7 +2352,7 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 67,
+      "line": 76,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2529,7 +2384,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 48,
+      "line": 50,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2538,6 +2393,7 @@
       "RuntimeActionHandlers",
       "RuntimeBindingOperationExecutor",
       "RuntimeBindingOperationResultWriter",
+      "RuntimeMediaAssetResolver",
       "RuntimeNodePropsResolver",
       "RuntimeRendererWrapArgs"
     ],
@@ -2560,14 +2416,14 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
       {
         "name": "dataSources",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
         "required": false,
         "description": null
       },
@@ -2607,6 +2463,13 @@
         "description": null
       },
       {
+        "name": "mediaAssets",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/media\").MediaAsset>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "onDiagnostics",
         "kind": "property",
         "type": "((diagnostics: readonly DataSourceDiagnostic[]) => void) | undefined",
@@ -2616,7 +2479,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").BindingValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2624,6 +2487,13 @@
         "name": "registry",
         "kind": "property",
         "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "resolveMediaAsset",
+        "kind": "property",
+        "type": "RuntimeMediaAssetResolver | undefined",
         "required": false,
         "description": null
       },
@@ -2667,7 +2537,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 152,
+      "line": 158,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2699,13 +2569,14 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 49,
+      "line": 56,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": [
       "RuntimeActionHandler",
       "RuntimeBindingOperationExecutor",
+      "RuntimeMediaAssetResolver",
       "RuntimeRendererConfig",
       "RuntimeRendererWrapArgs"
     ],
@@ -2721,14 +2592,14 @@
       {
         "name": "dataBindings",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
         "required": false,
         "description": null
       },
       {
         "name": "dataSources",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"/home/runner/work/runtime/runtime/node_modules/@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
         "required": false,
         "description": null
       },
@@ -2756,7 +2627,7 @@
       {
         "name": "executeAction",
         "kind": "property",
-        "type": "import(\"/home/runner/work/runtime/runtime/src/RuntimeRendererConfig\").RuntimeActionHandler | undefined",
+        "type": "import(\"./src/RuntimeRendererConfig\").RuntimeActionHandler | undefined",
         "required": false,
         "description": null
       },
@@ -2771,6 +2642,13 @@
         "name": "isRoot",
         "kind": "property",
         "type": "boolean | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "mediaAssets",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/media\").MediaAsset>> | undefined",
         "required": false,
         "description": null
       },
@@ -2803,6 +2681,13 @@
         "description": null
       },
       {
+        "name": "resolveMediaAsset",
+        "kind": "property",
+        "type": "RuntimeMediaAssetResolver | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "stateAdapter",
         "kind": "property",
         "type": "StateAdapter | undefined",
@@ -2828,7 +2713,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 30,
+      "line": 32,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -2857,6 +2742,24 @@
         "description": null
       }
     ],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeResolvedMediaValue",
+    "description": null,
+    "isReadme": false,
+    "examples": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeMedia.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeMedia.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": ["src/index.ts"],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
     "structuredRows": []
   },
   {
@@ -3174,7 +3077,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 167,
+      "line": 173,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],

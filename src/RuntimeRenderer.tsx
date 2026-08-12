@@ -5,6 +5,7 @@ import type {
   DataSourceRegistry,
   DbAdapter,
   DbRealtimeAdapter,
+  MediaAssetRegistry,
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
@@ -26,6 +27,11 @@ import type {
   RuntimeBindingOperationKey,
   RuntimeBindingOperationResultCache,
 } from './runtimeBindings';
+import {
+  RuntimeMediaResolutionCacheProvider,
+  useRuntimeMediaResolutionCache,
+} from './runtimeMediaCache';
+import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
 import {
   mergeRuntimeRendererConfig,
@@ -45,6 +51,7 @@ import { createRepeatDiagnosticsKey } from './runtimeRepeatDiagnostics';
 import { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
 import { createDbPersistActionHandler } from './runtimeDbPersist';
 import type { RuntimeActionHandlerArgs } from './RuntimeRendererConfig';
+import { useRuntimeMediaProps } from './useRuntimeMediaProps';
 
 export interface RuntimeRendererProps {
   node: UiNode;
@@ -58,6 +65,8 @@ export interface RuntimeRendererProps {
   bindingContext?: Record<string, unknown>;
   dataSources?: DataSourceRegistry;
   dataBindings?: ComponentDataBindingRegistry;
+  mediaAssets?: MediaAssetRegistry;
+  resolveMediaAsset?: RuntimeMediaAssetResolver;
   operationResults?: RuntimeBindingOperationResultCache;
   executeAction?: RuntimeActionExecutor;
   executeOperation?: RuntimeBindingOperationExecutor;
@@ -77,12 +86,15 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     bindingContext,
     dataSources,
     dataBindings,
+    mediaAssets,
+    resolveMediaAsset,
     operationResults,
     executeAction,
     executeOperation,
     onDiagnostics,
   } = props;
   const inheritedConfig = useRuntimeRendererConfig();
+  const mediaResolutionCache = useRuntimeMediaResolutionCache();
   const inheritedOperationResults = inheritedConfig.operationResults;
   const [localOperationResults, setLocalOperationResults] =
     React.useState<RuntimeBindingOperationResultCache>({});
@@ -117,9 +129,11 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       disableActions,
       executeAction,
       executeOperation,
+      mediaAssets,
       operationResults: effectiveOperationResults,
       onDiagnostics,
       registry,
+      resolveMediaAsset,
       stateAdapter,
       wrapNode,
       writeOperationResult: inheritedConfig.writeOperationResult ?? writeLocalOperationResult,
@@ -135,8 +149,10 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       effectiveOperationResults,
       executeOperation,
       inheritedConfig.writeOperationResult,
+      mediaAssets,
       onDiagnostics,
       registry,
+      resolveMediaAsset,
       stateAdapter,
       wrapNode,
       writeLocalOperationResult,
@@ -312,6 +328,26 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     effectiveConfig.onDiagnostics?.(repeatDiagnostics);
   }, [effectiveConfig.onDiagnostics, node.repeat, repeatDiagnostics]);
 
+  const bindingResolvedProps = resolveRuntimeNodeProps({
+    bindingContext: effectiveConfig.bindingContext,
+    dataBindings: effectiveConfig.dataBindings,
+    dataSources: effectiveConfig.dataSources,
+    dbAdapter: effectiveConfig.dbAdapter,
+    dbRealtimeAdapter: effectiveConfig.dbRealtimeAdapter,
+    node,
+    operationResults: effectiveConfig.operationResults,
+    stateAdapter: effectiveConfig.stateAdapter,
+  });
+  const mediaResolvedProps = useRuntimeMediaProps({
+    cache: mediaResolutionCache,
+    mediaAssets: effectiveConfig.mediaAssets,
+    props: bindingResolvedProps,
+    resolveMediaAsset: effectiveConfig.resolveMediaAsset,
+  });
+  const resolvedProps = effectiveConfig.resolveNodeProps
+    ? effectiveConfig.resolveNodeProps({ node, props: mediaResolvedProps })
+    : mediaResolvedProps;
+
   if (!Component) {
     const diagnostic = getUnknownComponentDiagnostic(node.type, effectiveRegistry);
     return (
@@ -372,17 +408,6 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         <RuntimeRenderer key={child.id} node={child} registry={effectiveRegistry} />
       ));
 
-  const resolvedProps = resolveRuntimeNodeProps({
-    bindingContext: effectiveConfig.bindingContext,
-    dataBindings: effectiveConfig.dataBindings,
-    dataSources: effectiveConfig.dataSources,
-    dbAdapter: effectiveConfig.dbAdapter,
-    dbRealtimeAdapter: effectiveConfig.dbRealtimeAdapter,
-    node,
-    operationResults: effectiveConfig.operationResults,
-    resolveNodeProps: effectiveConfig.resolveNodeProps,
-    stateAdapter: effectiveConfig.stateAdapter,
-  });
   const propsWithActions = wrapRuntimeActionProps({
     props: resolvedProps,
     disableActions: effectiveConfig.disableActions === true,
@@ -412,7 +437,11 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   }
 
   return (
-    <RuntimeRendererConfigProvider value={explicitConfig}>{content}</RuntimeRendererConfigProvider>
+    <RuntimeMediaResolutionCacheProvider value={mediaResolutionCache}>
+      <RuntimeRendererConfigProvider value={explicitConfig}>
+        {content}
+      </RuntimeRendererConfigProvider>
+    </RuntimeMediaResolutionCacheProvider>
   );
 }
 

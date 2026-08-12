@@ -1,4 +1,4 @@
-import { createRuntimeManifest } from './index.js';
+import { createRuntimeManifest } from './runtimeManifest.js';
 
 /***
  * Framework-neutral runtime boundary

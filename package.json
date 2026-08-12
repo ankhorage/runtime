@@ -19,6 +19,7 @@
     "runtime",
     "manifest",
     "bindings",
+    "media",
     "adapters",
     "typescript"
   ],
@@ -59,7 +60,7 @@
     "version-packages": "changeset version"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^4.0.2",
+    "@ankhorage/contracts": "^7.4.0",
     "@ankhorage/data-sources": "^1.0.0"
   },
   "peerDependencies": {
@@ -68,7 +69,7 @@
   },
   "devDependencies": {
     "@ankhorage/devtools": "^1.0.6",
-    "@ankhorage/paradox": "^0.1.10",
+    "@ankhorage/paradox": "^0.1.21",
     "@changesets/cli": "^2.31.0",
     "@types/bun": "^1.3.13",
     "@types/node": "^25.6.0",
