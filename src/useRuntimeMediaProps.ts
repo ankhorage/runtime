@@ -25,10 +25,11 @@ export function useRuntimeMediaProps(args: {
 
   React.useEffect(() => {
     let active = true;
-    const currentIds = new Set(ids);
+    const effectIds = idsKey.length === 0 ? [] : idsKey.split('\u0000');
+    const currentIds = new Set(effectIds);
     setAsyncResolved((current) => filterResolvedValues(current, currentIds));
 
-    for (const id of ids) {
+    for (const id of effectIds) {
       const asset = args.mediaAssets?.[id];
       if (!asset || asset.source.kind === 'url') continue;
 
@@ -49,8 +50,9 @@ export function useRuntimeMediaProps(args: {
   }, [args.cache, args.mediaAssets, args.resolveMediaAsset, idsKey]);
 
   const resolved = createSyncRuntimeMediaResolutionMap(ids, args.mediaAssets);
+  const currentIds = new Set(ids);
   asyncResolved.forEach((value, id) => {
-    if (ids.includes(id)) resolved.set(id, value);
+    if (currentIds.has(id)) resolved.set(id, value);
   });
 
   const replaced = replaceRuntimeMediaReferences(args.props, resolved);
