@@ -6,17 +6,19 @@ import {
   defineRuntimeAdapter,
   defineRuntimeBinding,
   listRuntimeCapabilities,
+  RUNTIME_CAPABILITIES,
   RUNTIME_MANIFEST_KIND,
 } from '../src/runtimeManifest';
 
 describe('runtime contracts', () => {
-  it('lists metadata capabilities', () => {
-    expect(listRuntimeCapabilities()).toEqual([
+  it('lists canonical metadata capabilities', () => {
+    expect(RUNTIME_CAPABILITIES).toEqual([
       'runtime.render',
       'runtime.actions',
       'runtime.bindings',
       'runtime.adapters',
     ]);
+    expect(listRuntimeCapabilities()).toBe(RUNTIME_CAPABILITIES);
   });
 
   it('creates a serializable runtime manifest', () => {
