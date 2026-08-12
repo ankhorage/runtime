@@ -92,6 +92,16 @@ describe('runtime media', () => {
     );
   });
 
+  it('normalizes host resolver failures to an unresolved media value', async () => {
+    const value = await resolveRuntimeMediaAsset(
+      storedImage,
+      () => Promise.reject(new Error('provider unavailable')),
+      createRuntimeMediaResolutionCache(),
+    );
+
+    expect(value).toBeNull();
+  });
+
   it('leaves provider-backed media unresolved when no host resolver exists', async () => {
     const value = await resolveRuntimeMediaAsset(
       storedImage,
