@@ -6,6 +6,7 @@ import type {
   DataSourceRegistry,
   DbAdapter,
   DbRealtimeAdapter,
+  MediaAssetRegistry,
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
@@ -21,6 +22,7 @@ import type {
   RuntimeBindingOperationResultCache,
   RuntimeBindingOperationResultWriter,
 } from './runtimeBindings';
+import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 
 export type {
   RuntimeNodePropsResolver,
@@ -50,6 +52,8 @@ export interface RuntimeRendererConfig {
   registry?: ComponentRegistry;
   wrapNode?: (args: RuntimeRendererWrapArgs) => React.ReactNode;
   resolveNodeProps?: RuntimeNodePropsResolver;
+  resolveMediaAsset?: RuntimeMediaAssetResolver;
+  mediaAssets?: MediaAssetRegistry;
   actionHandlers?: RuntimeActionHandlers;
   dbAdapter?: DbAdapter;
   dbRealtimeAdapter?: DbRealtimeAdapter;
@@ -133,6 +137,8 @@ export function mergeRuntimeRendererConfig(
       localConfig?.resolveNodeProps,
       inheritedConfig?.resolveNodeProps,
     ),
+    resolveMediaAsset: localConfig?.resolveMediaAsset ?? inheritedConfig?.resolveMediaAsset,
+    mediaAssets: localConfig?.mediaAssets ?? inheritedConfig?.mediaAssets,
     actionHandlers,
     dbAdapter: localConfig?.dbAdapter ?? inheritedConfig?.dbAdapter,
     dbRealtimeAdapter: localConfig?.dbRealtimeAdapter ?? inheritedConfig?.dbRealtimeAdapter,
