@@ -4,10 +4,7 @@ import {
   type MediaAssetRegistry,
 } from '@ankhorage/contracts';
 
-export type RuntimeResolvedMediaValue =
-  | string
-  | number
-  | Readonly<Record<string, unknown>>;
+export type RuntimeResolvedMediaValue = string | number | Readonly<Record<string, unknown>>;
 
 export interface RuntimeMediaAssetResolverArgs {
   readonly asset: MediaAsset;

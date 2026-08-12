@@ -438,7 +438,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
   return (
     <RuntimeMediaResolutionCacheProvider value={mediaResolutionCache}>
-      <RuntimeRendererConfigProvider value={explicitConfig}>{content}</RuntimeRendererConfigProvider>
+      <RuntimeRendererConfigProvider value={explicitConfig}>
+        {content}
+      </RuntimeRendererConfigProvider>
     </RuntimeMediaResolutionCacheProvider>
   );
 }

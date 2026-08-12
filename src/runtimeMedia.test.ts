@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'bun:test';
 import type { MediaAsset } from '@ankhorage/contracts';
+import { describe, expect, it } from 'bun:test';
 
 import {
   collectRuntimeMediaReferenceIds,

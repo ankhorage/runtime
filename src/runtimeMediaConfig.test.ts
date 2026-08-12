@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'bun:test';
 import type { MediaAssetRegistry } from '@ankhorage/contracts';
+import { describe, expect, it } from 'bun:test';
 
 import { mergeRuntimeRendererConfig } from './RuntimeRendererConfig';
 
@@ -24,10 +24,13 @@ const localAssets: MediaAssetRegistry = {
 describe('runtime media config', () => {
   it('inherits media assets and resolver when no local override exists', () => {
     const resolver = () => 'https://example.test/resolved.png';
-    const merged = mergeRuntimeRendererConfig({}, {
-      mediaAssets: inheritedAssets,
-      resolveMediaAsset: resolver,
-    });
+    const merged = mergeRuntimeRendererConfig(
+      {},
+      {
+        mediaAssets: inheritedAssets,
+        resolveMediaAsset: resolver,
+      },
+    );
 
     expect(merged.mediaAssets).toBe(inheritedAssets);
     expect(merged.resolveMediaAsset).toBe(resolver);

@@ -19,6 +19,10 @@ graph LR
   module_src_runtimeEventExecution_test_ts["src/runtimeEventExecution.test.ts"]
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
   module_src_runtimeManifest_ts["src/runtimeManifest.ts"]
+  module_src_runtimeMedia_test_ts["src/runtimeMedia.test.ts"]
+  module_src_runtimeMedia_ts["src/runtimeMedia.ts"]
+  module_src_runtimeMediaCache_tsx["src/runtimeMediaCache.tsx"]
+  module_src_runtimeMediaConfig_test_ts["src/runtimeMediaConfig.test.ts"]
   module_src_runtimeNodeProps_test_ts["src/runtimeNodeProps.test.ts"]
   module_src_runtimeNodeProps_ts["src/runtimeNodeProps.ts"]
   module_src_runtimePackageIsolation_test_ts["src/runtimePackageIsolation.test.ts"]
@@ -36,6 +40,7 @@ graph LR
   module_src_runtimeScreenLoaders_ts["src/runtimeScreenLoaders.ts"]
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateAdapterConfig_test_ts["src/runtimeStateAdapterConfig.test.ts"]
+  module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
   export_ComponentRegistry["ComponentRegistry"]
   module_src_componentRegistry_ts --> export_ComponentRegistry
@@ -73,25 +78,12 @@ graph LR
   module_src_runtimeDataSourceOperations_ts --> export_createRuntimeDataSourceOperationExecutor
   export_createRuntimeDataSourceOperationExecutor -.-> export_RuntimeBindingOperationExecutor
   export_createRuntimeDataSourceOperationExecutor -.-> export_RuntimeDataSourceOperationExecutorOptions
-  export_createRuntimeManifest["createRuntimeManifest"]
-  module_src_runtimeManifest_ts --> export_createRuntimeManifest
-  export_createRuntimeManifest -.-> export_RuntimeManifest
-  export_createRuntimeManifest -.-> export_RuntimeManifestInput
   export_createRuntimeMemoryStateAdapter["createRuntimeMemoryStateAdapter"]
   module_src_runtimeStateAdapter_ts --> export_createRuntimeMemoryStateAdapter
   export_createRuntimeMemoryStateAdapter -.-> export_RuntimeMemoryStateAdapterOptions
   export_createRuntimeScreenLoaderRequestKey["createRuntimeScreenLoaderRequestKey"]
   module_src_runtimeScreenLoaders_ts --> export_createRuntimeScreenLoaderRequestKey
   export_createRuntimeScreenLoaderRequestKey -.-> export_RuntimeBindingOperationResultCache
-  export_defineRuntimeAction["defineRuntimeAction"]
-  module_src_runtimeManifest_ts --> export_defineRuntimeAction
-  export_defineRuntimeAction -.-> export_RuntimeActionDescriptor
-  export_defineRuntimeAdapter["defineRuntimeAdapter"]
-  module_src_runtimeManifest_ts --> export_defineRuntimeAdapter
-  export_defineRuntimeAdapter -.-> export_RuntimeAdapterDescriptor
-  export_defineRuntimeBinding["defineRuntimeBinding"]
-  module_src_runtimeManifest_ts --> export_defineRuntimeBinding
-  export_defineRuntimeBinding -.-> export_RuntimeBindingDescriptor
   export_dispatchRuntimeComponentEvent["dispatchRuntimeComponentEvent"]
   module_src_runtimeActionRegistry_ts --> export_dispatchRuntimeComponentEvent
   export_dispatchRuntimeComponentEvent -.-> export_RuntimeActionHandlers
@@ -111,8 +103,6 @@ graph LR
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeBindingOperationResultCache
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeBindingResolutionContext
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeScreenOperationLoaderExecutionResult
-  export_listRuntimeCapabilities["listRuntimeCapabilities"]
-  module_src_runtimeManifest_ts --> export_listRuntimeCapabilities
   export_ManifestContext["ManifestContext"]
   module_src_ManifestContext_tsx --> export_ManifestContext
   export_ManifestProvider["ManifestProvider"]
@@ -148,10 +138,6 @@ graph LR
   export_resolveRuntimeBindingValueSync -.-> export_RuntimeBindingResolutionContext
   export_resolveScreenOperationLoaders["resolveScreenOperationLoaders"]
   module_src_runtimeScreenLoaders_ts --> export_resolveScreenOperationLoaders
-  export_RUNTIME_CAPABILITIES["RUNTIME_CAPABILITIES"]
-  module_src_runtimeManifest_ts --> export_RUNTIME_CAPABILITIES
-  export_RUNTIME_MANIFEST_KIND["RUNTIME_MANIFEST_KIND"]
-  module_src_runtimeManifest_ts --> export_RUNTIME_MANIFEST_KIND
   export_RuntimeAction["RuntimeAction"]
   module_src_RuntimeRendererConfig_tsx --> export_RuntimeAction
   export_RuntimeActionDescriptor["RuntimeActionDescriptor"]
@@ -235,6 +221,10 @@ graph LR
   export_RuntimeManifestInput -.-> export_RuntimeBindingDescriptor
   export_RuntimeManifestInput -.-> export_RuntimeDiagnostic
   export_RuntimeManifestInput -.-> export_RuntimeManifestConfig
+  export_RuntimeMediaAssetResolver["RuntimeMediaAssetResolver"]
+  module_src_runtimeMedia_ts --> export_RuntimeMediaAssetResolver
+  export_RuntimeMediaAssetResolverArgs["RuntimeMediaAssetResolverArgs"]
+  module_src_runtimeMedia_ts --> export_RuntimeMediaAssetResolverArgs
   export_RuntimeMemoryStateAdapterOptions["RuntimeMemoryStateAdapterOptions"]
   module_src_runtimeStateAdapter_ts --> export_RuntimeMemoryStateAdapterOptions
   export_RuntimeNodePropsResolver["RuntimeNodePropsResolver"]
@@ -248,6 +238,7 @@ graph LR
   export_RuntimeRendererConfig -.-> export_RuntimeActionHandlers
   export_RuntimeRendererConfig -.-> export_RuntimeBindingOperationExecutor
   export_RuntimeRendererConfig -.-> export_RuntimeBindingOperationResultWriter
+  export_RuntimeRendererConfig -.-> export_RuntimeMediaAssetResolver
   export_RuntimeRendererConfig -.-> export_RuntimeNodePropsResolver
   export_RuntimeRendererConfig -.-> export_RuntimeRendererWrapArgs
   export_RuntimeRendererConfigProvider["RuntimeRendererConfigProvider"]
@@ -257,10 +248,13 @@ graph LR
   module_src_RuntimeRenderer_tsx --> export_RuntimeRendererProps
   export_RuntimeRendererProps -.-> export_RuntimeActionHandler
   export_RuntimeRendererProps -.-> export_RuntimeBindingOperationExecutor
+  export_RuntimeRendererProps -.-> export_RuntimeMediaAssetResolver
   export_RuntimeRendererProps -.-> export_RuntimeRendererConfig
   export_RuntimeRendererProps -.-> export_RuntimeRendererWrapArgs
   export_RuntimeRendererWrapArgs["RuntimeRendererWrapArgs"]
   module_src_RuntimeRendererConfig_tsx --> export_RuntimeRendererWrapArgs
+  export_RuntimeResolvedMediaValue["RuntimeResolvedMediaValue"]
+  module_src_runtimeMedia_ts --> export_RuntimeResolvedMediaValue
   export_RuntimeResolveNodePropsArgs["RuntimeResolveNodePropsArgs"]
   module_node_modules__ankhorage_contracts_dist_runtimeCallbacks_d_ts --> export_RuntimeResolveNodePropsArgs
   export_RuntimeScreen["RuntimeScreen"]
