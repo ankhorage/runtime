@@ -19,15 +19,13 @@ export type RuntimeMediaAssetResolver = (
 
 export type RuntimeMediaResolutionCache = WeakMap<
   MediaAsset,
-  Promise<RuntimeResolvedMediaValue | null>
+  WeakMap<RuntimeMediaAssetResolver, Promise<RuntimeResolvedMediaValue | null>>
 >;
 
 const OMIT_MEDIA_VALUE = Symbol('omit-runtime-media-value');
 
-type RuntimeMediaReplacement = RuntimeResolvedMediaValue | typeof OMIT_MEDIA_VALUE | unknown;
-
 export function createRuntimeMediaResolutionCache(): RuntimeMediaResolutionCache {
-  return new WeakMap<MediaAsset, Promise<RuntimeResolvedMediaValue | null>>();
+  return new WeakMap();
 }
 
 export function collectRuntimeMediaReferenceIds(value: unknown): readonly string[] {
@@ -49,19 +47,20 @@ export function resolveRuntimeMediaAsset(
   resolver: RuntimeMediaAssetResolver | undefined,
   cache: RuntimeMediaResolutionCache,
 ): Promise<RuntimeResolvedMediaValue | null> {
-  if (asset.source.kind === 'url') {
-    return Promise.resolve(asset.source.url);
+  if (asset.source.kind === 'url') return Promise.resolve(asset.source.url);
+  if (!resolver) return Promise.resolve(null);
+
+  let resolverCache = cache.get(asset);
+  if (!resolverCache) {
+    resolverCache = new WeakMap();
+    cache.set(asset, resolverCache);
   }
 
-  if (!resolver) {
-    return Promise.resolve(null);
-  }
-
-  const cached = cache.get(asset);
+  const cached = resolverCache.get(resolver);
   if (cached) return cached;
 
   const pending = Promise.resolve(resolver({ asset })).catch(() => null);
-  cache.set(asset, pending);
+  resolverCache.set(resolver, pending);
   return pending;
 }
 
@@ -97,7 +96,7 @@ function collectMediaReferenceIds(value: unknown, ids: Set<string>): void {
 function replaceMediaValue(
   value: unknown,
   resolvedById: ReadonlyMap<string, RuntimeResolvedMediaValue>,
-): RuntimeMediaReplacement {
+): unknown | typeof OMIT_MEDIA_VALUE {
   if (isMediaAssetReference(value)) {
     return resolvedById.get(value.mediaId.trim()) ?? OMIT_MEDIA_VALUE;
   }
