@@ -6,10 +6,10 @@ import type {
 } from '@ankhorage/contracts';
 import React from 'react';
 
+import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
   createRuntimeBindingOperationKey,
   resolveBindingInputMapSync,
-  resolveRuntimeBindingOperationSelection,
   type RuntimeBindingOperationExecutor,
   type RuntimeBindingOperationResultCache,
   type RuntimeBindingResolutionContext,
@@ -177,7 +177,7 @@ export function completeRuntimeScreenOperationLoaderRequest(args: {
 
 export async function executeRuntimeScreenOperationLoaders(args: {
   readonly bindingContext?: Record<string, unknown>;
-  readonly dataSources?: RuntimeBindingResolutionContext['dataSources'];
+  readonly apis?: RuntimeBindingResolutionContext['apis'];
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly operationResults?: RuntimeBindingOperationResultCache;
   readonly screen: ScreenSpec;
@@ -191,7 +191,7 @@ export async function executeRuntimeScreenOperationLoaders(args: {
   });
 
   return executePreparedRuntimeScreenOperationLoaders({
-    dataSources: args.dataSources,
+    apis: args.apis,
     executeOperation: args.executeOperation,
     plan,
     screen: args.screen,
@@ -199,7 +199,7 @@ export async function executeRuntimeScreenOperationLoaders(args: {
 }
 
 function executePreparedRuntimeScreenOperationLoaders(args: {
-  readonly dataSources?: RuntimeBindingResolutionContext['dataSources'];
+  readonly apis?: RuntimeBindingResolutionContext['apis'];
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly plan: RuntimeScreenOperationLoaderPlan;
   readonly screen: ScreenSpec;
@@ -220,7 +220,7 @@ function executePreparedRuntimeScreenOperationLoaders(args: {
         createScreenOperationLoaderDiagnostic(
           preparedLoader.loader,
           'missing-adapter',
-          'Screen operation loader requires an injected operation executor.',
+          'Screen API operation loader requires an injected operation executor.',
         ),
       ),
     );
@@ -239,7 +239,7 @@ function executePreparedRuntimeScreenOperationLoaders(args: {
     for (const preparedLoader of args.plan.loaders) {
       const selection = resolveRuntimeBindingOperationSelection(
         preparedLoader.loader.operation,
-        args.dataSources,
+        args.apis,
         diagnostics,
       );
       if (selection === undefined) {
@@ -247,7 +247,7 @@ function executePreparedRuntimeScreenOperationLoaders(args: {
       }
 
       const result = await executeOperation({
-        dataSource: selection.dataSource,
+        api: selection.api,
         endpoint: selection.endpoint,
         input: preparedLoader.input,
         node: args.screen.root,
@@ -272,7 +272,7 @@ function executePreparedRuntimeScreenOperationLoaders(args: {
 
 export function useRuntimeScreenOperationLoaders(args: {
   readonly bindingContext?: Record<string, unknown>;
-  readonly dataSources?: RuntimeBindingResolutionContext['dataSources'];
+  readonly apis?: RuntimeBindingResolutionContext['apis'];
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly operationResults?: RuntimeBindingOperationResultCache;
   readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
@@ -314,7 +314,7 @@ export function useRuntimeScreenOperationLoaders(args: {
   >({});
 
   executionArgsByRequestKeyRef.current[requestKey] = {
-    dataSources: args.dataSources,
+    apis: args.apis,
     executeOperation: args.executeOperation,
     plan,
     screen: args.screen,
@@ -391,7 +391,7 @@ interface RuntimeScreenOperationLoaderPlan {
 }
 
 interface RuntimeScreenPreparedExecutionArgs {
-  readonly dataSources?: RuntimeBindingResolutionContext['dataSources'];
+  readonly apis?: RuntimeBindingResolutionContext['apis'];
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly plan: RuntimeScreenOperationLoaderPlan;
   readonly screen: ScreenSpec;
@@ -475,8 +475,8 @@ function createScreenOperationLoaderDiagnostic(
   message: string,
 ): DataSourceDiagnostic {
   return {
+    apiId: loader.operation.apiId,
     code,
-    dataSourceId: loader.operation.dataSourceId,
     endpointId: loader.operation.endpointId,
     operationId: loader.operation.operationId,
     message,
