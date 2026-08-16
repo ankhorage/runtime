@@ -1,6 +1,6 @@
 import type {
+  ApiDefinitionList,
   ComponentDataBindingRegistry,
-  DataSourceRegistry,
   DbAdapter,
   DbRealtimeAdapter,
   StateAdapter,
@@ -86,7 +86,7 @@ export function resolveRuntimeNodeProps(args: {
   dbAdapter?: DbAdapter;
   dbRealtimeAdapter?: DbRealtimeAdapter;
   bindingContext?: Record<string, unknown>;
-  dataSources?: DataSourceRegistry;
+  apis?: ApiDefinitionList;
   dataBindings?: ComponentDataBindingRegistry;
   operationResults?: RuntimeBindingOperationResultCache;
 }): Record<string, unknown> {
@@ -108,9 +108,9 @@ export function resolveRuntimeNodeProps(args: {
   }
 
   const bindingResult = resolveRuntimeBindings({
+    apis: args.apis,
     context: args.bindingContext,
     dataBindings: args.dataBindings,
-    dataSources: args.dataSources,
     node,
     operationResults: args.operationResults,
     props: baseProps,
