@@ -1,4 +1,6 @@
 import type {
+  ApiDefinition,
+  ApiDefinitionList,
   BindingFallback,
   BindingInputMap,
   BindingInputValue,
@@ -9,20 +11,20 @@ import type {
   ComponentDataBindingRegistry,
   ComponentEventDto,
   DataEndpointConfig,
-  DataSourceConfig,
   DataSourceDiagnostic,
-  DataSourceRegistry,
   PropBinding,
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
 
+import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
+
 export type RuntimeBindingOperationKey = string;
 
 export interface RuntimeBindingOperationExecutionArgs {
   readonly operation: BindingOperationRef;
-  readonly dataSource: DataSourceConfig;
-  readonly endpoint?: DataEndpointConfig;
+  readonly api: ApiDefinition;
+  readonly endpoint: DataEndpointConfig;
   readonly input?: BindingValue;
   readonly node?: UiNode;
 }
@@ -55,7 +57,7 @@ export interface RuntimeBindingResolutionContext {
   readonly context?: Record<string, unknown>;
   readonly event?: ComponentEventDto<string, object>;
   readonly stateAdapter?: StateAdapter;
-  readonly dataSources?: DataSourceRegistry;
+  readonly apis?: ApiDefinitionList;
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly operationResults?: RuntimeBindingOperationResultCache;
   readonly executeOperation?: RuntimeBindingOperationExecutor;
@@ -163,49 +165,7 @@ export function resolveBindingInputMapSync(
 export function createRuntimeBindingOperationKey(
   operation: BindingOperationRef,
 ): RuntimeBindingOperationKey {
-  return [operation.dataSourceId, operation.endpointId ?? '', operation.operationId].join(':');
-}
-
-export function validateRuntimeBindingOperationRef(
-  operation: BindingOperationRef,
-  dataSources: DataSourceRegistry | undefined,
-): readonly DataSourceDiagnostic[] {
-  const dataSource = dataSources?.[operation.dataSourceId];
-  if (dataSource === undefined) {
-    return [
-      createRuntimeBindingDiagnostic({
-        code: 'missing-data-source',
-        message: `Data source '${operation.dataSourceId}' could not be found.`,
-        operation,
-      }),
-    ];
-  }
-
-  const endpoint = resolveRuntimeBindingEndpoint(operation, dataSource);
-  if (endpoint === undefined) {
-    return [
-      createRuntimeBindingDiagnostic({
-        code: 'missing-endpoint',
-        dataSourceId: operation.dataSourceId,
-        message: `Endpoint '${operation.endpointId ?? '<default>'}' could not be found.`,
-        operation,
-      }),
-    ];
-  }
-
-  if (endpoint.operations[operation.operationId] === undefined) {
-    return [
-      createRuntimeBindingDiagnostic({
-        code: 'missing-operation',
-        dataSourceId: operation.dataSourceId,
-        endpointId: endpoint.id,
-        message: `Operation '${operation.operationId}' could not be found.`,
-        operation,
-      }),
-    ];
-  }
-
-  return [];
+  return [operation.apiId, operation.endpointId ?? '', operation.operationId].join(':');
 }
 
 async function resolveRuntimeBindingValueSource(
@@ -222,26 +182,26 @@ async function resolveRuntimeBindingValueSource(
 
   if (context.executeOperation === undefined) {
     diagnostics.push(
-      createRuntimeBindingDiagnostic({
-        code: 'missing-adapter',
-        message: 'Operation binding requires an injected operation executor.',
-        operation: source.operation,
-      }),
+      createRuntimeBindingDiagnostic(
+        source.operation,
+        'missing-adapter',
+        'API operation binding requires an injected operation executor.',
+      ),
     );
     return undefined;
   }
 
   const selection = resolveRuntimeBindingOperationSelection(
     source.operation,
-    context.dataSources,
+    context.apis,
     diagnostics,
   );
   if (selection === undefined) return undefined;
 
   const result = await context.executeOperation({
-    operation: source.operation,
-    dataSource: selection.dataSource,
+    api: selection.api,
     endpoint: selection.endpoint,
+    operation: source.operation,
   });
 
   diagnostics.push(...(result.diagnostics ?? []));
@@ -266,11 +226,11 @@ export function resolveRuntimeBindingValueSourceSync(
       const cached = resolveCachedOperationValue(source, context);
       if (cached !== undefined) return cached;
       diagnostics.push(
-        createRuntimeBindingDiagnostic({
-          code: 'missing-adapter',
-          message: 'Synchronous operation bindings require preloaded operation results.',
-          operation: source.operation,
-        }),
+        createRuntimeBindingDiagnostic(
+          source.operation,
+          'missing-adapter',
+          'Synchronous API operation bindings require preloaded operation results.',
+        ),
       );
       return undefined;
     }
@@ -379,48 +339,17 @@ function resolveBindingInputValueSync(
   return fields;
 }
 
-export function resolveRuntimeBindingOperationSelection(
+function createRuntimeBindingDiagnostic(
   operation: BindingOperationRef,
-  dataSources: DataSourceRegistry | undefined,
-  diagnostics: DataSourceDiagnostic[],
-): { readonly dataSource: DataSourceConfig; readonly endpoint?: DataEndpointConfig } | undefined {
-  const validationDiagnostics = validateRuntimeBindingOperationRef(operation, dataSources);
-  diagnostics.push(...validationDiagnostics);
-  if (validationDiagnostics.length > 0) return undefined;
-
-  const dataSource = dataSources?.[operation.dataSourceId];
-  if (dataSource === undefined) return undefined;
-
+  code: DataSourceDiagnostic['code'],
+  message: string,
+): DataSourceDiagnostic {
   return {
-    dataSource,
-    endpoint: resolveRuntimeBindingEndpoint(operation, dataSource),
-  };
-}
-
-function resolveRuntimeBindingEndpoint(
-  operation: BindingOperationRef,
-  dataSource: DataSourceConfig,
-): DataEndpointConfig | undefined {
-  if (operation.endpointId !== undefined) return dataSource.endpoints[operation.endpointId];
-
-  return Object.values(dataSource.endpoints).find(
-    (endpoint) => endpoint.operations[operation.operationId] !== undefined,
-  );
-}
-
-function createRuntimeBindingDiagnostic(args: {
-  readonly code: DataSourceDiagnostic['code'];
-  readonly message: string;
-  readonly operation: BindingOperationRef;
-  readonly dataSourceId?: string;
-  readonly endpointId?: string;
-}): DataSourceDiagnostic {
-  return {
-    code: args.code,
-    dataSourceId: args.dataSourceId ?? args.operation.dataSourceId,
-    endpointId: args.endpointId ?? args.operation.endpointId,
-    operationId: args.operation.operationId,
-    message: args.message,
+    apiId: operation.apiId,
+    code,
+    endpointId: operation.endpointId,
+    message,
+    operationId: operation.operationId,
     severity: 'error',
   };
 }

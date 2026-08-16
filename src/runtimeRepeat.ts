@@ -5,10 +5,10 @@ import type {
   UiNodeRepeatSpec,
 } from '@ankhorage/contracts';
 
+import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
   applyRuntimeBindingDataPath,
   createRuntimeBindingOperationKey,
-  resolveRuntimeBindingOperationSelection,
   resolveRuntimeBindingValueSourceSync,
   type RuntimeBindingOperationResultWriter,
   type RuntimeBindingResolutionContext,
@@ -69,7 +69,7 @@ export function resolveRuntimeRepeatItemsSync(
       createRepeatDiagnostic(
         repeat,
         'missing-adapter',
-        'Repeat operation source requires an injected operation executor.',
+        'Repeat API operation source requires an injected operation executor.',
       ),
     ],
   };
@@ -104,7 +104,7 @@ export async function resolveRuntimeRepeatItemsAsync(
         createRepeatDiagnostic(
           repeat,
           'missing-adapter',
-          'Repeat operation source requires an injected operation executor.',
+          'Repeat API operation source requires an injected operation executor.',
         ),
       ],
     };
@@ -113,7 +113,7 @@ export async function resolveRuntimeRepeatItemsAsync(
   const diagnostics: DataSourceDiagnostic[] = [];
   const selection = resolveRuntimeBindingOperationSelection(
     repeat.source.operation,
-    context.dataSources,
+    context.apis,
     diagnostics,
   );
   if (selection === undefined) {
@@ -121,9 +121,9 @@ export async function resolveRuntimeRepeatItemsAsync(
   }
 
   const result = await context.executeOperation({
-    operation: repeat.source.operation,
-    dataSource: selection.dataSource,
+    api: selection.api,
     endpoint: selection.endpoint,
+    operation: repeat.source.operation,
     node: context.node,
   });
   diagnostics.push(...(result.diagnostics ?? []));
@@ -202,12 +202,11 @@ function createRepeatDiagnostic(
   message: string,
 ): DataSourceDiagnostic {
   return {
-    code,
-    dataSourceId:
-      repeat.source.kind === 'operation' ? repeat.source.operation.dataSourceId : undefined,
+    apiId: repeat.source.kind === 'operation' ? repeat.source.operation.apiId : undefined,
     endpointId: repeat.source.kind === 'operation' ? repeat.source.operation.endpointId : undefined,
     operationId:
       repeat.source.kind === 'operation' ? repeat.source.operation.operationId : undefined,
+    code,
     message,
     severity: 'error',
   };

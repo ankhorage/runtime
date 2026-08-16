@@ -1,8 +1,8 @@
 import type {
+  ApiDefinitionList,
   BindingInputMap,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
-  DataSourceRegistry,
   StateAdapter,
   StatePath,
   StateResult,
@@ -12,15 +12,50 @@ import type {
 } from '@ankhorage/contracts';
 import { describe, expect, it } from 'bun:test';
 
+import { validateRuntimeBindingOperationRef } from './runtimeApiSelection';
 import {
   createRuntimeBindingOperationKey,
   resolveBindingInputMapSync,
   resolveRuntimeBindings,
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
-  validateRuntimeBindingOperationRef,
 } from './runtimeBindings';
 import { resolveRuntimeNodeProps } from './runtimeNodeProps';
+
+function createApis(): ApiDefinitionList {
+  return [
+    {
+      id: 'cms',
+      origin: 'external',
+      protocol: 'rest',
+      baseUrl: 'https://cms.example.com',
+      endpoints: {
+        posts: {
+          id: 'posts',
+          kind: 'http',
+          operations: {
+            'posts.list': {
+              id: 'posts.list',
+              endpointId: 'posts',
+              protocol: 'http',
+              intent: 'read',
+              method: 'GET',
+              path: '/posts',
+            },
+            'posts.create': {
+              id: 'posts.create',
+              endpointId: 'posts',
+              protocol: 'http',
+              intent: 'create',
+              method: 'POST',
+              path: '/posts',
+            },
+          },
+        },
+      },
+    },
+  ];
+}
 
 function createFakeStateAdapter(values: Record<string, StateValue>): StateAdapter {
   return {
@@ -50,42 +85,6 @@ function createFakeStateAdapter(values: Record<string, StateValue>): StateAdapte
     },
     delete(): StateResult {
       return { ok: true };
-    },
-  };
-}
-
-function createDataSources(): DataSourceRegistry {
-  return {
-    cms: {
-      id: 'cms',
-      kind: 'api',
-      origin: 'external',
-      protocol: 'rest',
-      baseUrl: 'https://cms.example.com',
-      endpoints: {
-        posts: {
-          id: 'posts',
-          kind: 'http',
-          operations: {
-            'posts.list': {
-              id: 'posts.list',
-              endpointId: 'posts',
-              protocol: 'http',
-              intent: 'read',
-              method: 'GET',
-              path: '/posts',
-            },
-            'posts.create': {
-              id: 'posts.create',
-              endpointId: 'posts',
-              protocol: 'http',
-              intent: 'create',
-              method: 'POST',
-              path: '/posts',
-            },
-          },
-        },
-      },
     },
   };
 }
@@ -217,7 +216,7 @@ describe('resolveRuntimeBindings', () => {
       type: 'List',
     };
     const operation = {
-      dataSourceId: 'cms',
+      apiId: 'cms',
       endpointId: 'posts',
       operationId: 'posts.list',
     };
@@ -226,7 +225,7 @@ describe('resolveRuntimeBindings', () => {
       resolveRuntimeBindings({
         node,
         props: {},
-        dataSources: createDataSources(),
+        apis: createApis(),
         dataBindings: {
           'posts-list': {
             componentId: 'posts-list',
@@ -255,7 +254,7 @@ describe('resolveRuntimeBindings', () => {
     const result = resolveRuntimeBindings({
       node,
       props: {},
-      dataSources: createDataSources(),
+      apis: createApis(),
       dataBindings: {
         'posts-list': {
           componentId: 'posts-list',
@@ -264,7 +263,7 @@ describe('resolveRuntimeBindings', () => {
               source: {
                 kind: 'operation',
                 operation: {
-                  dataSourceId: 'cms',
+                  apiId: 'cms',
                   endpointId: 'posts',
                   operationId: 'posts.list',
                 },
@@ -292,7 +291,7 @@ describe('resolveRuntimeBindingsAsync', () => {
     const result = await resolveRuntimeBindingsAsync({
       node,
       props: {},
-      dataSources: createDataSources(),
+      apis: createApis(),
       dataBindings: {
         'posts-list': {
           componentId: 'posts-list',
@@ -301,7 +300,7 @@ describe('resolveRuntimeBindingsAsync', () => {
               source: {
                 kind: 'operation',
                 operation: {
-                  dataSourceId: 'cms',
+                  apiId: 'cms',
                   endpointId: 'posts',
                   operationId: 'posts.list',
                 },
@@ -348,16 +347,16 @@ describe('validateRuntimeBindingOperationRef', () => {
     expect(
       validateRuntimeBindingOperationRef(
         {
-          dataSourceId: 'cms',
+          apiId: 'cms',
           endpointId: 'posts',
           operationId: 'posts.missing',
         },
-        createDataSources(),
+        createApis(),
       ),
     ).toEqual([
       {
+        apiId: 'cms',
         code: 'missing-operation',
-        dataSourceId: 'cms',
         endpointId: 'posts',
         operationId: 'posts.missing',
         message: "Operation 'posts.missing' could not be found.",
@@ -370,7 +369,7 @@ describe('validateRuntimeBindingOperationRef', () => {
 describe('resolveBindingInputMapSync', () => {
   it('resolves nested input values synchronously without executing operations', () => {
     const operation = {
-      dataSourceId: 'cms',
+      apiId: 'cms',
       endpointId: 'posts',
       operationId: 'posts.list',
     };
@@ -459,7 +458,7 @@ describe('resolveBindingInputMapSync', () => {
             source: {
               kind: 'operation',
               operation: {
-                dataSourceId: 'cms',
+                apiId: 'cms',
                 endpointId: 'posts',
                 operationId: 'posts.list',
               },

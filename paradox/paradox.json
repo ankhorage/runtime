@@ -12,7 +12,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.0.0",
+      "value": "v1.1.0",
       "color": "cb3837"
     },
     {
@@ -100,8 +100,8 @@
         "createDbPersistAdapterError",
         "createPendingRuntimeScreenOperationLoaderState",
         "createRuntimeActionRegistry",
+        "createRuntimeApiOperationExecutor",
         "createRuntimeBindingOperationKey",
-        "createRuntimeDataSourceOperationExecutor",
         "createRuntimeMemoryStateAdapter",
         "createRuntimeScreenLoaderRequestKey",
         "dispatchRuntimeComponentEvent",
@@ -130,6 +130,8 @@
         "RuntimeActionResolutionArgs",
         "RuntimeActionResolutionScope",
         "RuntimeAdapterDescriptor",
+        "RuntimeApiOperationExecutorOptions",
+        "RuntimeApiOperationSelection",
         "RuntimeBindingDescriptor",
         "RuntimeBindingOperationExecutionArgs",
         "RuntimeBindingOperationExecutionResult",
@@ -142,7 +144,6 @@
         "RuntimeBindingResolutionResult",
         "RuntimeCapability",
         "RuntimeComponentEventDispatchArgs",
-        "RuntimeDataSourceOperationExecutorOptions",
         "RuntimeDbPersistError",
         "RuntimeDbPersistExecutionResult",
         "RuntimeDbPersistResult",
@@ -218,7 +219,19 @@
       ]
     },
     {
-      "path": "src/runtimeActionRegistry.test.ts",
+      "path": "src/runtimeActionRegistry.actions.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeActionRegistry.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeActionRegistry.chains.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeActionRegistry.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeActionRegistry.operations.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/runtimeActionRegistry.ts", "src/runtimeBindings.ts"],
       "exports": []
@@ -226,7 +239,11 @@
     {
       "path": "src/runtimeActionRegistry.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts", "src/RuntimeRendererConfig.tsx"],
+      "dependencies": [
+        "src/runtimeApiSelection.ts",
+        "src/runtimeBindings.ts",
+        "src/RuntimeRendererConfig.tsx"
+      ],
       "exports": [
         "createComponentEventFromHandlerArgs",
         "createRuntimeActionRegistry",
@@ -242,21 +259,52 @@
       ]
     },
     {
+      "path": "src/runtimeApiOperations.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeApiOperations.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeApiOperations.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeBindings.ts"],
+      "exports": ["createRuntimeApiOperationExecutor", "RuntimeApiOperationExecutorOptions"]
+    },
+    {
+      "path": "src/runtimeApiSelection.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeApiSelection.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeApiSelection.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "resolveRuntimeBindingOperationSelection",
+        "RuntimeApiOperationSelection",
+        "validateRuntimeBindingOperationRef"
+      ]
+    },
+    {
       "path": "src/runtimeBindings.test.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts", "src/runtimeNodeProps.ts"],
+      "dependencies": [
+        "src/runtimeApiSelection.ts",
+        "src/runtimeBindings.ts",
+        "src/runtimeNodeProps.ts"
+      ],
       "exports": []
     },
     {
       "path": "src/runtimeBindings.ts",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": ["src/runtimeApiSelection.ts"],
       "exports": [
         "applyRuntimeBindingDataPath",
         "createRuntimeBindingOperationKey",
         "resolveBindingInputMap",
         "resolveBindingInputMapSync",
-        "resolveRuntimeBindingOperationSelection",
         "resolveRuntimeBindings",
         "resolveRuntimeBindingsAsync",
         "resolveRuntimeBindingValue",
@@ -270,29 +318,7 @@
         "RuntimeBindingOperationResultWriter",
         "RuntimeBindingResolutionArgs",
         "RuntimeBindingResolutionContext",
-        "RuntimeBindingResolutionResult",
-        "validateRuntimeBindingOperationRef"
-      ]
-    },
-    {
-      "path": "src/runtimeDatabaseOperationExecutor.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts"],
-      "exports": ["executeRuntimeDatabaseOperation"]
-    },
-    {
-      "path": "src/runtimeDataSourceOperations.test.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/runtimeDataSourceOperations.ts"],
-      "exports": []
-    },
-    {
-      "path": "src/runtimeDataSourceOperations.ts",
-      "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts", "src/runtimeDatabaseOperationExecutor.ts"],
-      "exports": [
-        "createRuntimeDataSourceOperationExecutor",
-        "RuntimeDataSourceOperationExecutorOptions"
+        "RuntimeBindingResolutionResult"
       ]
     },
     {
@@ -468,7 +494,7 @@
     {
       "path": "src/runtimeRepeat.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts"],
+      "dependencies": ["src/runtimeApiSelection.ts", "src/runtimeBindings.ts"],
       "exports": [
         "createRuntimeRepeatBindingContext",
         "resolveRuntimeRepeatItemKey",
@@ -510,7 +536,13 @@
       "exports": []
     },
     {
-      "path": "src/runtimeScreenLoaders.test.ts",
+      "path": "src/runtimeScreenLoaders.execution.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeBindings.ts", "src/runtimeScreenLoaders.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeScreenLoaders.lifecycle.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/runtimeBindings.ts", "src/runtimeScreenLoaders.ts"],
       "exports": []
@@ -518,7 +550,7 @@
     {
       "path": "src/runtimeScreenLoaders.ts",
       "isEntrypoint": false,
-      "dependencies": ["src/runtimeBindings.ts"],
+      "dependencies": ["src/runtimeApiSelection.ts", "src/runtimeBindings.ts"],
       "exports": [
         "beginRuntimeScreenOperationLoaderRequest",
         "completeRuntimeScreenOperationLoaderRequest",
@@ -667,7 +699,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 217,
+        "line": 216,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -827,7 +859,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 67,
+        "line": 66,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -841,16 +873,48 @@
       ],
       "signatures": [
         {
-          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; dataSources?: DataSourceRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
+          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
           "parameters": [
             {
               "name": "options",
-              "type": "{ actionHandlers?: RuntimeActionHandlers; dataSources?: DataSourceRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
+              "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
               "required": false,
               "description": null
             }
           ],
           "returnType": "RuntimeActionRegistry",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createRuntimeApiOperationExecutor",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/runtimeApiOperations.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 12,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeApiOperationExecutorOptions", "RuntimeBindingOperationExecutor"],
+      "signatures": [
+        {
+          "label": "(options: RuntimeApiOperationExecutorOptions) => RuntimeBindingOperationExecutor",
+          "parameters": [
+            {
+              "name": "options",
+              "type": "RuntimeApiOperationExecutorOptions",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeBindingOperationExecutor",
           "returnDescription": null
         }
       ],
@@ -866,7 +930,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 163,
+        "line": 165,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -883,41 +947,6 @@
             }
           ],
           "returnType": "string",
-          "returnDescription": null
-        }
-      ],
-      "members": [],
-      "structuredRows": []
-    },
-    {
-      "name": "createRuntimeDataSourceOperationExecutor",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "function",
-      "modulePath": "src/runtimeDataSourceOperations.ts",
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 14,
-        "column": 1
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [
-        "RuntimeBindingOperationExecutor",
-        "RuntimeDataSourceOperationExecutorOptions"
-      ],
-      "signatures": [
-        {
-          "label": "(options: RuntimeDataSourceOperationExecutorOptions) => RuntimeBindingOperationExecutor",
-          "parameters": [
-            {
-              "name": "options",
-              "type": "RuntimeDataSourceOperationExecutorOptions",
-              "required": true,
-              "description": null
-            }
-          ],
-          "returnType": "RuntimeBindingOperationExecutor",
           "returnDescription": null
         }
       ],
@@ -997,7 +1026,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 103,
+        "line": 102,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1109,11 +1138,11 @@
       ],
       "signatures": [
         {
-          "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly dataSources?: RuntimeBindingResolutionContext[\"dataSources\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }) => Promise<RuntimeScreenOperationLoaderExecutionResult>",
+          "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }) => Promise<RuntimeScreenOperationLoaderExecutionResult>",
           "parameters": [
             {
               "name": "args",
-              "type": "{ readonly bindingContext?: Record<string, unknown>; readonly dataSources?: RuntimeBindingResolutionContext[\"dataSources\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }",
+              "type": "{ readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }",
               "required": true,
               "description": null
             }
@@ -1222,7 +1251,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 129,
+        "line": 131,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1298,7 +1327,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 231,
+        "line": 230,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1336,7 +1365,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 242,
+        "line": 241,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1374,7 +1403,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 89,
+        "line": 91,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1406,7 +1435,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 74,
+        "line": 76,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1438,7 +1467,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 103,
+        "line": 105,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1482,7 +1511,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 116,
+        "line": 118,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1724,7 +1753,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 31,
+        "line": 30,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1757,7 +1786,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 42,
+        "line": 41,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1804,7 +1833,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 36,
+        "line": 35,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1876,6 +1905,72 @@
       "structuredRows": []
     },
     {
+      "name": "RuntimeApiOperationExecutorOptions",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/runtimeApiOperations.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "credentialResolver",
+          "kind": "property",
+          "type": "EndpointTestCredentialResolver | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "fetch",
+          "kind": "property",
+          "type": "EndpointTestFetch | undefined",
+          "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeApiOperationSelection",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/runtimeApiSelection.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 9,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "api",
+          "kind": "property",
+          "type": "ApiDefinition",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "endpoint",
+          "kind": "property",
+          "type": "DataEndpointConfig",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
       "name": "RuntimeBindingDescriptor",
       "description": null,
       "isReadme": false,
@@ -1938,7 +2033,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 22,
+        "line": 24,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1946,17 +2041,17 @@
       "signatures": [],
       "members": [
         {
-          "name": "dataSource",
+          "name": "api",
           "kind": "property",
-          "type": "DataSourceConfig",
+          "type": "ApiDefinition",
           "required": true,
           "description": null
         },
         {
           "name": "endpoint",
           "kind": "property",
-          "type": "DataEndpointConfig | undefined",
-          "required": false,
+          "type": "DataEndpointConfig",
+          "required": true,
           "description": null
         },
         {
@@ -1992,7 +2087,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 30,
+        "line": 32,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2010,7 +2105,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 41,
+        "line": 43,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2028,7 +2123,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 20,
+        "line": 22,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2046,7 +2141,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 45,
+        "line": 47,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2064,7 +2159,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 49,
+        "line": 51,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2082,13 +2177,20 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 64,
+        "line": 66,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": ["RuntimeBindingOperationExecutor"],
       "signatures": [],
       "members": [
+        {
+          "name": "apis",
+          "kind": "property",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
         {
           "name": "context",
           "kind": "property",
@@ -2100,13 +2202,6 @@
           "name": "dataBindings",
           "kind": "property",
           "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "kind": "property",
-          "type": "Readonly<Record<string, DataSourceConfig>> | undefined",
           "required": false,
           "description": null
         },
@@ -2164,13 +2259,20 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 54,
+        "line": 56,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": ["RuntimeBindingOperationExecutor"],
       "signatures": [],
       "members": [
+        {
+          "name": "apis",
+          "kind": "property",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
         {
           "name": "context",
           "kind": "property",
@@ -2182,13 +2284,6 @@
           "name": "dataBindings",
           "kind": "property",
           "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "kind": "property",
-          "type": "Readonly<Record<string, DataSourceConfig>> | undefined",
           "required": false,
           "description": null
         },
@@ -2232,7 +2327,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 69,
+        "line": 71,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2283,7 +2378,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 46,
+        "line": 45,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2295,6 +2390,13 @@
       "signatures": [],
       "members": [
         {
+          "name": "apis",
+          "kind": "property",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "context",
           "kind": "property",
           "type": "Record<string, unknown> | undefined",
@@ -2305,13 +2407,6 @@
           "name": "dataBindings",
           "kind": "property",
           "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "kind": "property",
-          "type": "Readonly<Record<string, DataSourceConfig>> | undefined",
           "required": false,
           "description": null
         },
@@ -2368,46 +2463,6 @@
           "name": "writeOperationResult",
           "kind": "property",
           "type": "RuntimeBindingOperationResultWriter | undefined",
-          "required": false,
-          "description": null
-        }
-      ],
-      "structuredRows": []
-    },
-    {
-      "name": "RuntimeDataSourceOperationExecutorOptions",
-      "description": null,
-      "isReadme": false,
-      "examples": [],
-      "kind": "type",
-      "modulePath": "src/runtimeDataSourceOperations.ts",
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 8,
-        "column": 1
-      },
-      "exportPaths": ["src/index.ts"],
-      "relatedSymbols": [],
-      "signatures": [],
-      "members": [
-        {
-          "name": "credentialResolver",
-          "kind": "property",
-          "type": "EndpointTestCredentialResolver | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "databaseAdapters",
-          "kind": "property",
-          "type": "Readonly<Record<string, DbAdapter>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "fetch",
-          "kind": "property",
-          "type": "EndpointTestFetch | undefined",
           "required": false,
           "description": null
         }
@@ -2580,7 +2635,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 57,
+        "line": 56,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2972,6 +3027,13 @@
           "description": null
         },
         {
+          "name": "apis",
+          "kind": "property",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "bindingContext",
           "kind": "property",
           "type": "Record<string, unknown> | undefined",
@@ -2982,13 +3044,6 @@
           "name": "dataBindings",
           "kind": "property",
           "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
           "required": false,
           "description": null
         },
@@ -3148,6 +3203,13 @@
       "signatures": [],
       "members": [
         {
+          "name": "apis",
+          "kind": "property",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "bindingContext",
           "kind": "property",
           "type": "Record<string, unknown> | undefined",
@@ -3158,13 +3220,6 @@
           "name": "dataBindings",
           "kind": "property",
           "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/index\").DataSourceConfig>> | undefined",
           "required": false,
           "description": null
         },
@@ -3679,11 +3734,11 @@
       ],
       "signatures": [
         {
-          "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly dataSources?: RuntimeBindingResolutionContext[\"dataSources\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }) => RuntimeScreenOperationLoaderState",
+          "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }) => RuntimeScreenOperationLoaderState",
           "parameters": [
             {
               "name": "args",
-              "type": "{ readonly bindingContext?: Record<string, unknown>; readonly dataSources?: RuntimeBindingResolutionContext[\"dataSources\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }",
+              "type": "{ readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }",
               "required": true,
               "description": null
             }
@@ -3701,21 +3756,21 @@
       "isReadme": false,
       "examples": [],
       "kind": "function",
-      "modulePath": "src/runtimeBindings.ts",
+      "modulePath": "src/runtimeApiSelection.ts",
       "sourceLocation": {
-        "filePath": "src/runtimeBindings.ts",
-        "line": 169,
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 14,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(operation: BindingOperationRef, dataSources: Readonly<Record<string, DataSourceConfig>> | undefined) => readonly DataSourceDiagnostic[]",
+          "label": "(operation: BindingOperationRef, apis: ApiDefinitionList | undefined) => readonly DataSourceDiagnostic[]",
           "parameters": [
             {
-              "name": "dataSources",
-              "type": "Readonly<Record<string, DataSourceConfig>> | undefined",
+              "name": "apis",
+              "type": "ApiDefinitionList | undefined",
               "required": true,
               "description": null
             },
@@ -3742,7 +3797,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 180,
+        "line": 179,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3847,6 +3902,12 @@
       "exportPaths": ["src/index.ts"],
       "props": [
         {
+          "name": "apis",
+          "type": "ApiDefinitionList | undefined",
+          "required": false,
+          "description": null
+        },
+        {
           "name": "bindingContext",
           "type": "Record<string, unknown> | undefined",
           "required": false,
@@ -3855,12 +3916,6 @@
         {
           "name": "dataBindings",
           "type": "ComponentDataBindingRegistry | undefined",
-          "required": false,
-          "description": null
-        },
-        {
-          "name": "dataSources",
-          "type": "DataSourceRegistry | undefined",
           "required": false,
           "description": null
         },
@@ -4148,17 +4203,71 @@
       "name": "isNoArgFunction",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeActionRegistry.test.ts",
-        "line": 21,
+        "filePath": "src/runtimeActionRegistry.actions.test.ts",
+        "line": 11,
         "column": 1
       }
     },
     {
-      "name": "createDataSources",
+      "name": "createActionBindings",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeActionRegistry.test.ts",
-        "line": 25,
+        "filePath": "src/runtimeActionRegistry.actions.test.ts",
+        "line": 15,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApis",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.chains.test.ts",
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "createScannerBindings",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.chains.test.ts",
+        "line": 44,
+        "column": 1
+      }
+    },
+    {
+      "name": "scannerEvent",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.chains.test.ts",
+        "line": 107,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApis",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.operations.test.ts",
+        "line": 23,
+        "column": 1
+      }
+    },
+    {
+      "name": "createOperationBindings",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.operations.test.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "refreshEventArgs",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.operations.test.ts",
+        "line": 78,
         "column": 1
       }
     },
@@ -4167,7 +4276,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 67,
+        "line": 66,
         "column": 1
       }
     },
@@ -4176,7 +4285,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 103,
+        "line": 102,
         "column": 1
       }
     },
@@ -4185,7 +4294,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 180,
+        "line": 179,
         "column": 1
       }
     },
@@ -4194,7 +4303,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 217,
+        "line": 216,
         "column": 1
       }
     },
@@ -4203,7 +4312,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 231,
+        "line": 230,
         "column": 1
       }
     },
@@ -4212,7 +4321,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 242,
+        "line": 241,
         "column": 1
       }
     },
@@ -4221,7 +4330,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 253,
+        "line": 252,
         "column": 1
       }
     },
@@ -4230,7 +4339,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 307,
+        "line": 299,
         "column": 1
       }
     },
@@ -4239,7 +4348,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 325,
+        "line": 317,
         "column": 1
       }
     },
@@ -4248,7 +4357,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 334,
+        "line": 326,
         "column": 1
       }
     },
@@ -4257,7 +4366,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 353,
+        "line": 345,
         "column": 1
       }
     },
@@ -4266,16 +4375,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 373,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveEventOperationEndpoint",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeActionRegistry.ts",
-        "line": 396,
+        "line": 365,
         "column": 1
       }
     },
@@ -4284,7 +4384,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 409,
+        "line": 388,
         "column": 1
       }
     },
@@ -4293,7 +4393,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 447,
+        "line": 426,
         "column": 1
       }
     },
@@ -4302,7 +4402,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 455,
+        "line": 434,
         "column": 1
       }
     },
@@ -4311,7 +4411,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 461,
+        "line": 440,
         "column": 1
       }
     },
@@ -4320,7 +4420,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 465,
+        "line": 444,
         "column": 1
       }
     },
@@ -4329,7 +4429,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 469,
+        "line": 448,
         "column": 1
       }
     },
@@ -4338,7 +4438,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 478,
+        "line": 457,
         "column": 1
       }
     },
@@ -4347,7 +4447,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 494,
+        "line": 473,
         "column": 1
       }
     },
@@ -4356,7 +4456,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 503,
+        "line": 482,
         "column": 1
       }
     },
@@ -4365,12 +4465,138 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 507,
+        "line": 486,
         "column": 1
       }
     },
     {
-      "name": "createFakeStateAdapter",
+      "name": "createNutritionApi",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.test.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "createProductsEndpoint",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.test.ts",
+        "line": 18,
+        "column": 1
+      }
+    },
+    {
+      "name": "getProductsEndpoint",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.test.ts",
+        "line": 35,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRuntimeApiOperationExecutor",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 12,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidInput",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "asBindingValueRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 48,
+        "column": 1
+      }
+    },
+    {
+      "name": "isBindingValueRecord",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiOperations.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApis",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.test.ts",
+        "line": 6,
+        "column": 1
+      }
+    },
+    {
+      "name": "operation",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.test.ts",
+        "line": 33,
+        "column": 1
+      }
+    },
+    {
+      "name": "validateRuntimeBindingOperationRef",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 14,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveRuntimeBindingOperationSelection",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 50,
+        "column": 1
+      }
+    },
+    {
+      "name": "findRuntimeApi",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 65,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveRuntimeApiEndpoint",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 72,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApiDiagnostic",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeApiSelection.ts",
+        "line": 83,
+        "column": 1
+      }
+    },
+    {
+      "name": "createApis",
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.test.ts",
@@ -4379,11 +4605,11 @@
       }
     },
     {
-      "name": "createDataSources",
+      "name": "createFakeStateAdapter",
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.test.ts",
-        "line": 57,
+        "line": 60,
         "column": 1
       }
     },
@@ -4392,7 +4618,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 74,
+        "line": 76,
         "column": 1
       }
     },
@@ -4401,7 +4627,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 89,
+        "line": 91,
         "column": 1
       }
     },
@@ -4410,7 +4636,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 103,
+        "line": 105,
         "column": 1
       }
     },
@@ -4419,7 +4645,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 116,
+        "line": 118,
         "column": 1
       }
     },
@@ -4428,7 +4654,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 129,
+        "line": 131,
         "column": 1
       }
     },
@@ -4437,7 +4663,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 146,
+        "line": 148,
         "column": 1
       }
     },
@@ -4446,16 +4672,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 163,
-        "column": 1
-      }
-    },
-    {
-      "name": "validateRuntimeBindingOperationRef",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeBindings.ts",
-        "line": 169,
+        "line": 165,
         "column": 1
       }
     },
@@ -4464,7 +4681,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 211,
+        "line": 171,
         "column": 1
       }
     },
@@ -4473,7 +4690,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 253,
+        "line": 213,
         "column": 1
       }
     },
@@ -4482,7 +4699,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 284,
+        "line": 244,
         "column": 1
       }
     },
@@ -4491,7 +4708,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 294,
+        "line": 254,
         "column": 1
       }
     },
@@ -4500,7 +4717,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 306,
+        "line": 266,
         "column": 1
       }
     },
@@ -4509,7 +4726,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 318,
+        "line": 278,
         "column": 1
       }
     },
@@ -4518,25 +4735,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 350,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveRuntimeBindingOperationSelection",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeBindings.ts",
-        "line": 382,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveRuntimeBindingEndpoint",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeBindings.ts",
-        "line": 400,
+        "line": 310,
         "column": 1
       }
     },
@@ -4545,7 +4744,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 411,
+        "line": 342,
         "column": 1
       }
     },
@@ -4554,7 +4753,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 428,
+        "line": 357,
         "column": 1
       }
     },
@@ -4563,7 +4762,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 446,
+        "line": 375,
         "column": 1
       }
     },
@@ -4572,7 +4771,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 454,
+        "line": 383,
         "column": 1
       }
     },
@@ -4581,7 +4780,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 466,
+        "line": 395,
         "column": 1
       }
     },
@@ -4590,7 +4789,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 470,
+        "line": 399,
         "column": 1
       }
     },
@@ -4599,7 +4798,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 474,
+        "line": 403,
         "column": 1
       }
     },
@@ -4608,313 +4807,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 486,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeRuntimeDatabaseOperation",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 13,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveOperationPlan",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 67,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeList",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 121,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeRead",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 138,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeCreate",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 156,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeUpdate",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 170,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeDelete",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 197,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveDbResult",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 219,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveAdapterId",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 239,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolvePrimaryKey",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 245,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolveIdentity",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 249,
-        "column": 1
-      }
-    },
-    {
-      "name": "resolvePage",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 270,
-        "column": 1
-      }
-    },
-    {
-      "name": "isOptionalPageNumber",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 287,
-        "column": 1
-      }
-    },
-    {
-      "name": "createIdentityFilter",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 293,
-        "column": 1
-      }
-    },
-    {
-      "name": "omitKey",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 297,
-        "column": 1
-      }
-    },
-    {
-      "name": "isGeneratedCrudOperation",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 305,
-        "column": 1
-      }
-    },
-    {
-      "name": "invalidPlan",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 315,
-        "column": 1
-      }
-    },
-    {
-      "name": "failure",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 326,
-        "column": 1
-      }
-    },
-    {
-      "name": "asRecord",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 342,
-        "column": 1
-      }
-    },
-    {
-      "name": "toBindingValue",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDatabaseOperationExecutor.ts",
-        "line": 348,
-        "column": 1
-      }
-    },
-    {
-      "name": "createExternalDataSources",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 19,
-        "column": 1
-      }
-    },
-    {
-      "name": "createGeneratedDataSource",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 57,
-        "column": 1
-      }
-    },
-    {
-      "name": "getFixtureDataSource",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 84,
-        "column": 1
-      }
-    },
-    {
-      "name": "getFixtureEndpoint",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 90,
-        "column": 1
-      }
-    },
-    {
-      "name": "createDatabaseFixture",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 108,
-        "column": 1
-      }
-    },
-    {
-      "name": "createGeneratedExecutor",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 148,
-        "column": 1
-      }
-    },
-    {
-      "name": "executeGeneratedOperation",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.test.ts",
-        "line": 154,
-        "column": 1
-      }
-    },
-    {
-      "name": "createRuntimeDataSourceOperationExecutor",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 14,
-        "column": 1
-      }
-    },
-    {
-      "name": "missingEndpoint",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 56,
-        "column": 1
-      }
-    },
-    {
-      "name": "missingOperation",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 70,
-        "column": 1
-      }
-    },
-    {
-      "name": "invalidInput",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 80,
-        "column": 1
-      }
-    },
-    {
-      "name": "failure",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 90,
-        "column": 1
-      }
-    },
-    {
-      "name": "asBindingValueRecord",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 108,
-        "column": 1
-      }
-    },
-    {
-      "name": "isBindingValueRecord",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeDataSourceOperations.ts",
-        "line": 114,
+        "line": 415,
         "column": 1
       }
     },
@@ -5450,7 +5343,7 @@
       }
     },
     {
-      "name": "createDataSources",
+      "name": "createApis",
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
@@ -5463,7 +5356,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
-        "line": 46,
+        "line": 45,
         "column": 1
       }
     },
@@ -5472,7 +5365,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
-        "line": 72,
+        "line": 71,
         "column": 1
       }
     },
@@ -5535,7 +5428,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
-        "line": 216,
+        "line": 215,
         "column": 1
       }
     },
@@ -5585,65 +5478,56 @@
       }
     },
     {
-      "name": "createDataSources",
+      "name": "createApis",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 36,
+        "filePath": "src/runtimeScreenLoaders.execution.test.ts",
+        "line": 24,
         "column": 1
       }
     },
     {
-      "name": "createDetailScreenRoot",
+      "name": "createLoader",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 64,
+        "filePath": "src/runtimeScreenLoaders.execution.test.ts",
+        "line": 51,
         "column": 1
       }
     },
     {
-      "name": "createDetailLoader",
+      "name": "createScreen",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 71,
+        "filePath": "src/runtimeScreenLoaders.execution.test.ts",
+        "line": 65,
         "column": 1
       }
     },
     {
-      "name": "createCachedOperationInputLoader",
+      "name": "createBindings",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 88,
+        "filePath": "src/runtimeScreenLoaders.execution.test.ts",
+        "line": 76,
         "column": 1
       }
     },
     {
-      "name": "createDetailScreen",
+      "name": "routeContext",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 108,
+        "filePath": "src/runtimeScreenLoaders.execution.test.ts",
+        "line": 93,
         "column": 1
       }
     },
     {
-      "name": "createDetailBindings",
+      "name": "loadedResult",
       "description": null,
       "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 119,
-        "column": 1
-      }
-    },
-    {
-      "name": "createRouteBindingContext",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeScreenLoaders.test.ts",
-        "line": 151,
+        "filePath": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "line": 19,
         "column": 1
       }
     },
@@ -6003,17 +5887,17 @@
     },
     {
       "kind": "export",
-      "name": "createRuntimeBindingOperationKey",
-      "sourcePath": "src/runtimeBindings.ts",
-      "symbolName": "createRuntimeBindingOperationKey",
+      "name": "createRuntimeApiOperationExecutor",
+      "sourcePath": "src/runtimeApiOperations.ts",
+      "symbolName": "createRuntimeApiOperationExecutor",
       "description": null,
       "isReadme": false
     },
     {
       "kind": "export",
-      "name": "createRuntimeDataSourceOperationExecutor",
-      "sourcePath": "src/runtimeDataSourceOperations.ts",
-      "symbolName": "createRuntimeDataSourceOperationExecutor",
+      "name": "createRuntimeBindingOperationKey",
+      "sourcePath": "src/runtimeBindings.ts",
+      "symbolName": "createRuntimeBindingOperationKey",
       "description": null,
       "isReadme": false
     },
@@ -6228,7 +6112,7 @@
     {
       "kind": "export",
       "name": "validateRuntimeBindingOperationRef",
-      "sourcePath": "src/runtimeBindings.ts",
+      "sourcePath": "src/runtimeApiSelection.ts",
       "symbolName": "validateRuntimeBindingOperationRef",
       "description": null,
       "isReadme": false
@@ -6261,12 +6145,17 @@
       },
       {
         "fromPath": "src/index.ts",
-        "toPath": "src/runtimeBindings.ts",
+        "toPath": "src/runtimeApiOperations.ts",
         "sourcePath": "src/index.ts"
       },
       {
         "fromPath": "src/index.ts",
-        "toPath": "src/runtimeDataSourceOperations.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -6350,14 +6239,29 @@
         "sourcePath": "src/rendering.ts"
       },
       {
-        "fromPath": "src/runtimeActionRegistry.test.ts",
+        "fromPath": "src/runtimeActionRegistry.actions.test.ts",
         "toPath": "src/runtimeActionRegistry.ts",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromPath": "src/runtimeActionRegistry.test.ts",
+        "fromPath": "src/runtimeActionRegistry.chains.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeActionRegistry.operations.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeActionRegistry.operations.test.ts",
         "toPath": "src/runtimeBindings.ts",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeActionRegistry.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
         "fromPath": "src/runtimeActionRegistry.ts",
@@ -6370,6 +6274,26 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
+        "fromPath": "src/runtimeApiOperations.test.ts",
+        "toPath": "src/runtimeApiOperations.ts",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeApiOperations.ts",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromPath": "src/runtimeApiSelection.test.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeBindings.test.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeBindings.test.ts"
+      },
+      {
         "fromPath": "src/runtimeBindings.test.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeBindings.test.ts"
@@ -6380,24 +6304,9 @@
         "sourcePath": "src/runtimeBindings.test.ts"
       },
       {
-        "fromPath": "src/runtimeDatabaseOperationExecutor.ts",
-        "toPath": "src/runtimeBindings.ts",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromPath": "src/runtimeDataSourceOperations.test.ts",
-        "toPath": "src/runtimeDataSourceOperations.ts",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromPath": "src/runtimeDataSourceOperations.ts",
-        "toPath": "src/runtimeBindings.ts",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromPath": "src/runtimeDataSourceOperations.ts",
-        "toPath": "src/runtimeDatabaseOperationExecutor.ts",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
+        "fromPath": "src/runtimeBindings.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeBindings.ts"
       },
       {
         "fromPath": "src/runtimeDbPersist.test.ts",
@@ -6571,6 +6480,11 @@
       },
       {
         "fromPath": "src/runtimeRepeat.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeRepeat.ts"
+      },
+      {
+        "fromPath": "src/runtimeRepeat.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeRepeat.ts"
       },
@@ -6610,14 +6524,29 @@
         "sourcePath": "src/runtimeScreenLoaders.arrayPath.test.ts"
       },
       {
-        "fromPath": "src/runtimeScreenLoaders.test.ts",
+        "fromPath": "src/runtimeScreenLoaders.execution.test.ts",
         "toPath": "src/runtimeBindings.ts",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromPath": "src/runtimeScreenLoaders.test.ts",
+        "fromPath": "src/runtimeScreenLoaders.execution.test.ts",
         "toPath": "src/runtimeScreenLoaders.ts",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toPath": "src/runtimeScreenLoaders.ts",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeScreenLoaders.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
         "fromPath": "src/runtimeScreenLoaders.ts",
@@ -6748,94 +6677,178 @@
         "sourcePath": "src/rendering.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "dispatchRuntimeComponentEvent",
         "callExpression": "dispatchRuntimeComponentEvent",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
-        "toSymbol": "createDataSources",
-        "callExpression": "createDataSources",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
-        "toSymbol": "createRuntimeBindingOperationKey",
-        "callExpression": "createRuntimeBindingOperationKey",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
-        "toSymbol": "resolveRuntimeBindings",
-        "callExpression": "resolveRuntimeBindings",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "createComponentEventFromHandlerArgs",
         "callExpression": "createComponentEventFromHandlerArgs",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "wrapRuntimeEventProps",
         "callExpression": "wrapRuntimeEventProps",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
+        "toSymbol": "createActionBindings",
+        "callExpression": "createActionBindings",
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "isNoArgFunction",
         "callExpression": "isNoArgFunction",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
-        "toSymbol": "onPress",
-        "callExpression": "onPress",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
+        "toSymbol": "__type",
+        "callExpression": "props.onPress",
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "createRuntimeActionRegistry",
         "callExpression": "createRuntimeActionRegistry",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "registerActionHandler",
         "callExpression": "registry.registerActionHandler",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "dispatchComponentEvent",
         "callExpression": "registry.dispatchComponentEvent",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeActionRegistry.test.ts",
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "unregister",
         "callExpression": "unregister",
-        "sourcePath": "src/runtimeActionRegistry.test.ts"
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "scannerEvent",
+        "callExpression": "scannerEvent",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "createScannerBindings",
+        "callExpression": "createScannerBindings",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.chains.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeActionRegistry.chains.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "refreshEventArgs",
+        "callExpression": "refreshEventArgs",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "createOperationBindings",
+        "callExpression": "createOperationBindings",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "resolveRuntimeBindings",
+        "callExpression": "resolveRuntimeBindings",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.operations.test.ts",
+        "toSymbol": "createRuntimeBindingOperationKey",
+        "callExpression": "createRuntimeBindingOperationKey",
+        "sourcePath": "src/runtimeActionRegistry.operations.test.ts"
       },
       {
         "fromSymbol": "dispatchComponentEvent",
@@ -6941,8 +6954,8 @@
       },
       {
         "fromSymbol": "dispatchRuntimeOperationEventBinding",
-        "toSymbol": "resolveEventOperationEndpoint",
-        "callExpression": "resolveEventOperationEndpoint",
+        "toSymbol": "resolveRuntimeBindingOperationSelection",
+        "callExpression": "resolveRuntimeBindingOperationSelection",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -7054,6 +7067,168 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
+        "fromSymbol": "createNutritionApi",
+        "toSymbol": "createProductsEndpoint",
+        "callExpression": "createProductsEndpoint",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "createNutritionApi",
+        "callExpression": "createNutritionApi",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "getProductsEndpoint",
+        "callExpression": "getProductsEndpoint",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "createRuntimeApiOperationExecutor",
+        "callExpression": "createRuntimeApiOperationExecutor",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "executor",
+        "callExpression": "executor",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "__type",
+        "callExpression": "createRuntimeApiOperationExecutor({})",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "createProductsEndpoint",
+        "callExpression": "createProductsEndpoint",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.test.ts",
+        "toSymbol": "__type",
+        "callExpression": "createRuntimeApiOperationExecutor({\n      fetch: (url) => {\n        calls.push(url);\n        throw new Error('Internal API phase-1 execution must not reach fetch.');\n      },\n    })",
+        "sourcePath": "src/runtimeApiOperations.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.ts",
+        "toSymbol": "asBindingValueRecord",
+        "callExpression": "asBindingValueRecord",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.ts",
+        "toSymbol": "invalidInput",
+        "callExpression": "invalidInput",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiOperations.ts",
+        "toSymbol": "testEndpoint",
+        "callExpression": "testEndpoint",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "asBindingValueRecord",
+        "toSymbol": "isBindingValueRecord",
+        "callExpression": "isBindingValueRecord",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "validateRuntimeBindingOperationRef",
+        "callExpression": "validateRuntimeBindingOperationRef",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "operation",
+        "callExpression": "operation",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.test.ts",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
+        "sourcePath": "src/runtimeApiSelection.test.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toSymbol": "findRuntimeApi",
+        "callExpression": "findRuntimeApi",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toSymbol": "createApiDiagnostic",
+        "callExpression": "createApiDiagnostic",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toSymbol": "resolveRuntimeApiEndpoint",
+        "callExpression": "resolveRuntimeApiEndpoint",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeBindingOperationSelection",
+        "toSymbol": "validateRuntimeBindingOperationRef",
+        "callExpression": "validateRuntimeBindingOperationRef",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeBindingOperationSelection",
+        "toSymbol": "findRuntimeApi",
+        "callExpression": "findRuntimeApi",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeBindingOperationSelection",
+        "toSymbol": "resolveRuntimeApiEndpoint",
+        "callExpression": "resolveRuntimeApiEndpoint",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
         "fromSymbol": "src/runtimeBindings.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -7091,8 +7266,8 @@
       },
       {
         "fromSymbol": "src/runtimeBindings.test.ts",
-        "toSymbol": "createDataSources",
-        "callExpression": "createDataSources",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
         "sourcePath": "src/runtimeBindings.test.ts"
       },
       {
@@ -7183,18 +7358,6 @@
         "fromSymbol": "resolveBindingInputMapSync",
         "toSymbol": "resolveBindingInputValueSync",
         "callExpression": "resolveBindingInputValueSync",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toSymbol": "createRuntimeBindingDiagnostic",
-        "callExpression": "createRuntimeBindingDiagnostic",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toSymbol": "resolveRuntimeBindingEndpoint",
-        "callExpression": "resolveRuntimeBindingEndpoint",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -7318,18 +7481,6 @@
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
-        "fromSymbol": "resolveRuntimeBindingOperationSelection",
-        "toSymbol": "validateRuntimeBindingOperationRef",
-        "callExpression": "validateRuntimeBindingOperationRef",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "resolveRuntimeBindingOperationSelection",
-        "toSymbol": "resolveRuntimeBindingEndpoint",
-        "callExpression": "resolveRuntimeBindingEndpoint",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
         "fromSymbol": "applyBindingValueTransforms",
         "toSymbol": "asBindingValue",
         "callExpression": "asBindingValue",
@@ -7370,372 +7521,6 @@
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
         "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "resolveOperationPlan",
-        "callExpression": "resolveOperationPlan",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "executeList",
-        "callExpression": "executeList",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "executeRead",
-        "callExpression": "executeRead",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "executeCreate",
-        "callExpression": "executeCreate",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "executeUpdate",
-        "callExpression": "executeUpdate",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRuntimeDatabaseOperation",
-        "toSymbol": "executeDelete",
-        "callExpression": "executeDelete",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveOperationPlan",
-        "toSymbol": "asRecord",
-        "callExpression": "asRecord",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveOperationPlan",
-        "toSymbol": "resolveAdapterId",
-        "callExpression": "resolveAdapterId",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveOperationPlan",
-        "toSymbol": "invalidPlan",
-        "callExpression": "invalidPlan",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveOperationPlan",
-        "toSymbol": "isGeneratedCrudOperation",
-        "callExpression": "isGeneratedCrudOperation",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveOperationPlan",
-        "toSymbol": "resolvePrimaryKey",
-        "callExpression": "resolvePrimaryKey",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeList",
-        "toSymbol": "resolvePage",
-        "callExpression": "resolvePage",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeList",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeList",
-        "toSymbol": "resolveDbResult",
-        "callExpression": "resolveDbResult",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRead",
-        "toSymbol": "resolveIdentity",
-        "callExpression": "resolveIdentity",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRead",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeRead",
-        "toSymbol": "resolveDbResult",
-        "callExpression": "resolveDbResult",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeCreate",
-        "toSymbol": "resolveDbResult",
-        "callExpression": "resolveDbResult",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeUpdate",
-        "toSymbol": "resolveIdentity",
-        "callExpression": "resolveIdentity",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeUpdate",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeUpdate",
-        "toSymbol": "omitKey",
-        "callExpression": "omitKey",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeUpdate",
-        "toSymbol": "createIdentityFilter",
-        "callExpression": "createIdentityFilter",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeUpdate",
-        "toSymbol": "resolveDbResult",
-        "callExpression": "resolveDbResult",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeDelete",
-        "toSymbol": "resolveIdentity",
-        "callExpression": "resolveIdentity",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeDelete",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeDelete",
-        "toSymbol": "createIdentityFilter",
-        "callExpression": "createIdentityFilter",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "executeDelete",
-        "toSymbol": "resolveDbResult",
-        "callExpression": "resolveDbResult",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveDbResult",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveDbResult",
-        "toSymbol": "toBindingValue",
-        "callExpression": "toBindingValue",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolveDbResult",
-        "toSymbol": "select",
-        "callExpression": "select",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "resolvePage",
-        "toSymbol": "isOptionalPageNumber",
-        "callExpression": "isOptionalPageNumber",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "invalidPlan",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "toBindingValue",
-        "toSymbol": "toBindingValue",
-        "callExpression": "toBindingValue",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "toBindingValue",
-        "toSymbol": "asRecord",
-        "callExpression": "asRecord",
-        "sourcePath": "src/runtimeDatabaseOperationExecutor.ts"
-      },
-      {
-        "fromSymbol": "createGeneratedDataSource",
-        "toSymbol": "createGeneratedApiDataSource",
-        "callExpression": "createGeneratedApiDataSource",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "createGeneratedExecutor",
-        "toSymbol": "createRuntimeDataSourceOperationExecutor",
-        "callExpression": "createRuntimeDataSourceOperationExecutor",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "executeGeneratedOperation",
-        "toSymbol": "createGeneratedDataSource",
-        "callExpression": "createGeneratedDataSource",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "executeGeneratedOperation",
-        "toSymbol": "__type",
-        "callExpression": "createGeneratedExecutor(adapter)",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "executeGeneratedOperation",
-        "toSymbol": "createGeneratedExecutor",
-        "callExpression": "createGeneratedExecutor",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "executeGeneratedOperation",
-        "toSymbol": "getFixtureEndpoint",
-        "callExpression": "getFixtureEndpoint",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "describe",
-        "callExpression": "describe",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "it",
-        "callExpression": "it",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "getFixtureDataSource",
-        "callExpression": "getFixtureDataSource",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "createExternalDataSources",
-        "callExpression": "createExternalDataSources",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "getFixtureEndpoint",
-        "callExpression": "getFixtureEndpoint",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "createRuntimeDataSourceOperationExecutor",
-        "callExpression": "createRuntimeDataSourceOperationExecutor",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "executor",
-        "callExpression": "executor",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "expect",
-        "callExpression": "expect",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "createDatabaseFixture",
-        "callExpression": "createDatabaseFixture",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.test.ts",
-        "toSymbol": "executeGeneratedOperation",
-        "callExpression": "executeGeneratedOperation",
-        "sourcePath": "src/runtimeDataSourceOperations.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "missingEndpoint",
-        "callExpression": "missingEndpoint",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "missingOperation",
-        "callExpression": "missingOperation",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "asBindingValueRecord",
-        "callExpression": "asBindingValueRecord",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "invalidInput",
-        "callExpression": "invalidInput",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "executeRuntimeDatabaseOperation",
-        "callExpression": "executeRuntimeDatabaseOperation",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeDataSourceOperations.ts",
-        "toSymbol": "testEndpoint",
-        "callExpression": "testEndpoint",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "missingEndpoint",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "missingOperation",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "invalidInput",
-        "toSymbol": "failure",
-        "callExpression": "failure",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "asBindingValueRecord",
-        "toSymbol": "isBindingValueRecord",
-        "callExpression": "isBindingValueRecord",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
       },
       {
         "fromSymbol": "src/runtimeDbPersist.test.ts",
@@ -8292,7 +8077,7 @@
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeat, {\n        context: effectiveConfig.bindingContext,\n        dataBindings: effectiveConfig.dataBindings,\n        dataSources: effectiveConfig.dataSources,\n        executeOperation: effectiveConfig.executeOperation,\n        node,\n        operationResults: effectiveConfig.operationResults,\n        stateAdapter: effectiveConfig.stateAdapter,\n        writeOperationResult: effectiveConfig.writeOperationResult,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult(result);\n    })",
+        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeat, {\n        apis: effectiveConfig.apis,\n        context: effectiveConfig.bindingContext,\n        dataBindings: effectiveConfig.dataBindings,\n        executeOperation: effectiveConfig.executeOperation,\n        node,\n        operationResults: effectiveConfig.operationResults,\n        stateAdapter: effectiveConfig.stateAdapter,\n        writeOperationResult: effectiveConfig.writeOperationResult,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult(result);\n    })",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -8519,8 +8304,8 @@
       },
       {
         "fromSymbol": "src/runtimeRepeat.test.ts",
-        "toSymbol": "createDataSources",
-        "callExpression": "createDataSources",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
         "sourcePath": "src/runtimeRepeat.test.ts"
       },
       {
@@ -8716,136 +8501,148 @@
         "sourcePath": "src/runtimeScreenLoaders.arrayPath.test.ts"
       },
       {
-        "fromSymbol": "createDetailScreen",
-        "toSymbol": "createDetailScreenRoot",
-        "callExpression": "createDetailScreenRoot",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "createScreen",
+        "toSymbol": "createLoader",
+        "callExpression": "createLoader",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "createDetailScreen",
-        "toSymbol": "createDetailLoader",
-        "callExpression": "createDetailLoader",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createDetailScreen",
-        "callExpression": "createDetailScreen",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
+        "toSymbol": "createScreen",
+        "callExpression": "createScreen",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "executeRuntimeScreenOperationLoaders",
         "callExpression": "executeRuntimeScreenOperationLoaders",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createDataSources",
-        "callExpression": "createDataSources",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
+        "toSymbol": "createApis",
+        "callExpression": "createApis",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
+        "toSymbol": "routeContext",
+        "callExpression": "routeContext",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "resolveScreenOperationLoaders",
         "callExpression": "resolveScreenOperationLoaders",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "createRuntimeBindingOperationKey",
         "callExpression": "createRuntimeBindingOperationKey",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "resolveRuntimeBindings",
         "callExpression": "resolveRuntimeBindings",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createDetailBindings",
-        "callExpression": "createDetailBindings",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
+        "toSymbol": "createBindings",
+        "callExpression": "createBindings",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createDetailScreenRoot",
-        "callExpression": "createDetailScreenRoot",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
+        "toSymbol": "createLoader",
+        "callExpression": "createLoader",
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.execution.test.ts",
         "toSymbol": "createRuntimeScreenLoaderRequestKey",
         "callExpression": "createRuntimeScreenLoaderRequestKey",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.execution.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createRouteBindingContext",
-        "callExpression": "createRouteBindingContext",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "loadedResult",
+        "toSymbol": "createRuntimeBindingOperationKey",
+        "callExpression": "createRuntimeBindingOperationKey",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createCachedOperationInputLoader",
-        "callExpression": "createCachedOperationInputLoader",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
-        "toSymbol": "createDetailLoader",
-        "callExpression": "createDetailLoader",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "toSymbol": "createIdleRuntimeScreenOperationLoaderState",
         "callExpression": "createIdleRuntimeScreenOperationLoaderState",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "toSymbol": "beginRuntimeScreenOperationLoaderRequest",
         "callExpression": "beginRuntimeScreenOperationLoaderRequest",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "toSymbol": "createRuntimeScreenOperationLoaderLifecycle",
         "callExpression": "createRuntimeScreenOperationLoaderLifecycle",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "toSymbol": "createPendingRuntimeScreenOperationLoaderState",
         "callExpression": "createPendingRuntimeScreenOperationLoaderState",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeScreenLoaders.test.ts",
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "toSymbol": "completeRuntimeScreenOperationLoaderRequest",
         "callExpression": "completeRuntimeScreenOperationLoaderRequest",
-        "sourcePath": "src/runtimeScreenLoaders.test.ts"
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeScreenLoaders.lifecycle.test.ts",
+        "toSymbol": "loadedResult",
+        "callExpression": "loadedResult",
+        "sourcePath": "src/runtimeScreenLoaders.lifecycle.test.ts"
       },
       {
         "fromSymbol": "createRuntimeScreenLoaderRequestKey",
@@ -8880,7 +8677,7 @@
       {
         "fromSymbol": "executePreparedRuntimeScreenOperationLoaders",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n    const operationResults: Record<string, BindingValue | undefined> = {};\n\n    for (const preparedLoader of args.plan.loaders) {\n      const selection = resolveRuntimeBindingOperationSelection(\n        preparedLoader.loader.operation,\n        args.dataSources,\n        diagnostics,\n      );\n      if (selection === undefined) {\n        continue;\n      }\n\n      const result = await executeOperation({\n        dataSource: selection.dataSource,\n        endpoint: selection.endpoint,\n        input: preparedLoader.input,\n        node: args.screen.root,\n        operation: preparedLoader.loader.operation,\n      });\n      diagnostics.push(...(result.diagnostics ?? []));\n\n      if (!result.ok) {\n        continue;\n      }\n\n      operationResults[preparedLoader.operationKey] = result.data;\n    }\n\n    return {\n      dependencyKey: args.plan.requestKey,\n      diagnostics,\n      operationResults,\n    };\n  })",
+        "callExpression": "(async () => {\n    const operationResults: Record<string, BindingValue | undefined> = {};\n\n    for (const preparedLoader of args.plan.loaders) {\n      const selection = resolveRuntimeBindingOperationSelection(\n        preparedLoader.loader.operation,\n        args.apis,\n        diagnostics,\n      );\n      if (selection === undefined) {\n        continue;\n      }\n\n      const result = await executeOperation({\n        api: selection.api,\n        endpoint: selection.endpoint,\n        input: preparedLoader.input,\n        node: args.screen.root,\n        operation: preparedLoader.loader.operation,\n      });\n      diagnostics.push(...(result.diagnostics ?? []));\n\n      if (!result.ok) {\n        continue;\n      }\n\n      operationResults[preparedLoader.operationKey] = result.data;\n    }\n\n    return {\n      dependencyKey: args.plan.requestKey,\n      diagnostics,\n      operationResults,\n    };\n  })",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
@@ -9398,6 +9195,11 @@
       },
       {
         "fromSymbol": "RuntimeComponentEventDispatchArgs",
+        "toType": "ApiDefinitionList",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "RuntimeComponentEventDispatchArgs",
         "toType": "BindingValue",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
@@ -9409,11 +9211,6 @@
       {
         "fromSymbol": "RuntimeComponentEventDispatchArgs",
         "toType": "ComponentEventDto",
-        "sourcePath": "src/runtimeActionRegistry.ts"
-      },
-      {
-        "fromSymbol": "RuntimeComponentEventDispatchArgs",
-        "toType": "DataSourceConfig",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -9483,12 +9280,12 @@
       },
       {
         "fromSymbol": "createRuntimeActionRegistry",
-        "toType": "ComponentDataBindingRegistry",
+        "toType": "ApiDefinitionList",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
         "fromSymbol": "createRuntimeActionRegistry",
-        "toType": "DataSourceRegistry",
+        "toType": "ComponentDataBindingRegistry",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -9552,6 +9349,56 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
+        "fromSymbol": "RuntimeApiOperationExecutorOptions",
+        "toType": "EndpointTestCredentialResolver",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "RuntimeApiOperationExecutorOptions",
+        "toType": "EndpointTestFetch",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeApiOperationExecutor",
+        "toType": "RuntimeApiOperationExecutorOptions",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeApiOperationExecutor",
+        "toType": "RuntimeBindingOperationExecutor",
+        "sourcePath": "src/runtimeApiOperations.ts"
+      },
+      {
+        "fromSymbol": "RuntimeApiOperationSelection",
+        "toType": "ApiDefinition",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "RuntimeApiOperationSelection",
+        "toType": "DataEndpointConfig",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toType": "ApiDefinitionList",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toType": "BindingOperationRef",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toType": "DataSourceDiagnostic",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "RuntimeBindingOperationExecutionArgs",
+        "toType": "ApiDefinition",
+        "sourcePath": "src/runtimeBindings.ts"
+      },
+      {
         "fromSymbol": "RuntimeBindingOperationExecutionArgs",
         "toType": "BindingOperationRef",
         "sourcePath": "src/runtimeBindings.ts"
@@ -9568,12 +9415,12 @@
       },
       {
         "fromSymbol": "RuntimeBindingOperationExecutionArgs",
-        "toType": "DataSourceConfig",
+        "toType": "UiNode",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
-        "fromSymbol": "RuntimeBindingOperationExecutionArgs",
-        "toType": "UiNode",
+        "fromSymbol": "RuntimeBindingResolutionArgs",
+        "toType": "ApiDefinitionList",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -9589,11 +9436,6 @@
       {
         "fromSymbol": "RuntimeBindingResolutionArgs",
         "toType": "ComponentEventDto",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "RuntimeBindingResolutionArgs",
-        "toType": "DataSourceConfig",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -9618,6 +9460,11 @@
       },
       {
         "fromSymbol": "RuntimeBindingResolutionContext",
+        "toType": "ApiDefinitionList",
+        "sourcePath": "src/runtimeBindings.ts"
+      },
+      {
+        "fromSymbol": "RuntimeBindingResolutionContext",
         "toType": "BindingValue",
         "sourcePath": "src/runtimeBindings.ts"
       },
@@ -9629,11 +9476,6 @@
       {
         "fromSymbol": "RuntimeBindingResolutionContext",
         "toType": "ComponentEventDto",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "RuntimeBindingResolutionContext",
-        "toType": "DataSourceConfig",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -9735,56 +9577,6 @@
         "fromSymbol": "resolveRuntimeBindingValueSync",
         "toType": "RuntimeBindingResolutionContext",
         "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toType": "BindingOperationRef",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toType": "DataSourceConfig",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toType": "DataSourceDiagnostic",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toType": "Readonly",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "RuntimeDataSourceOperationExecutorOptions",
-        "toType": "DbAdapter",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "RuntimeDataSourceOperationExecutorOptions",
-        "toType": "EndpointTestCredentialResolver",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "RuntimeDataSourceOperationExecutorOptions",
-        "toType": "EndpointTestFetch",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "RuntimeDataSourceOperationExecutorOptions",
-        "toType": "Readonly",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "createRuntimeDataSourceOperationExecutor",
-        "toType": "RuntimeBindingOperationExecutor",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
-      },
-      {
-        "fromSymbol": "createRuntimeDataSourceOperationExecutor",
-        "toType": "RuntimeDataSourceOperationExecutorOptions",
-        "sourcePath": "src/runtimeDataSourceOperations.ts"
       },
       {
         "fromSymbol": "RuntimeDbPersistResult",
@@ -9963,17 +9755,17 @@
       },
       {
         "fromSymbol": "RuntimeRendererProps",
+        "toType": "ApiDefinitionList",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererProps",
         "toType": "BindingValue",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
         "fromSymbol": "RuntimeRendererProps",
         "toType": "ComponentDataBinding",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererProps",
-        "toType": "DataSourceConfig",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -10108,17 +9900,17 @@
       },
       {
         "fromSymbol": "RuntimeRendererConfig",
+        "toType": "ApiDefinitionList",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
         "toType": "BindingValue",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
         "fromSymbol": "RuntimeRendererConfig",
         "toType": "ComponentDataBinding",
-        "sourcePath": "src/RuntimeRendererConfig.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererConfig",
-        "toType": "DataSourceConfig",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -10507,7 +10299,7 @@
       {
         "fromComponent": "RuntimeScreen",
         "toComponent": "RuntimeRenderer",
-        "jsxElement": "<RuntimeRenderer\n      key={`${screen.id}:${screenOperationLoaders.renderVersion}`}\n      node={screen.root}\n      isRoot\n      registry={registry}\n      stateAdapter={stateAdapter}\n      dataBindings={manifest.dataBindings}\n      dataSources={manifest.dataSources}\n      mediaAssets={manifest.media?.assets}\n      operationResults={screenOperationLoaders.operationResults}\n    />",
+        "jsxElement": "<RuntimeRenderer\n      key={`${screen.id}:${screenOperationLoaders.renderVersion}`}\n      node={screen.root}\n      isRoot\n      registry={registry}\n      stateAdapter={stateAdapter}\n      apis={apis}\n      dataBindings={manifest.dataBindings}\n      mediaAssets={manifest.media?.assets}\n      operationResults={screenOperationLoaders.operationResults}\n    />",
         "sourcePath": "src/RuntimeScreen.tsx"
       }
     ]

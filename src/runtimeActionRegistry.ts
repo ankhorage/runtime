@@ -1,18 +1,17 @@
 import type {
+  ApiDefinitionList,
   BindingCondition,
   BindingInputMap,
   BindingValue,
   ComponentDataBindingRegistry,
   ComponentEventDto,
-  DataEndpointConfig,
-  DataSourceConfig,
   DataSourceDiagnostic,
-  DataSourceRegistry,
   EventBinding,
   EventBindingTarget,
   UiNode,
 } from '@ankhorage/contracts';
 
+import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
   createRuntimeBindingOperationKey,
   resolveBindingInputMap,
@@ -48,7 +47,7 @@ export interface RuntimeComponentEventDispatchArgs extends RuntimeActionResoluti
   readonly event: ComponentEventDto<string, object>;
   readonly eventName?: string;
   readonly executeAction?: RuntimeActionHandler;
-  readonly dataSources?: DataSourceRegistry;
+  readonly apis?: ApiDefinitionList;
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly writeOperationResult?: RuntimeBindingOperationResultWriter;
@@ -67,7 +66,7 @@ export interface RuntimeEventPropWrapArgs extends RuntimeActionResolutionScope {
 export function createRuntimeActionRegistry(
   options: {
     actionHandlers?: RuntimeActionHandlers;
-    dataSources?: DataSourceRegistry;
+    apis?: ApiDefinitionList;
     dataBindings?: ComponentDataBindingRegistry;
     executeAction?: RuntimeActionHandler;
     executeOperation?: RuntimeBindingOperationExecutor;
@@ -82,8 +81,8 @@ export function createRuntimeActionRegistry(
       await dispatchRuntimeComponentEvent({
         ...args,
         actionHandlers,
+        apis: args.apis ?? options.apis,
         dataBindings: args.dataBindings ?? options.dataBindings,
-        dataSources: args.dataSources ?? options.dataSources,
         executeAction: args.executeAction ?? options.executeAction,
         executeOperation: args.executeOperation ?? options.executeOperation,
         operationResults: args.operationResults ?? options.operationResults,
@@ -261,33 +260,26 @@ async function dispatchRuntimeOperationEventBinding(args: {
 
   if (args.args.executeOperation === undefined) {
     diagnostics.push({
+      apiId: target.operation.apiId,
       code: 'missing-adapter',
-      dataSourceId: target.operation.dataSourceId,
       endpointId: target.operation.endpointId,
       operationId: target.operation.operationId,
-      message: 'Event operation binding requires an injected operation executor.',
+      message: 'Event API operation binding requires an injected operation executor.',
       severity: 'error',
     });
     return false;
   }
 
-  const dataSource = args.args.dataSources?.[target.operation.dataSourceId];
-  if (dataSource === undefined) {
-    diagnostics.push({
-      code: 'missing-data-source',
-      dataSourceId: target.operation.dataSourceId,
-      endpointId: target.operation.endpointId,
-      operationId: target.operation.operationId,
-      message: `Data source '${target.operation.dataSourceId}' could not be found.`,
-      severity: 'error',
-    });
-    return false;
-  }
+  const selection = resolveRuntimeBindingOperationSelection(
+    target.operation,
+    args.args.apis,
+    diagnostics,
+  );
+  if (selection === undefined) return false;
 
-  const endpoint = resolveEventOperationEndpoint(target, dataSource);
   const result = await args.args.executeOperation({
-    dataSource,
-    endpoint,
+    api: selection.api,
+    endpoint: selection.endpoint,
     input: await resolveEventBindingInput(binding.input, args.args, diagnostics),
     node: args.args.node,
     operation: target.operation,
@@ -339,9 +331,9 @@ async function resolveEventBindingInput(
   return resolveBindingInputMap(
     input,
     {
+      apis: args.apis,
       context: args.context,
       dataBindings: args.dataBindings,
-      dataSources: args.dataSources,
       event: args.event,
       executeOperation: args.executeOperation,
       operationResults: args.operationResults,
@@ -391,19 +383,6 @@ function readBindingConditionSource(
     case 'state':
       return readPath(args.state, condition.source.path);
   }
-}
-
-function resolveEventOperationEndpoint(
-  target: RuntimeOperationEventTarget,
-  dataSource: DataSourceConfig,
-): DataEndpointConfig | undefined {
-  if (target.operation.endpointId !== undefined) {
-    return dataSource.endpoints[target.operation.endpointId];
-  }
-
-  return Object.values(dataSource.endpoints).find(
-    (endpoint) => endpoint.operations[target.operation.operationId] !== undefined,
-  );
 }
 
 function createPayloadForEvent(

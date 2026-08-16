@@ -1,8 +1,11 @@
 sequenceDiagram
-  participant participant_createRuntimeBindingDiagnostic as createRuntimeBindingDiagnostic
-  participant participant_resolveRuntimeBindingEndpoint as resolveRuntimeBindingEndpoint
+  participant participant_createApiDiagnostic as createApiDiagnostic
+  participant participant_findRuntimeApi as findRuntimeApi
+  participant participant_resolveRuntimeApiEndpoint as resolveRuntimeApiEndpoint
   participant participant_validateRuntimeBindingOperationRef as validateRuntimeBindingOperationRef
-  participant_validateRuntimeBindingOperationRef->>participant_createRuntimeBindingDiagnostic: createRuntimeBindingDiagnostic()
-  participant_createRuntimeBindingDiagnostic-->>participant_validateRuntimeBindingOperationRef: return
-  participant_validateRuntimeBindingOperationRef->>participant_resolveRuntimeBindingEndpoint: resolveRuntimeBindingEndpoint()
-  participant_resolveRuntimeBindingEndpoint-->>participant_validateRuntimeBindingOperationRef: return
+  participant_validateRuntimeBindingOperationRef->>participant_findRuntimeApi: findRuntimeApi()
+  participant_findRuntimeApi-->>participant_validateRuntimeBindingOperationRef: return
+  participant_validateRuntimeBindingOperationRef->>participant_createApiDiagnostic: createApiDiagnostic()
+  participant_createApiDiagnostic-->>participant_validateRuntimeBindingOperationRef: return
+  participant_validateRuntimeBindingOperationRef->>participant_resolveRuntimeApiEndpoint: resolveRuntimeApiEndpoint()
+  participant_resolveRuntimeApiEndpoint-->>participant_validateRuntimeBindingOperationRef: return

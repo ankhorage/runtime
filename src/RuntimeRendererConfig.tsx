@@ -1,9 +1,9 @@
 import type {
   Action,
+  ApiDefinitionList,
   ComponentDataBindingRegistry,
   ComponentEventDto,
   DataSourceDiagnostic,
-  DataSourceRegistry,
   DbAdapter,
   DbRealtimeAdapter,
   MediaAssetRegistry,
@@ -59,7 +59,7 @@ export interface RuntimeRendererConfig {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  dataSources?: DataSourceRegistry;
+  apis?: ApiDefinitionList;
   dataBindings?: ComponentDataBindingRegistry;
   operationResults?: RuntimeBindingOperationResultCache;
   writeOperationResult?: RuntimeBindingOperationResultWriter;
@@ -144,7 +144,7 @@ export function mergeRuntimeRendererConfig(
     dbRealtimeAdapter: localConfig?.dbRealtimeAdapter ?? inheritedConfig?.dbRealtimeAdapter,
     stateAdapter: localConfig?.stateAdapter ?? inheritedConfig?.stateAdapter,
     bindingContext,
-    dataSources: localConfig?.dataSources ?? inheritedConfig?.dataSources,
+    apis: localConfig?.apis ?? inheritedConfig?.apis,
     dataBindings: localConfig?.dataBindings ?? inheritedConfig?.dataBindings,
     operationResults,
     writeOperationResult:

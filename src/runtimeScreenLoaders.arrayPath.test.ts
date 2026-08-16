@@ -8,13 +8,13 @@ import { createRuntimeBindingOperationKey } from './runtimeBindings';
 import { createRuntimeScreenLoaderRequestKey } from './runtimeScreenLoaders';
 
 const productListOperation: BindingOperationRef = {
-  dataSourceId: 'nutrition-api',
+  apiId: 'nutrition-api',
   endpointId: 'products',
   operationId: 'nutrition.products.list',
 };
 
 const productDetailOperation: BindingOperationRef = {
-  dataSourceId: 'nutrition-api',
+  apiId: 'nutrition-api',
   endpointId: 'products',
   operationId: 'nutrition.products.getById',
 };
