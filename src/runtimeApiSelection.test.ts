@@ -58,7 +58,10 @@ describe('validateRuntimeBindingOperationRef', () => {
 
   it('reports missing operation identity', () => {
     expect(
-      validateRuntimeBindingOperationRef(operation({ operationId: 'products.missing' }), createApis()),
+      validateRuntimeBindingOperationRef(
+        operation({ operationId: 'products.missing' }),
+        createApis(),
+      ),
     ).toMatchObject([
       {
         apiId: 'nutrition',
