@@ -1,7 +1,7 @@
 import type {
+  ApiDefinitionList,
   BindingValue,
   ComponentDataBindingRegistry,
-  DataSourceRegistry,
   UiNode,
 } from '@ankhorage/contracts';
 import { describe, expect, it } from 'bun:test';
@@ -15,11 +15,10 @@ import {
   resolveRuntimeRepeatItemsSync,
 } from './runtimeRepeat';
 
-function createDataSources(): DataSourceRegistry {
-  return {
-    'nutrition-api': {
+function createApis(): ApiDefinitionList {
+  return [
+    {
       id: 'nutrition-api',
-      kind: 'api',
       origin: 'external',
       protocol: 'rest',
       baseUrl: 'https://nutrition.example.com',
@@ -40,7 +39,7 @@ function createDataSources(): DataSourceRegistry {
         },
       },
     },
-  };
+  ];
 }
 
 function createRepeatedGridNode(): UiNode {
@@ -51,7 +50,7 @@ function createRepeatedGridNode(): UiNode {
       source: {
         kind: 'operation',
         operation: {
-          dataSourceId: 'nutrition-api',
+          apiId: 'nutrition-api',
           endpointId: 'products',
           operationId: 'products.list',
         },
@@ -137,7 +136,7 @@ describe('runtime repeat resolution', () => {
     }
 
     const repeatResult = await resolveRuntimeRepeatItemsAsync(repeat, {
-      dataSources: createDataSources(),
+      apis: createApis(),
       executeOperation: () =>
         Promise.resolve({
           ok: true,
@@ -198,7 +197,7 @@ describe('runtime repeat resolution', () => {
     }
 
     const result = resolveRuntimeRepeatItemsSync(repeat, {
-      dataSources: createDataSources(),
+      apis: createApis(),
       node,
       operationResults: {
         'nutrition-api:products:products.list': {
@@ -220,7 +219,7 @@ describe('runtime repeat resolution', () => {
     }
 
     const result = await resolveRuntimeRepeatItemsAsync(repeat, {
-      dataSources: createDataSources(),
+      apis: createApis(),
       executeOperation: () =>
         Promise.resolve({
           ok: true,
@@ -234,8 +233,8 @@ describe('runtime repeat resolution', () => {
     expect(result.items).toEqual([]);
     expect(result.diagnostics).toEqual([
       {
+        apiId: 'nutrition-api',
         code: 'invalid-config',
-        dataSourceId: 'nutrition-api',
         endpointId: 'products',
         operationId: 'products.list',
         message: 'Repeat source must resolve to an array.',
@@ -252,7 +251,7 @@ describe('runtime repeat resolution', () => {
     }
 
     const result = await resolveRuntimeRepeatItemsAsync(repeat, {
-      dataSources: createDataSources(),
+      apis: createApis(),
       executeOperation: () =>
         Promise.resolve({
           ok: true,
