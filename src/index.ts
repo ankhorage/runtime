@@ -22,6 +22,10 @@ export {
   resolveRuntimeActionValue,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
+export type { RuntimeApiOperationExecutorOptions } from './runtimeApiOperations';
+export { createRuntimeApiOperationExecutor } from './runtimeApiOperations';
+export type { RuntimeApiOperationSelection } from './runtimeApiSelection';
+export { validateRuntimeBindingOperationRef } from './runtimeApiSelection';
 export type {
   RuntimeBindingOperationExecutionArgs,
   RuntimeBindingOperationExecutionResult,
@@ -40,10 +44,7 @@ export {
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
-  validateRuntimeBindingOperationRef,
 } from './runtimeBindings';
-export type { RuntimeDataSourceOperationExecutorOptions } from './runtimeDataSourceOperations';
-export { createRuntimeDataSourceOperationExecutor } from './runtimeDataSourceOperations';
 export type {
   RuntimeDbPersistError,
   RuntimeDbPersistExecutionResult,
