@@ -1,8 +1,8 @@
 import type {
+  ApiDefinitionList,
   BindingValue,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
-  DataSourceRegistry,
   DbAdapter,
   DbRealtimeAdapter,
   MediaAssetRegistry,
@@ -63,7 +63,7 @@ export interface RuntimeRendererProps {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  dataSources?: DataSourceRegistry;
+  apis?: ApiDefinitionList;
   dataBindings?: ComponentDataBindingRegistry;
   mediaAssets?: MediaAssetRegistry;
   resolveMediaAsset?: RuntimeMediaAssetResolver;
@@ -84,7 +84,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     dbRealtimeAdapter,
     stateAdapter,
     bindingContext,
-    dataSources,
+    apis,
     dataBindings,
     mediaAssets,
     resolveMediaAsset,
@@ -121,9 +121,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   );
   const explicitConfig = React.useMemo(
     () => ({
+      apis,
       bindingContext,
       dataBindings,
-      dataSources,
       dbAdapter,
       dbRealtimeAdapter,
       disableActions,
@@ -139,9 +139,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       writeOperationResult: inheritedConfig.writeOperationResult ?? writeLocalOperationResult,
     }),
     [
+      apis,
       bindingContext,
       dataBindings,
-      dataSources,
       dbAdapter,
       dbRealtimeAdapter,
       disableActions,
@@ -191,8 +191,8 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       await dispatchRuntimeComponentEventWithReporting({
         ...eventArgs,
         actionHandlers: effectiveActionHandlers,
+        apis: eventArgs.apis ?? effectiveConfig.apis,
         dataBindings: eventArgs.dataBindings ?? effectiveConfig.dataBindings,
-        dataSources: eventArgs.dataSources ?? effectiveConfig.dataSources,
         executeAction: effectiveConfig.executeAction ?? executeRuntimeAction,
         executeOperation: eventArgs.executeOperation ?? effectiveConfig.executeOperation,
         onDiagnostics: effectiveConfig.onDiagnostics,
@@ -203,8 +203,8 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     },
     [
       effectiveActionHandlers,
+      effectiveConfig.apis,
       effectiveConfig.dataBindings,
-      effectiveConfig.dataSources,
       effectiveConfig.executeAction,
       effectiveConfig.executeOperation,
       effectiveConfig.onDiagnostics,
@@ -240,9 +240,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     }
 
     return resolveRuntimeRepeatItemsSync(repeat, {
+      apis: effectiveConfig.apis,
       context: effectiveConfig.bindingContext,
       dataBindings: effectiveConfig.dataBindings,
-      dataSources: effectiveConfig.dataSources,
       executeOperation: effectiveConfig.executeOperation,
       node,
       operationResults: effectiveConfig.operationResults,
@@ -250,9 +250,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       writeOperationResult: effectiveConfig.writeOperationResult,
     });
   }, [
+    effectiveConfig.apis,
     effectiveConfig.bindingContext,
     effectiveConfig.dataBindings,
-    effectiveConfig.dataSources,
     effectiveConfig.executeOperation,
     effectiveConfig.operationResults,
     effectiveConfig.stateAdapter,
@@ -278,9 +278,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
     void (async () => {
       const result = await resolveRuntimeRepeatItemsAsync(repeat, {
+        apis: effectiveConfig.apis,
         context: effectiveConfig.bindingContext,
         dataBindings: effectiveConfig.dataBindings,
-        dataSources: effectiveConfig.dataSources,
         executeOperation: effectiveConfig.executeOperation,
         node,
         operationResults: effectiveConfig.operationResults,
@@ -299,9 +299,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       repeatRequestIdRef.current += 1;
     };
   }, [
+    effectiveConfig.apis,
     effectiveConfig.bindingContext,
     effectiveConfig.dataBindings,
-    effectiveConfig.dataSources,
     effectiveConfig.executeOperation,
     effectiveConfig.operationResults,
     effectiveConfig.stateAdapter,
@@ -329,9 +329,9 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   }, [effectiveConfig.onDiagnostics, node.repeat, repeatDiagnostics]);
 
   const bindingResolvedProps = resolveRuntimeNodeProps({
+    apis: effectiveConfig.apis,
     bindingContext: effectiveConfig.bindingContext,
     dataBindings: effectiveConfig.dataBindings,
-    dataSources: effectiveConfig.dataSources,
     dbAdapter: effectiveConfig.dbAdapter,
     dbRealtimeAdapter: effectiveConfig.dbRealtimeAdapter,
     node,
