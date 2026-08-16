@@ -17,7 +17,9 @@ export function validateRuntimeBindingOperationRef(
 ): readonly DataSourceDiagnostic[] {
   const api = findRuntimeApi(apis, operation.apiId);
   if (api === undefined) {
-    return [createApiDiagnostic(operation, 'missing-api', `API '${operation.apiId}' could not be found.`)];
+    return [
+      createApiDiagnostic(operation, 'missing-api', `API '${operation.apiId}' could not be found.`),
+    ];
   }
 
   const endpoint = resolveRuntimeApiEndpoint(operation, api);
