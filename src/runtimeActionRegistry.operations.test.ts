@@ -3,13 +3,16 @@ import type {
   BindingOperationRef,
   BindingValue,
   ComponentDataBindingRegistry,
-  RuntimeBindingOperationResultCache,
   UiNode,
 } from '@ankhorage/contracts';
 import { describe, expect, it } from 'bun:test';
 
 import { dispatchRuntimeComponentEvent } from './runtimeActionRegistry';
-import { createRuntimeBindingOperationKey, resolveRuntimeBindings } from './runtimeBindings';
+import {
+  createRuntimeBindingOperationKey,
+  resolveRuntimeBindings,
+  type RuntimeBindingOperationResultCache,
+} from './runtimeBindings';
 
 const postsOperation: BindingOperationRef = {
   apiId: 'cms',
