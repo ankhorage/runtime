@@ -19,9 +19,10 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
   const runtimeConfig = useRuntimeRendererConfig();
   const fallbackStateAdapter = React.useMemo(() => createRuntimeMemoryStateAdapter(), []);
   const stateAdapter = injectedStateAdapter ?? fallbackStateAdapter;
+  const apis = manifest.infra?.apis;
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
+    apis,
     bindingContext: runtimeConfig.bindingContext,
-    dataSources: manifest.dataSources,
     executeOperation: runtimeConfig.executeOperation,
     operationResults: runtimeConfig.operationResults,
     onDiagnostics: runtimeConfig.onDiagnostics,
@@ -35,8 +36,8 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       isRoot
       registry={registry}
       stateAdapter={stateAdapter}
+      apis={apis}
       dataBindings={manifest.dataBindings}
-      dataSources={manifest.dataSources}
       mediaAssets={manifest.media?.assets}
       operationResults={screenOperationLoaders.operationResults}
     />
