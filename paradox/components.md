@@ -32,9 +32,9 @@ Export paths: `src/index.ts`
 
 | Prop              | Type                                                                  | Required | Default | Description |
 | ----------------- | --------------------------------------------------------------------- | -------- | ------- | ----------- |
+| apis              | `ApiDefinitionList \| undefined`                                      | no       | —       |             |
 | bindingContext    | `Record<string, unknown> \| undefined`                                | no       | —       |             |
 | dataBindings      | `ComponentDataBindingRegistry \| undefined`                           | no       | —       |             |
-| dataSources       | `DataSourceRegistry \| undefined`                                     | no       | —       |             |
 | dbAdapter         | `DbAdapter \| undefined`                                              | no       | —       |             |
 | dbRealtimeAdapter | `DbRealtimeAdapter \| undefined`                                      | no       | —       |             |
 | disableActions    | `boolean \| undefined`                                                | no       | —       |             |

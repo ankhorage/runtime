@@ -21,30 +21,40 @@ graph TD
   module_src_rendering_ts["src/rendering.ts"]
   package__ankhorage_runtime -.-> module_src_rendering_ts
   module_src_rendering_ts --> module_src_registry_tsx
-  module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_test_ts
-  module_src_runtimeActionRegistry_test_ts --> module_src_runtimeActionRegistry_ts
-  module_src_runtimeActionRegistry_test_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeActionRegistry_actions_test_ts["src/runtimeActionRegistry.actions.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_actions_test_ts
+  module_src_runtimeActionRegistry_actions_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeActionRegistry_chains_test_ts["src/runtimeActionRegistry.chains.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_chains_test_ts
+  module_src_runtimeActionRegistry_chains_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeActionRegistry_operations_test_ts["src/runtimeActionRegistry.operations.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_operations_test_ts
+  module_src_runtimeActionRegistry_operations_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeActionRegistry_operations_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_ts
+  module_src_runtimeActionRegistry_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeApiOperations_test_ts["src/runtimeApiOperations.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeApiOperations_test_ts
+  module_src_runtimeApiOperations_test_ts --> module_src_runtimeApiOperations_ts
+  module_src_runtimeApiOperations_ts["src/runtimeApiOperations.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeApiOperations_ts
+  module_src_runtimeApiOperations_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeApiSelection_test_ts["src/runtimeApiSelection.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeApiSelection_test_ts
+  module_src_runtimeApiSelection_test_ts --> module_src_runtimeApiSelection_ts
+  module_src_runtimeApiSelection_ts["src/runtimeApiSelection.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeApiSelection_ts
   module_src_runtimeBindings_test_ts["src/runtimeBindings.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeBindings_test_ts
+  module_src_runtimeBindings_test_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeBindings_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeBindings_ts
-  module_src_runtimeDatabaseOperationExecutor_ts["src/runtimeDatabaseOperationExecutor.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeDatabaseOperationExecutor_ts
-  module_src_runtimeDatabaseOperationExecutor_ts --> module_src_runtimeBindings_ts
-  module_src_runtimeDataSourceOperations_test_ts["src/runtimeDataSourceOperations.test.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeDataSourceOperations_test_ts
-  module_src_runtimeDataSourceOperations_test_ts --> module_src_runtimeDataSourceOperations_ts
-  module_src_runtimeDataSourceOperations_ts["src/runtimeDataSourceOperations.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeDataSourceOperations_ts
-  module_src_runtimeDataSourceOperations_ts --> module_src_runtimeBindings_ts
-  module_src_runtimeDataSourceOperations_ts --> module_src_runtimeDatabaseOperationExecutor_ts
+  module_src_runtimeBindings_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeDbPersist_test_ts["src/runtimeDbPersist.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeDbPersist_test_ts
   module_src_runtimeDbPersist_test_ts --> module_src_runtimeActionRegistry_ts
@@ -115,6 +125,7 @@ graph TD
   module_src_runtimeRepeat_test_ts --> module_src_runtimeRepeat_ts
   module_src_runtimeRepeat_ts["src/runtimeRepeat.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeRepeat_ts
+  module_src_runtimeRepeat_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
   module_src_runtimeRepeatDiagnostics_ts["src/runtimeRepeatDiagnostics.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeRepeatDiagnostics_ts
@@ -131,12 +142,17 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_arrayPath_test_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeScreenLoaders_arrayPath_test_ts --> module_src_runtimeScreenLoaders_ts
-  module_src_runtimeScreenLoaders_test_ts["src/runtimeScreenLoaders.test.ts"]
-  package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_test_ts
-  module_src_runtimeScreenLoaders_test_ts --> module_src_runtimeBindings_ts
-  module_src_runtimeScreenLoaders_test_ts --> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeScreenLoaders_execution_test_ts["src/runtimeScreenLoaders.execution.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_execution_test_ts
+  module_src_runtimeScreenLoaders_execution_test_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeScreenLoaders_execution_test_ts --> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeScreenLoaders_lifecycle_test_ts["src/runtimeScreenLoaders.lifecycle.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_lifecycle_test_ts
+  module_src_runtimeScreenLoaders_lifecycle_test_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeScreenLoaders_lifecycle_test_ts --> module_src_runtimeScreenLoaders_ts
   module_src_runtimeScreenLoaders_ts["src/runtimeScreenLoaders.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeScreenLoaders_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeScreenLoaders_ts --> module_src_runtimeBindings_ts
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeStateAdapter_ts
