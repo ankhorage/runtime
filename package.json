@@ -60,8 +60,8 @@
     "version-packages": "changeset version"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^7.4.0",
-    "@ankhorage/data-sources": "^1.0.0"
+    "@ankhorage/contracts": "^8.0.0",
+    "@ankhorage/data-sources": "^2.0.0"
   },
   "peerDependencies": {
     "react": "19.1.0",
