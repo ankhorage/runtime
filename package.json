@@ -31,6 +31,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./bindings": {
+      "types": "./dist/bindings.d.ts",
+      "import": "./dist/bindings.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
