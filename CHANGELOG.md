@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.1.0
+
+### Minor Changes
+
+- 02c1389: Expose canonical API and binding execution through the package-neutral `@ankhorage/runtime/bindings` entrypoint so headless consumers do not load React Native renderer modules.
+
 ## 2.0.0
 
 ### Major Changes
