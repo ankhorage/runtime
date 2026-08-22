@@ -1,5 +1,5 @@
 import type { AppManifest } from '@ankhorage/contracts';
-import React, { createContext, useContext } from 'react';
+import React, { createContext, use } from 'react';
 
 interface ManifestContextValue {
   manifest: AppManifest;
@@ -13,14 +13,14 @@ export function ManifestProvider(props: ManifestContextValue & { children: React
   const { manifest, activeScreenId, onScreenChange, children } = props;
 
   return (
-    <ManifestContext.Provider value={{ manifest, activeScreenId, onScreenChange }}>
+    <ManifestContext value={{ manifest, activeScreenId, onScreenChange }}>
       {children}
-    </ManifestContext.Provider>
+    </ManifestContext>
   );
 }
 
 export function useManifest() {
-  const context = useContext(ManifestContext);
+  const context = use(ManifestContext);
   if (!context) {
     throw new Error('useManifest must be used within a ManifestProvider');
   }
@@ -28,7 +28,7 @@ export function useManifest() {
 }
 
 export function useManifestContext() {
-  const context = useContext(ManifestContext);
+  const context = use(ManifestContext);
   if (!context) {
     throw new Error('useManifestContext must be used within a ManifestProvider');
   }
@@ -36,5 +36,5 @@ export function useManifestContext() {
 }
 
 export function useOptionalManifestContext() {
-  return useContext(ManifestContext);
+  return use(ManifestContext);
 }

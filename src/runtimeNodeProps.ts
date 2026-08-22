@@ -10,6 +10,11 @@ import type {
 import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
 import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';
 
+interface RuntimeActionHandlerCacheEntry {
+  readonly handleAction: (action: RuntimeAction) => void;
+  readonly handler: (...args: unknown[]) => void;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -126,7 +131,7 @@ export function wrapRuntimeActionProps(args: {
   props: Record<string, unknown>;
   disableActions: boolean;
   handleAction: (action: RuntimeAction) => void;
-  actionHandlerCache: WeakMap<object, (...args: unknown[]) => void>;
+  actionHandlerCache: WeakMap<object, RuntimeActionHandlerCacheEntry>;
   functionHandlerCache: WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>;
 }): Record<string, unknown> {
   const { props, disableActions, handleAction, actionHandlerCache, functionHandlerCache } = args;
@@ -147,14 +152,15 @@ export function wrapRuntimeActionProps(args: {
 
     if (hasActionShape(value)) {
       const actionObject = value;
-      let actionHandler = actionHandlerCache.get(actionObject);
-      if (!actionHandler) {
-        actionHandler = () => {
+      let cachedActionHandler = actionHandlerCache.get(actionObject);
+      if (cachedActionHandler?.handleAction !== handleAction) {
+        const actionHandler = () => {
           handleAction(actionObject);
         };
-        actionHandlerCache.set(actionObject, actionHandler);
+        cachedActionHandler = { handleAction, handler: actionHandler };
+        actionHandlerCache.set(actionObject, cachedActionHandler);
       }
-      wrappedProps[key] = actionHandler;
+      wrappedProps[key] = cachedActionHandler.handler;
       return;
     }
 

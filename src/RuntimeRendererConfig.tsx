@@ -10,11 +10,8 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
-import type {
-  RuntimeNodePropsResolver,
-  RuntimeResolveNodePropsArgs,
-} from '@ankhorage/contracts/runtime';
-import React, { createContext, useContext } from 'react';
+import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
+import React, { createContext, use } from 'react';
 
 import type { ComponentRegistry } from './registry';
 import type {
@@ -160,18 +157,16 @@ export function RuntimeRendererConfigProvider(props: {
   children: React.ReactNode;
 }) {
   const { value, children } = props;
-  const inheritedConfig = useContext(RuntimeRendererConfigContext);
+  const inheritedConfig = use(RuntimeRendererConfigContext);
   const mergedConfig = mergeRuntimeRendererConfig(value, inheritedConfig);
 
   return (
-    <RuntimeRendererConfigContext.Provider value={mergedConfig}>
-      {children}
-    </RuntimeRendererConfigContext.Provider>
+    <RuntimeRendererConfigContext value={mergedConfig}>{children}</RuntimeRendererConfigContext>
   );
 }
 
 export function useRuntimeRendererConfig(): RuntimeRendererConfig {
-  return useContext(RuntimeRendererConfigContext);
+  return use(RuntimeRendererConfigContext);
 }
 
 function mergeRecordConfig<TValue>(

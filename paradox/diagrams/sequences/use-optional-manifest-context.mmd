@@ -1,5 +1,5 @@
 sequenceDiagram
-  participant participant_useContext as useContext
+  participant participant_use as use
   participant participant_useOptionalManifestContext as useOptionalManifestContext
-  participant_useOptionalManifestContext->>participant_useContext: useContext()
-  participant_useContext-->>participant_useOptionalManifestContext: return
+  participant_useOptionalManifestContext->>participant_use: use()
+  participant_use-->>participant_useOptionalManifestContext: return

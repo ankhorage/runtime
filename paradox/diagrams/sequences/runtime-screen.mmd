@@ -1,12 +1,12 @@
 sequenceDiagram
   participant participant_createRuntimeScreenOperationLoaderLifecycle as createRuntimeScreenOperationLoaderLifecycle
   participant participant_RuntimeScreen as RuntimeScreen
-  participant participant_useContext as useContext
+  participant participant_use as use
   participant participant_useRuntimeRendererConfig as useRuntimeRendererConfig
   participant participant_useRuntimeScreenOperationLoaders as useRuntimeScreenOperationLoaders
   participant_RuntimeScreen->>participant_useRuntimeRendererConfig: useRuntimeRendererConfig()
-  participant_useRuntimeRendererConfig->>participant_useContext: useContext()
-  participant_useContext-->>participant_useRuntimeRendererConfig: return
+  participant_useRuntimeRendererConfig->>participant_use: use()
+  participant_use-->>participant_useRuntimeRendererConfig: return
   participant_useRuntimeRendererConfig-->>participant_RuntimeScreen: return
   participant_RuntimeScreen->>participant_useRuntimeScreenOperationLoaders: useRuntimeScreenOperationLoaders()
   participant_useRuntimeScreenOperationLoaders->>participant_createRuntimeScreenOperationLoaderLifecycle: createRuntimeScreenOperationLoaderLifecycle()
