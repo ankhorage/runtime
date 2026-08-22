@@ -12,7 +12,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v1.1.0",
+      "value": "v2.1.0",
       "color": "cb3837"
     },
     {
@@ -79,6 +79,38 @@
       "isEntrypoint": false,
       "dependencies": [],
       "exports": ["default"]
+    },
+    {
+      "path": "src/bindings.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/bindings.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/bindings.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "createRuntimeApiOperationExecutor",
+        "createRuntimeBindingOperationKey",
+        "resolveBindingInputMap",
+        "resolveRuntimeBindings",
+        "resolveRuntimeBindingsAsync",
+        "resolveRuntimeBindingValue",
+        "resolveRuntimeBindingValueSync",
+        "RuntimeApiOperationExecutorOptions",
+        "RuntimeApiOperationSelection",
+        "RuntimeBindingOperationExecutionArgs",
+        "RuntimeBindingOperationExecutionResult",
+        "RuntimeBindingOperationExecutor",
+        "RuntimeBindingOperationKey",
+        "RuntimeBindingOperationResultCache",
+        "RuntimeBindingOperationResultWriter",
+        "RuntimeBindingResolutionArgs",
+        "RuntimeBindingResolutionContext",
+        "RuntimeBindingResolutionResult",
+        "validateRuntimeBindingOperationRef"
+      ]
     },
     {
       "path": "src/componentRegistry.ts",
@@ -189,6 +221,12 @@
         "useManifestContext",
         "useOptionalManifestContext"
       ]
+    },
+    {
+      "path": "src/react19Compatibility.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": ["src/ManifestContext.tsx", "src/RuntimeRendererConfig.tsx"],
+      "exports": []
     },
     {
       "path": "src/registry.test.ts",
@@ -589,6 +627,18 @@
       "exports": ["useRuntimeMediaProps"]
     },
     {
+      "path": "tests/reactNativeWebCompatibility.fixture.tsx",
+      "isEntrypoint": false,
+      "dependencies": ["src/RuntimeRenderer.tsx"],
+      "exports": ["renderReactNativeWebRuntimeFixture"]
+    },
+    {
+      "path": "tests/reactNativeWebCompatibility.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
+    {
       "path": "tests/runtime.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/runtimeManifest.ts"],
@@ -623,7 +673,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 92,
+        "line": 89,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -661,7 +711,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 77,
+        "line": 74,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1213,7 +1263,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 110,
+        "line": 107,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1587,7 +1637,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 45,
+        "line": 42,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1652,7 +1702,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 48,
+        "line": 45,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1670,7 +1720,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 46,
+        "line": 43,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1688,7 +1738,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 38,
+        "line": 35,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1735,7 +1785,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 47,
+        "line": 44,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3004,7 +3054,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 50,
+        "line": 47,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3157,7 +3207,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 158,
+        "line": 155,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3333,7 +3383,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 32,
+        "line": 29,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3697,7 +3747,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 173,
+        "line": 168,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -4013,7 +4063,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 158,
+        "line": 155,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -4115,6 +4165,33 @@
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "ManifestProbe",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/react19Compatibility.test.tsx",
+        "line": 29,
+        "column": 1
+      }
+    },
+    {
+      "name": "RendererConfigProbe",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/react19Compatibility.test.tsx",
+        "line": 34,
+        "column": 1
+      }
+    },
+    {
+      "name": "OptionalManifestProbe",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/react19Compatibility.test.tsx",
+        "line": 39,
         "column": 1
       }
     },
@@ -5095,7 +5172,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 13,
+        "line": 18,
         "column": 1
       }
     },
@@ -5104,7 +5181,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 17,
+        "line": 22,
         "column": 1
       }
     },
@@ -5113,7 +5190,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 26,
+        "line": 31,
         "column": 1
       }
     },
@@ -5122,7 +5199,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 32,
+        "line": 37,
         "column": 1
       }
     },
@@ -5131,7 +5208,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 36,
+        "line": 41,
         "column": 1
       }
     },
@@ -5140,7 +5217,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 40,
+        "line": 45,
         "column": 1
       }
     },
@@ -5149,7 +5226,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 57,
+        "line": 62,
         "column": 7
       }
     },
@@ -5158,7 +5235,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 59,
+        "line": 64,
         "column": 1
       }
     },
@@ -5167,7 +5244,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 82,
+        "line": 87,
         "column": 1
       }
     },
@@ -5176,8 +5253,17 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 125,
+        "line": 130,
         "column": 1
+      }
+    },
+    {
+      "name": "actionHandler",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeNodeProps.ts",
+        "line": 157,
+        "column": 15
       }
     },
     {
@@ -5185,7 +5271,16 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimePackageIsolation.test.ts",
-        "line": 6,
+        "line": 13,
+        "column": 1
+      }
+    },
+    {
+      "name": "readRuntimePackageManifest",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimePackageIsolation.test.ts",
+        "line": 28,
         "column": 1
       }
     },
@@ -5293,7 +5388,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 77,
+        "line": 74,
         "column": 1
       }
     },
@@ -5302,7 +5397,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 92,
+        "line": 89,
         "column": 1
       }
     },
@@ -5311,7 +5406,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 110,
+        "line": 107,
         "column": 1
       }
     },
@@ -5320,7 +5415,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 158,
+        "line": 155,
         "column": 1
       }
     },
@@ -5329,7 +5424,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 173,
+        "line": 168,
         "column": 1
       }
     },
@@ -5338,7 +5433,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 177,
+        "line": 172,
         "column": 1
       }
     },
@@ -5626,7 +5721,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 400,
+        "line": 388,
         "column": 1
       }
     },
@@ -5635,7 +5730,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 457,
+        "line": 445,
         "column": 1
       }
     },
@@ -5644,7 +5739,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 472,
+        "line": 460,
         "column": 1
       }
     },
@@ -5653,7 +5748,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 487,
+        "line": 475,
         "column": 1
       }
     },
@@ -5662,7 +5757,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 491,
+        "line": 479,
         "column": 1
       }
     },
@@ -5671,7 +5766,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
-        "line": 495,
+        "line": 483,
         "column": 1
       }
     },
@@ -5793,29 +5888,11 @@
       }
     },
     {
-      "name": "filterResolvedValues",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/useRuntimeMediaProps.ts",
-        "line": 62,
-        "column": 1
-      }
-    },
-    {
-      "name": "mapsEqual",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/useRuntimeMediaProps.ts",
-        "line": 73,
-        "column": 1
-      }
-    },
-    {
       "name": "isRecord",
       "description": null,
       "sourceLocation": {
         "filePath": "src/useRuntimeMediaProps.ts",
-        "line": 84,
+        "line": 64,
         "column": 1
       }
     }
@@ -6129,6 +6206,26 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/bindings.test.ts",
+        "toPath": "src/bindings.ts",
+        "sourcePath": "src/bindings.test.ts"
+      },
+      {
+        "fromPath": "src/bindings.ts",
+        "toPath": "src/runtimeApiOperations.ts",
+        "sourcePath": "src/bindings.ts"
+      },
+      {
+        "fromPath": "src/bindings.ts",
+        "toPath": "src/runtimeApiSelection.ts",
+        "sourcePath": "src/bindings.ts"
+      },
+      {
+        "fromPath": "src/bindings.ts",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/bindings.ts"
+      },
+      {
         "fromPath": "src/index.ts",
         "toPath": "src/ManifestContext.tsx",
         "sourcePath": "src/index.ts"
@@ -6207,6 +6304,16 @@
         "fromPath": "src/index.ts",
         "toPath": "src/runtimeStateAdapter.ts",
         "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/react19Compatibility.test.tsx",
+        "toPath": "src/ManifestContext.tsx",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromPath": "src/react19Compatibility.test.tsx",
+        "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/react19Compatibility.test.tsx"
       },
       {
         "fromPath": "src/readme-usage.ts",
@@ -6395,12 +6502,22 @@
       },
       {
         "fromPath": "src/RuntimeRenderer.tsx",
-        "toPath": "src/runtimeMediaCache.tsx",
+        "toPath": "src/runtimeDbPersist.ts",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeRenderer.tsx",
+        "toPath": "src/runtimeEventExecution.ts",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
         "fromPath": "src/RuntimeRenderer.tsx",
         "toPath": "src/runtimeMedia.ts",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeRenderer.tsx",
+        "toPath": "src/runtimeMediaCache.tsx",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -6411,11 +6528,6 @@
       {
         "fromPath": "src/RuntimeRenderer.tsx",
         "toPath": "src/RuntimeRendererConfig.tsx",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromPath": "src/RuntimeRenderer.tsx",
-        "toPath": "src/runtimeEventExecution.ts",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -6431,11 +6543,6 @@
       {
         "fromPath": "src/RuntimeRenderer.tsx",
         "toPath": "src/runtimeRepeatEmptyState.ts",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromPath": "src/RuntimeRenderer.tsx",
-        "toPath": "src/runtimeDbPersist.ts",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -6574,6 +6681,11 @@
         "sourcePath": "src/useRuntimeMediaProps.ts"
       },
       {
+        "fromPath": "tests/reactNativeWebCompatibility.fixture.tsx",
+        "toPath": "src/RuntimeRenderer.tsx",
+        "sourcePath": "tests/reactNativeWebCompatibility.fixture.tsx"
+      },
+      {
         "fromPath": "tests/runtime.test.ts",
         "toPath": "src/runtimeManifest.ts",
         "sourcePath": "tests/runtime.test.ts"
@@ -6587,6 +6699,24 @@
         "sourcePath": "paradox.config.ts"
       },
       {
+        "fromSymbol": "src/bindings.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/bindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/bindings.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/bindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/bindings.test.ts",
+        "toSymbol": "readFile",
+        "callExpression": "readFile",
+        "sourcePath": "src/bindings.test.ts"
+      },
+      {
         "fromSymbol": "src/ManifestContext.tsx",
         "toSymbol": "createContext",
         "callExpression": "createContext",
@@ -6594,21 +6724,63 @@
       },
       {
         "fromSymbol": "useManifest",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/ManifestContext.tsx"
       },
       {
         "fromSymbol": "useManifestContext",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/ManifestContext.tsx"
       },
       {
         "fromSymbol": "useOptionalManifestContext",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/ManifestContext.tsx"
+      },
+      {
+        "fromSymbol": "ManifestProbe",
+        "toSymbol": "useManifestContext",
+        "callExpression": "useManifestContext",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "RendererConfigProbe",
+        "toSymbol": "useRuntimeRendererConfig",
+        "callExpression": "useRuntimeRendererConfig",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "OptionalManifestProbe",
+        "toSymbol": "useOptionalManifestContext",
+        "callExpression": "useOptionalManifestContext",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "src/react19Compatibility.test.tsx",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "src/react19Compatibility.test.tsx",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "src/react19Compatibility.test.tsx",
+        "toSymbol": "renderToStaticMarkup",
+        "callExpression": "renderToStaticMarkup",
+        "sourcePath": "src/react19Compatibility.test.tsx"
+      },
+      {
+        "fromSymbol": "src/react19Compatibility.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/react19Compatibility.test.tsx"
       },
       {
         "fromSymbol": "src/readme-usage.ts",
@@ -7776,8 +7948,8 @@
       },
       {
         "fromSymbol": "useRuntimeMediaResolutionCache",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/runtimeMediaCache.tsx"
       },
       {
@@ -7925,6 +8097,12 @@
         "sourcePath": "src/runtimeNodeProps.ts"
       },
       {
+        "fromSymbol": "actionHandler",
+        "toSymbol": "handleAction",
+        "callExpression": "handleAction",
+        "sourcePath": "src/runtimeNodeProps.ts"
+      },
+      {
         "fromSymbol": "src/runtimeNodeProps.ts",
         "toSymbol": "handleAction",
         "callExpression": "handleAction",
@@ -7961,6 +8139,12 @@
         "sourcePath": "src/runtimePackageIsolation.test.ts"
       },
       {
+        "fromSymbol": "readRuntimePackageManifest",
+        "toSymbol": "readFileSync",
+        "callExpression": "readFileSync",
+        "sourcePath": "src/runtimePackageIsolation.test.ts"
+      },
+      {
         "fromSymbol": "src/runtimePackageIsolation.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -7982,6 +8166,12 @@
         "fromSymbol": "src/runtimePackageIsolation.test.ts",
         "toSymbol": "readFileSync",
         "callExpression": "readFileSync",
+        "sourcePath": "src/runtimePackageIsolation.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimePackageIsolation.test.ts",
+        "toSymbol": "readRuntimePackageManifest",
+        "callExpression": "readRuntimePackageManifest",
         "sourcePath": "src/runtimePackageIsolation.test.ts"
       },
       {
@@ -8058,6 +8248,12 @@
       },
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
+        "toSymbol": "executeRuntimeAction",
+        "callExpression": "executeRuntimeAction",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "resolveRuntimeRegistry",
         "callExpression": "resolveRuntimeRegistry",
         "sourcePath": "src/RuntimeRenderer.tsx"
@@ -8070,20 +8266,20 @@
       },
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
-        "toSymbol": "setAsyncRepeatResult",
-        "callExpression": "setAsyncRepeatResult",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeat, {\n        apis: effectiveConfig.apis,\n        context: effectiveConfig.bindingContext,\n        dataBindings: effectiveConfig.dataBindings,\n        executeOperation: effectiveConfig.executeOperation,\n        node,\n        operationResults: effectiveConfig.operationResults,\n        stateAdapter: effectiveConfig.stateAdapter,\n        writeOperationResult: effectiveConfig.writeOperationResult,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult(result);\n    })",
+        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeat, {\n        apis: effectiveConfig.apis,\n        context: effectiveConfig.bindingContext,\n        dataBindings: effectiveConfig.dataBindings,\n        executeOperation: effectiveConfig.executeOperation,\n        node,\n        operationResults: effectiveConfig.operationResults,\n        stateAdapter: effectiveConfig.stateAdapter,\n        writeOperationResult: effectiveConfig.writeOperationResult,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });\n    })",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "resolveRuntimeRepeatItemsAsync",
         "callExpression": "resolveRuntimeRepeatItemsAsync",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeRenderer.tsx",
+        "toSymbol": "setAsyncRepeatResult",
+        "callExpression": "setAsyncRepeatResult",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -8262,8 +8458,8 @@
       },
       {
         "fromSymbol": "RuntimeRendererConfigProvider",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -8274,8 +8470,8 @@
       },
       {
         "fromSymbol": "useRuntimeRendererConfig",
-        "toSymbol": "useContext",
-        "callExpression": "useContext",
+        "toSymbol": "use",
+        "callExpression": "use",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -8730,20 +8926,20 @@
       },
       {
         "fromSymbol": "src/runtimeScreenLoaders.ts",
-        "toSymbol": "setState",
-        "callExpression": "setState",
-        "sourcePath": "src/runtimeScreenLoaders.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeScreenLoaders.ts",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n      const executionArgs = executionArgsByRequestKeyRef.current[requestKey];\n      if (executionArgs === undefined) {\n        return;\n      }\n\n      const result = await executePreparedRuntimeScreenOperationLoaders(executionArgs);\n\n      setState((currentState) => {\n        const completion = completeRuntimeScreenOperationLoaderRequest({\n          lifecycle: lifecycleRef.current,\n          requestId,\n          result,\n          state: currentState,\n        });\n\n        return completion.accepted ? completion.state : currentState;\n      });\n    })",
+        "callExpression": "(async () => {\n      const result = await executePreparedRuntimeScreenOperationLoaders({\n        apis,\n        executeOperation,\n        plan,\n        screen,\n      });\n\n      setState((currentState) => {\n        const completion = completeRuntimeScreenOperationLoaderRequest({\n          lifecycle: lifecycleRef.current,\n          requestId,\n          result,\n          state: currentState.dependencyKey === requestKey ? currentState : request.state,\n        });\n\n        return completion.accepted ? completion.state : currentState;\n      });\n    })",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
         "fromSymbol": "src/runtimeScreenLoaders.ts",
         "toSymbol": "executePreparedRuntimeScreenOperationLoaders",
         "callExpression": "executePreparedRuntimeScreenOperationLoaders",
+        "sourcePath": "src/runtimeScreenLoaders.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeScreenLoaders.ts",
+        "toSymbol": "setState",
+        "callExpression": "setState",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
@@ -8761,7 +8957,7 @@
       {
         "fromSymbol": "src/runtimeScreenLoaders.ts",
         "toSymbol": "onDiagnostics",
-        "callExpression": "args.onDiagnostics",
+        "callExpression": "onDiagnostics",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
@@ -9018,20 +9214,14 @@
       },
       {
         "fromSymbol": "src/useRuntimeMediaProps.ts",
-        "toSymbol": "setAsyncResolved",
-        "callExpression": "setAsyncResolved",
-        "sourcePath": "src/useRuntimeMediaProps.ts"
-      },
-      {
-        "fromSymbol": "src/useRuntimeMediaProps.ts",
-        "toSymbol": "filterResolvedValues",
-        "callExpression": "filterResolvedValues",
-        "sourcePath": "src/useRuntimeMediaProps.ts"
-      },
-      {
-        "fromSymbol": "src/useRuntimeMediaProps.ts",
         "toSymbol": "resolveRuntimeMediaAsset",
         "callExpression": "resolveRuntimeMediaAsset",
+        "sourcePath": "src/useRuntimeMediaProps.ts"
+      },
+      {
+        "fromSymbol": "src/useRuntimeMediaProps.ts",
+        "toSymbol": "setAsyncResolved",
+        "callExpression": "setAsyncResolved",
         "sourcePath": "src/useRuntimeMediaProps.ts"
       },
       {
@@ -9053,10 +9243,88 @@
         "sourcePath": "src/useRuntimeMediaProps.ts"
       },
       {
-        "fromSymbol": "filterResolvedValues",
-        "toSymbol": "mapsEqual",
-        "callExpression": "mapsEqual",
-        "sourcePath": "src/useRuntimeMediaProps.ts"
+        "fromSymbol": "renderReactNativeWebRuntimeFixture",
+        "toSymbol": "renderToStaticMarkup",
+        "callExpression": "renderToStaticMarkup",
+        "sourcePath": "tests/reactNativeWebCompatibility.fixture.tsx"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "fileURLToPath",
+        "callExpression": "fileURLToPath",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "mkdtemp",
+        "callExpression": "mkdtemp",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "writeFile",
+        "callExpression": "writeFile",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "pathToFileURL",
+        "callExpression": "pathToFileURL",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "isFixtureModule",
+        "callExpression": "isFixtureModule",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "loadBundledFixture",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "loadBundledFixture",
+        "callExpression": "loadBundledFixture",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "renderReactNativeWebRuntimeFixture",
+        "callExpression": "fixture.renderReactNativeWebRuntimeFixture",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/reactNativeWebCompatibility.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
       },
       {
         "fromSymbol": "tests/runtime.test.ts",
@@ -10232,8 +10500,8 @@
     "componentComposition": [
       {
         "fromComponent": "ManifestProvider",
-        "toComponent": "ManifestContext.Provider",
-        "jsxElement": "<ManifestContext.Provider value={{ manifest, activeScreenId, onScreenChange }}>",
+        "toComponent": "ManifestContext",
+        "jsxElement": "<ManifestContext value={{ manifest, activeScreenId, onScreenChange }}>",
         "sourcePath": "src/ManifestContext.tsx"
       },
       {
@@ -10292,8 +10560,8 @@
       },
       {
         "fromComponent": "RuntimeRendererConfigProvider",
-        "toComponent": "RuntimeRendererConfigContext.Provider",
-        "jsxElement": "<RuntimeRendererConfigContext.Provider value={mergedConfig}>",
+        "toComponent": "RuntimeRendererConfigContext",
+        "jsxElement": "<RuntimeRendererConfigContext value={mergedConfig}>",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {

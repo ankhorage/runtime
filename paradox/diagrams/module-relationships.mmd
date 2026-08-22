@@ -1,8 +1,11 @@
 graph LR
   module_paradox_config_ts["paradox.config.ts"]
+  module_src_bindings_test_ts["src/bindings.test.ts"]
+  module_src_bindings_ts["src/bindings.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
+  module_src_react19Compatibility_test_tsx["src/react19Compatibility.test.tsx"]
   module_src_registry_test_ts["src/registry.test.ts"]
   module_src_registry_tsx["src/registry.tsx"]
   module_src_rendering_test_ts["src/rendering.test.ts"]
@@ -45,7 +48,12 @@ graph LR
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateAdapterConfig_test_ts["src/runtimeStateAdapterConfig.test.ts"]
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
+  module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
+  module_tests_reactNativeWebCompatibility_test_ts["tests/reactNativeWebCompatibility.test.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
+  module_src_bindings_test_ts --> module_src_bindings_ts
+  module_src_react19Compatibility_test_tsx --> module_src_ManifestContext_tsx
+  module_src_react19Compatibility_test_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_registry_test_ts --> module_src_registry_tsx
   module_src_rendering_test_ts --> module_src_registry_tsx
   module_src_rendering_test_ts --> module_src_rendering_ts
@@ -117,4 +125,5 @@ graph LR
   module_src_runtimeStateAdapterConfig_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeStateAdapterConfig_test_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
+  module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --> module_src_runtimeManifest_ts

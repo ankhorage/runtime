@@ -3,6 +3,9 @@
   "version": "2.1.0",
   "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
   "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -68,19 +71,28 @@
     "@ankhorage/data-sources": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "19.1.0",
-    "react-native": "0.81.5"
+    "react": "19.2.3",
+    "react-native": "0.86.2",
+    "react-native-web": "~0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-web": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@ankhorage/devtools": "^1.2.1",
+    "@ankhorage/devtools": "^1.6.0",
     "@ankhorage/paradox": "^0.1.21",
     "@changesets/cli": "^2.31.0",
     "@types/bun": "^1.3.14",
-    "@types/node": "^25.6.0",
-    "@types/react": "^19.2.14",
-    "react": "19.1.0",
-    "react-native": "0.81.5",
-    "typescript": "^5.9.3"
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.2",
+    "react-native-web": "~0.21.0",
+    "typescript": "~6.0.3"
   },
   "sideEffects": false,
   "packageManager": "bun@1.3.14"

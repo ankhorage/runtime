@@ -19,15 +19,14 @@ export function useRuntimeMediaProps(args: {
 }): Record<string, unknown> {
   const ids = collectRuntimeMediaReferenceIds(args.props);
   const idsKey = ids.join('\u0000');
-  const [asyncResolved, setAsyncResolved] = React.useState(
-    () => new Map<string, RuntimeResolvedMediaValue>(),
-  );
+  const [asyncResolved, setAsyncResolved] = React.useState<{
+    readonly idsKey: string;
+    readonly values: ReadonlyMap<string, RuntimeResolvedMediaValue>;
+  }>(() => ({ idsKey, values: new Map() }));
 
   React.useEffect(() => {
     let active = true;
     const effectIds = idsKey.length === 0 ? [] : idsKey.split('\u0000');
-    const currentIds = new Set(effectIds);
-    setAsyncResolved((current) => filterResolvedValues(current, currentIds));
 
     for (const id of effectIds) {
       const asset = args.mediaAssets?.[id];
@@ -36,10 +35,11 @@ export function useRuntimeMediaProps(args: {
       void resolveRuntimeMediaAsset(asset, args.resolveMediaAsset, args.cache).then((value) => {
         if (!active || value === null) return;
         setAsyncResolved((current) => {
-          if (current.get(id) === value) return current;
-          const next = new Map(current);
+          const currentValues = current.idsKey === idsKey ? current.values : new Map();
+          if (currentValues.get(id) === value) return current;
+          const next = new Map(currentValues);
           next.set(id, value);
-          return next;
+          return { idsKey, values: next };
         });
       });
     }
@@ -51,34 +51,14 @@ export function useRuntimeMediaProps(args: {
 
   const resolved = createSyncRuntimeMediaResolutionMap(ids, args.mediaAssets);
   const currentIds = new Set(ids);
-  asyncResolved.forEach((value, id) => {
-    if (currentIds.has(id)) resolved.set(id, value);
-  });
+  if (asyncResolved.idsKey === idsKey) {
+    asyncResolved.values.forEach((value, id) => {
+      if (currentIds.has(id)) resolved.set(id, value);
+    });
+  }
 
   const replaced = replaceRuntimeMediaReferences(args.props, resolved);
   return isRecord(replaced) ? replaced : {};
-}
-
-function filterResolvedValues(
-  current: Map<string, RuntimeResolvedMediaValue>,
-  ids: ReadonlySet<string>,
-): Map<string, RuntimeResolvedMediaValue> {
-  const next = new Map<string, RuntimeResolvedMediaValue>();
-  current.forEach((value, id) => {
-    if (ids.has(id)) next.set(id, value);
-  });
-  return mapsEqual(current, next) ? current : next;
-}
-
-function mapsEqual(
-  left: ReadonlyMap<string, RuntimeResolvedMediaValue>,
-  right: ReadonlyMap<string, RuntimeResolvedMediaValue>,
-): boolean {
-  if (left.size !== right.size) return false;
-  for (const [key, value] of left) {
-    if (right.get(key) !== value) return false;
-  }
-  return true;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

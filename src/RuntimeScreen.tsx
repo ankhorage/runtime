@@ -19,7 +19,7 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
   const runtimeConfig = useRuntimeRendererConfig();
   const fallbackStateAdapter = React.useMemo(() => createRuntimeMemoryStateAdapter(), []);
   const stateAdapter = injectedStateAdapter ?? fallbackStateAdapter;
-  const apis = manifest.infra?.apis;
+  const { apis } = manifest.infra;
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
     apis,
     bindingContext: runtimeConfig.bindingContext,

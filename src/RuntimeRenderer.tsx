@@ -27,12 +27,15 @@ import type {
   RuntimeBindingOperationKey,
   RuntimeBindingOperationResultCache,
 } from './runtimeBindings';
+import { createDbPersistActionHandler } from './runtimeDbPersist';
+import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution';
+import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 import {
   RuntimeMediaResolutionCacheProvider,
   useRuntimeMediaResolutionCache,
 } from './runtimeMediaCache';
-import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
+import type { RuntimeActionHandlerArgs } from './RuntimeRendererConfig';
 import {
   mergeRuntimeRendererConfig,
   type RuntimeActionExecutor,
@@ -40,7 +43,6 @@ import {
   type RuntimeRendererWrapArgs,
   useRuntimeRendererConfig,
 } from './RuntimeRendererConfig';
-import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution';
 import {
   createRuntimeRepeatBindingContext,
   resolveRuntimeRepeatItemKey,
@@ -49,8 +51,6 @@ import {
 } from './runtimeRepeat';
 import { createRepeatDiagnosticsKey } from './runtimeRepeatDiagnostics';
 import { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
-import { createDbPersistActionHandler } from './runtimeDbPersist';
-import type { RuntimeActionHandlerArgs } from './RuntimeRendererConfig';
 import { useRuntimeMediaProps } from './useRuntimeMediaProps';
 
 export interface RuntimeRendererProps {
@@ -106,10 +106,6 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       }));
     },
     [],
-  );
-  const actionHandlerCacheRef = React.useRef(new WeakMap<object, (...args: unknown[]) => void>());
-  const functionHandlerCacheRef = React.useRef(
-    new WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>(),
   );
   const effectiveOperationResults = React.useMemo(
     () => ({
@@ -184,7 +180,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         await handler(actionArgs);
       }
     },
-    [effectiveActionHandlers, effectiveConfig.executeAction],
+    [effectiveActionHandlers, effectiveConfig],
   );
   const dispatchRuntimeEvent = React.useCallback(
     async (eventArgs: RuntimeComponentEventDispatchArgs) => {
@@ -201,20 +197,29 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
           eventArgs.writeOperationResult ?? effectiveConfig.writeOperationResult,
       });
     },
-    [
-      effectiveActionHandlers,
-      effectiveConfig.apis,
-      effectiveConfig.dataBindings,
-      effectiveConfig.executeAction,
-      effectiveConfig.executeOperation,
-      effectiveConfig.onDiagnostics,
-      effectiveConfig.operationResults,
-      effectiveConfig.writeOperationResult,
-      executeRuntimeAction,
-    ],
+    [effectiveActionHandlers, effectiveConfig, executeRuntimeAction],
   );
-  const executeRuntimeActionRef = React.useRef(executeRuntimeAction);
-  const dispatchRuntimeEventRef = React.useRef(dispatchRuntimeEvent);
+  const actionHandlerCache = React.useMemo(
+    () =>
+      new WeakMap<
+        object,
+        {
+          readonly handleAction: (action: RuntimeActionHandlerArgs['action']) => void;
+          readonly handler: (...args: unknown[]) => void;
+        }
+      >(),
+    [],
+  );
+  const functionHandlerCache = React.useMemo(
+    () => new WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>(),
+    [],
+  );
+  const handleAction = React.useCallback(
+    (action: RuntimeActionHandlerArgs['action']) => {
+      void executeRuntimeAction({ action });
+    },
+    [executeRuntimeAction],
+  );
   const effectiveRegistry = React.useMemo(
     () =>
       resolveRuntimeRegistry({
@@ -224,14 +229,6 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     [effectiveConfig.registry, registry],
   );
   const Component = effectiveRegistry[node.type];
-
-  React.useEffect(() => {
-    executeRuntimeActionRef.current = executeRuntimeAction;
-  }, [executeRuntimeAction]);
-
-  React.useEffect(() => {
-    dispatchRuntimeEventRef.current = dispatchRuntimeEvent;
-  }, [dispatchRuntimeEvent]);
 
   const repeatSyncResult = React.useMemo(() => {
     const { repeat } = node;
@@ -259,7 +256,12 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     effectiveConfig.writeOperationResult,
     node,
   ]);
+  const repeatRequestToken = React.useMemo(
+    () => (node.repeat && repeatSyncResult?.status === 'pending' ? {} : null),
+    [node.repeat, repeatSyncResult],
+  );
   const [asyncRepeatResult, setAsyncRepeatResult] = React.useState<{
+    readonly requestToken: object;
     readonly items: readonly BindingValue[];
     readonly diagnostics: readonly DataSourceDiagnostic[];
   } | null>(null);
@@ -271,8 +273,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     const requestId = repeatRequestIdRef.current;
     const { repeat } = node;
 
-    if (!repeat || repeatSyncResult?.status !== 'pending') {
-      setAsyncRepeatResult(null);
+    if (!repeat || repeatRequestToken === null) {
       return undefined;
     }
 
@@ -292,7 +293,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         return;
       }
 
-      setAsyncRepeatResult(result);
+      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });
     })();
 
     return () => {
@@ -307,12 +308,14 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     effectiveConfig.stateAdapter,
     effectiveConfig.writeOperationResult,
     node,
-    repeatSyncResult,
+    repeatRequestToken,
   ]);
+  const currentAsyncRepeatResult =
+    asyncRepeatResult?.requestToken === repeatRequestToken ? asyncRepeatResult : null;
   const repeatDiagnostics =
     repeatSyncResult?.status === 'ready'
       ? repeatSyncResult.diagnostics
-      : asyncRepeatResult?.diagnostics;
+      : currentAsyncRepeatResult?.diagnostics;
 
   React.useEffect(() => {
     if (!node.repeat || repeatDiagnostics === undefined) {
@@ -326,7 +329,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
     lastRepeatDiagnosticsKeyRef.current = diagnosticsKey;
     effectiveConfig.onDiagnostics?.(repeatDiagnostics);
-  }, [effectiveConfig.onDiagnostics, node.repeat, repeatDiagnostics]);
+  }, [effectiveConfig, node, repeatDiagnostics]);
 
   const bindingResolvedProps = resolveRuntimeNodeProps({
     apis: effectiveConfig.apis,
@@ -360,7 +363,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   }
 
   const repeatItems =
-    repeatSyncResult?.status === 'ready' ? repeatSyncResult.items : asyncRepeatResult?.items;
+    repeatSyncResult?.status === 'ready' ? repeatSyncResult.items : currentAsyncRepeatResult?.items;
   const shouldRenderRepeatEmptyState = shouldRenderRuntimeRepeatEmptyState({
     diagnostics: repeatDiagnostics,
     items: repeatItems,
@@ -369,7 +372,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         ? 'ready'
         : repeatSyncResult?.status === 'pending'
           ? 'pending'
-          : asyncRepeatResult
+          : currentAsyncRepeatResult
             ? 'ready'
             : undefined,
   });
@@ -411,18 +414,16 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   const propsWithActions = wrapRuntimeActionProps({
     props: resolvedProps,
     disableActions: effectiveConfig.disableActions === true,
-    handleAction: (action) => {
-      void executeRuntimeActionRef.current({ action });
-    },
-    actionHandlerCache: actionHandlerCacheRef.current,
-    functionHandlerCache: functionHandlerCacheRef.current,
+    handleAction,
+    actionHandlerCache,
+    functionHandlerCache,
   });
   const propsWithEvents = wrapRuntimeEventProps({
     context: effectiveConfig.bindingContext,
     dataBindings: effectiveConfig.dataBindings,
     props: propsWithActions,
     disableActions: effectiveConfig.disableActions === true,
-    dispatchComponentEvent: (eventArgs) => dispatchRuntimeEventRef.current(eventArgs),
+    dispatchComponentEvent: dispatchRuntimeEvent,
     node,
   });
 

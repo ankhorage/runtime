@@ -278,17 +278,18 @@ export function useRuntimeScreenOperationLoaders(args: {
   readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
   readonly screen: ScreenSpec;
 }): RuntimeScreenOperationLoaderState {
-  const loaders = React.useMemo(() => resolveScreenOperationLoaders(args.screen), [args.screen]);
+  const { apis, bindingContext, executeOperation, onDiagnostics, operationResults, screen } = args;
+  const loaders = React.useMemo(() => resolveScreenOperationLoaders(screen), [screen]);
   const hasLoaders = loaders.length > 0;
   const plan = React.useMemo(
     () =>
       createRuntimeScreenOperationLoaderPlan({
-        bindingContext: args.bindingContext,
+        bindingContext,
         loaders,
-        operationResults: args.operationResults,
-        screenId: args.screen.id,
+        operationResults,
+        screenId: screen.id,
       }),
-    [args.bindingContext, args.operationResults, args.screen.id, loaders],
+    [bindingContext, loaders, operationResults, screen.id],
   );
   const { requestKey } = plan;
   const emptyState = React.useMemo(
@@ -303,37 +304,31 @@ export function useRuntimeScreenOperationLoaders(args: {
       ? createPendingRuntimeScreenOperationLoaderState({ dependencyKey: requestKey })
       : emptyState,
   );
-  const effectiveState = hasLoaders ? state : emptyState;
+  const pendingState = React.useMemo(
+    () =>
+      state.dependencyKey === requestKey
+        ? state
+        : createPendingRuntimeScreenOperationLoaderState({
+            dependencyKey: requestKey,
+            previousState: state,
+          }),
+    [requestKey, state],
+  );
+  const effectiveState = hasLoaders ? pendingState : emptyState;
   const lastDiagnosticsKeyRef = React.useRef<string | null>(null);
-  const latestStateRef = React.useRef(state);
   const lifecycleRef = React.useRef<RuntimeScreenOperationLoaderLifecycle>(
     createRuntimeScreenOperationLoaderLifecycle(),
   );
-  const executionArgsByRequestKeyRef = React.useRef<
-    Record<string, RuntimeScreenPreparedExecutionArgs>
-  >({});
-
-  executionArgsByRequestKeyRef.current[requestKey] = {
-    apis: args.apis,
-    executeOperation: args.executeOperation,
-    plan,
-    screen: args.screen,
-  };
-  latestStateRef.current = state;
 
   React.useEffect(() => {
     const request = beginRuntimeScreenOperationLoaderRequest({
       hasLoaders,
       lifecycle: lifecycleRef.current,
       requestKey,
-      state: latestStateRef.current,
+      state,
     });
 
     lifecycleRef.current = request.lifecycle;
-
-    if (request.state !== latestStateRef.current) {
-      setState(request.state);
-    }
 
     if (!request.shouldExecute || request.requestId === undefined) {
       return;
@@ -341,25 +336,25 @@ export function useRuntimeScreenOperationLoaders(args: {
     const { requestId } = request;
 
     void (async () => {
-      const executionArgs = executionArgsByRequestKeyRef.current[requestKey];
-      if (executionArgs === undefined) {
-        return;
-      }
-
-      const result = await executePreparedRuntimeScreenOperationLoaders(executionArgs);
+      const result = await executePreparedRuntimeScreenOperationLoaders({
+        apis,
+        executeOperation,
+        plan,
+        screen,
+      });
 
       setState((currentState) => {
         const completion = completeRuntimeScreenOperationLoaderRequest({
           lifecycle: lifecycleRef.current,
           requestId,
           result,
-          state: currentState,
+          state: currentState.dependencyKey === requestKey ? currentState : request.state,
         });
 
         return completion.accepted ? completion.state : currentState;
       });
     })();
-  }, [hasLoaders, requestKey]);
+  }, [apis, executeOperation, hasLoaders, plan, requestKey, screen, state]);
 
   React.useEffect(() => {
     if (effectiveState.diagnostics.length === 0) {
@@ -372,8 +367,8 @@ export function useRuntimeScreenOperationLoaders(args: {
     }
 
     lastDiagnosticsKeyRef.current = diagnosticsKey;
-    args.onDiagnostics?.(effectiveState.diagnostics);
-  }, [args.onDiagnostics, effectiveState.diagnostics]);
+    onDiagnostics?.(effectiveState.diagnostics);
+  }, [effectiveState.diagnostics, onDiagnostics]);
 
   return effectiveState;
 }
@@ -388,13 +383,6 @@ interface RuntimeScreenOperationLoaderPlan {
   readonly diagnostics: readonly DataSourceDiagnostic[];
   readonly loaders: readonly PreparedRuntimeScreenOperationLoader[];
   readonly requestKey: string;
-}
-
-interface RuntimeScreenPreparedExecutionArgs {
-  readonly apis?: RuntimeBindingResolutionContext['apis'];
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
-  readonly plan: RuntimeScreenOperationLoaderPlan;
-  readonly screen: ScreenSpec;
 }
 
 function createRuntimeScreenOperationLoaderPlan(args: {

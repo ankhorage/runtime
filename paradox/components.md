@@ -52,7 +52,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeRendererConfigProvider
 
-Source: `src/RuntimeRendererConfig.tsx:158:1`
+Source: `src/RuntimeRendererConfig.tsx:155:1`
 
 Export paths: `src/index.ts`
 

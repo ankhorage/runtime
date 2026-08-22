@@ -10,7 +10,7 @@ Source: `src/componentRegistry.ts:3:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:92:1`
+Source: `src/RuntimeRendererConfig.tsx:89:1`
 
 ### Signatures
 
@@ -23,7 +23,7 @@ Source: `src/RuntimeRendererConfig.tsx:92:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:77:1`
+Source: `src/RuntimeRendererConfig.tsx:74:1`
 
 ### Signatures
 
@@ -222,7 +222,7 @@ Source: `src/ManifestContext.tsx:12:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:110:1`
+Source: `src/RuntimeRendererConfig.tsx:107:1`
 
 ### Signatures
 
@@ -351,7 +351,7 @@ Source: `src/runtimeScreenLoaders.ts:43:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:45:1`
+Source: `src/RuntimeRendererConfig.tsx:42:1`
 
 ## RuntimeActionDescriptor
 
@@ -372,19 +372,19 @@ Source: `src/runtimeManifest.ts:24:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:48:1`
+Source: `src/RuntimeRendererConfig.tsx:45:1`
 
 ## RuntimeActionHandler
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:46:1`
+Source: `src/RuntimeRendererConfig.tsx:43:1`
 
 ## RuntimeActionHandlerArgs
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:38:1`
+Source: `src/RuntimeRendererConfig.tsx:35:1`
 
 ### Members
 
@@ -399,7 +399,7 @@ Source: `src/RuntimeRendererConfig.tsx:38:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:47:1`
+Source: `src/RuntimeRendererConfig.tsx:44:1`
 
 ## RuntimeActionRegistry
 
@@ -802,7 +802,7 @@ Source: `src/RuntimeRenderer.tsx:76:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:50:1`
+Source: `src/RuntimeRendererConfig.tsx:47:1`
 
 ### Members
 
@@ -831,7 +831,7 @@ Source: `src/RuntimeRendererConfig.tsx:50:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:158:1`
+Source: `src/RuntimeRendererConfig.tsx:155:1`
 
 ### Signatures
 
@@ -871,7 +871,7 @@ Source: `src/RuntimeRenderer.tsx:56:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:32:1`
+Source: `src/RuntimeRendererConfig.tsx:29:1`
 
 ### Members
 
@@ -1005,7 +1005,7 @@ Source: `src/ManifestContext.tsx:38:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:173:1`
+Source: `src/RuntimeRendererConfig.tsx:168:1`
 
 ### Signatures
 

@@ -4,9 +4,9 @@ sequenceDiagram
   participant participant_mergeRecordConfig as mergeRecordConfig
   participant participant_mergeRuntimeRendererConfig as mergeRuntimeRendererConfig
   participant participant_RuntimeRendererConfigProvider as RuntimeRendererConfigProvider
-  participant participant_useContext as useContext
-  participant_RuntimeRendererConfigProvider->>participant_useContext: useContext()
-  participant_useContext-->>participant_RuntimeRendererConfigProvider: return
+  participant participant_use as use
+  participant_RuntimeRendererConfigProvider->>participant_use: use()
+  participant_use-->>participant_RuntimeRendererConfigProvider: return
   participant_RuntimeRendererConfigProvider->>participant_mergeRuntimeRendererConfig: mergeRuntimeRendererConfig()
   participant_mergeRuntimeRendererConfig->>participant_mergeRecordConfig: mergeRecordConfig()
   participant_mergeRecordConfig-->>participant_mergeRuntimeRendererConfig: return

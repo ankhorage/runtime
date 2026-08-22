@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, use, useMemo } from 'react';
 
 import {
   createRuntimeMediaResolutionCache,
@@ -8,7 +8,7 @@ import {
 const RuntimeMediaCacheContext = createContext<RuntimeMediaResolutionCache | null>(null);
 
 export function useRuntimeMediaResolutionCache(): RuntimeMediaResolutionCache {
-  const inherited = useContext(RuntimeMediaCacheContext);
+  const inherited = use(RuntimeMediaCacheContext);
   const local = useMemo(() => createRuntimeMediaResolutionCache(), []);
   return inherited ?? local;
 }
@@ -17,9 +17,5 @@ export function RuntimeMediaResolutionCacheProvider(props: {
   readonly value: RuntimeMediaResolutionCache;
   readonly children: React.ReactNode;
 }) {
-  return (
-    <RuntimeMediaCacheContext.Provider value={props.value}>
-      {props.children}
-    </RuntimeMediaCacheContext.Provider>
-  );
+  return <RuntimeMediaCacheContext value={props.value}>{props.children}</RuntimeMediaCacheContext>;
 }
