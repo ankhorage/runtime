@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.1
+
+### Patch Changes
+
+- c3567e9: Support the React Native 0.86 patch line as a peer while validating the package against the canonical React Native 0.86.3 application baseline.
+
 ## 2.2.0
 
 ### Minor Changes
