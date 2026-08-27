@@ -71,7 +71,7 @@
     "@ankhorage/data-sources": "^2.0.0"
   },
   "peerDependencies": {
-    "react": "19.2.3",
+    "react": "19.2.8",
     "react-native": "0.86.x",
     "react-native-web": "~0.21.0"
   },
@@ -88,8 +88,8 @@
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-native": "0.86.3",
     "react-native-web": "~0.21.0",
     "typescript": "~6.0.3"
