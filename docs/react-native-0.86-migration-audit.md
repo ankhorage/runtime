@@ -4,7 +4,7 @@ This audit covers `@ankhorage/runtime` ownership for roadmap step `[expo 2]`. Ru
 
 ## Target baseline
 
-- **CHANGE REQUIRED — consumer and validation baseline.** Exact React and React Native peer/development versions move from React 19.1.0 and RN 0.81.5 to React 19.2.3 and RN 0.86.2. React Native Web is an optional `~0.21.0` peer and a 0.21.2 development dependency. TypeScript validation moves from 5.9 to 6.0.3.
+- **CHANGE REQUIRED — consumer and validation baseline.** React remains exactly 19.2.3. Runtime intentionally supports the RN `0.86.x` patch line because it owns no native ABI, while development and validation are pinned to the canonical RN 0.86.3 app baseline. React Native Web is an optional `~0.21.0` peer and a 0.21.2 development dependency. TypeScript validation remains on 6.0.3.
 - **CHANGE REQUIRED — tooling baseline.** Devtools moves to 1.6.0, Bun remains on the Devtools-owned 1.3.14 policy, repository Node execution declares 24.x, and Node typings move from 25.x to 24.13.3.
 - **VERIFIED: NO CHANGE REQUIRED — internal package releases.** The current published direct Ankhorage releases remain `@ankhorage/contracts` 8.0.0, `@ankhorage/data-sources` 2.0.0, and `@ankhorage/paradox` 0.1.21. No cross-repository compatibility blocker was found.
 
@@ -21,7 +21,7 @@ This audit covers `@ankhorage/runtime` ownership for roadmap step `[expo 2]`. Ru
 ## Required audit areas
 
 - **VERIFIED: NO CHANGE REQUIRED — removed and deprecated APIs.** Active implementation has no `StyleSheet.absoluteFillObject`, React Native Jest preset, deprecated accessibility focus call, networking interceptor, `ViewUtil`, `AppRegistry` instrumentation hook, legacy bridge API, or removed native/C++ symbol usage. The only React Native imports are `StyleSheet`, `Text`, and `View` for the unknown-component fallback.
-- **CHANGE REQUIRED — TypeScript types.** The repository compiles with TypeScript 6.0.3, `@types/react` 19.2.18, RN 0.86.2 declarations, Bun 1.3.14 typings, and Node 24.13.3 typings. Strict settings remain enabled and no suppression or migration compatibility type was added.
+- **CHANGE REQUIRED — TypeScript types.** The repository compiles with TypeScript 6.0.3, `@types/react` 19.2.18, RN 0.86.3 declarations, Bun 1.3.14 typings, and Node 24.13.3 typings. Strict settings remain enabled and no suppression or migration compatibility type was added.
 - **VERIFIED: NO CHANGE REQUIRED — Fabric and New Architecture behavior.** Components are injected as `React.ElementType`; Runtime has no native component registration, TurboModule, bridge, codegen, architecture flag, or legacy renderer branch.
 - **VERIFIED: NO CHANGE REQUIRED — layout and measurement assumptions.** Runtime forwards manifest props/styles and renders an ordinary error fallback. It does not inspect coordinates, call `measure`/`measureInWindow`, manage safe areas, or depend on edge-to-edge viewport dimensions.
 - **VERIFIED: NO CHANGE REQUIRED — refs and imperative handles.** Runtime exposes no component ref contract or imperative handle. RN 0.82 DOM-like native refs therefore do not alter the public surface.
@@ -45,4 +45,4 @@ React's [library compiler guidance](https://react.dev/reference/react-compiler/c
 
 The migration is covered by the repository test suite, explicit React 19.2 context tests, package-isolation/baseline assertions, TypeScript 6 compilation, the React Compiler health check, and the issue-required repository/release gates. The Web compatibility test bundles the real Runtime renderer with `react-native` resolved to RNW 0.21.2 and server-renders injected `View`/`Text` registry entries. The package-isolation test rejects Expo, Expo modules, and `@ankhorage/expo-runtime` in implementation source and all dependency sections.
 
-No owner-first follow-up or external release blocker was discovered in this step.
+The RN 0.86 patch peer is the Runtime-owned part of the owner-first graph required by Studio roadmap step `[expo 11]`. Applications remain responsible for selecting one exact RN patch, and Runtime validation proves the current canonical 0.86.3 selection.
