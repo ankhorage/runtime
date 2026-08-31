@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.2
+
+### Patch Changes
+
+- 189230c: Update Ankhorage dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`.
+
 ## 2.2.1
 
 ### Patch Changes
