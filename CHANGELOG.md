@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.3
+
+### Patch Changes
+
+- 307e6c8: Update Ankhorage dependencies: `@ankhorage/data-sources`.
+
 ## 2.2.2
 
 ### Patch Changes
