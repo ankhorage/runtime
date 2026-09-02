@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.5
+
+### Patch Changes
+
+- c08fb2b: Update Ankhorage dependencies: `@ankhorage/contracts`.
+
 ## 2.2.4
 
 ### Patch Changes
