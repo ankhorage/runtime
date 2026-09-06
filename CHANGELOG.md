@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.6
+
+### Patch Changes
+
+- d7b77c1: Preserve Image media references through node prop resolution so the shared media resolver can load bundled and remote image assets.
+
 ## 2.2.5
 
 ### Patch Changes
