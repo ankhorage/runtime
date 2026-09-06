@@ -6,6 +6,7 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
+import { isMediaAssetReference } from '@ankhorage/contracts';
 
 import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
 import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';
@@ -102,7 +103,7 @@ export function resolveRuntimeNodeProps(args: {
     ...(node.props ?? {}),
   };
 
-  if (node.type === 'Image') {
+  if (node.type === 'Image' && !isMediaAssetReference(baseProps.source)) {
     const resolvedSource = resolveImageAssetUrl(baseProps.source);
     if (resolvedSource !== null) baseProps.source = resolvedSource;
     else delete baseProps.source;
