@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.8
+
+### Patch Changes
+
+- bceca60: Update Ankhorage dependencies: `@ankhorage/contracts`.
+
 ## 2.2.7
 
 ### Patch Changes
