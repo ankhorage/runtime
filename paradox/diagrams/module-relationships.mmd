@@ -24,6 +24,7 @@ graph LR
   module_src_runtimeDbPersist_ts["src/runtimeDbPersist.ts"]
   module_src_runtimeEventExecution_test_ts["src/runtimeEventExecution.test.ts"]
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
+  module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   module_src_runtimeManifest_ts["src/runtimeManifest.ts"]
   module_src_runtimeMedia_test_ts["src/runtimeMedia.test.ts"]
   module_src_runtimeMedia_ts["src/runtimeMedia.ts"]
@@ -78,6 +79,8 @@ graph LR
   module_src_runtimeEventExecution_test_ts --> module_src_runtimeEventExecution_ts
   module_src_runtimeEventExecution_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeEventExecution_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
+  module_src_runtimeImageMedia_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeMedia_test_ts --> module_src_runtimeMedia_ts
   module_src_runtimeMediaCache_tsx --> module_src_runtimeMedia_ts
   module_src_runtimeMediaConfig_test_ts --> module_src_RuntimeRendererConfig_tsx

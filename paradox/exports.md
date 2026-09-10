@@ -553,17 +553,17 @@ Source: `src/runtimeBindings.ts:66:1`
 
 ### Members
 
-| Name             | Kind     | Type                                                                                                       | Required | Description |
-| ---------------- | -------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| apis             | property | `ApiDefinitionList \| undefined`                                                                           | no       |             |
-| context          | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| dataBindings     | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined` | no       |             |
-| event            | property | `ComponentEventDto<string, object> \| undefined`                                                           | no       |             |
-| executeOperation | property | `RuntimeBindingOperationExecutor \| undefined`                                                             | no       |             |
-| node             | property | `UiNode`                                                                                                   | yes      |             |
-| operationResults | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                         | no       |             |
-| props            | property | `Record<string, unknown>`                                                                                  | yes      |             |
-| stateAdapter     | property | `StateAdapter \| undefined`                                                                                | no       |             |
+| Name             | Kind     | Type                                                                                         | Required | Description |
+| ---------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| apis             | property | `ApiDefinitionList \| undefined`                                                             | no       |             |
+| context          | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| dataBindings     | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
+| event            | property | `ComponentEventDto<string, object> \| undefined`                                             | no       |             |
+| executeOperation | property | `RuntimeBindingOperationExecutor \| undefined`                                               | no       |             |
+| node             | property | `UiNode`                                                                                     | yes      |             |
+| operationResults | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
+| props            | property | `Record<string, unknown>`                                                                    | yes      |             |
+| stateAdapter     | property | `StateAdapter \| undefined`                                                                  | no       |             |
 
 ## RuntimeBindingResolutionContext
 
@@ -573,15 +573,15 @@ Source: `src/runtimeBindings.ts:56:1`
 
 ### Members
 
-| Name             | Kind     | Type                                                                                                       | Required | Description |
-| ---------------- | -------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| apis             | property | `ApiDefinitionList \| undefined`                                                                           | no       |             |
-| context          | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| dataBindings     | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined` | no       |             |
-| event            | property | `ComponentEventDto<string, object> \| undefined`                                                           | no       |             |
-| executeOperation | property | `RuntimeBindingOperationExecutor \| undefined`                                                             | no       |             |
-| operationResults | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                         | no       |             |
-| stateAdapter     | property | `StateAdapter \| undefined`                                                                                | no       |             |
+| Name             | Kind     | Type                                                                                         | Required | Description |
+| ---------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| apis             | property | `ApiDefinitionList \| undefined`                                                             | no       |             |
+| context          | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| dataBindings     | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
+| event            | property | `ComponentEventDto<string, object> \| undefined`                                             | no       |             |
+| executeOperation | property | `RuntimeBindingOperationExecutor \| undefined`                                               | no       |             |
+| operationResults | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
+| stateAdapter     | property | `StateAdapter \| undefined`                                                                  | no       |             |
 
 ## RuntimeBindingResolutionResult
 
@@ -610,19 +610,19 @@ Source: `src/runtimeActionRegistry.ts:45:1`
 
 ### Members
 
-| Name                 | Kind     | Type                                                                                                       | Required | Description |
-| -------------------- | -------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| apis                 | property | `ApiDefinitionList \| undefined`                                                                           | no       |             |
-| context              | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined` | no       |             |
-| event                | property | `ComponentEventDto<string, object>`                                                                        | yes      |             |
-| eventName            | property | `string \| undefined`                                                                                      | no       |             |
-| executeAction        | property | `RuntimeActionHandler \| undefined`                                                                        | no       |             |
-| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                                             | no       |             |
-| node                 | property | `UiNode`                                                                                                   | yes      |             |
-| operationResults     | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                         | no       |             |
-| state                | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                                         | no       |             |
+| Name                 | Kind     | Type                                                                                         | Required | Description |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| apis                 | property | `ApiDefinitionList \| undefined`                                                             | no       |             |
+| context              | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
+| event                | property | `ComponentEventDto<string, object>`                                                          | yes      |             |
+| eventName            | property | `string \| undefined`                                                                        | no       |             |
+| executeAction        | property | `RuntimeActionHandler \| undefined`                                                          | no       |             |
+| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                               | no       |             |
+| node                 | property | `UiNode`                                                                                     | yes      |             |
+| operationResults     | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
+| state                | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                           | no       |             |
 
 ## RuntimeDbPersistError
 
@@ -691,16 +691,16 @@ Source: `src/runtimeActionRegistry.ts:56:1`
 
 ### Members
 
-| Name                   | Kind     | Type                                                                                                       | Required | Description |
-| ---------------------- | -------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| context                | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| dataBindings           | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined` | no       |             |
-| disableActions         | property | `boolean`                                                                                                  | yes      |             |
-| dispatchComponentEvent | property | `(args: RuntimeComponentEventDispatchArgs) => Promise<void> \| void`                                       | yes      |             |
-| node                   | property | `UiNode`                                                                                                   | yes      |             |
-| operationResults       | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                         | no       |             |
-| props                  | property | `Record<string, unknown>`                                                                                  | yes      |             |
-| state                  | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
+| Name                   | Kind     | Type                                                                                         | Required | Description |
+| ---------------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| context                | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| dataBindings           | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
+| disableActions         | property | `boolean`                                                                                    | yes      |             |
+| dispatchComponentEvent | property | `(args: RuntimeComponentEventDispatchArgs) => Promise<void> \| void`                         | yes      |             |
+| node                   | property | `UiNode`                                                                                     | yes      |             |
+| operationResults       | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
+| props                  | property | `Record<string, unknown>`                                                                    | yes      |             |
+| state                  | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
 
 ## RuntimeManifest
 
@@ -806,26 +806,26 @@ Source: `src/RuntimeRendererConfig.tsx:47:1`
 
 ### Members
 
-| Name                 | Kind     | Type                                                                                                            | Required | Description |
-| -------------------- | -------- | --------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| actionHandlers       | property | `RuntimeActionHandlers \| undefined`                                                                            | no       |             |
-| apis                 | property | `ApiDefinitionList \| undefined`                                                                                | no       |             |
-| bindingContext       | property | `Record<string, unknown> \| undefined`                                                                          | no       |             |
-| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined`      | no       |             |
-| dbAdapter            | property | `DbAdapter \| undefined`                                                                                        | no       |             |
-| dbRealtimeAdapter    | property | `DbRealtimeAdapter \| undefined`                                                                                | no       |             |
-| disableActions       | property | `boolean \| undefined`                                                                                          | no       |             |
-| executeAction        | property | `RuntimeActionHandler \| undefined`                                                                             | no       |             |
-| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                                                  | no       |             |
-| mediaAssets          | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/media").MediaAsset>> \| undefined`                   | no       |             |
-| onDiagnostics        | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                                         | no       |             |
-| operationResults     | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").BindingValue \| undefined>> \| undefined` | no       |             |
-| registry             | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined`              | no       |             |
-| resolveMediaAsset    | property | `RuntimeMediaAssetResolver \| undefined`                                                                        | no       |             |
-| resolveNodeProps     | property | `RuntimeNodePropsResolver \| undefined`                                                                         | no       |             |
-| stateAdapter         | property | `StateAdapter \| undefined`                                                                                     | no       |             |
-| wrapNode             | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                             | no       |             |
-| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                                              | no       |             |
+| Name                 | Kind     | Type                                                                                               | Required | Description |
+| -------------------- | -------- | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| actionHandlers       | property | `RuntimeActionHandlers \| undefined`                                                               | no       |             |
+| apis                 | property | `ApiDefinitionList \| undefined`                                                                   | no       |             |
+| bindingContext       | property | `Record<string, unknown> \| undefined`                                                             | no       |             |
+| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined`       | no       |             |
+| dbAdapter            | property | `DbAdapter \| undefined`                                                                           | no       |             |
+| dbRealtimeAdapter    | property | `DbRealtimeAdapter \| undefined`                                                                   | no       |             |
+| disableActions       | property | `boolean \| undefined`                                                                             | no       |             |
+| executeAction        | property | `RuntimeActionHandler \| undefined`                                                                | no       |             |
+| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                                     | no       |             |
+| mediaAssets          | property | `Readonly<Record<string, import("@ankhorage/contracts").MediaAsset>> \| undefined`                 | no       |             |
+| onDiagnostics        | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                            | no       |             |
+| operationResults     | property | `Readonly<Record<string, import("@ankhorage/contracts").BindingValue \| undefined>> \| undefined`  | no       |             |
+| registry             | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no       |             |
+| resolveMediaAsset    | property | `RuntimeMediaAssetResolver \| undefined`                                                           | no       |             |
+| resolveNodeProps     | property | `RuntimeNodePropsResolver \| undefined`                                                            | no       |             |
+| stateAdapter         | property | `StateAdapter \| undefined`                                                                        | no       |             |
+| wrapNode             | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                | no       |             |
+| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                                 | no       |             |
 
 ## RuntimeRendererConfigProvider
 
@@ -847,25 +847,25 @@ Source: `src/RuntimeRenderer.tsx:56:1`
 
 ### Members
 
-| Name              | Kind     | Type                                                                                                       | Required | Description |
-| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| apis              | property | `ApiDefinitionList \| undefined`                                                                           | no       |             |
-| bindingContext    | property | `Record<string, unknown> \| undefined`                                                                     | no       |             |
-| dataBindings      | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/bindings").ComponentDataBinding>> \| undefined` | no       |             |
-| dbAdapter         | property | `DbAdapter \| undefined`                                                                                   | no       |             |
-| dbRealtimeAdapter | property | `DbRealtimeAdapter \| undefined`                                                                           | no       |             |
-| disableActions    | property | `boolean \| undefined`                                                                                     | no       |             |
-| executeAction     | property | `import("./src/RuntimeRendererConfig").RuntimeActionHandler \| undefined`                                  | no       |             |
-| executeOperation  | property | `RuntimeBindingOperationExecutor \| undefined`                                                             | no       |             |
-| isRoot            | property | `boolean \| undefined`                                                                                     | no       |             |
-| mediaAssets       | property | `Readonly<Record<string, import("@ankhorage/contracts/dist/media").MediaAsset>> \| undefined`              | no       |             |
-| node              | property | `UiNode`                                                                                                   | yes      |             |
-| onDiagnostics     | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                                    | no       |             |
-| operationResults  | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                         | no       |             |
-| registry          | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined`         | no       |             |
-| resolveMediaAsset | property | `RuntimeMediaAssetResolver \| undefined`                                                                   | no       |             |
-| stateAdapter      | property | `StateAdapter \| undefined`                                                                                | no       |             |
-| wrapNode          | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                        | no       |             |
+| Name              | Kind     | Type                                                                                               | Required | Description |
+| ----------------- | -------- | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| apis              | property | `ApiDefinitionList \| undefined`                                                                   | no       |             |
+| bindingContext    | property | `Record<string, unknown> \| undefined`                                                             | no       |             |
+| dataBindings      | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined`       | no       |             |
+| dbAdapter         | property | `DbAdapter \| undefined`                                                                           | no       |             |
+| dbRealtimeAdapter | property | `DbRealtimeAdapter \| undefined`                                                                   | no       |             |
+| disableActions    | property | `boolean \| undefined`                                                                             | no       |             |
+| executeAction     | property | `import("./RuntimeRendererConfig").RuntimeActionHandler \| undefined`                              | no       |             |
+| executeOperation  | property | `RuntimeBindingOperationExecutor \| undefined`                                                     | no       |             |
+| isRoot            | property | `boolean \| undefined`                                                                             | no       |             |
+| mediaAssets       | property | `Readonly<Record<string, import("@ankhorage/contracts").MediaAsset>> \| undefined`                 | no       |             |
+| node              | property | `UiNode`                                                                                           | yes      |             |
+| onDiagnostics     | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                            | no       |             |
+| operationResults  | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                                 | no       |             |
+| registry          | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no       |             |
+| resolveMediaAsset | property | `RuntimeMediaAssetResolver \| undefined`                                                           | no       |             |
+| stateAdapter      | property | `StateAdapter \| undefined`                                                                        | no       |             |
+| wrapNode          | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                | no       |             |
 
 ## RuntimeRendererWrapArgs
 

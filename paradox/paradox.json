@@ -2,6 +2,8 @@
   "packageName": "@ankhorage/runtime",
   "packageId": "@ankhorage/runtime",
   "description": "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
+  "collaborators": null,
+  "donation": null,
   "badges": [
     {
       "id": "license",
@@ -12,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v2.2.0",
+      "value": "v2.2.9",
       "color": "cb3837"
     },
     {
@@ -390,6 +392,12 @@
       "isEntrypoint": false,
       "dependencies": ["src/runtimeActionRegistry.ts", "src/RuntimeRendererConfig.tsx"],
       "exports": ["dispatchRuntimeComponentEventWithReporting", "RuntimeEventDiagnosticsReporter"]
+    },
+    {
+      "path": "src/runtimeImageMedia.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeMedia.ts", "src/runtimeNodeProps.ts"],
+      "exports": []
     },
     {
       "path": "src/runtimeManifest.ts",
@@ -2251,7 +2259,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -2333,7 +2341,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -2456,7 +2464,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -2702,7 +2710,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -3093,7 +3101,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -3135,7 +3143,7 @@
         {
           "name": "mediaAssets",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/media\").MediaAsset>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").MediaAsset>> | undefined",
           "required": false,
           "description": null
         },
@@ -3149,7 +3157,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").BindingValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -3269,7 +3277,7 @@
         {
           "name": "dataBindings",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/bindings\").ComponentDataBinding>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ComponentDataBinding>> | undefined",
           "required": false,
           "description": null
         },
@@ -3297,7 +3305,7 @@
         {
           "name": "executeAction",
           "kind": "property",
-          "type": "import(\"./src/RuntimeRendererConfig\").RuntimeActionHandler | undefined",
+          "type": "import(\"./RuntimeRendererConfig\").RuntimeActionHandler | undefined",
           "required": false,
           "description": null
         },
@@ -3318,7 +3326,7 @@
         {
           "name": "mediaAssets",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts/dist/media\").MediaAsset>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").MediaAsset>> | undefined",
           "required": false,
           "description": null
         },
@@ -5172,7 +5180,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 18,
+        "line": 19,
         "column": 1
       }
     },
@@ -5181,7 +5189,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       }
     },
@@ -5190,7 +5198,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 31,
+        "line": 32,
         "column": 1
       }
     },
@@ -5199,7 +5207,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 37,
+        "line": 38,
         "column": 1
       }
     },
@@ -5208,7 +5216,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 41,
+        "line": 42,
         "column": 1
       }
     },
@@ -5217,7 +5225,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 45,
+        "line": 46,
         "column": 1
       }
     },
@@ -5226,7 +5234,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 62,
+        "line": 63,
         "column": 7
       }
     },
@@ -5235,7 +5243,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 64,
+        "line": 65,
         "column": 1
       }
     },
@@ -5244,7 +5252,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 87,
+        "line": 88,
         "column": 1
       }
     },
@@ -5253,7 +5261,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 130,
+        "line": 131,
         "column": 1
       }
     },
@@ -5262,7 +5270,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 157,
+        "line": 158,
         "column": 15
       }
     },
@@ -6446,6 +6454,16 @@
         "sourcePath": "src/runtimeEventExecution.ts"
       },
       {
+        "fromPath": "src/runtimeImageMedia.test.ts",
+        "toPath": "src/runtimeMedia.ts",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeImageMedia.test.ts",
+        "toPath": "src/runtimeNodeProps.ts",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
         "fromPath": "src/runtimeMedia.test.ts",
         "toPath": "src/runtimeMedia.ts",
         "sourcePath": "src/runtimeMedia.test.ts"
@@ -6862,6 +6880,12 @@
       },
       {
         "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
+        "toSymbol": "createComponentEventFromHandlerArgs",
+        "callExpression": "createComponentEventFromHandlerArgs",
+        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "dispatchRuntimeComponentEvent",
         "callExpression": "dispatchRuntimeComponentEvent",
         "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
@@ -6870,12 +6894,6 @@
         "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
         "toSymbol": "expect",
         "callExpression": "expect",
-        "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeActionRegistry.actions.test.ts",
-        "toSymbol": "createComponentEventFromHandlerArgs",
-        "callExpression": "createComponentEventFromHandlerArgs",
         "sourcePath": "src/runtimeActionRegistry.actions.test.ts"
       },
       {
@@ -7833,6 +7851,36 @@
         "sourcePath": "src/runtimeEventExecution.ts"
       },
       {
+        "fromSymbol": "src/runtimeImageMedia.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeImageMedia.test.ts",
+        "toSymbol": "resolveRuntimeNodeProps",
+        "callExpression": "resolveRuntimeNodeProps",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeImageMedia.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeImageMedia.test.ts",
+        "toSymbol": "collectRuntimeMediaReferenceIds",
+        "callExpression": "collectRuntimeMediaReferenceIds",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeImageMedia.test.ts",
+        "toSymbol": "replaceRuntimeMediaReferences",
+        "callExpression": "replaceRuntimeMediaReferences",
+        "sourcePath": "src/runtimeImageMedia.test.ts"
+      },
+      {
         "fromSymbol": "src/runtimeMedia.test.ts",
         "toSymbol": "describe",
         "callExpression": "describe",
@@ -8064,6 +8112,12 @@
         "fromSymbol": "resolveImageAssetUrl",
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
+        "sourcePath": "src/runtimeNodeProps.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeNodeProps",
+        "toSymbol": "isMediaAssetReference",
+        "callExpression": "isMediaAssetReference",
         "sourcePath": "src/runtimeNodeProps.ts"
       },
       {
