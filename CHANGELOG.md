@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.2.10
+
+### Patch Changes
+
+- 17683bf: Preserve normalized record payloads for component-owned events such as upload requests, sorting, and sheet index changes when resolving manifest action bindings.
+
 ## 2.2.9
 
 ### Patch Changes
