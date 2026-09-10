@@ -24,6 +24,73 @@ function createActionBindings(): ComponentDataBindingRegistry {
 }
 
 describe('runtime action registry actions', () => {
+  it('preserves normalized payloads for component-owned events without adding component switches', async () => {
+    const node: UiNode = { id: 'asset-picker', type: 'Uploader' };
+    const asset = { kind: 'local', uri: 'file:///selected.pdf', fileName: 'selected.pdf' };
+    const event = createComponentEventFromHandlerArgs({
+      node,
+      eventName: 'uploadRequest',
+      handlerArgs: [{ asset }],
+    });
+    const handled: object[] = [];
+    const diagnostics = await dispatchRuntimeComponentEvent({
+      node,
+      event,
+      eventName: 'uploadRequest',
+      dataBindings: {
+        'asset-picker': {
+          componentId: 'asset-picker',
+          events: {
+            uploadRequest: [
+              {
+                target: { kind: 'action', type: 'asset.upload' },
+                input: {
+                  uri: { kind: 'source', source: { kind: 'event', path: 'payload.asset.uri' } },
+                },
+              },
+            ],
+          },
+        },
+      },
+      actionHandlers: {
+        'asset.upload': ({ resolvedPayload }) => {
+          if (resolvedPayload) handled.push(resolvedPayload);
+        },
+      },
+    });
+    expect(event.payload).toEqual({ asset });
+    expect(diagnostics).toEqual([]);
+    expect(handled).toEqual([{ uri: asset.uri }]);
+    expect(
+      createComponentEventFromHandlerArgs({
+        node,
+        eventName: 'indexChange',
+        handlerArgs: [{ index: 2 }],
+      }).payload,
+    ).toEqual({ index: 2 });
+    expect(
+      createComponentEventFromHandlerArgs({
+        node,
+        eventName: 'sortChange',
+        handlerArgs: [{ columnId: 'name', direction: 'asc' }],
+      }).payload,
+    ).toEqual({ columnId: 'name', direction: 'asc' });
+    expect(
+      createComponentEventFromHandlerArgs({
+        node,
+        eventName: 'press',
+        handlerArgs: [{ nativeEvent: {} }],
+      }).payload,
+    ).toEqual({});
+    expect(
+      createComponentEventFromHandlerArgs({ node, eventName: 'dismiss', handlerArgs: [] }).payload,
+    ).toEqual({});
+    expect(
+      createComponentEventFromHandlerArgs({ node, eventName: 'valueChange', handlerArgs: [asset] })
+        .payload,
+    ).toEqual({ value: asset });
+  });
+
   it('dispatches component event bindings to registered action handlers', async () => {
     const handled: object[] = [];
     const diagnostics = await dispatchRuntimeComponentEvent({

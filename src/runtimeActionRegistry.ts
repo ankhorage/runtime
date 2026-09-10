@@ -416,11 +416,11 @@ function createPayloadForEvent(
     return handlerArgs[0] === undefined ? {} : { value: handlerArgs[0] };
   }
 
-  if (eventName === 'requestPermission') {
+  if (eventName === 'requestPermission' || eventName === 'press') {
     return {};
   }
 
-  return {};
+  return asRecord(handlerArgs[0]) ?? {};
 }
 
 function localEventNameToEventType(eventName: string): string {
