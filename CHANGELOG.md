@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.3.0
+
+### Minor Changes
+
+- e3a9e9f: Expose bindable lifecycle state for component-triggered API operations and prevent concurrent duplicate dispatches.
+
 ## 2.2.10
 
 ### Patch Changes
