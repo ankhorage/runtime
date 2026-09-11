@@ -132,7 +132,7 @@ Source: `src/runtimeBindings.ts:165:1`
 
 Kind: `function`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:91:1`
+Source: `src/runtimeEventOperationLifecycle.ts:92:1`
 
 ### Signatures
 
@@ -145,7 +145,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:91:1`
 
 Kind: `function`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:38:1`
+Source: `src/runtimeEventOperationLifecycle.ts:39:1`
 
 ### Signatures
 
@@ -229,7 +229,7 @@ Source: `src/runtimeScreenLoaders.ts:178:1`
 
 Kind: `value`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:26:14`
+Source: `src/runtimeEventOperationLifecycle.ts:27:14`
 
 ## ManifestContext
 
@@ -370,7 +370,7 @@ Source: `src/runtimeBindings.ts:118:1`
 
 Kind: `function`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:112:1`
+Source: `src/runtimeEventOperationLifecycle.ts:113:1`
 
 ### Signatures
 
@@ -731,7 +731,7 @@ Source: `src/runtimeEventExecution.ts:9:1`
 
 Kind: `type`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:13:1`
+Source: `src/runtimeEventOperationLifecycle.ts:14:1`
 
 ### Members
 
@@ -743,7 +743,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:13:1`
 
 Kind: `type`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:17:1`
+Source: `src/runtimeEventOperationLifecycle.ts:18:1`
 
 ### Members
 
@@ -757,7 +757,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:17:1`
 
 Kind: `type`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:5:1`
+Source: `src/runtimeEventOperationLifecycle.ts:6:1`
 
 ### Members
 
@@ -773,7 +773,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:5:1`
 
 Kind: `unknown`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:3:1`
+Source: `src/runtimeEventOperationLifecycle.ts:4:1`
 
 ## RuntimeEventPropWrapArgs
 

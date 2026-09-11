@@ -1,4 +1,5 @@
 import type { BindingOperationRef, DataSourceDiagnostic } from '@ankhorage/contracts';
+import { isRecord } from '@ankhorage/utility/object';
 
 export type RuntimeEventOperationStatus = 'idle' | 'loading' | 'success' | 'error';
 
@@ -116,8 +117,4 @@ export function resolveRuntimeEventOperationErrorMessage(
     diagnostics.find((diagnostic) => diagnostic.severity === 'error')?.message ??
     'The operation could not be completed. Please try again.'
   );
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }

@@ -1065,7 +1065,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 91,
+        "line": 92,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1103,7 +1103,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 38,
+        "line": 39,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1336,7 +1336,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 26,
+        "line": 27,
         "column": 14
       },
       "exportPaths": ["src/index.ts"],
@@ -1746,7 +1746,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 112,
+        "line": 113,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2866,7 +2866,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 13,
+        "line": 14,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2892,7 +2892,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 17,
+        "line": 18,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2932,7 +2932,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 5,
+        "line": 6,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2986,7 +2986,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 3,
+        "line": 4,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -5345,7 +5345,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 38,
+        "line": 39,
         "column": 1
       }
     },
@@ -5354,7 +5354,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 46,
+        "line": 47,
         "column": 9
       }
     },
@@ -5363,7 +5363,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 91,
+        "line": 92,
         "column": 1
       }
     },
@@ -5372,16 +5372,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 112,
-        "column": 1
-      }
-    },
-    {
-      "name": "isRecord",
-      "description": null,
-      "sourceLocation": {
-        "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 121,
+        "line": 113,
         "column": 1
       }
     },
