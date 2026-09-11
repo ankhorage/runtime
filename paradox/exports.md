@@ -10,7 +10,7 @@ Source: `src/componentRegistry.ts:3:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:89:1`
+Source: `src/RuntimeRendererConfig.tsx:95:1`
 
 ### Signatures
 
@@ -23,7 +23,7 @@ Source: `src/RuntimeRendererConfig.tsx:89:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:74:1`
+Source: `src/RuntimeRendererConfig.tsx:80:1`
 
 ### Signatures
 
@@ -36,7 +36,7 @@ Source: `src/RuntimeRendererConfig.tsx:74:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:216:1`
+Source: `src/runtimeActionRegistry.ts:223:1`
 
 ### Signatures
 
@@ -96,12 +96,12 @@ Source: `src/runtimeScreenLoaders.ts:82:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:66:1`
+Source: `src/runtimeActionRegistry.ts:71:1`
 
 ### Signatures
 
-- `(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry`
-  - options: `{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }` (optional)
+- `(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry`
+  - options: `{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }` (optional)
   - returns: `RuntimeActionRegistry`
 
 ## createRuntimeApiOperationExecutor
@@ -127,6 +127,31 @@ Source: `src/runtimeBindings.ts:165:1`
 - `(operation: BindingOperationRef) => string`
   - operation: `BindingOperationRef`
   - returns: `string`
+
+## createRuntimeEventOperationBindingContext
+
+Kind: `function`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:91:1`
+
+### Signatures
+
+- `(context: Record<string, unknown> | undefined, state: RuntimeEventOperationState) => Record<string, unknown>`
+  - context: `Record<string, unknown> | undefined`
+  - state: `RuntimeEventOperationState`
+  - returns: `Record<string, unknown>`
+
+## createRuntimeEventOperationLifecycle
+
+Kind: `function`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:38:1`
+
+### Signatures
+
+- `(onStateChange: (state: RuntimeEventOperationState) => void) => RuntimeEventOperationLifecycle`
+  - onStateChange: `(state: RuntimeEventOperationState) => void`
+  - returns: `RuntimeEventOperationLifecycle`
 
 ## createRuntimeMemoryStateAdapter
 
@@ -156,7 +181,7 @@ Source: `src/runtimeScreenLoaders.ts:49:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:102:1`
+Source: `src/runtimeActionRegistry.ts:109:1`
 
 ### Signatures
 
@@ -200,6 +225,12 @@ Source: `src/runtimeScreenLoaders.ts:178:1`
   - args: `{ readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext["apis"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }`
   - returns: `Promise<RuntimeScreenOperationLoaderExecutionResult>`
 
+## IDLE_RUNTIME_EVENT_OPERATION_STATE
+
+Kind: `value`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:26:14`
+
 ## ManifestContext
 
 Kind: `value`
@@ -222,7 +253,7 @@ Source: `src/ManifestContext.tsx:12:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:107:1`
+Source: `src/RuntimeRendererConfig.tsx:113:1`
 
 ### Signatures
 
@@ -261,7 +292,7 @@ Source: `src/runtimeDbPersist.ts:68:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:230:1`
+Source: `src/runtimeActionRegistry.ts:237:1`
 
 ### Signatures
 
@@ -274,7 +305,7 @@ Source: `src/runtimeActionRegistry.ts:230:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:241:1`
+Source: `src/runtimeActionRegistry.ts:248:1`
 
 ### Signatures
 
@@ -335,6 +366,18 @@ Source: `src/runtimeBindings.ts:118:1`
   - diagnostics: `DataSourceDiagnostic[]` (optional)
   - returns: `unknown`
 
+## resolveRuntimeEventOperationErrorMessage
+
+Kind: `function`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:112:1`
+
+### Signatures
+
+- `(diagnostics: readonly DataSourceDiagnostic[]) => string`
+  - diagnostics: `readonly DataSourceDiagnostic[]`
+  - returns: `string`
+
 ## resolveScreenOperationLoaders
 
 Kind: `function`
@@ -351,7 +394,7 @@ Source: `src/runtimeScreenLoaders.ts:43:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:42:1`
+Source: `src/RuntimeRendererConfig.tsx:46:1`
 
 ## RuntimeActionDescriptor
 
@@ -372,19 +415,19 @@ Source: `src/runtimeManifest.ts:24:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:45:1`
+Source: `src/RuntimeRendererConfig.tsx:49:1`
 
 ## RuntimeActionHandler
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:43:1`
+Source: `src/RuntimeRendererConfig.tsx:47:1`
 
 ## RuntimeActionHandlerArgs
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:35:1`
+Source: `src/RuntimeRendererConfig.tsx:39:1`
 
 ### Members
 
@@ -399,13 +442,13 @@ Source: `src/RuntimeRendererConfig.tsx:35:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:44:1`
+Source: `src/RuntimeRendererConfig.tsx:48:1`
 
 ## RuntimeActionRegistry
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:30:1`
+Source: `src/runtimeActionRegistry.ts:34:1`
 
 ### Members
 
@@ -418,7 +461,7 @@ Source: `src/runtimeActionRegistry.ts:30:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:41:1`
+Source: `src/runtimeActionRegistry.ts:45:1`
 
 ### Members
 
@@ -433,7 +476,7 @@ Source: `src/runtimeActionRegistry.ts:41:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:35:1`
+Source: `src/runtimeActionRegistry.ts:39:1`
 
 ### Members
 
@@ -606,23 +649,24 @@ Source: `src/runtimeManifest.ts:10:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:45:1`
+Source: `src/runtimeActionRegistry.ts:49:1`
 
 ### Members
 
-| Name                 | Kind     | Type                                                                                         | Required | Description |
-| -------------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
-| apis                 | property | `ApiDefinitionList \| undefined`                                                             | no       |             |
-| context              | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
-| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
-| event                | property | `ComponentEventDto<string, object>`                                                          | yes      |             |
-| eventName            | property | `string \| undefined`                                                                        | no       |             |
-| executeAction        | property | `RuntimeActionHandler \| undefined`                                                          | no       |             |
-| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                               | no       |             |
-| node                 | property | `UiNode`                                                                                     | yes      |             |
-| operationResults     | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
-| state                | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
-| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                           | no       |             |
+| Name                    | Kind     | Type                                                                                         | Required | Description |
+| ----------------------- | -------- | -------------------------------------------------------------------------------------------- | -------- | ----------- |
+| apis                    | property | `ApiDefinitionList \| undefined`                                                             | no       |             |
+| context                 | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| dataBindings            | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined` | no       |             |
+| event                   | property | `ComponentEventDto<string, object>`                                                          | yes      |             |
+| eventName               | property | `string \| undefined`                                                                        | no       |             |
+| eventOperationLifecycle | property | `RuntimeEventOperationLifecycle \| undefined`                                                | no       |             |
+| executeAction           | property | `RuntimeActionHandler \| undefined`                                                          | no       |             |
+| executeOperation        | property | `RuntimeBindingOperationExecutor \| undefined`                                               | no       |             |
+| node                    | property | `UiNode`                                                                                     | yes      |             |
+| operationResults        | property | `Readonly<Record<string, BindingValue \| undefined>> \| undefined`                           | no       |             |
+| state                   | property | `Record<string, unknown> \| undefined`                                                       | no       |             |
+| writeOperationResult    | property | `RuntimeBindingOperationResultWriter \| undefined`                                           | no       |             |
 
 ## RuntimeDbPersistError
 
@@ -683,11 +727,59 @@ Source: `src/runtimeEventExecution.ts:9:1`
 | consoleImpl   | property | `Pick<Console, "error" \| "warn"> \| undefined`                         | no       |             |
 | onDiagnostics | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined` | no       |             |
 
+## RuntimeEventOperationInvocation
+
+Kind: `type`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:13:1`
+
+### Members
+
+| Name | Kind     | Type     | Required | Description |
+| ---- | -------- | -------- | -------- | ----------- |
+| id   | property | `number` | yes      |             |
+
+## RuntimeEventOperationLifecycle
+
+Kind: `type`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:17:1`
+
+### Members
+
+| Name    | Kind   | Type                                                                                                                            | Required | Description |
+| ------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| fail    | method | `(invocation: RuntimeEventOperationInvocation, message: string) => void`                                                        | yes      |             |
+| start   | method | `(args: { readonly nodeId: string; readonly operation: BindingOperationRef; }) => RuntimeEventOperationInvocation \| undefined` | yes      |             |
+| succeed | method | `(invocation: RuntimeEventOperationInvocation) => void`                                                                         | yes      |             |
+
+## RuntimeEventOperationState
+
+Kind: `type`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:5:1`
+
+### Members
+
+| Name         | Kind     | Type                               | Required | Description |
+| ------------ | -------- | ---------------------------------- | -------- | ----------- |
+| errorMessage | property | `string`                           | yes      |             |
+| loading      | property | `boolean`                          | yes      |             |
+| nodeId       | property | `string \| undefined`              | no       |             |
+| operation    | property | `BindingOperationRef \| undefined` | no       |             |
+| status       | property | `RuntimeEventOperationStatus`      | yes      |             |
+
+## RuntimeEventOperationStatus
+
+Kind: `unknown`
+Module: `src/runtimeEventOperationLifecycle.ts`
+Source: `src/runtimeEventOperationLifecycle.ts:3:1`
+
 ## RuntimeEventPropWrapArgs
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:56:1`
+Source: `src/runtimeActionRegistry.ts:61:1`
 
 ### Members
 
@@ -790,7 +882,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:6:1`
 
 Kind: `function`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:76:1`
+Source: `src/RuntimeRenderer.tsx:81:1`
 
 ### Signatures
 
@@ -802,36 +894,38 @@ Source: `src/RuntimeRenderer.tsx:76:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:47:1`
+Source: `src/RuntimeRendererConfig.tsx:51:1`
 
 ### Members
 
-| Name                 | Kind     | Type                                                                                               | Required | Description |
-| -------------------- | -------- | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| actionHandlers       | property | `RuntimeActionHandlers \| undefined`                                                               | no       |             |
-| apis                 | property | `ApiDefinitionList \| undefined`                                                                   | no       |             |
-| bindingContext       | property | `Record<string, unknown> \| undefined`                                                             | no       |             |
-| dataBindings         | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined`       | no       |             |
-| dbAdapter            | property | `DbAdapter \| undefined`                                                                           | no       |             |
-| dbRealtimeAdapter    | property | `DbRealtimeAdapter \| undefined`                                                                   | no       |             |
-| disableActions       | property | `boolean \| undefined`                                                                             | no       |             |
-| executeAction        | property | `RuntimeActionHandler \| undefined`                                                                | no       |             |
-| executeOperation     | property | `RuntimeBindingOperationExecutor \| undefined`                                                     | no       |             |
-| mediaAssets          | property | `Readonly<Record<string, import("@ankhorage/contracts").MediaAsset>> \| undefined`                 | no       |             |
-| onDiagnostics        | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                            | no       |             |
-| operationResults     | property | `Readonly<Record<string, import("@ankhorage/contracts").BindingValue \| undefined>> \| undefined`  | no       |             |
-| registry             | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no       |             |
-| resolveMediaAsset    | property | `RuntimeMediaAssetResolver \| undefined`                                                           | no       |             |
-| resolveNodeProps     | property | `RuntimeNodePropsResolver \| undefined`                                                            | no       |             |
-| stateAdapter         | property | `StateAdapter \| undefined`                                                                        | no       |             |
-| wrapNode             | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                | no       |             |
-| writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined`                                                 | no       |             |
+| Name                    | Kind     | Type                                                                                               | Required | Description |
+| ----------------------- | -------- | -------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| actionHandlers          | property | `RuntimeActionHandlers \| undefined`                                                               | no       |             |
+| apis                    | property | `ApiDefinitionList \| undefined`                                                                   | no       |             |
+| bindingContext          | property | `Record<string, unknown> \| undefined`                                                             | no       |             |
+| dataBindings            | property | `Readonly<Record<string, import("@ankhorage/contracts").ComponentDataBinding>> \| undefined`       | no       |             |
+| dbAdapter               | property | `DbAdapter \| undefined`                                                                           | no       |             |
+| dbRealtimeAdapter       | property | `DbRealtimeAdapter \| undefined`                                                                   | no       |             |
+| disableActions          | property | `boolean \| undefined`                                                                             | no       |             |
+| eventOperationLifecycle | property | `RuntimeEventOperationLifecycle \| undefined`                                                      | no       |             |
+| eventOperationState     | property | `RuntimeEventOperationState \| undefined`                                                          | no       |             |
+| executeAction           | property | `RuntimeActionHandler \| undefined`                                                                | no       |             |
+| executeOperation        | property | `RuntimeBindingOperationExecutor \| undefined`                                                     | no       |             |
+| mediaAssets             | property | `Readonly<Record<string, import("@ankhorage/contracts").MediaAsset>> \| undefined`                 | no       |             |
+| onDiagnostics           | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined`                            | no       |             |
+| operationResults        | property | `Readonly<Record<string, import("@ankhorage/contracts").BindingValue \| undefined>> \| undefined`  | no       |             |
+| registry                | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no       |             |
+| resolveMediaAsset       | property | `RuntimeMediaAssetResolver \| undefined`                                                           | no       |             |
+| resolveNodeProps        | property | `RuntimeNodePropsResolver \| undefined`                                                            | no       |             |
+| stateAdapter            | property | `StateAdapter \| undefined`                                                                        | no       |             |
+| wrapNode                | property | `((args: RuntimeRendererWrapArgs) => React.ReactNode) \| undefined`                                | no       |             |
+| writeOperationResult    | property | `RuntimeBindingOperationResultWriter \| undefined`                                                 | no       |             |
 
 ## RuntimeRendererConfigProvider
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:155:1`
+Source: `src/RuntimeRendererConfig.tsx:164:1`
 
 ### Signatures
 
@@ -843,7 +937,7 @@ Source: `src/RuntimeRendererConfig.tsx:155:1`
 
 Kind: `type`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:56:1`
+Source: `src/RuntimeRenderer.tsx:61:1`
 
 ### Members
 
@@ -871,7 +965,7 @@ Source: `src/RuntimeRenderer.tsx:56:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:29:1`
+Source: `src/RuntimeRendererConfig.tsx:33:1`
 
 ### Members
 
@@ -1005,7 +1099,7 @@ Source: `src/ManifestContext.tsx:38:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:168:1`
+Source: `src/RuntimeRendererConfig.tsx:177:1`
 
 ### Signatures
 
@@ -1041,7 +1135,7 @@ Source: `src/runtimeApiSelection.ts:14:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:179:1`
+Source: `src/runtimeActionRegistry.ts:186:1`
 
 ### Signatures
 

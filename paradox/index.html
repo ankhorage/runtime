@@ -268,7 +268,7 @@
             <li>
               <button class="nav-button" type="button" data-target="src/runtimeActionRegistry.ts">
                 src/runtimeActionRegistry.ts
-                <small>22 functions</small>
+                <small>23 functions</small>
               </button>
             </li>
             <li>
@@ -331,6 +331,26 @@
               <button class="nav-button" type="button" data-target="src/runtimeEventExecution.ts">
                 src/runtimeEventExecution.ts
                 <small>1 function</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/runtimeEventOperationLifecycle.test.ts"
+              >
+                src/runtimeEventOperationLifecycle.test.ts
+                <small>3 functions</small>
+              </button>
+            </li>
+            <li>
+              <button
+                class="nav-button"
+                type="button"
+                data-target="src/runtimeEventOperationLifecycle.ts"
+              >
+                src/runtimeEventOperationLifecycle.ts
+                <small>5 functions</small>
               </button>
             </li>
             <li>
@@ -507,9 +527,9 @@
           <section class="panel">
             <h2>Package overview</h2>
             <div class="summary">
-              <div><strong>85</strong><span class="muted">public exports</span></div>
+              <div><strong>93</strong><span class="muted">public exports</span></div>
               <div><strong>5</strong><span class="muted">components</span></div>
-              <div><strong>53</strong><span class="muted">modules</span></div>
+              <div><strong>55</strong><span class="muted">modules</span></div>
               <div><strong>1</strong><span class="muted">entrypoints</span></div>
             </div>
             <h3>Entrypoints</h3>
@@ -534,17 +554,21 @@
             </article>
             <article
               class="item"
-              data-search="src/bindings.ts createRuntimeApiOperationExecutor createRuntimeBindingOperationKey resolveBindingInputMap resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync RuntimeApiOperationExecutorOptions RuntimeApiOperationSelection RuntimeBindingOperationExecutionArgs RuntimeBindingOperationExecutionResult RuntimeBindingOperationExecutor RuntimeBindingOperationKey RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult validateRuntimeBindingOperationRef"
+              data-search="src/bindings.ts createRuntimeApiOperationExecutor createRuntimeBindingOperationKey createRuntimeEventOperationBindingContext createRuntimeEventOperationLifecycle IDLE_RUNTIME_EVENT_OPERATION_STATE resolveBindingInputMap resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync resolveRuntimeEventOperationErrorMessage RuntimeApiOperationExecutorOptions RuntimeApiOperationSelection RuntimeBindingOperationExecutionArgs RuntimeBindingOperationExecutionResult RuntimeBindingOperationExecutor RuntimeBindingOperationKey RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult RuntimeEventOperationInvocation RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeEventOperationStatus validateRuntimeBindingOperationRef"
             >
               <h3>src/bindings.ts</h3>
               <p class="muted">Referenced module</p>
               <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
               <p>
                 <strong>Exports:</strong> <code>createRuntimeApiOperationExecutor</code>,
-                <code>createRuntimeBindingOperationKey</code>, <code>resolveBindingInputMap</code>,
-                <code>resolveRuntimeBindings</code>, <code>resolveRuntimeBindingsAsync</code>,
-                <code>resolveRuntimeBindingValue</code>,
+                <code>createRuntimeBindingOperationKey</code>,
+                <code>createRuntimeEventOperationBindingContext</code>,
+                <code>createRuntimeEventOperationLifecycle</code>,
+                <code>IDLE_RUNTIME_EVENT_OPERATION_STATE</code>,
+                <code>resolveBindingInputMap</code>, <code>resolveRuntimeBindings</code>,
+                <code>resolveRuntimeBindingsAsync</code>, <code>resolveRuntimeBindingValue</code>,
                 <code>resolveRuntimeBindingValueSync</code>,
+                <code>resolveRuntimeEventOperationErrorMessage</code>,
                 <code>RuntimeApiOperationExecutorOptions</code>,
                 <code>RuntimeApiOperationSelection</code>,
                 <code>RuntimeBindingOperationExecutionArgs</code>,
@@ -556,6 +580,9 @@
                 <code>RuntimeBindingResolutionArgs</code>,
                 <code>RuntimeBindingResolutionContext</code>,
                 <code>RuntimeBindingResolutionResult</code>,
+                <code>RuntimeEventOperationInvocation</code>,
+                <code>RuntimeEventOperationLifecycle</code>,
+                <code>RuntimeEventOperationState</code>, <code>RuntimeEventOperationStatus</code>,
                 <code>validateRuntimeBindingOperationRef</code>
               </p>
             </article>
@@ -573,7 +600,7 @@
             </article>
             <article
               class="item"
-              data-search="src/index.ts ComponentRegistry composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode createComponentEventFromHandlerArgs createComponentRegistry createDbPersistActionHandler createDbPersistAdapterError createPendingRuntimeScreenOperationLoaderState createRuntimeActionRegistry createRuntimeApiOperationExecutor createRuntimeBindingOperationKey createRuntimeMemoryStateAdapter createRuntimeScreenLoaderRequestKey dispatchRuntimeComponentEvent dispatchRuntimeComponentEventWithReporting executeDbPersistAction executeRuntimeScreenOperationLoaders ManifestContext ManifestProvider mergeRuntimeRendererConfig resolveBindingInputMap resolveDbPersistInput resolveRuntimeActionPayload resolveRuntimeActionValue resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync resolveScreenOperationLoaders RuntimeAction RuntimeActionDescriptor RuntimeActionExecutor RuntimeActionHandler RuntimeActionHandlerArgs RuntimeActionHandlers RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeAdapterDescriptor RuntimeApiOperationExecutorOptions RuntimeApiOperationSelection RuntimeBindingDescriptor RuntimeBindingOperationExecutionArgs RuntimeBindingOperationExecutionResult RuntimeBindingOperationExecutor RuntimeBindingOperationKey RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult RuntimeCapability RuntimeComponentEventDispatchArgs RuntimeDbPersistError RuntimeDbPersistExecutionResult RuntimeDbPersistResult RuntimeDiagnostic RuntimeEventDiagnosticsReporter RuntimeEventPropWrapArgs RuntimeManifest RuntimeManifestConfig RuntimeManifestInput RuntimeMediaAssetResolver RuntimeMediaAssetResolverArgs RuntimeMemoryStateAdapterOptions RuntimeNodePropsResolver RuntimeRenderer RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererProps RuntimeRendererWrapArgs RuntimeResolvedMediaValue RuntimeResolveNodePropsArgs RuntimeScreen RuntimeScreenOperationLoaderExecutionResult RuntimeScreenOperationLoaderState RuntimeScreenProps shouldRenderRuntimeRepeatEmptyState useManifest useManifestContext useOptionalManifestContext useRuntimeRendererConfig useRuntimeScreenOperationLoaders validateRuntimeBindingOperationRef wrapRuntimeEventProps"
+              data-search="src/index.ts ComponentRegistry composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode createComponentEventFromHandlerArgs createComponentRegistry createDbPersistActionHandler createDbPersistAdapterError createPendingRuntimeScreenOperationLoaderState createRuntimeActionRegistry createRuntimeApiOperationExecutor createRuntimeBindingOperationKey createRuntimeEventOperationBindingContext createRuntimeEventOperationLifecycle createRuntimeMemoryStateAdapter createRuntimeScreenLoaderRequestKey dispatchRuntimeComponentEvent dispatchRuntimeComponentEventWithReporting executeDbPersistAction executeRuntimeScreenOperationLoaders IDLE_RUNTIME_EVENT_OPERATION_STATE ManifestContext ManifestProvider mergeRuntimeRendererConfig resolveBindingInputMap resolveDbPersistInput resolveRuntimeActionPayload resolveRuntimeActionValue resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync resolveRuntimeEventOperationErrorMessage resolveScreenOperationLoaders RuntimeAction RuntimeActionDescriptor RuntimeActionExecutor RuntimeActionHandler RuntimeActionHandlerArgs RuntimeActionHandlers RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeAdapterDescriptor RuntimeApiOperationExecutorOptions RuntimeApiOperationSelection RuntimeBindingDescriptor RuntimeBindingOperationExecutionArgs RuntimeBindingOperationExecutionResult RuntimeBindingOperationExecutor RuntimeBindingOperationKey RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult RuntimeCapability RuntimeComponentEventDispatchArgs RuntimeDbPersistError RuntimeDbPersistExecutionResult RuntimeDbPersistResult RuntimeDiagnostic RuntimeEventDiagnosticsReporter RuntimeEventOperationInvocation RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeEventOperationStatus RuntimeEventPropWrapArgs RuntimeManifest RuntimeManifestConfig RuntimeManifestInput RuntimeMediaAssetResolver RuntimeMediaAssetResolverArgs RuntimeMemoryStateAdapterOptions RuntimeNodePropsResolver RuntimeRenderer RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererProps RuntimeRendererWrapArgs RuntimeResolvedMediaValue RuntimeResolveNodePropsArgs RuntimeScreen RuntimeScreenOperationLoaderExecutionResult RuntimeScreenOperationLoaderState RuntimeScreenProps shouldRenderRuntimeRepeatEmptyState useManifest useManifestContext useOptionalManifestContext useRuntimeRendererConfig useRuntimeScreenOperationLoaders validateRuntimeBindingOperationRef wrapRuntimeEventProps"
             >
               <h3>src/index.ts</h3>
               <p class="muted">Configured entrypoint</p>
@@ -589,18 +616,22 @@
                 <code>createRuntimeActionRegistry</code>,
                 <code>createRuntimeApiOperationExecutor</code>,
                 <code>createRuntimeBindingOperationKey</code>,
+                <code>createRuntimeEventOperationBindingContext</code>,
+                <code>createRuntimeEventOperationLifecycle</code>,
                 <code>createRuntimeMemoryStateAdapter</code>,
                 <code>createRuntimeScreenLoaderRequestKey</code>,
                 <code>dispatchRuntimeComponentEvent</code>,
                 <code>dispatchRuntimeComponentEventWithReporting</code>,
                 <code>executeDbPersistAction</code>,
-                <code>executeRuntimeScreenOperationLoaders</code>, <code>ManifestContext</code>,
+                <code>executeRuntimeScreenOperationLoaders</code>,
+                <code>IDLE_RUNTIME_EVENT_OPERATION_STATE</code>, <code>ManifestContext</code>,
                 <code>ManifestProvider</code>, <code>mergeRuntimeRendererConfig</code>,
                 <code>resolveBindingInputMap</code>, <code>resolveDbPersistInput</code>,
                 <code>resolveRuntimeActionPayload</code>, <code>resolveRuntimeActionValue</code>,
                 <code>resolveRuntimeBindings</code>, <code>resolveRuntimeBindingsAsync</code>,
                 <code>resolveRuntimeBindingValue</code>,
                 <code>resolveRuntimeBindingValueSync</code>,
+                <code>resolveRuntimeEventOperationErrorMessage</code>,
                 <code>resolveScreenOperationLoaders</code>, <code>RuntimeAction</code>,
                 <code>RuntimeActionDescriptor</code>, <code>RuntimeActionExecutor</code>,
                 <code>RuntimeActionHandler</code>, <code>RuntimeActionHandlerArgs</code>,
@@ -621,6 +652,9 @@
                 <code>RuntimeComponentEventDispatchArgs</code>, <code>RuntimeDbPersistError</code>,
                 <code>RuntimeDbPersistExecutionResult</code>, <code>RuntimeDbPersistResult</code>,
                 <code>RuntimeDiagnostic</code>, <code>RuntimeEventDiagnosticsReporter</code>,
+                <code>RuntimeEventOperationInvocation</code>,
+                <code>RuntimeEventOperationLifecycle</code>,
+                <code>RuntimeEventOperationState</code>, <code>RuntimeEventOperationStatus</code>,
                 <code>RuntimeEventPropWrapArgs</code>, <code>RuntimeManifest</code>,
                 <code>RuntimeManifestConfig</code>, <code>RuntimeManifestInput</code>,
                 <code>RuntimeMediaAssetResolver</code>, <code>RuntimeMediaAssetResolverArgs</code>,
@@ -738,13 +772,15 @@
             </article>
             <article
               class="item"
-              data-search="src/runtimeActionRegistry.ts src/runtimeApiSelection.ts src/runtimeBindings.ts src/RuntimeRendererConfig.tsx createComponentEventFromHandlerArgs createRuntimeActionRegistry dispatchRuntimeComponentEvent resolveRuntimeActionPayload resolveRuntimeActionValue RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeComponentEventDispatchArgs RuntimeEventPropWrapArgs wrapRuntimeEventProps"
+              data-search="src/runtimeActionRegistry.ts src/runtimeApiSelection.ts src/runtimeBindings.ts src/runtimeEventOperationLifecycle.ts src/RuntimeRendererConfig.tsx createComponentEventFromHandlerArgs createRuntimeActionRegistry dispatchRuntimeComponentEvent resolveRuntimeActionPayload resolveRuntimeActionValue RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeComponentEventDispatchArgs RuntimeEventPropWrapArgs wrapRuntimeEventProps"
             >
               <h3>src/runtimeActionRegistry.ts</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/runtimeApiSelection.ts</code>,
-                <code>src/runtimeBindings.ts</code>, <code>src/RuntimeRendererConfig.tsx</code>
+                <code>src/runtimeBindings.ts</code>,
+                <code>src/runtimeEventOperationLifecycle.ts</code>,
+                <code>src/RuntimeRendererConfig.tsx</code>
               </p>
               <p>
                 <strong>Exports:</strong> <code>createComponentEventFromHandlerArgs</code>,
@@ -889,6 +925,35 @@
             </article>
             <article
               class="item"
+              data-search="src/runtimeEventOperationLifecycle.test.ts src/runtimeActionRegistry.ts src/runtimeEventOperationLifecycle.ts"
+            >
+              <h3>src/runtimeEventOperationLifecycle.test.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p>
+                <strong>Dependencies:</strong> <code>src/runtimeActionRegistry.ts</code>,
+                <code>src/runtimeEventOperationLifecycle.ts</code>
+              </p>
+              <p><strong>Exports:</strong> <span class="empty">None</span></p>
+            </article>
+            <article
+              class="item"
+              data-search="src/runtimeEventOperationLifecycle.ts createRuntimeEventOperationBindingContext createRuntimeEventOperationLifecycle IDLE_RUNTIME_EVENT_OPERATION_STATE resolveRuntimeEventOperationErrorMessage RuntimeEventOperationInvocation RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeEventOperationStatus"
+            >
+              <h3>src/runtimeEventOperationLifecycle.ts</h3>
+              <p class="muted">Referenced module</p>
+              <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+              <p>
+                <strong>Exports:</strong> <code>createRuntimeEventOperationBindingContext</code>,
+                <code>createRuntimeEventOperationLifecycle</code>,
+                <code>IDLE_RUNTIME_EVENT_OPERATION_STATE</code>,
+                <code>resolveRuntimeEventOperationErrorMessage</code>,
+                <code>RuntimeEventOperationInvocation</code>,
+                <code>RuntimeEventOperationLifecycle</code>,
+                <code>RuntimeEventOperationState</code>, <code>RuntimeEventOperationStatus</code>
+              </p>
+            </article>
+            <article
+              class="item"
               data-search="src/runtimeImageMedia.test.ts src/runtimeMedia.ts src/runtimeNodeProps.ts"
             >
               <h3>src/runtimeImageMedia.test.ts</h3>
@@ -1001,7 +1066,7 @@
             </article>
             <article
               class="item"
-              data-search="src/RuntimeRenderer.tsx src/registry.tsx src/rendering.ts src/runtimeActionRegistry.ts src/runtimeBindings.ts src/runtimeDbPersist.ts src/runtimeEventExecution.ts src/runtimeMedia.ts src/runtimeMediaCache.tsx src/runtimeNodeProps.ts src/RuntimeRendererConfig.tsx src/runtimeRepeat.ts src/runtimeRepeatDiagnostics.ts src/runtimeRepeatEmptyState.ts src/useRuntimeMediaProps.ts RuntimeRenderer RuntimeRendererProps"
+              data-search="src/RuntimeRenderer.tsx src/registry.tsx src/rendering.ts src/runtimeActionRegistry.ts src/runtimeBindings.ts src/runtimeDbPersist.ts src/runtimeEventExecution.ts src/runtimeEventOperationLifecycle.ts src/runtimeMedia.ts src/runtimeMediaCache.tsx src/runtimeNodeProps.ts src/RuntimeRendererConfig.tsx src/runtimeRepeat.ts src/runtimeRepeatDiagnostics.ts src/runtimeRepeatEmptyState.ts src/useRuntimeMediaProps.ts RuntimeRenderer RuntimeRendererProps"
             >
               <h3>src/RuntimeRenderer.tsx</h3>
               <p class="muted">Referenced module</p>
@@ -1009,10 +1074,11 @@
                 <strong>Dependencies:</strong> <code>src/registry.tsx</code>,
                 <code>src/rendering.ts</code>, <code>src/runtimeActionRegistry.ts</code>,
                 <code>src/runtimeBindings.ts</code>, <code>src/runtimeDbPersist.ts</code>,
-                <code>src/runtimeEventExecution.ts</code>, <code>src/runtimeMedia.ts</code>,
-                <code>src/runtimeMediaCache.tsx</code>, <code>src/runtimeNodeProps.ts</code>,
-                <code>src/RuntimeRendererConfig.tsx</code>, <code>src/runtimeRepeat.ts</code>,
-                <code>src/runtimeRepeatDiagnostics.ts</code>,
+                <code>src/runtimeEventExecution.ts</code>,
+                <code>src/runtimeEventOperationLifecycle.ts</code>,
+                <code>src/runtimeMedia.ts</code>, <code>src/runtimeMediaCache.tsx</code>,
+                <code>src/runtimeNodeProps.ts</code>, <code>src/RuntimeRendererConfig.tsx</code>,
+                <code>src/runtimeRepeat.ts</code>, <code>src/runtimeRepeatDiagnostics.ts</code>,
                 <code>src/runtimeRepeatEmptyState.ts</code>,
                 <code>src/useRuntimeMediaProps.ts</code>
               </p>
@@ -1032,13 +1098,14 @@
             </article>
             <article
               class="item"
-              data-search="src/RuntimeRendererConfig.tsx src/registry.tsx src/runtimeBindings.ts src/runtimeMedia.ts composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode mergeRuntimeRendererConfig RuntimeAction RuntimeActionExecutor RuntimeActionHandler RuntimeActionHandlerArgs RuntimeActionHandlers RuntimeNodePropsResolver RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererWrapArgs RuntimeResolveNodePropsArgs useRuntimeRendererConfig"
+              data-search="src/RuntimeRendererConfig.tsx src/registry.tsx src/runtimeBindings.ts src/runtimeEventOperationLifecycle.ts src/runtimeMedia.ts composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode mergeRuntimeRendererConfig RuntimeAction RuntimeActionExecutor RuntimeActionHandler RuntimeActionHandlerArgs RuntimeActionHandlers RuntimeNodePropsResolver RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererWrapArgs RuntimeResolveNodePropsArgs useRuntimeRendererConfig"
             >
               <h3>src/RuntimeRendererConfig.tsx</h3>
               <p class="muted">Referenced module</p>
               <p>
                 <strong>Dependencies:</strong> <code>src/registry.tsx</code>,
-                <code>src/runtimeBindings.ts</code>, <code>src/runtimeMedia.ts</code>
+                <code>src/runtimeBindings.ts</code>,
+                <code>src/runtimeEventOperationLifecycle.ts</code>, <code>src/runtimeMedia.ts</code>
               </p>
               <p>
                 <strong>Exports:</strong> <code>composeRuntimeNodePropsResolver</code>,
@@ -1464,7 +1531,7 @@
                 data-search="createComponentEventFromHandlerArgs function src/runtimeActionRegistry.ts  (args: { readonly node: UiNode; readonly eventName: string; readonly handlerArgs: readonly unknown[]; }) =&gt; ComponentEventDto&lt;string, RuntimeEventPayload&gt;"
               >
                 <h4>createComponentEventFromHandlerArgs</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:216:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:223:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1504,10 +1571,10 @@
               <article
                 class="item"
                 id="symbol-createruntimeactionregistry"
-                data-search="createRuntimeActionRegistry function src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeActionHandlers RuntimeActionRegistry RuntimeBindingOperationExecutor RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter (options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry"
+                data-search="createRuntimeActionRegistry function src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeActionHandlers RuntimeActionRegistry RuntimeBindingOperationExecutor RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeEventOperationLifecycle (options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry"
               >
                 <h4>createRuntimeActionRegistry</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:66:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:71:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1519,12 +1586,13 @@
                     <li class="chip">RuntimeBindingOperationExecutor</li>
                     <li class="chip">RuntimeBindingOperationResultCache</li>
                     <li class="chip">RuntimeBindingOperationResultWriter</li>
+                    <li class="chip">RuntimeEventOperationLifecycle</li>
                   </ul>
                 </div>
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry</pre>
+(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1542,7 +1610,8 @@
                             >{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList;
                             dataBindings?: ComponentDataBindingRegistry; executeAction?:
                             RuntimeActionHandler; executeOperation?:
-                            RuntimeBindingOperationExecutor; operationResults?:
+                            RuntimeBindingOperationExecutor; eventOperationLifecycle?:
+                            RuntimeEventOperationLifecycle; operationResults?:
                             RuntimeBindingOperationResultCache; writeOperationResult?:
                             RuntimeBindingOperationResultWriter; }</code
                           >
@@ -1561,7 +1630,7 @@
                 data-search="dispatchRuntimeComponentEvent function src/runtimeActionRegistry.ts  RuntimeActionHandlers RuntimeComponentEventDispatchArgs (args: RuntimeComponentEventDispatchArgs &amp; { readonly actionHandlers?: RuntimeActionHandlers; }) =&gt; Promise&lt;readonly DataSourceDiagnostic[]&gt;"
               >
                 <h4>dispatchRuntimeComponentEvent</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:102:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:109:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1610,7 +1679,7 @@
                 data-search="resolveRuntimeActionPayload function src/runtimeActionRegistry.ts  RuntimeActionResolutionArgs (payload: object | undefined, args: RuntimeActionResolutionArgs) =&gt; object | undefined"
               >
                 <h4>resolveRuntimeActionPayload</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:230:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:237:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1656,7 +1725,7 @@
                 data-search="resolveRuntimeActionValue function src/runtimeActionRegistry.ts  RuntimeActionResolutionArgs (value: unknown, args: RuntimeActionResolutionArgs) =&gt; object | undefined"
               >
                 <h4>resolveRuntimeActionValue</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:241:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:248:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1702,7 +1771,7 @@
                 data-search="RuntimeActionRegistry type src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeComponentEventDispatchArgs"
               >
                 <h4>RuntimeActionRegistry</h4>
-                <p class="muted">type • <code>src/runtimeActionRegistry.ts:30:1</code></p>
+                <p class="muted">type • <code>src/runtimeActionRegistry.ts:34:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1755,7 +1824,7 @@
                 data-search="RuntimeActionResolutionArgs type src/runtimeActionRegistry.ts "
               >
                 <h4>RuntimeActionResolutionArgs</h4>
-                <p class="muted">type • <code>src/runtimeActionRegistry.ts:41:1</code></p>
+                <p class="muted">type • <code>src/runtimeActionRegistry.ts:45:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1813,7 +1882,7 @@
                 data-search="RuntimeActionResolutionScope type src/runtimeActionRegistry.ts "
               >
                 <h4>RuntimeActionResolutionScope</h4>
-                <p class="muted">type • <code>src/runtimeActionRegistry.ts:35:1</code></p>
+                <p class="muted">type • <code>src/runtimeActionRegistry.ts:39:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -1861,10 +1930,10 @@
               <article
                 class="item"
                 id="symbol-runtimecomponenteventdispatchargs"
-                data-search="RuntimeComponentEventDispatchArgs type src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeBindingOperationExecutor RuntimeBindingOperationResultWriter"
+                data-search="RuntimeComponentEventDispatchArgs type src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeBindingOperationExecutor RuntimeBindingOperationResultWriter RuntimeEventOperationLifecycle"
               >
                 <h4>RuntimeComponentEventDispatchArgs</h4>
-                <p class="muted">type • <code>src/runtimeActionRegistry.ts:45:1</code></p>
+                <p class="muted">type • <code>src/runtimeActionRegistry.ts:49:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -1873,6 +1942,7 @@
                     <li class="chip">RuntimeActionHandler</li>
                     <li class="chip">RuntimeBindingOperationExecutor</li>
                     <li class="chip">RuntimeBindingOperationResultWriter</li>
+                    <li class="chip">RuntimeEventOperationLifecycle</li>
                   </ul>
                 </div>
 
@@ -1925,6 +1995,13 @@
                       <td><code>eventName</code></td>
                       <td>property</td>
                       <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>eventOperationLifecycle</code></td>
+                      <td>property</td>
+                      <td><code>RuntimeEventOperationLifecycle | undefined</code></td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -1984,7 +2061,7 @@
                 data-search="RuntimeEventPropWrapArgs type src/runtimeActionRegistry.ts  RuntimeComponentEventDispatchArgs"
               >
                 <h4>RuntimeEventPropWrapArgs</h4>
-                <p class="muted">type • <code>src/runtimeActionRegistry.ts:56:1</code></p>
+                <p class="muted">type • <code>src/runtimeActionRegistry.ts:61:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -2086,7 +2163,7 @@
                 data-search="wrapRuntimeEventProps function src/runtimeActionRegistry.ts  RuntimeEventPropWrapArgs (args: RuntimeEventPropWrapArgs) =&gt; Record&lt;string, unknown&gt;"
               >
                 <h4>wrapRuntimeEventProps</h4>
-                <p class="muted">function • <code>src/runtimeActionRegistry.ts:179:1</code></p>
+                <p class="muted">function • <code>src/runtimeActionRegistry.ts:186:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -3294,6 +3371,321 @@
               </article>
             </section>
             <section>
+              <h3>src/runtimeEventOperationLifecycle.ts</h3>
+              <article
+                class="item"
+                id="symbol-createruntimeeventoperationbindingcontext"
+                data-search="createRuntimeEventOperationBindingContext function src/runtimeEventOperationLifecycle.ts  RuntimeEventOperationState (context: Record&lt;string, unknown&gt; | undefined, state: RuntimeEventOperationState) =&gt; Record&lt;string, unknown&gt;"
+              >
+                <h4>createRuntimeEventOperationBindingContext</h4>
+                <p class="muted">
+                  function • <code>src/runtimeEventOperationLifecycle.ts:91:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">RuntimeEventOperationState</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(context: Record&lt;string, unknown&gt; | undefined, state: RuntimeEventOperationState) =&gt; Record&lt;string, unknown&gt;</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>context</code></td>
+                        <td><code>Record&lt;string, unknown&gt; | undefined</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td><code>state</code></td>
+                        <td><code>RuntimeEventOperationState</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>Record&lt;string, unknown&gt;</code></p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-createruntimeeventoperationlifecycle"
+                data-search="createRuntimeEventOperationLifecycle function src/runtimeEventOperationLifecycle.ts  RuntimeEventOperationLifecycle RuntimeEventOperationState (onStateChange: (state: RuntimeEventOperationState) =&gt; void) =&gt; RuntimeEventOperationLifecycle"
+              >
+                <h4>createRuntimeEventOperationLifecycle</h4>
+                <p class="muted">
+                  function • <code>src/runtimeEventOperationLifecycle.ts:38:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">RuntimeEventOperationLifecycle</li>
+                    <li class="chip">RuntimeEventOperationState</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>
+(onStateChange: (state: RuntimeEventOperationState) =&gt; void) =&gt; RuntimeEventOperationLifecycle</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>onStateChange</code></td>
+                        <td><code>(state: RuntimeEventOperationState) =&gt; void</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>RuntimeEventOperationLifecycle</code></p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-idle-runtime-event-operation-state"
+                data-search="IDLE_RUNTIME_EVENT_OPERATION_STATE value src/runtimeEventOperationLifecycle.ts "
+              >
+                <h4>IDLE_RUNTIME_EVENT_OPERATION_STATE</h4>
+                <p class="muted">
+                  value • <code>src/runtimeEventOperationLifecycle.ts:26:14</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+              <article
+                class="item"
+                id="symbol-resolveruntimeeventoperationerrormessage"
+                data-search="resolveRuntimeEventOperationErrorMessage function src/runtimeEventOperationLifecycle.ts  (diagnostics: readonly DataSourceDiagnostic[]) =&gt; string"
+              >
+                <h4>resolveRuntimeEventOperationErrorMessage</h4>
+                <p class="muted">
+                  function • <code>src/runtimeEventOperationLifecycle.ts:112:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+                <div>
+                  <h5>Signature</h5>
+                  <pre>(diagnostics: readonly DataSourceDiagnostic[]) =&gt; string</pre>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Required</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>diagnostics</code></td>
+                        <td><code>readonly DataSourceDiagnostic[]</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p><strong>Returns:</strong> <code>string</code></p>
+                </div>
+              </article>
+              <article
+                class="item"
+                id="symbol-runtimeeventoperationinvocation"
+                data-search="RuntimeEventOperationInvocation type src/runtimeEventOperationLifecycle.ts "
+              >
+                <h4>RuntimeEventOperationInvocation</h4>
+                <p class="muted">type • <code>src/runtimeEventOperationLifecycle.ts:13:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>id</code></td>
+                      <td>property</td>
+                      <td><code>number</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-runtimeeventoperationlifecycle"
+                data-search="RuntimeEventOperationLifecycle type src/runtimeEventOperationLifecycle.ts  RuntimeEventOperationInvocation"
+              >
+                <h4>RuntimeEventOperationLifecycle</h4>
+                <p class="muted">type • <code>src/runtimeEventOperationLifecycle.ts:17:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">RuntimeEventOperationInvocation</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>fail</code></td>
+                      <td>method</td>
+                      <td>
+                        <code
+                          >(invocation: RuntimeEventOperationInvocation, message: string) =&gt;
+                          void</code
+                        >
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>start</code></td>
+                      <td>method</td>
+                      <td>
+                        <code
+                          >(args: { readonly nodeId: string; readonly operation:
+                          BindingOperationRef; }) =&gt; RuntimeEventOperationInvocation |
+                          undefined</code
+                        >
+                      </td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>succeed</code></td>
+                      <td>method</td>
+                      <td><code>(invocation: RuntimeEventOperationInvocation) =&gt; void</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-runtimeeventoperationstate"
+                data-search="RuntimeEventOperationState type src/runtimeEventOperationLifecycle.ts  RuntimeEventOperationStatus"
+              >
+                <h4>RuntimeEventOperationState</h4>
+                <p class="muted">type • <code>src/runtimeEventOperationLifecycle.ts:5:1</code></p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div>
+                  <strong>Related symbols:</strong>
+                  <ul class="chips">
+                    <li class="chip">RuntimeEventOperationStatus</li>
+                  </ul>
+                </div>
+
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Member</th>
+                      <th>Kind</th>
+                      <th>Type</th>
+                      <th>Required</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>errorMessage</code></td>
+                      <td>property</td>
+                      <td><code>string</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>loading</code></td>
+                      <td>property</td>
+                      <td><code>boolean</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>nodeId</code></td>
+                      <td>property</td>
+                      <td><code>string | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>operation</code></td>
+                      <td>property</td>
+                      <td><code>BindingOperationRef | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>status</code></td>
+                      <td>property</td>
+                      <td><code>RuntimeEventOperationStatus</code></td>
+                      <td>yes</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </article>
+              <article
+                class="item"
+                id="symbol-runtimeeventoperationstatus"
+                data-search="RuntimeEventOperationStatus unknown src/runtimeEventOperationLifecycle.ts "
+              >
+                <h4>RuntimeEventOperationStatus</h4>
+                <p class="muted">
+                  unknown • <code>src/runtimeEventOperationLifecycle.ts:3:1</code>
+                </p>
+
+                <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+                <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+              </article>
+            </section>
+            <section>
               <h3>src/runtimeManifest.ts</h3>
               <article
                 class="item"
@@ -3791,7 +4183,7 @@
                 data-search="RuntimeRenderer function src/RuntimeRenderer.tsx  RuntimeRendererProps (props: RuntimeRendererProps) =&gt; React.JSX.Element"
               >
                 <h4>RuntimeRenderer</h4>
-                <p class="muted">function • <code>src/RuntimeRenderer.tsx:76:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRenderer.tsx:81:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -3830,7 +4222,7 @@
                 data-search="RuntimeRendererProps type src/RuntimeRenderer.tsx  RuntimeActionHandler RuntimeBindingOperationExecutor RuntimeMediaAssetResolver RuntimeRendererConfig RuntimeRendererWrapArgs"
               >
                 <h4>RuntimeRendererProps</h4>
-                <p class="muted">type • <code>src/RuntimeRenderer.tsx:56:1</code></p>
+                <p class="muted">type • <code>src/RuntimeRenderer.tsx:61:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4022,7 +4414,7 @@
                 data-search="composeRuntimeNodePropsResolver function src/RuntimeRendererConfig.tsx  RuntimeNodePropsResolver (localResolver?: RuntimeNodePropsResolver | undefined, inheritedResolver?: RuntimeNodePropsResolver | undefined) =&gt; RuntimeNodePropsResolver | undefined"
               >
                 <h4>composeRuntimeNodePropsResolver</h4>
-                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:89:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:95:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4068,7 +4460,7 @@
                 data-search="composeRuntimeRendererWrapNode function src/RuntimeRendererConfig.tsx  RuntimeRendererWrapArgs (innerWrapNode?: ((args: RuntimeRendererWrapArgs) =&gt; React.ReactNode) | undefined, outerWrapNode?: ((args: RuntimeRendererWrapArgs) =&gt; React.ReactNode) | undefined) =&gt; ((args: RuntimeRendererWrapArgs) =&gt; React.ReactNode) | undefined"
               >
                 <h4>composeRuntimeRendererWrapNode</h4>
-                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:74:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:80:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4127,7 +4519,7 @@
                 data-search="mergeRuntimeRendererConfig function src/RuntimeRendererConfig.tsx  RuntimeRendererConfig (localConfig: RuntimeRendererConfig | undefined, inheritedConfig: RuntimeRendererConfig | undefined) =&gt; RuntimeRendererConfig"
               >
                 <h4>mergeRuntimeRendererConfig</h4>
-                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:107:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:113:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4173,7 +4565,7 @@
                 data-search="RuntimeAction unknown src/RuntimeRendererConfig.tsx "
               >
                 <h4>RuntimeAction</h4>
-                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:42:1</code></p>
+                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:46:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -4184,7 +4576,7 @@
                 data-search="RuntimeActionExecutor unknown src/RuntimeRendererConfig.tsx "
               >
                 <h4>RuntimeActionExecutor</h4>
-                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:45:1</code></p>
+                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:49:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -4195,7 +4587,7 @@
                 data-search="RuntimeActionHandler unknown src/RuntimeRendererConfig.tsx "
               >
                 <h4>RuntimeActionHandler</h4>
-                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:43:1</code></p>
+                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:47:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -4206,7 +4598,7 @@
                 data-search="RuntimeActionHandlerArgs type src/RuntimeRendererConfig.tsx  RuntimeAction"
               >
                 <h4>RuntimeActionHandlerArgs</h4>
-                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:35:1</code></p>
+                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:39:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4264,7 +4656,7 @@
                 data-search="RuntimeActionHandlers unknown src/RuntimeRendererConfig.tsx "
               >
                 <h4>RuntimeActionHandlers</h4>
-                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:44:1</code></p>
+                <p class="muted">unknown • <code>src/RuntimeRendererConfig.tsx:48:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -4272,10 +4664,10 @@
               <article
                 class="item"
                 id="symbol-runtimerendererconfig"
-                data-search="RuntimeRendererConfig type src/RuntimeRendererConfig.tsx  RuntimeActionHandler RuntimeActionHandlers RuntimeBindingOperationExecutor RuntimeBindingOperationResultWriter RuntimeMediaAssetResolver RuntimeNodePropsResolver RuntimeRendererWrapArgs"
+                data-search="RuntimeRendererConfig type src/RuntimeRendererConfig.tsx  RuntimeActionHandler RuntimeActionHandlers RuntimeBindingOperationExecutor RuntimeBindingOperationResultWriter RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeMediaAssetResolver RuntimeNodePropsResolver RuntimeRendererWrapArgs"
               >
                 <h4>RuntimeRendererConfig</h4>
-                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:47:1</code></p>
+                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:51:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4285,6 +4677,8 @@
                     <li class="chip">RuntimeActionHandlers</li>
                     <li class="chip">RuntimeBindingOperationExecutor</li>
                     <li class="chip">RuntimeBindingOperationResultWriter</li>
+                    <li class="chip">RuntimeEventOperationLifecycle</li>
+                    <li class="chip">RuntimeEventOperationState</li>
                     <li class="chip">RuntimeMediaAssetResolver</li>
                     <li class="chip">RuntimeNodePropsResolver</li>
                     <li class="chip">RuntimeRendererWrapArgs</li>
@@ -4354,6 +4748,20 @@
                       <td><code>disableActions</code></td>
                       <td>property</td>
                       <td><code>boolean | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>eventOperationLifecycle</code></td>
+                      <td>property</td>
+                      <td><code>RuntimeEventOperationLifecycle | undefined</code></td>
+                      <td>no</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td><code>eventOperationState</code></td>
+                      <td>property</td>
+                      <td><code>RuntimeEventOperationState | undefined</code></td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -4469,7 +4877,7 @@
                 data-search="RuntimeRendererConfigProvider function src/RuntimeRendererConfig.tsx  RuntimeRendererConfig (props: { value: RuntimeRendererConfig; children: React.ReactNode; }) =&gt; React.JSX.Element"
               >
                 <h4>RuntimeRendererConfigProvider</h4>
-                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:155:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:164:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -4511,7 +4919,7 @@
                 data-search="RuntimeRendererWrapArgs type src/RuntimeRendererConfig.tsx "
               >
                 <h4>RuntimeRendererWrapArgs</h4>
-                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:29:1</code></p>
+                <p class="muted">type • <code>src/RuntimeRendererConfig.tsx:33:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -4557,7 +4965,7 @@
                 data-search="useRuntimeRendererConfig function src/RuntimeRendererConfig.tsx  RuntimeRendererConfig () =&gt; RuntimeRendererConfig"
               >
                 <h4>useRuntimeRendererConfig</h4>
-                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:168:1</code></p>
+                <p class="muted">function • <code>src/RuntimeRendererConfig.tsx:177:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div>
@@ -5226,7 +5634,7 @@
               data-search="RuntimeRenderer src/RuntimeRenderer.tsx  apis ApiDefinitionList | undefined bindingContext Record&lt;string, unknown&gt; | undefined dataBindings ComponentDataBindingRegistry | undefined dbAdapter DbAdapter | undefined dbRealtimeAdapter DbRealtimeAdapter | undefined disableActions boolean | undefined executeAction RuntimeActionExecutor | undefined executeOperation RuntimeBindingOperationExecutor | undefined isRoot boolean | undefined mediaAssets MediaAssetRegistry | undefined node UiNode onDiagnostics (diagnostics: readonly DataSourceDiagnostic[]) =&gt; void | undefined operationResults RuntimeBindingOperationResultCache | undefined registry ComponentRegistry | undefined resolveMediaAsset RuntimeMediaAssetResolver | undefined stateAdapter StateAdapter | undefined wrapNode (args: RuntimeRendererWrapArgs) =&gt; React.ReactNode | undefined"
             >
               <h3>RuntimeRenderer</h3>
-              <p class="muted"><code>src/RuntimeRenderer.tsx:76:1</code></p>
+              <p class="muted"><code>src/RuntimeRenderer.tsx:81:1</code></p>
 
               <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
               <table>
@@ -5356,7 +5764,7 @@
               data-search="RuntimeRendererConfigProvider src/RuntimeRendererConfig.tsx  children React.ReactNode | undefined value RuntimeRendererConfig"
             >
               <h3>RuntimeRendererConfigProvider</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:155:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:164:1</code></p>
 
               <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
               <table>
@@ -5489,7 +5897,9 @@
                 package__ankhorage_runtime -.-&gt; module_src_runtimeActionRegistry_ts
                 module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeApiSelection_ts
                 module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeBindings_ts
-                module_src_runtimeActionRegistry_ts --&gt; module_src_RuntimeRendererConfig_tsx
+                module_src_runtimeActionRegistry_ts --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_runtimeActionRegistry_ts
+                --&gt; module_src_RuntimeRendererConfig_tsx
                 module_src_runtimeApiOperations_test_ts[&quot;src/runtimeApiOperations.test.ts&quot;]
                 package__ankhorage_runtime -.-&gt; module_src_runtimeApiOperations_test_ts
                 module_src_runtimeApiOperations_test_ts --&gt; module_src_runtimeApiOperations_ts
@@ -5523,6 +5933,14 @@
                 package__ankhorage_runtime -.-&gt; module_src_runtimeEventExecution_ts
                 module_src_runtimeEventExecution_ts --&gt; module_src_runtimeActionRegistry_ts
                 module_src_runtimeEventExecution_ts --&gt; module_src_RuntimeRendererConfig_tsx
+                module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+                package__ankhorage_runtime -.-&gt; module_src_runtimeEventOperationLifecycle_test_ts
+                module_src_runtimeEventOperationLifecycle_test_ts --&gt;
+                module_src_runtimeActionRegistry_ts
+                module_src_runtimeEventOperationLifecycle_test_ts --&gt;
+                module_src_runtimeEventOperationLifecycle_ts
+                module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
+                package__ankhorage_runtime -.-&gt; module_src_runtimeEventOperationLifecycle_ts
                 module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
                 package__ankhorage_runtime -.-&gt; module_src_runtimeImageMedia_test_ts
                 module_src_runtimeImageMedia_test_ts --&gt; module_src_runtimeMedia_ts
@@ -5560,6 +5978,7 @@
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeBindings_ts
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeDbPersist_ts
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventExecution_ts
+                module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMedia_ts
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMediaCache_tsx
                 module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeNodeProps_ts
@@ -5576,7 +5995,9 @@
                 package__ankhorage_runtime -.-&gt; module_src_RuntimeRendererConfig_tsx
                 module_src_RuntimeRendererConfig_tsx --&gt; module_src_registry_tsx
                 module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeBindings_ts
-                module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeMedia_ts
+                module_src_RuntimeRendererConfig_tsx --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_RuntimeRendererConfig_tsx
+                --&gt; module_src_runtimeMedia_ts
                 module_src_runtimeRepeat_test_ts[&quot;src/runtimeRepeat.test.ts&quot;]
                 package__ankhorage_runtime -.-&gt; module_src_runtimeRepeat_test_ts
                 module_src_runtimeRepeat_test_ts --&gt; module_src_runtimeActionRegistry_ts
@@ -5687,6 +6108,7 @@ graph TD
   package__ankhorage_runtime -.-&gt; module_src_runtimeActionRegistry_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeApiSelection_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeBindings_ts
+  module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_runtimeApiOperations_test_ts[&quot;src/runtimeApiOperations.test.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimeApiOperations_test_ts
@@ -5721,6 +6143,12 @@ graph TD
   package__ankhorage_runtime -.-&gt; module_src_runtimeEventExecution_ts
   module_src_runtimeEventExecution_ts --&gt; module_src_runtimeActionRegistry_ts
   module_src_runtimeEventExecution_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeEventOperationLifecycle_test_ts
+  module_src_runtimeEventOperationLifecycle_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeEventOperationLifecycle_test_ts --&gt; module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimeImageMedia_test_ts
   module_src_runtimeImageMedia_test_ts --&gt; module_src_runtimeMedia_ts
@@ -5758,6 +6186,7 @@ graph TD
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeBindings_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeDbPersist_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventExecution_ts
+  module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMedia_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMediaCache_tsx
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeNodeProps_ts
@@ -5773,6 +6202,7 @@ graph TD
   package__ankhorage_runtime -.-&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeMedia_ts
   module_src_runtimeRepeat_test_ts[&quot;src/runtimeRepeat.test.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimeRepeat_test_ts
@@ -5863,6 +6293,8 @@ graph TD
                 module_src_runtimeDbPersist_ts[&quot;src/runtimeDbPersist.ts&quot;]
                 module_src_runtimeEventExecution_test_ts[&quot;src/runtimeEventExecution.test.ts&quot;]
                 module_src_runtimeEventExecution_ts[&quot;src/runtimeEventExecution.ts&quot;]
+                module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+                module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
                 module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
                 module_src_runtimeManifest_ts[&quot;src/runtimeManifest.ts&quot;]
                 module_src_runtimeMedia_test_ts[&quot;src/runtimeMedia.test.ts&quot;]
@@ -5907,8 +6339,9 @@ graph TD
                 module_src_runtimeBindings_ts module_src_runtimeActionRegistry_ts --&gt;
                 module_src_runtimeApiSelection_ts module_src_runtimeActionRegistry_ts --&gt;
                 module_src_runtimeBindings_ts module_src_runtimeActionRegistry_ts --&gt;
-                module_src_RuntimeRendererConfig_tsx module_src_runtimeApiOperations_test_ts --&gt;
-                module_src_runtimeApiOperations_ts module_src_runtimeApiOperations_ts --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_runtimeActionRegistry_ts
+                --&gt; module_src_RuntimeRendererConfig_tsx module_src_runtimeApiOperations_test_ts
+                --&gt; module_src_runtimeApiOperations_ts module_src_runtimeApiOperations_ts --&gt;
                 module_src_runtimeBindings_ts module_src_runtimeApiSelection_test_ts --&gt;
                 module_src_runtimeApiSelection_ts module_src_runtimeBindings_test_ts --&gt;
                 module_src_runtimeApiSelection_ts module_src_runtimeBindings_test_ts --&gt;
@@ -5920,8 +6353,12 @@ graph TD
                 module_src_RuntimeRendererConfig_tsx module_src_runtimeEventExecution_test_ts --&gt;
                 module_src_runtimeEventExecution_ts module_src_runtimeEventExecution_ts --&gt;
                 module_src_runtimeActionRegistry_ts module_src_runtimeEventExecution_ts --&gt;
-                module_src_RuntimeRendererConfig_tsx module_src_runtimeImageMedia_test_ts --&gt;
-                module_src_runtimeMedia_ts module_src_runtimeImageMedia_test_ts --&gt;
+                module_src_RuntimeRendererConfig_tsx
+                module_src_runtimeEventOperationLifecycle_test_ts --&gt;
+                module_src_runtimeActionRegistry_ts
+                module_src_runtimeEventOperationLifecycle_test_ts --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_runtimeImageMedia_test_ts
+                --&gt; module_src_runtimeMedia_ts module_src_runtimeImageMedia_test_ts --&gt;
                 module_src_runtimeNodeProps_ts module_src_runtimeMedia_test_ts --&gt;
                 module_src_runtimeMedia_ts module_src_runtimeMediaCache_tsx --&gt;
                 module_src_runtimeMedia_ts module_src_runtimeMediaConfig_test_ts --&gt;
@@ -5936,6 +6373,7 @@ graph TD
                 module_src_runtimeBindings_ts module_src_RuntimeRenderer_tsx --&gt;
                 module_src_runtimeDbPersist_ts module_src_RuntimeRenderer_tsx --&gt;
                 module_src_runtimeEventExecution_ts module_src_RuntimeRenderer_tsx --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_RuntimeRenderer_tsx --&gt;
                 module_src_runtimeMedia_ts module_src_RuntimeRenderer_tsx --&gt;
                 module_src_runtimeMediaCache_tsx module_src_RuntimeRenderer_tsx --&gt;
                 module_src_runtimeNodeProps_ts module_src_RuntimeRenderer_tsx --&gt;
@@ -5947,7 +6385,8 @@ graph TD
                 module_src_RuntimeRendererConfig_tsx module_src_RuntimeRendererConfig_tsx --&gt;
                 module_src_registry_tsx module_src_RuntimeRendererConfig_tsx --&gt;
                 module_src_runtimeBindings_ts module_src_RuntimeRendererConfig_tsx --&gt;
-                module_src_runtimeMedia_ts module_src_runtimeRepeat_test_ts --&gt;
+                module_src_runtimeEventOperationLifecycle_ts module_src_RuntimeRendererConfig_tsx
+                --&gt; module_src_runtimeMedia_ts module_src_runtimeRepeat_test_ts --&gt;
                 module_src_runtimeActionRegistry_ts module_src_runtimeRepeat_test_ts --&gt;
                 module_src_runtimeBindings_ts module_src_runtimeRepeat_test_ts --&gt;
                 module_src_runtimeRepeat_ts module_src_runtimeRepeat_ts --&gt;
@@ -6005,6 +6444,8 @@ graph LR
   module_src_runtimeDbPersist_ts[&quot;src/runtimeDbPersist.ts&quot;]
   module_src_runtimeEventExecution_test_ts[&quot;src/runtimeEventExecution.test.ts&quot;]
   module_src_runtimeEventExecution_ts[&quot;src/runtimeEventExecution.ts&quot;]
+  module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+  module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
   module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
   module_src_runtimeManifest_ts[&quot;src/runtimeManifest.ts&quot;]
   module_src_runtimeMedia_test_ts[&quot;src/runtimeMedia.test.ts&quot;]
@@ -6046,6 +6487,7 @@ graph LR
   module_src_runtimeActionRegistry_operations_test_ts --&gt; module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeApiSelection_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeBindings_ts
+  module_src_runtimeActionRegistry_ts --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeActionRegistry_ts --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_runtimeApiOperations_test_ts --&gt; module_src_runtimeApiOperations_ts
   module_src_runtimeApiOperations_ts --&gt; module_src_runtimeBindings_ts
@@ -6060,6 +6502,8 @@ graph LR
   module_src_runtimeEventExecution_test_ts --&gt; module_src_runtimeEventExecution_ts
   module_src_runtimeEventExecution_ts --&gt; module_src_runtimeActionRegistry_ts
   module_src_runtimeEventExecution_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeEventOperationLifecycle_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeEventOperationLifecycle_test_ts --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeImageMedia_test_ts --&gt; module_src_runtimeMedia_ts
   module_src_runtimeImageMedia_test_ts --&gt; module_src_runtimeNodeProps_ts
   module_src_runtimeMedia_test_ts --&gt; module_src_runtimeMedia_ts
@@ -6075,6 +6519,7 @@ graph LR
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeBindings_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeDbPersist_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventExecution_ts
+  module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMedia_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeMediaCache_tsx
   module_src_RuntimeRenderer_tsx --&gt; module_src_runtimeNodeProps_ts
@@ -6086,6 +6531,7 @@ graph LR
   module_src_RuntimeRendererConfig_test_tsx --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeMedia_ts
   module_src_runtimeRepeat_test_ts --&gt; module_src_runtimeActionRegistry_ts
   module_src_runtimeRepeat_test_ts --&gt; module_src_runtimeBindings_ts
@@ -6143,6 +6589,8 @@ graph LR
                 module_src_runtimeDbPersist_ts[&quot;src/runtimeDbPersist.ts&quot;]
                 module_src_runtimeEventExecution_test_ts[&quot;src/runtimeEventExecution.test.ts&quot;]
                 module_src_runtimeEventExecution_ts[&quot;src/runtimeEventExecution.ts&quot;]
+                module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+                module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
                 module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
                 module_src_runtimeManifest_ts[&quot;src/runtimeManifest.ts&quot;]
                 module_src_runtimeMedia_test_ts[&quot;src/runtimeMedia.test.ts&quot;]
@@ -6204,7 +6652,8 @@ graph LR
                 export_createRuntimeActionRegistry -.-&gt; export_RuntimeBindingOperationExecutor
                 export_createRuntimeActionRegistry -.-&gt; export_RuntimeBindingOperationResultCache
                 export_createRuntimeActionRegistry -.-&gt;
-                export_RuntimeBindingOperationResultWriter
+                export_RuntimeBindingOperationResultWriter export_createRuntimeActionRegistry
+                -.-&gt; export_RuntimeEventOperationLifecycle
                 export_createRuntimeApiOperationExecutor[&quot;createRuntimeApiOperationExecutor&quot;]
                 module_src_runtimeApiOperations_ts --&gt; export_createRuntimeApiOperationExecutor
                 export_createRuntimeApiOperationExecutor -.-&gt;
@@ -6212,6 +6661,17 @@ graph LR
                 -.-&gt; export_RuntimeBindingOperationExecutor
                 export_createRuntimeBindingOperationKey[&quot;createRuntimeBindingOperationKey&quot;]
                 module_src_runtimeBindings_ts --&gt; export_createRuntimeBindingOperationKey
+                export_createRuntimeEventOperationBindingContext[&quot;createRuntimeEventOperationBindingContext&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_createRuntimeEventOperationBindingContext
+                export_createRuntimeEventOperationBindingContext -.-&gt;
+                export_RuntimeEventOperationState
+                export_createRuntimeEventOperationLifecycle[&quot;createRuntimeEventOperationLifecycle&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_createRuntimeEventOperationLifecycle
+                export_createRuntimeEventOperationLifecycle -.-&gt;
+                export_RuntimeEventOperationLifecycle export_createRuntimeEventOperationLifecycle
+                -.-&gt; export_RuntimeEventOperationState
                 export_createRuntimeMemoryStateAdapter[&quot;createRuntimeMemoryStateAdapter&quot;]
                 module_src_runtimeStateAdapter_ts --&gt; export_createRuntimeMemoryStateAdapter
                 export_createRuntimeMemoryStateAdapter -.-&gt;
@@ -6246,6 +6706,9 @@ graph LR
                 export_executeRuntimeScreenOperationLoaders -.-&gt;
                 export_RuntimeBindingResolutionContext export_executeRuntimeScreenOperationLoaders
                 -.-&gt; export_RuntimeScreenOperationLoaderExecutionResult
+                export_IDLE_RUNTIME_EVENT_OPERATION_STATE[&quot;IDLE_RUNTIME_EVENT_OPERATION_STATE&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_IDLE_RUNTIME_EVENT_OPERATION_STATE
                 export_ManifestContext[&quot;ManifestContext&quot;] module_src_ManifestContext_tsx
                 --&gt; export_ManifestContext export_ManifestProvider[&quot;ManifestProvider&quot;]
                 module_src_ManifestContext_tsx --&gt; export_ManifestProvider
@@ -6278,6 +6741,9 @@ graph LR
                 export_resolveRuntimeBindingValueSync[&quot;resolveRuntimeBindingValueSync&quot;]
                 module_src_runtimeBindings_ts --&gt; export_resolveRuntimeBindingValueSync
                 export_resolveRuntimeBindingValueSync -.-&gt; export_RuntimeBindingResolutionContext
+                export_resolveRuntimeEventOperationErrorMessage[&quot;resolveRuntimeEventOperationErrorMessage&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_resolveRuntimeEventOperationErrorMessage
                 export_resolveScreenOperationLoaders[&quot;resolveScreenOperationLoaders&quot;]
                 module_src_runtimeScreenLoaders_ts --&gt; export_resolveScreenOperationLoaders
                 export_RuntimeAction[&quot;RuntimeAction&quot;] module_src_RuntimeRendererConfig_tsx
@@ -6338,6 +6804,8 @@ graph LR
                 export_RuntimeComponentEventDispatchArgs -.-&gt;
                 export_RuntimeBindingOperationExecutor export_RuntimeComponentEventDispatchArgs
                 -.-&gt; export_RuntimeBindingOperationResultWriter
+                export_RuntimeComponentEventDispatchArgs -.-&gt;
+                export_RuntimeEventOperationLifecycle
                 export_RuntimeDbPersistError[&quot;RuntimeDbPersistError&quot;]
                 module_src_runtimeDbPersist_ts --&gt; export_RuntimeDbPersistError
                 export_RuntimeDbPersistExecutionResult[&quot;RuntimeDbPersistExecutionResult&quot;]
@@ -6348,6 +6816,20 @@ graph LR
                 module_src_runtimeManifest_ts --&gt; export_RuntimeDiagnostic
                 export_RuntimeEventDiagnosticsReporter[&quot;RuntimeEventDiagnosticsReporter&quot;]
                 module_src_runtimeEventExecution_ts --&gt; export_RuntimeEventDiagnosticsReporter
+                export_RuntimeEventOperationInvocation[&quot;RuntimeEventOperationInvocation&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_RuntimeEventOperationInvocation
+                export_RuntimeEventOperationLifecycle[&quot;RuntimeEventOperationLifecycle&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_RuntimeEventOperationLifecycle export_RuntimeEventOperationLifecycle -.-&gt;
+                export_RuntimeEventOperationInvocation
+                export_RuntimeEventOperationState[&quot;RuntimeEventOperationState&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_RuntimeEventOperationState export_RuntimeEventOperationState -.-&gt;
+                export_RuntimeEventOperationStatus
+                export_RuntimeEventOperationStatus[&quot;RuntimeEventOperationStatus&quot;]
+                module_src_runtimeEventOperationLifecycle_ts --&gt;
+                export_RuntimeEventOperationStatus
                 export_RuntimeEventPropWrapArgs[&quot;RuntimeEventPropWrapArgs&quot;]
                 module_src_runtimeActionRegistry_ts --&gt; export_RuntimeEventPropWrapArgs
                 export_RuntimeEventPropWrapArgs -.-&gt; export_RuntimeComponentEventDispatchArgs
@@ -6383,6 +6865,8 @@ graph LR
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeActionHandlers
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeBindingOperationExecutor
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeBindingOperationResultWriter
+                export_RuntimeRendererConfig -.-&gt; export_RuntimeEventOperationLifecycle
+                export_RuntimeRendererConfig -.-&gt; export_RuntimeEventOperationState
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeMediaAssetResolver
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeNodePropsResolver
                 export_RuntimeRendererConfig -.-&gt; export_RuntimeRendererWrapArgs
@@ -6466,6 +6950,8 @@ graph LR
   module_src_runtimeDbPersist_ts[&quot;src/runtimeDbPersist.ts&quot;]
   module_src_runtimeEventExecution_test_ts[&quot;src/runtimeEventExecution.test.ts&quot;]
   module_src_runtimeEventExecution_ts[&quot;src/runtimeEventExecution.ts&quot;]
+  module_src_runtimeEventOperationLifecycle_test_ts[&quot;src/runtimeEventOperationLifecycle.test.ts&quot;]
+  module_src_runtimeEventOperationLifecycle_ts[&quot;src/runtimeEventOperationLifecycle.ts&quot;]
   module_src_runtimeImageMedia_test_ts[&quot;src/runtimeImageMedia.test.ts&quot;]
   module_src_runtimeManifest_ts[&quot;src/runtimeManifest.ts&quot;]
   module_src_runtimeMedia_test_ts[&quot;src/runtimeMedia.test.ts&quot;]
@@ -6524,12 +7010,20 @@ graph LR
   export_createRuntimeActionRegistry -.-&gt; export_RuntimeBindingOperationExecutor
   export_createRuntimeActionRegistry -.-&gt; export_RuntimeBindingOperationResultCache
   export_createRuntimeActionRegistry -.-&gt; export_RuntimeBindingOperationResultWriter
+  export_createRuntimeActionRegistry -.-&gt; export_RuntimeEventOperationLifecycle
   export_createRuntimeApiOperationExecutor[&quot;createRuntimeApiOperationExecutor&quot;]
   module_src_runtimeApiOperations_ts --&gt; export_createRuntimeApiOperationExecutor
   export_createRuntimeApiOperationExecutor -.-&gt; export_RuntimeApiOperationExecutorOptions
   export_createRuntimeApiOperationExecutor -.-&gt; export_RuntimeBindingOperationExecutor
   export_createRuntimeBindingOperationKey[&quot;createRuntimeBindingOperationKey&quot;]
   module_src_runtimeBindings_ts --&gt; export_createRuntimeBindingOperationKey
+  export_createRuntimeEventOperationBindingContext[&quot;createRuntimeEventOperationBindingContext&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_createRuntimeEventOperationBindingContext
+  export_createRuntimeEventOperationBindingContext -.-&gt; export_RuntimeEventOperationState
+  export_createRuntimeEventOperationLifecycle[&quot;createRuntimeEventOperationLifecycle&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_createRuntimeEventOperationLifecycle
+  export_createRuntimeEventOperationLifecycle -.-&gt; export_RuntimeEventOperationLifecycle
+  export_createRuntimeEventOperationLifecycle -.-&gt; export_RuntimeEventOperationState
   export_createRuntimeMemoryStateAdapter[&quot;createRuntimeMemoryStateAdapter&quot;]
   module_src_runtimeStateAdapter_ts --&gt; export_createRuntimeMemoryStateAdapter
   export_createRuntimeMemoryStateAdapter -.-&gt; export_RuntimeMemoryStateAdapterOptions
@@ -6555,6 +7049,8 @@ graph LR
   export_executeRuntimeScreenOperationLoaders -.-&gt; export_RuntimeBindingOperationResultCache
   export_executeRuntimeScreenOperationLoaders -.-&gt; export_RuntimeBindingResolutionContext
   export_executeRuntimeScreenOperationLoaders -.-&gt; export_RuntimeScreenOperationLoaderExecutionResult
+  export_IDLE_RUNTIME_EVENT_OPERATION_STATE[&quot;IDLE_RUNTIME_EVENT_OPERATION_STATE&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_IDLE_RUNTIME_EVENT_OPERATION_STATE
   export_ManifestContext[&quot;ManifestContext&quot;]
   module_src_ManifestContext_tsx --&gt; export_ManifestContext
   export_ManifestProvider[&quot;ManifestProvider&quot;]
@@ -6588,6 +7084,8 @@ graph LR
   export_resolveRuntimeBindingValueSync[&quot;resolveRuntimeBindingValueSync&quot;]
   module_src_runtimeBindings_ts --&gt; export_resolveRuntimeBindingValueSync
   export_resolveRuntimeBindingValueSync -.-&gt; export_RuntimeBindingResolutionContext
+  export_resolveRuntimeEventOperationErrorMessage[&quot;resolveRuntimeEventOperationErrorMessage&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_resolveRuntimeEventOperationErrorMessage
   export_resolveScreenOperationLoaders[&quot;resolveScreenOperationLoaders&quot;]
   module_src_runtimeScreenLoaders_ts --&gt; export_resolveScreenOperationLoaders
   export_RuntimeAction[&quot;RuntimeAction&quot;]
@@ -6646,6 +7144,7 @@ graph LR
   export_RuntimeComponentEventDispatchArgs -.-&gt; export_RuntimeActionHandler
   export_RuntimeComponentEventDispatchArgs -.-&gt; export_RuntimeBindingOperationExecutor
   export_RuntimeComponentEventDispatchArgs -.-&gt; export_RuntimeBindingOperationResultWriter
+  export_RuntimeComponentEventDispatchArgs -.-&gt; export_RuntimeEventOperationLifecycle
   export_RuntimeDbPersistError[&quot;RuntimeDbPersistError&quot;]
   module_src_runtimeDbPersist_ts --&gt; export_RuntimeDbPersistError
   export_RuntimeDbPersistExecutionResult[&quot;RuntimeDbPersistExecutionResult&quot;]
@@ -6656,6 +7155,16 @@ graph LR
   module_src_runtimeManifest_ts --&gt; export_RuntimeDiagnostic
   export_RuntimeEventDiagnosticsReporter[&quot;RuntimeEventDiagnosticsReporter&quot;]
   module_src_runtimeEventExecution_ts --&gt; export_RuntimeEventDiagnosticsReporter
+  export_RuntimeEventOperationInvocation[&quot;RuntimeEventOperationInvocation&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_RuntimeEventOperationInvocation
+  export_RuntimeEventOperationLifecycle[&quot;RuntimeEventOperationLifecycle&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_RuntimeEventOperationLifecycle
+  export_RuntimeEventOperationLifecycle -.-&gt; export_RuntimeEventOperationInvocation
+  export_RuntimeEventOperationState[&quot;RuntimeEventOperationState&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_RuntimeEventOperationState
+  export_RuntimeEventOperationState -.-&gt; export_RuntimeEventOperationStatus
+  export_RuntimeEventOperationStatus[&quot;RuntimeEventOperationStatus&quot;]
+  module_src_runtimeEventOperationLifecycle_ts --&gt; export_RuntimeEventOperationStatus
   export_RuntimeEventPropWrapArgs[&quot;RuntimeEventPropWrapArgs&quot;]
   module_src_runtimeActionRegistry_ts --&gt; export_RuntimeEventPropWrapArgs
   export_RuntimeEventPropWrapArgs -.-&gt; export_RuntimeComponentEventDispatchArgs
@@ -6692,6 +7201,8 @@ graph LR
   export_RuntimeRendererConfig -.-&gt; export_RuntimeActionHandlers
   export_RuntimeRendererConfig -.-&gt; export_RuntimeBindingOperationExecutor
   export_RuntimeRendererConfig -.-&gt; export_RuntimeBindingOperationResultWriter
+  export_RuntimeRendererConfig -.-&gt; export_RuntimeEventOperationLifecycle
+  export_RuntimeRendererConfig -.-&gt; export_RuntimeEventOperationState
   export_RuntimeRendererConfig -.-&gt; export_RuntimeMediaAssetResolver
   export_RuntimeRendererConfig -.-&gt; export_RuntimeNodePropsResolver
   export_RuntimeRendererConfig -.-&gt; export_RuntimeRendererWrapArgs
@@ -6810,6 +7321,34 @@ sequenceDiagram
   participant_createPayloadForEvent--&gt;&gt;participant_createComponentEventFromHandlerArgs: return
   participant_createComponentEventFromHandlerArgs-&gt;&gt;participant_localEventNameToEventType: localEventNameToEventType()
   participant_localEventNameToEventType--&gt;&gt;participant_createComponentEventFromHandlerArgs: return
+</pre>
+              </details>
+            </article>
+            <article
+              class="item"
+              data-search="createRuntimeEventOperationBindingContext sequence diagrams/sequences/create-runtime-event-operation-binding-context.mmd"
+            >
+              <h3>createRuntimeEventOperationBindingContext sequence</h3>
+              <p class="muted">
+                <code>diagrams/sequences/create-runtime-event-operation-binding-context.mmd</code>
+              </p>
+              <div class="mermaid">
+                sequenceDiagram participant participant_createRuntimeEventOperationBindingContext as
+                createRuntimeEventOperationBindingContext participant participant_isRecord as
+                isRecord
+                participant_createRuntimeEventOperationBindingContext-&gt;&gt;participant_isRecord:
+                isRecord()
+                participant_isRecord--&gt;&gt;participant_createRuntimeEventOperationBindingContext:
+                return
+              </div>
+              <details>
+                <summary>View Mermaid source</summary>
+                <pre>
+sequenceDiagram
+  participant participant_createRuntimeEventOperationBindingContext as createRuntimeEventOperationBindingContext
+  participant participant_isRecord as isRecord
+  participant_createRuntimeEventOperationBindingContext-&gt;&gt;participant_isRecord: isRecord()
+  participant_isRecord--&gt;&gt;participant_createRuntimeEventOperationBindingContext: return
 </pre>
               </details>
             </article>
@@ -7543,7 +8082,7 @@ sequenceDiagram
               data-search="createRuntimeActionRegistry src/runtimeActionRegistry.ts "
             >
               <h3>createRuntimeActionRegistry</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:66:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:71:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7551,12 +8090,12 @@ sequenceDiagram
               data-search="dispatchRuntimeComponentEvent src/runtimeActionRegistry.ts "
             >
               <h3>dispatchRuntimeComponentEvent</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:102:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:109:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="wrapRuntimeEventProps src/runtimeActionRegistry.ts ">
               <h3>wrapRuntimeEventProps</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:179:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:186:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7564,7 +8103,7 @@ sequenceDiagram
               data-search="createComponentEventFromHandlerArgs src/runtimeActionRegistry.ts "
             >
               <h3>createComponentEventFromHandlerArgs</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:216:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:223:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7572,7 +8111,7 @@ sequenceDiagram
               data-search="resolveRuntimeActionPayload src/runtimeActionRegistry.ts "
             >
               <h3>resolveRuntimeActionPayload</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:230:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:237:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7580,7 +8119,7 @@ sequenceDiagram
               data-search="resolveRuntimeActionValue src/runtimeActionRegistry.ts "
             >
               <h3>resolveRuntimeActionValue</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:241:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:248:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7588,7 +8127,12 @@ sequenceDiagram
               data-search="dispatchRuntimeOperationEventBinding src/runtimeActionRegistry.ts "
             >
               <h3>dispatchRuntimeOperationEventBinding</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:252:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:259:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="failLifecycle src/runtimeActionRegistry.ts ">
+              <h3>failLifecycle</h3>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:276:9</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7596,7 +8140,7 @@ sequenceDiagram
               data-search="resolveRuntimeActionValueEntry src/runtimeActionRegistry.ts "
             >
               <h3>resolveRuntimeActionValueEntry</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:299:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:344:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7604,7 +8148,7 @@ sequenceDiagram
               data-search="resolveObjectEventBindingInput src/runtimeActionRegistry.ts "
             >
               <h3>resolveObjectEventBindingInput</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:317:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:362:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7612,7 +8156,7 @@ sequenceDiagram
               data-search="resolveEventBindingInput src/runtimeActionRegistry.ts "
             >
               <h3>resolveEventBindingInput</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:326:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:371:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7620,7 +8164,7 @@ sequenceDiagram
               data-search="matchesBindingCondition src/runtimeActionRegistry.ts "
             >
               <h3>matchesBindingCondition</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:345:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:390:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7628,12 +8172,12 @@ sequenceDiagram
               data-search="readBindingConditionSource src/runtimeActionRegistry.ts "
             >
               <h3>readBindingConditionSource</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:365:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:410:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="createPayloadForEvent src/runtimeActionRegistry.ts ">
               <h3>createPayloadForEvent</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:388:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:433:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7641,12 +8185,12 @@ sequenceDiagram
               data-search="localEventNameToEventType src/runtimeActionRegistry.ts "
             >
               <h3>localEventNameToEventType</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:426:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:471:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="inferLocalEventName src/runtimeActionRegistry.ts ">
               <h3>inferLocalEventName</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:434:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:479:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7654,17 +8198,17 @@ sequenceDiagram
               data-search="eventNameToCallbackProp src/runtimeActionRegistry.ts "
             >
               <h3>eventNameToCallbackProp</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:440:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:485:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="isRuntimeEventHandler src/runtimeActionRegistry.ts ">
               <h3>isRuntimeEventHandler</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:444:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:489:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="readPath src/runtimeActionRegistry.ts ">
               <h3>readPath</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:448:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:493:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7672,22 +8216,22 @@ sequenceDiagram
               data-search="createBarcodeScannedPayload src/runtimeActionRegistry.ts "
             >
               <h3>createBarcodeScannedPayload</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:457:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:502:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="readItemId src/runtimeActionRegistry.ts ">
               <h3>readItemId</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:473:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:518:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="asRecord src/runtimeActionRegistry.ts ">
               <h3>asRecord</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:482:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:527:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="isRecord src/runtimeActionRegistry.ts ">
               <h3>isRecord</h3>
-              <p class="muted"><code>src/runtimeActionRegistry.ts:486:1</code></p>
+              <p class="muted"><code>src/runtimeActionRegistry.ts:531:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>
@@ -8066,6 +8610,84 @@ sequenceDiagram
           </section>
         </section>
         <section
+          id="view-src-runtimeeventoperationlifecycle-test-ts"
+          class="view"
+          data-view="src/runtimeEventOperationLifecycle.test.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/runtimeEventOperationLifecycle.test.ts</h2>
+            <article
+              class="item"
+              data-search="eventArgs src/runtimeEventOperationLifecycle.test.ts "
+            >
+              <h3>eventArgs</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.test.ts:54:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="executeOperation src/runtimeEventOperationLifecycle.test.ts "
+            >
+              <h3>executeOperation</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.test.ts:85:11</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="executeOperation src/runtimeEventOperationLifecycle.test.ts "
+            >
+              <h3>executeOperation</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.test.ts:128:11</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
+          id="view-src-runtimeeventoperationlifecycle-ts"
+          class="view"
+          data-view="src/runtimeEventOperationLifecycle.ts"
+          hidden
+        >
+          <section class="panel">
+            <h2>src/runtimeEventOperationLifecycle.ts</h2>
+            <article
+              class="item"
+              data-search="createRuntimeEventOperationLifecycle src/runtimeEventOperationLifecycle.ts "
+            >
+              <h3>createRuntimeEventOperationLifecycle</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:38:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="finish src/runtimeEventOperationLifecycle.ts ">
+              <h3>finish</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:46:9</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="createRuntimeEventOperationBindingContext src/runtimeEventOperationLifecycle.ts "
+            >
+              <h3>createRuntimeEventOperationBindingContext</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:91:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article
+              class="item"
+              data-search="resolveRuntimeEventOperationErrorMessage src/runtimeEventOperationLifecycle.ts "
+            >
+              <h3>resolveRuntimeEventOperationErrorMessage</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:112:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+            <article class="item" data-search="isRecord src/runtimeEventOperationLifecycle.ts ">
+              <h3>isRecord</h3>
+              <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:121:1</code></p>
+              <p class="empty">No description available.</p>
+            </article>
+          </section>
+        </section>
+        <section
           id="view-src-runtimemanifest-ts"
           class="view"
           data-view="src/runtimeManifest.ts"
@@ -8346,7 +8968,7 @@ sequenceDiagram
             <h2>src/RuntimeRenderer.tsx</h2>
             <article class="item" data-search="RuntimeRenderer src/RuntimeRenderer.tsx ">
               <h3>RuntimeRenderer</h3>
-              <p class="muted"><code>src/RuntimeRenderer.tsx:76:1</code></p>
+              <p class="muted"><code>src/RuntimeRenderer.tsx:81:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>
@@ -8442,7 +9064,7 @@ sequenceDiagram
               data-search="composeRuntimeRendererWrapNode src/RuntimeRendererConfig.tsx "
             >
               <h3>composeRuntimeRendererWrapNode</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:74:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:80:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8450,7 +9072,7 @@ sequenceDiagram
               data-search="composeRuntimeNodePropsResolver src/RuntimeRendererConfig.tsx "
             >
               <h3>composeRuntimeNodePropsResolver</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:89:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:95:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8458,7 +9080,7 @@ sequenceDiagram
               data-search="mergeRuntimeRendererConfig src/RuntimeRendererConfig.tsx "
             >
               <h3>mergeRuntimeRendererConfig</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:107:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:113:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8466,7 +9088,7 @@ sequenceDiagram
               data-search="RuntimeRendererConfigProvider src/RuntimeRendererConfig.tsx "
             >
               <h3>RuntimeRendererConfigProvider</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:155:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:164:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8474,12 +9096,12 @@ sequenceDiagram
               data-search="useRuntimeRendererConfig src/RuntimeRendererConfig.tsx "
             >
               <h3>useRuntimeRendererConfig</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:168:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:177:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="mergeRecordConfig src/RuntimeRendererConfig.tsx ">
               <h3>mergeRecordConfig</h3>
-              <p class="muted"><code>src/RuntimeRendererConfig.tsx:172:1</code></p>
+              <p class="muted"><code>src/RuntimeRendererConfig.tsx:181:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>

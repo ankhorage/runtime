@@ -61,6 +61,18 @@ export {
   type RuntimeEventDiagnosticsReporter,
 } from './runtimeEventExecution';
 export type {
+  RuntimeEventOperationInvocation,
+  RuntimeEventOperationLifecycle,
+  RuntimeEventOperationState,
+  RuntimeEventOperationStatus,
+} from './runtimeEventOperationLifecycle';
+export {
+  createRuntimeEventOperationBindingContext,
+  createRuntimeEventOperationLifecycle,
+  IDLE_RUNTIME_EVENT_OPERATION_STATE,
+  resolveRuntimeEventOperationErrorMessage,
+} from './runtimeEventOperationLifecycle';
+export type {
   RuntimeActionDescriptor,
   RuntimeAdapterDescriptor,
   RuntimeBindingDescriptor,
