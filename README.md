@@ -3,7 +3,7 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v2.2.9](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v2.2.10](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
 
 Platform-neutral runtime contracts and helpers for Ankhorage generated apps.
 
@@ -37,6 +37,7 @@ createRuntimeManifest({
 - [Module relationships](./paradox/diagrams/module-relationships.mmd)
 - [Export graph](./paradox/diagrams/export-graph.mmd)
 - [createComponentEventFromHandlerArgs sequence](./paradox/diagrams/sequences/create-component-event-from-handler-args.mmd)
+- [createRuntimeEventOperationBindingContext sequence](./paradox/diagrams/sequences/create-runtime-event-operation-binding-context.mmd)
 - [executeDbPersistAction sequence](./paradox/diagrams/sequences/execute-db-persist-action.mmd)
 - [mergeRuntimeRendererConfig sequence](./paradox/diagrams/sequences/merge-runtime-renderer-config.mmd)
 - [resolveDbPersistInput sequence](./paradox/diagrams/sequences/resolve-db-persist-input.mmd)

@@ -19,6 +19,10 @@ import type {
   RuntimeBindingOperationResultCache,
   RuntimeBindingOperationResultWriter,
 } from './runtimeBindings';
+import type {
+  RuntimeEventOperationLifecycle,
+  RuntimeEventOperationState,
+} from './runtimeEventOperationLifecycle';
 import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 
 export type {
@@ -63,6 +67,8 @@ export interface RuntimeRendererConfig {
   executeAction?: RuntimeActionExecutor;
   executeOperation?: RuntimeBindingOperationExecutor;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
+  eventOperationLifecycle?: RuntimeEventOperationLifecycle;
+  eventOperationState?: RuntimeEventOperationState;
 }
 
 const EMPTY_RUNTIME_RENDERER_CONFIG: RuntimeRendererConfig = {};
@@ -149,6 +155,9 @@ export function mergeRuntimeRendererConfig(
     executeAction: localConfig?.executeAction ?? inheritedConfig?.executeAction,
     executeOperation: localConfig?.executeOperation ?? inheritedConfig?.executeOperation,
     onDiagnostics: localConfig?.onDiagnostics ?? inheritedConfig?.onDiagnostics,
+    eventOperationLifecycle:
+      localConfig?.eventOperationLifecycle ?? inheritedConfig?.eventOperationLifecycle,
+    eventOperationState: localConfig?.eventOperationState ?? inheritedConfig?.eventOperationState,
   };
 }
 

@@ -24,6 +24,8 @@ graph LR
   module_src_runtimeDbPersist_ts["src/runtimeDbPersist.ts"]
   module_src_runtimeEventExecution_test_ts["src/runtimeEventExecution.test.ts"]
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
+  module_src_runtimeEventOperationLifecycle_test_ts["src/runtimeEventOperationLifecycle.test.ts"]
+  module_src_runtimeEventOperationLifecycle_ts["src/runtimeEventOperationLifecycle.ts"]
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   module_src_runtimeManifest_ts["src/runtimeManifest.ts"]
   module_src_runtimeMedia_test_ts["src/runtimeMedia.test.ts"]
@@ -82,12 +84,20 @@ graph LR
   export_createRuntimeActionRegistry -.-> export_RuntimeBindingOperationExecutor
   export_createRuntimeActionRegistry -.-> export_RuntimeBindingOperationResultCache
   export_createRuntimeActionRegistry -.-> export_RuntimeBindingOperationResultWriter
+  export_createRuntimeActionRegistry -.-> export_RuntimeEventOperationLifecycle
   export_createRuntimeApiOperationExecutor["createRuntimeApiOperationExecutor"]
   module_src_runtimeApiOperations_ts --> export_createRuntimeApiOperationExecutor
   export_createRuntimeApiOperationExecutor -.-> export_RuntimeApiOperationExecutorOptions
   export_createRuntimeApiOperationExecutor -.-> export_RuntimeBindingOperationExecutor
   export_createRuntimeBindingOperationKey["createRuntimeBindingOperationKey"]
   module_src_runtimeBindings_ts --> export_createRuntimeBindingOperationKey
+  export_createRuntimeEventOperationBindingContext["createRuntimeEventOperationBindingContext"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_createRuntimeEventOperationBindingContext
+  export_createRuntimeEventOperationBindingContext -.-> export_RuntimeEventOperationState
+  export_createRuntimeEventOperationLifecycle["createRuntimeEventOperationLifecycle"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_createRuntimeEventOperationLifecycle
+  export_createRuntimeEventOperationLifecycle -.-> export_RuntimeEventOperationLifecycle
+  export_createRuntimeEventOperationLifecycle -.-> export_RuntimeEventOperationState
   export_createRuntimeMemoryStateAdapter["createRuntimeMemoryStateAdapter"]
   module_src_runtimeStateAdapter_ts --> export_createRuntimeMemoryStateAdapter
   export_createRuntimeMemoryStateAdapter -.-> export_RuntimeMemoryStateAdapterOptions
@@ -113,6 +123,8 @@ graph LR
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeBindingOperationResultCache
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeBindingResolutionContext
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeScreenOperationLoaderExecutionResult
+  export_IDLE_RUNTIME_EVENT_OPERATION_STATE["IDLE_RUNTIME_EVENT_OPERATION_STATE"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_IDLE_RUNTIME_EVENT_OPERATION_STATE
   export_ManifestContext["ManifestContext"]
   module_src_ManifestContext_tsx --> export_ManifestContext
   export_ManifestProvider["ManifestProvider"]
@@ -146,6 +158,8 @@ graph LR
   export_resolveRuntimeBindingValueSync["resolveRuntimeBindingValueSync"]
   module_src_runtimeBindings_ts --> export_resolveRuntimeBindingValueSync
   export_resolveRuntimeBindingValueSync -.-> export_RuntimeBindingResolutionContext
+  export_resolveRuntimeEventOperationErrorMessage["resolveRuntimeEventOperationErrorMessage"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_resolveRuntimeEventOperationErrorMessage
   export_resolveScreenOperationLoaders["resolveScreenOperationLoaders"]
   module_src_runtimeScreenLoaders_ts --> export_resolveScreenOperationLoaders
   export_RuntimeAction["RuntimeAction"]
@@ -204,6 +218,7 @@ graph LR
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeActionHandler
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeBindingOperationExecutor
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeBindingOperationResultWriter
+  export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeEventOperationLifecycle
   export_RuntimeDbPersistError["RuntimeDbPersistError"]
   module_src_runtimeDbPersist_ts --> export_RuntimeDbPersistError
   export_RuntimeDbPersistExecutionResult["RuntimeDbPersistExecutionResult"]
@@ -214,6 +229,16 @@ graph LR
   module_src_runtimeManifest_ts --> export_RuntimeDiagnostic
   export_RuntimeEventDiagnosticsReporter["RuntimeEventDiagnosticsReporter"]
   module_src_runtimeEventExecution_ts --> export_RuntimeEventDiagnosticsReporter
+  export_RuntimeEventOperationInvocation["RuntimeEventOperationInvocation"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_RuntimeEventOperationInvocation
+  export_RuntimeEventOperationLifecycle["RuntimeEventOperationLifecycle"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_RuntimeEventOperationLifecycle
+  export_RuntimeEventOperationLifecycle -.-> export_RuntimeEventOperationInvocation
+  export_RuntimeEventOperationState["RuntimeEventOperationState"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_RuntimeEventOperationState
+  export_RuntimeEventOperationState -.-> export_RuntimeEventOperationStatus
+  export_RuntimeEventOperationStatus["RuntimeEventOperationStatus"]
+  module_src_runtimeEventOperationLifecycle_ts --> export_RuntimeEventOperationStatus
   export_RuntimeEventPropWrapArgs["RuntimeEventPropWrapArgs"]
   module_src_runtimeActionRegistry_ts --> export_RuntimeEventPropWrapArgs
   export_RuntimeEventPropWrapArgs -.-> export_RuntimeComponentEventDispatchArgs
@@ -250,6 +275,8 @@ graph LR
   export_RuntimeRendererConfig -.-> export_RuntimeActionHandlers
   export_RuntimeRendererConfig -.-> export_RuntimeBindingOperationExecutor
   export_RuntimeRendererConfig -.-> export_RuntimeBindingOperationResultWriter
+  export_RuntimeRendererConfig -.-> export_RuntimeEventOperationLifecycle
+  export_RuntimeRendererConfig -.-> export_RuntimeEventOperationState
   export_RuntimeRendererConfig -.-> export_RuntimeMediaAssetResolver
   export_RuntimeRendererConfig -.-> export_RuntimeNodePropsResolver
   export_RuntimeRendererConfig -.-> export_RuntimeRendererWrapArgs

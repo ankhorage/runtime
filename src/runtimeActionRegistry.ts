@@ -19,6 +19,10 @@ import {
   type RuntimeBindingOperationResultCache,
   type RuntimeBindingOperationResultWriter,
 } from './runtimeBindings';
+import {
+  resolveRuntimeEventOperationErrorMessage,
+  type RuntimeEventOperationLifecycle,
+} from './runtimeEventOperationLifecycle';
 import type { RuntimeActionHandler, RuntimeActionHandlers } from './RuntimeRendererConfig';
 
 type RuntimeEventPayload = Record<string, unknown>;
@@ -51,6 +55,7 @@ export interface RuntimeComponentEventDispatchArgs extends RuntimeActionResoluti
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly writeOperationResult?: RuntimeBindingOperationResultWriter;
+  readonly eventOperationLifecycle?: RuntimeEventOperationLifecycle;
 }
 
 export interface RuntimeEventPropWrapArgs extends RuntimeActionResolutionScope {
@@ -70,6 +75,7 @@ export function createRuntimeActionRegistry(
     dataBindings?: ComponentDataBindingRegistry;
     executeAction?: RuntimeActionHandler;
     executeOperation?: RuntimeBindingOperationExecutor;
+    eventOperationLifecycle?: RuntimeEventOperationLifecycle;
     operationResults?: RuntimeBindingOperationResultCache;
     writeOperationResult?: RuntimeBindingOperationResultWriter;
   } = {},
@@ -85,6 +91,7 @@ export function createRuntimeActionRegistry(
         dataBindings: args.dataBindings ?? options.dataBindings,
         executeAction: args.executeAction ?? options.executeAction,
         executeOperation: args.executeOperation ?? options.executeOperation,
+        eventOperationLifecycle: args.eventOperationLifecycle ?? options.eventOperationLifecycle,
         operationResults: args.operationResults ?? options.operationResults,
         writeOperationResult: args.writeOperationResult ?? options.writeOperationResult,
       });
@@ -257,6 +264,22 @@ async function dispatchRuntimeOperationEventBinding(args: {
   readonly target: RuntimeOperationEventTarget;
 }): Promise<boolean> {
   const { binding, diagnostics, target } = args;
+  const invocation = args.args.eventOperationLifecycle?.start({
+    nodeId: args.args.node.id,
+    operation: target.operation,
+  });
+
+  if (args.args.eventOperationLifecycle !== undefined && invocation === undefined) {
+    return false;
+  }
+
+  const failLifecycle = () => {
+    if (invocation === undefined) return;
+    args.args.eventOperationLifecycle?.fail(
+      invocation,
+      resolveRuntimeEventOperationErrorMessage(diagnostics),
+    );
+  };
 
   if (args.args.executeOperation === undefined) {
     diagnostics.push({
@@ -267,6 +290,7 @@ async function dispatchRuntimeOperationEventBinding(args: {
       message: 'Event API operation binding requires an injected operation executor.',
       severity: 'error',
     });
+    failLifecycle();
     return false;
   }
 
@@ -275,24 +299,45 @@ async function dispatchRuntimeOperationEventBinding(args: {
     args.args.apis,
     diagnostics,
   );
-  if (selection === undefined) return false;
+  if (selection === undefined) {
+    failLifecycle();
+    return false;
+  }
 
-  const result = await args.args.executeOperation({
-    api: selection.api,
-    endpoint: selection.endpoint,
-    input: await resolveEventBindingInput(binding.input, args.args, diagnostics),
-    node: args.args.node,
-    operation: target.operation,
-  });
+  let result;
+  try {
+    result = await args.args.executeOperation({
+      api: selection.api,
+      endpoint: selection.endpoint,
+      input: await resolveEventBindingInput(binding.input, args.args, diagnostics),
+      node: args.args.node,
+      operation: target.operation,
+    });
+  } catch {
+    diagnostics.push({
+      apiId: target.operation.apiId,
+      code: 'adapter-error',
+      endpointId: target.operation.endpointId,
+      message: 'The operation could not be completed. Please try again.',
+      operationId: target.operation.operationId,
+      severity: 'error',
+    });
+    failLifecycle();
+    return false;
+  }
   diagnostics.push(...(result.diagnostics ?? []));
 
   if (result.ok) {
     const operationKey = createRuntimeBindingOperationKey(target.operation);
     args.operationResults[operationKey] = result.data;
     args.args.writeOperationResult?.(operationKey, result.data);
+    if (invocation !== undefined) {
+      args.args.eventOperationLifecycle?.succeed(invocation);
+    }
     return true;
   }
 
+  failLifecycle();
   return false;
 }
 

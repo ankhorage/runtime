@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v2.2.9",
+      "value": "v2.2.10",
       "color": "cb3837"
     },
     {
@@ -95,11 +95,15 @@
       "exports": [
         "createRuntimeApiOperationExecutor",
         "createRuntimeBindingOperationKey",
+        "createRuntimeEventOperationBindingContext",
+        "createRuntimeEventOperationLifecycle",
+        "IDLE_RUNTIME_EVENT_OPERATION_STATE",
         "resolveBindingInputMap",
         "resolveRuntimeBindings",
         "resolveRuntimeBindingsAsync",
         "resolveRuntimeBindingValue",
         "resolveRuntimeBindingValueSync",
+        "resolveRuntimeEventOperationErrorMessage",
         "RuntimeApiOperationExecutorOptions",
         "RuntimeApiOperationSelection",
         "RuntimeBindingOperationExecutionArgs",
@@ -111,6 +115,10 @@
         "RuntimeBindingResolutionArgs",
         "RuntimeBindingResolutionContext",
         "RuntimeBindingResolutionResult",
+        "RuntimeEventOperationInvocation",
+        "RuntimeEventOperationLifecycle",
+        "RuntimeEventOperationState",
+        "RuntimeEventOperationStatus",
         "validateRuntimeBindingOperationRef"
       ]
     },
@@ -136,12 +144,15 @@
         "createRuntimeActionRegistry",
         "createRuntimeApiOperationExecutor",
         "createRuntimeBindingOperationKey",
+        "createRuntimeEventOperationBindingContext",
+        "createRuntimeEventOperationLifecycle",
         "createRuntimeMemoryStateAdapter",
         "createRuntimeScreenLoaderRequestKey",
         "dispatchRuntimeComponentEvent",
         "dispatchRuntimeComponentEventWithReporting",
         "executeDbPersistAction",
         "executeRuntimeScreenOperationLoaders",
+        "IDLE_RUNTIME_EVENT_OPERATION_STATE",
         "ManifestContext",
         "ManifestProvider",
         "mergeRuntimeRendererConfig",
@@ -153,6 +164,7 @@
         "resolveRuntimeBindingsAsync",
         "resolveRuntimeBindingValue",
         "resolveRuntimeBindingValueSync",
+        "resolveRuntimeEventOperationErrorMessage",
         "resolveScreenOperationLoaders",
         "RuntimeAction",
         "RuntimeActionDescriptor",
@@ -183,6 +195,10 @@
         "RuntimeDbPersistResult",
         "RuntimeDiagnostic",
         "RuntimeEventDiagnosticsReporter",
+        "RuntimeEventOperationInvocation",
+        "RuntimeEventOperationLifecycle",
+        "RuntimeEventOperationState",
+        "RuntimeEventOperationStatus",
         "RuntimeEventPropWrapArgs",
         "RuntimeManifest",
         "RuntimeManifestConfig",
@@ -282,6 +298,7 @@
       "dependencies": [
         "src/runtimeApiSelection.ts",
         "src/runtimeBindings.ts",
+        "src/runtimeEventOperationLifecycle.ts",
         "src/RuntimeRendererConfig.tsx"
       ],
       "exports": [
@@ -394,6 +411,27 @@
       "exports": ["dispatchRuntimeComponentEventWithReporting", "RuntimeEventDiagnosticsReporter"]
     },
     {
+      "path": "src/runtimeEventOperationLifecycle.test.ts",
+      "isEntrypoint": false,
+      "dependencies": ["src/runtimeActionRegistry.ts", "src/runtimeEventOperationLifecycle.ts"],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeEventOperationLifecycle.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "createRuntimeEventOperationBindingContext",
+        "createRuntimeEventOperationLifecycle",
+        "IDLE_RUNTIME_EVENT_OPERATION_STATE",
+        "resolveRuntimeEventOperationErrorMessage",
+        "RuntimeEventOperationInvocation",
+        "RuntimeEventOperationLifecycle",
+        "RuntimeEventOperationState",
+        "RuntimeEventOperationStatus"
+      ]
+    },
+    {
       "path": "src/runtimeImageMedia.test.ts",
       "isEntrypoint": false,
       "dependencies": ["src/runtimeMedia.ts", "src/runtimeNodeProps.ts"],
@@ -489,6 +527,7 @@
         "src/runtimeBindings.ts",
         "src/runtimeDbPersist.ts",
         "src/runtimeEventExecution.ts",
+        "src/runtimeEventOperationLifecycle.ts",
         "src/runtimeMedia.ts",
         "src/runtimeMediaCache.tsx",
         "src/runtimeNodeProps.ts",
@@ -509,7 +548,12 @@
     {
       "path": "src/RuntimeRendererConfig.tsx",
       "isEntrypoint": false,
-      "dependencies": ["src/registry.tsx", "src/runtimeBindings.ts", "src/runtimeMedia.ts"],
+      "dependencies": [
+        "src/registry.tsx",
+        "src/runtimeBindings.ts",
+        "src/runtimeEventOperationLifecycle.ts",
+        "src/runtimeMedia.ts"
+      ],
       "exports": [
         "composeRuntimeNodePropsResolver",
         "composeRuntimeRendererWrapNode",
@@ -681,7 +725,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 89,
+        "line": 95,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -719,7 +763,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 74,
+        "line": 80,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -757,7 +801,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 216,
+        "line": 223,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -917,7 +961,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 66,
+        "line": 71,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -927,15 +971,16 @@
         "RuntimeActionRegistry",
         "RuntimeBindingOperationExecutor",
         "RuntimeBindingOperationResultCache",
-        "RuntimeBindingOperationResultWriter"
+        "RuntimeBindingOperationResultWriter",
+        "RuntimeEventOperationLifecycle"
       ],
       "signatures": [
         {
-          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
+          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
           "parameters": [
             {
               "name": "options",
-              "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
+              "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
               "required": false,
               "description": null
             }
@@ -1005,6 +1050,76 @@
             }
           ],
           "returnType": "string",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createRuntimeEventOperationBindingContext",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 92,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeEventOperationState"],
+      "signatures": [
+        {
+          "label": "(context: Record<string, unknown> | undefined, state: RuntimeEventOperationState) => Record<string, unknown>",
+          "parameters": [
+            {
+              "name": "context",
+              "type": "Record<string, unknown> | undefined",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "state",
+              "type": "RuntimeEventOperationState",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Record<string, unknown>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createRuntimeEventOperationLifecycle",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 39,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeEventOperationLifecycle", "RuntimeEventOperationState"],
+      "signatures": [
+        {
+          "label": "(onStateChange: (state: RuntimeEventOperationState) => void) => RuntimeEventOperationLifecycle",
+          "parameters": [
+            {
+              "name": "onStateChange",
+              "type": "(state: RuntimeEventOperationState) => void",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeEventOperationLifecycle",
           "returnDescription": null
         }
       ],
@@ -1084,7 +1199,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 102,
+        "line": 109,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1213,6 +1328,24 @@
       "structuredRows": []
     },
     {
+      "name": "IDLE_RUNTIME_EVENT_OPERATION_STATE",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "value",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 27,
+        "column": 14
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "ManifestContext",
       "description": null,
       "isReadme": false,
@@ -1271,7 +1404,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 107,
+        "line": 113,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1385,7 +1518,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 230,
+        "line": 237,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1423,7 +1556,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 241,
+        "line": 248,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1605,6 +1738,38 @@
       "structuredRows": []
     },
     {
+      "name": "resolveRuntimeEventOperationErrorMessage",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "function",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 113,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(diagnostics: readonly DataSourceDiagnostic[]) => string",
+          "parameters": [
+            {
+              "name": "diagnostics",
+              "type": "readonly DataSourceDiagnostic[]",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "string",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "resolveScreenOperationLoaders",
       "description": null,
       "isReadme": false,
@@ -1645,7 +1810,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 42,
+        "line": 46,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1710,7 +1875,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 45,
+        "line": 49,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1728,7 +1893,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 43,
+        "line": 47,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1746,7 +1911,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 35,
+        "line": 39,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1793,7 +1958,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 44,
+        "line": 48,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1811,7 +1976,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 30,
+        "line": 34,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1844,7 +2009,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 41,
+        "line": 45,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -1891,7 +2056,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 35,
+        "line": 39,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2436,14 +2601,15 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 45,
+        "line": 49,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [
         "RuntimeActionHandler",
         "RuntimeBindingOperationExecutor",
-        "RuntimeBindingOperationResultWriter"
+        "RuntimeBindingOperationResultWriter",
+        "RuntimeEventOperationLifecycle"
       ],
       "signatures": [],
       "members": [
@@ -2479,6 +2645,13 @@
           "name": "eventName",
           "kind": "property",
           "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "eventOperationLifecycle",
+          "kind": "property",
+          "type": "RuntimeEventOperationLifecycle | undefined",
           "required": false,
           "description": null
         },
@@ -2685,6 +2858,144 @@
       "structuredRows": []
     },
     {
+      "name": "RuntimeEventOperationInvocation",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 14,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "id",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeEventOperationLifecycle",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 18,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeEventOperationInvocation"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "fail",
+          "kind": "method",
+          "type": "(invocation: RuntimeEventOperationInvocation, message: string) => void",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "start",
+          "kind": "method",
+          "type": "(args: { readonly nodeId: string; readonly operation: BindingOperationRef; }) => RuntimeEventOperationInvocation | undefined",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "succeed",
+          "kind": "method",
+          "type": "(invocation: RuntimeEventOperationInvocation) => void",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeEventOperationState",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "type",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 6,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": ["RuntimeEventOperationStatus"],
+      "signatures": [],
+      "members": [
+        {
+          "name": "errorMessage",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "loading",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "nodeId",
+          "kind": "property",
+          "type": "string | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "operation",
+          "kind": "property",
+          "type": "BindingOperationRef | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "status",
+          "kind": "property",
+          "type": "RuntimeEventOperationStatus",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeEventOperationStatus",
+      "description": null,
+      "isReadme": false,
+      "examples": [],
+      "kind": "unknown",
+      "modulePath": "src/runtimeEventOperationLifecycle.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": ["src/index.ts"],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "RuntimeEventPropWrapArgs",
       "description": null,
       "isReadme": false,
@@ -2693,7 +3004,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 56,
+        "line": 61,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3030,7 +3341,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 76,
+        "line": 81,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3062,7 +3373,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 47,
+        "line": 51,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3071,6 +3382,8 @@
         "RuntimeActionHandlers",
         "RuntimeBindingOperationExecutor",
         "RuntimeBindingOperationResultWriter",
+        "RuntimeEventOperationLifecycle",
+        "RuntimeEventOperationState",
         "RuntimeMediaAssetResolver",
         "RuntimeNodePropsResolver",
         "RuntimeRendererWrapArgs"
@@ -3123,6 +3436,20 @@
           "name": "disableActions",
           "kind": "property",
           "type": "boolean | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "eventOperationLifecycle",
+          "kind": "property",
+          "type": "RuntimeEventOperationLifecycle | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "eventOperationState",
+          "kind": "property",
+          "type": "RuntimeEventOperationState | undefined",
           "required": false,
           "description": null
         },
@@ -3215,7 +3542,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 155,
+        "line": 164,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3247,7 +3574,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 56,
+        "line": 61,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3391,7 +3718,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 29,
+        "line": 33,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3755,7 +4082,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 168,
+        "line": 177,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3855,7 +4182,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 179,
+        "line": 186,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -3954,7 +4281,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 76,
+        "line": 81,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -4071,7 +4398,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 155,
+        "line": 164,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -4361,7 +4688,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 66,
+        "line": 71,
         "column": 1
       }
     },
@@ -4370,7 +4697,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 102,
+        "line": 109,
         "column": 1
       }
     },
@@ -4379,7 +4706,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 179,
+        "line": 186,
         "column": 1
       }
     },
@@ -4388,7 +4715,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 216,
+        "line": 223,
         "column": 1
       }
     },
@@ -4397,7 +4724,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 230,
+        "line": 237,
         "column": 1
       }
     },
@@ -4406,7 +4733,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 241,
+        "line": 248,
         "column": 1
       }
     },
@@ -4415,8 +4742,17 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 252,
+        "line": 259,
         "column": 1
+      }
+    },
+    {
+      "name": "failLifecycle",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeActionRegistry.ts",
+        "line": 276,
+        "column": 9
       }
     },
     {
@@ -4424,7 +4760,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 299,
+        "line": 344,
         "column": 1
       }
     },
@@ -4433,7 +4769,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 317,
+        "line": 362,
         "column": 1
       }
     },
@@ -4442,7 +4778,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 326,
+        "line": 371,
         "column": 1
       }
     },
@@ -4451,7 +4787,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 345,
+        "line": 390,
         "column": 1
       }
     },
@@ -4460,7 +4796,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 365,
+        "line": 410,
         "column": 1
       }
     },
@@ -4469,7 +4805,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 388,
+        "line": 433,
         "column": 1
       }
     },
@@ -4478,7 +4814,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 426,
+        "line": 471,
         "column": 1
       }
     },
@@ -4487,7 +4823,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 434,
+        "line": 479,
         "column": 1
       }
     },
@@ -4496,7 +4832,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 440,
+        "line": 485,
         "column": 1
       }
     },
@@ -4505,7 +4841,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 444,
+        "line": 489,
         "column": 1
       }
     },
@@ -4514,7 +4850,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 448,
+        "line": 493,
         "column": 1
       }
     },
@@ -4523,7 +4859,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 457,
+        "line": 502,
         "column": 1
       }
     },
@@ -4532,7 +4868,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 473,
+        "line": 518,
         "column": 1
       }
     },
@@ -4541,7 +4877,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 482,
+        "line": 527,
         "column": 1
       }
     },
@@ -4550,7 +4886,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 486,
+        "line": 531,
         "column": 1
       }
     },
@@ -4978,6 +5314,69 @@
       }
     },
     {
+      "name": "eventArgs",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.test.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeOperation",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.test.ts",
+        "line": 85,
+        "column": 11
+      }
+    },
+    {
+      "name": "executeOperation",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.test.ts",
+        "line": 128,
+        "column": 11
+      }
+    },
+    {
+      "name": "createRuntimeEventOperationLifecycle",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 39,
+        "column": 1
+      }
+    },
+    {
+      "name": "finish",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 47,
+        "column": 9
+      }
+    },
+    {
+      "name": "createRuntimeEventOperationBindingContext",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 92,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveRuntimeEventOperationErrorMessage",
+      "description": null,
+      "sourceLocation": {
+        "filePath": "src/runtimeEventOperationLifecycle.ts",
+        "line": 113,
+        "column": 1
+      }
+    },
+    {
       "name": "defineRuntimeAction",
       "description": null,
       "sourceLocation": {
@@ -5297,7 +5696,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 76,
+        "line": 81,
         "column": 1
       }
     },
@@ -5396,7 +5795,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 74,
+        "line": 80,
         "column": 1
       }
     },
@@ -5405,7 +5804,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 89,
+        "line": 95,
         "column": 1
       }
     },
@@ -5414,7 +5813,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 107,
+        "line": 113,
         "column": 1
       }
     },
@@ -5423,7 +5822,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 155,
+        "line": 164,
         "column": 1
       }
     },
@@ -5432,7 +5831,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 168,
+        "line": 177,
         "column": 1
       }
     },
@@ -5441,7 +5840,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 172,
+        "line": 181,
         "column": 1
       }
     },
@@ -5988,6 +6387,22 @@
     },
     {
       "kind": "export",
+      "name": "createRuntimeEventOperationBindingContext",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "symbolName": "createRuntimeEventOperationBindingContext",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "createRuntimeEventOperationLifecycle",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "symbolName": "createRuntimeEventOperationLifecycle",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "createRuntimeMemoryStateAdapter",
       "sourcePath": "src/runtimeStateAdapter.ts",
       "symbolName": "createRuntimeMemoryStateAdapter",
@@ -6116,6 +6531,14 @@
     },
     {
       "kind": "export",
+      "name": "resolveRuntimeEventOperationErrorMessage",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "symbolName": "resolveRuntimeEventOperationErrorMessage",
+      "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "resolveScreenOperationLoaders",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "symbolName": "resolveScreenOperationLoaders",
@@ -6234,6 +6657,11 @@
         "sourcePath": "src/bindings.ts"
       },
       {
+        "fromPath": "src/bindings.ts",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
+        "sourcePath": "src/bindings.ts"
+      },
+      {
         "fromPath": "src/index.ts",
         "toPath": "src/ManifestContext.tsx",
         "sourcePath": "src/index.ts"
@@ -6271,6 +6699,11 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/runtimeEventExecution.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -6385,6 +6818,11 @@
       },
       {
         "fromPath": "src/runtimeActionRegistry.ts",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromPath": "src/runtimeActionRegistry.ts",
         "toPath": "src/RuntimeRendererConfig.tsx",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
@@ -6452,6 +6890,16 @@
         "fromPath": "src/runtimeEventExecution.ts",
         "toPath": "src/RuntimeRendererConfig.tsx",
         "sourcePath": "src/runtimeEventExecution.ts"
+      },
+      {
+        "fromPath": "src/runtimeEventOperationLifecycle.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeEventOperationLifecycle.test.ts",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
       },
       {
         "fromPath": "src/runtimeImageMedia.test.ts",
@@ -6530,6 +6978,11 @@
       },
       {
         "fromPath": "src/RuntimeRenderer.tsx",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeRenderer.tsx",
         "toPath": "src/runtimeMedia.ts",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
@@ -6581,6 +7034,11 @@
       {
         "fromPath": "src/RuntimeRendererConfig.tsx",
         "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeRendererConfig.tsx",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -7144,6 +7602,30 @@
       },
       {
         "fromSymbol": "dispatchRuntimeOperationEventBinding",
+        "toSymbol": "start",
+        "callExpression": "args.args.eventOperationLifecycle?.start",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "failLifecycle",
+        "toSymbol": "fail",
+        "callExpression": "args.args.eventOperationLifecycle?.fail",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "failLifecycle",
+        "toSymbol": "resolveRuntimeEventOperationErrorMessage",
+        "callExpression": "resolveRuntimeEventOperationErrorMessage",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "dispatchRuntimeOperationEventBinding",
+        "toSymbol": "failLifecycle",
+        "callExpression": "failLifecycle",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "dispatchRuntimeOperationEventBinding",
         "toSymbol": "resolveRuntimeBindingOperationSelection",
         "callExpression": "resolveRuntimeBindingOperationSelection",
         "sourcePath": "src/runtimeActionRegistry.ts"
@@ -7170,6 +7652,12 @@
         "fromSymbol": "dispatchRuntimeOperationEventBinding",
         "toSymbol": "writeOperationResult",
         "callExpression": "args.args.writeOperationResult",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "dispatchRuntimeOperationEventBinding",
+        "toSymbol": "succeed",
+        "callExpression": "args.args.eventOperationLifecycle?.succeed",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -7851,6 +8339,90 @@
         "sourcePath": "src/runtimeEventExecution.ts"
       },
       {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "createRuntimeEventOperationBindingContext",
+        "callExpression": "createRuntimeEventOperationBindingContext",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "createRuntimeEventOperationLifecycle",
+        "callExpression": "createRuntimeEventOperationLifecycle",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "eventArgs",
+        "callExpression": "eventArgs",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventOperationLifecycle.test.ts",
+        "toSymbol": "resolveExecution",
+        "callExpression": "resolveExecution",
+        "sourcePath": "src/runtimeEventOperationLifecycle.test.ts"
+      },
+      {
+        "fromSymbol": "finish",
+        "toSymbol": "onStateChange",
+        "callExpression": "onStateChange",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "start",
+        "toSymbol": "onStateChange",
+        "callExpression": "onStateChange",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "succeed",
+        "toSymbol": "finish",
+        "callExpression": "finish",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "fail",
+        "toSymbol": "finish",
+        "callExpression": "finish",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeEventOperationBindingContext",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
         "fromSymbol": "src/runtimeImageMedia.test.ts",
         "toSymbol": "test",
         "callExpression": "test",
@@ -8259,6 +8831,24 @@
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
+        "fromSymbol": "src/RuntimeRenderer.tsx",
+        "toSymbol": "createRuntimeEventOperationLifecycle",
+        "callExpression": "createRuntimeEventOperationLifecycle",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeRenderer.tsx",
+        "toSymbol": "mergeRuntimeRendererConfig",
+        "callExpression": "mergeRuntimeRendererConfig",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRenderer",
+        "toSymbol": "createRuntimeEventOperationBindingContext",
+        "callExpression": "createRuntimeEventOperationBindingContext",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
         "fromSymbol": "RuntimeRenderer",
         "toSymbol": "useRuntimeMediaResolutionCache",
         "callExpression": "useRuntimeMediaResolutionCache",
@@ -8268,12 +8858,6 @@
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "setLocalOperationResults",
         "callExpression": "setLocalOperationResults",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromSymbol": "src/RuntimeRenderer.tsx",
-        "toSymbol": "mergeRuntimeRendererConfig",
-        "callExpression": "mergeRuntimeRendererConfig",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -9557,6 +10141,11 @@
       },
       {
         "fromSymbol": "RuntimeComponentEventDispatchArgs",
+        "toType": "RuntimeEventOperationLifecycle",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "RuntimeComponentEventDispatchArgs",
         "toType": "UiNode",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
@@ -9638,6 +10227,11 @@
       {
         "fromSymbol": "createRuntimeActionRegistry",
         "toType": "RuntimeBindingOperationResultWriter",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeActionRegistry",
+        "toType": "RuntimeEventOperationLifecycle",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10001,6 +10595,46 @@
         "sourcePath": "src/runtimeEventExecution.ts"
       },
       {
+        "fromSymbol": "RuntimeEventOperationLifecycle",
+        "toType": "BindingOperationRef",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "RuntimeEventOperationLifecycle",
+        "toType": "RuntimeEventOperationInvocation",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "RuntimeEventOperationState",
+        "toType": "BindingOperationRef",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "RuntimeEventOperationState",
+        "toType": "RuntimeEventOperationStatus",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeEventOperationBindingContext",
+        "toType": "RuntimeEventOperationState",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeEventOperationLifecycle",
+        "toType": "RuntimeEventOperationLifecycle",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeEventOperationLifecycle",
+        "toType": "RuntimeEventOperationState",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeEventOperationErrorMessage",
+        "toType": "DataSourceDiagnostic",
+        "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
         "fromSymbol": "RuntimeActionDescriptor",
         "toType": "Data",
         "sourcePath": "src/runtimeManifest.ts"
@@ -10298,6 +10932,16 @@
       {
         "fromSymbol": "RuntimeRendererConfig",
         "toType": "RuntimeBindingOperationResultWriter",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
+        "toType": "RuntimeEventOperationLifecycle",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
+        "toType": "RuntimeEventOperationState",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {

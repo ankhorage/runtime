@@ -44,6 +44,7 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeApiSelection_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeActionRegistry_ts --> module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeActionRegistry_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeApiOperations_test_ts["src/runtimeApiOperations.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeApiOperations_test_ts
@@ -78,6 +79,12 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeEventExecution_ts
   module_src_runtimeEventExecution_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeEventExecution_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeEventOperationLifecycle_test_ts["src/runtimeEventOperationLifecycle.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeEventOperationLifecycle_test_ts
+  module_src_runtimeEventOperationLifecycle_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeEventOperationLifecycle_test_ts --> module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeEventOperationLifecycle_ts["src/runtimeEventOperationLifecycle.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeImageMedia_test_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
@@ -115,6 +122,7 @@ graph TD
   module_src_RuntimeRenderer_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeDbPersist_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeEventExecution_ts
+  module_src_RuntimeRenderer_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeMedia_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeMediaCache_tsx
   module_src_RuntimeRenderer_tsx --> module_src_runtimeNodeProps_ts
@@ -130,6 +138,7 @@ graph TD
   package__ankhorage_runtime -.-> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeRendererConfig_tsx --> module_src_registry_tsx
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeBindings_ts
+  module_src_RuntimeRendererConfig_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeMedia_ts
   module_src_runtimeRepeat_test_ts["src/runtimeRepeat.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeRepeat_test_ts

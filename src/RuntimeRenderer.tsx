@@ -29,6 +29,11 @@ import type {
 } from './runtimeBindings';
 import { createDbPersistActionHandler } from './runtimeDbPersist';
 import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution';
+import {
+  createRuntimeEventOperationBindingContext,
+  createRuntimeEventOperationLifecycle,
+  IDLE_RUNTIME_EVENT_OPERATION_STATE,
+} from './runtimeEventOperationLifecycle';
 import type { RuntimeMediaAssetResolver } from './runtimeMedia';
 import {
   RuntimeMediaResolutionCacheProvider,
@@ -94,6 +99,28 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     onDiagnostics,
   } = props;
   const inheritedConfig = useRuntimeRendererConfig();
+  const [rootEventOperationState, setRootEventOperationState] = React.useState(
+    IDLE_RUNTIME_EVENT_OPERATION_STATE,
+  );
+  const rootEventOperationLifecycle = React.useMemo(
+    () => createRuntimeEventOperationLifecycle(setRootEventOperationState),
+    [],
+  );
+  const eventOperationState = isRoot
+    ? rootEventOperationState
+    : inheritedConfig.eventOperationState;
+  const rootBindingContext = React.useMemo(
+    () =>
+      mergeRuntimeRendererConfig(
+        { bindingContext },
+        { bindingContext: inheritedConfig.bindingContext },
+      ).bindingContext,
+    [bindingContext, inheritedConfig.bindingContext],
+  );
+  const effectiveBindingContext =
+    isRoot && eventOperationState !== undefined
+      ? createRuntimeEventOperationBindingContext(rootBindingContext, eventOperationState)
+      : bindingContext;
   const mediaResolutionCache = useRuntimeMediaResolutionCache();
   const inheritedOperationResults = inheritedConfig.operationResults;
   const [localOperationResults, setLocalOperationResults] =
@@ -118,7 +145,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   const explicitConfig = React.useMemo(
     () => ({
       apis,
-      bindingContext,
+      bindingContext: effectiveBindingContext,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
@@ -133,10 +160,14 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       stateAdapter,
       wrapNode,
       writeOperationResult: inheritedConfig.writeOperationResult ?? writeLocalOperationResult,
+      eventOperationLifecycle: isRoot
+        ? rootEventOperationLifecycle
+        : inheritedConfig.eventOperationLifecycle,
+      eventOperationState,
     }),
     [
       apis,
-      bindingContext,
+      effectiveBindingContext,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
@@ -145,6 +176,8 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       effectiveOperationResults,
       executeOperation,
       inheritedConfig.writeOperationResult,
+      inheritedConfig.eventOperationLifecycle,
+      isRoot,
       mediaAssets,
       onDiagnostics,
       registry,
@@ -152,6 +185,8 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       stateAdapter,
       wrapNode,
       writeLocalOperationResult,
+      eventOperationState,
+      rootEventOperationLifecycle,
     ],
   );
   const effectiveConfig = React.useMemo(
@@ -195,6 +230,8 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         operationResults: eventArgs.operationResults ?? effectiveConfig.operationResults,
         writeOperationResult:
           eventArgs.writeOperationResult ?? effectiveConfig.writeOperationResult,
+        eventOperationLifecycle:
+          eventArgs.eventOperationLifecycle ?? effectiveConfig.eventOperationLifecycle,
       });
     },
     [effectiveActionHandlers, effectiveConfig, executeRuntimeAction],

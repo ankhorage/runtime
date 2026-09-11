@@ -21,3 +21,15 @@ export {
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
 } from './runtimeBindings';
+export type {
+  RuntimeEventOperationInvocation,
+  RuntimeEventOperationLifecycle,
+  RuntimeEventOperationState,
+  RuntimeEventOperationStatus,
+} from './runtimeEventOperationLifecycle';
+export {
+  createRuntimeEventOperationBindingContext,
+  createRuntimeEventOperationLifecycle,
+  IDLE_RUNTIME_EVENT_OPERATION_STATE,
+  resolveRuntimeEventOperationErrorMessage,
+} from './runtimeEventOperationLifecycle';
