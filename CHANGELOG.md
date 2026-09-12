@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 2.3.1
+
+### Patch Changes
+
+- fde07ae: Use package metadata as the default Paradox documentation title and description.
+
 ## 2.3.0
 
 ### Minor Changes
