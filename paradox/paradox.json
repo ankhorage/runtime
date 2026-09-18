@@ -1,7 +1,7 @@
 {
   "packageName": "@ankhorage/runtime",
   "packageId": "@ankhorage/runtime",
-  "description": "Platform-neutral runtime contracts and helpers for Ankhorage generated apps.",
+  "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
   "collaborators": null,
   "donation": null,
   "badges": [
@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v2.2.10",
+      "value": "v2.3.1",
       "color": "cb3837"
     },
     {
@@ -976,11 +976,11 @@
       ],
       "signatures": [
         {
-          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
+          "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
           "parameters": [
             {
               "name": "options",
-              "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
+              "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
               "required": false,
               "description": null
             }
@@ -1449,7 +1449,7 @@
       "relatedSymbols": ["RuntimeBindingResolutionContext"],
       "signatures": [
         {
-          "label": "(input: Readonly<Record<string, BindingInputValue>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<BindingValue | undefined>",
+          "label": "(input: Readonly<Record<string, BindingInputValue>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
           "parameters": [
             {
               "name": "context",
@@ -1470,7 +1470,7 @@
               "description": null
             }
           ],
-          "returnType": "Promise<BindingValue | undefined>",
+          "returnType": "Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
           "returnDescription": null
         }
       ],
@@ -2033,7 +2033,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -2073,7 +2073,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -2169,7 +2169,7 @@
       "modulePath": "src/runtimeApiSelection.ts",
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 9,
+        "line": 10,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
@@ -2280,7 +2280,7 @@
         {
           "name": "input",
           "kind": "property",
-          "type": "BindingValue | undefined",
+          "type": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
           "required": false,
           "description": null
         },
@@ -2410,7 +2410,7 @@
         {
           "name": "apis",
           "kind": "property",
-          "type": "ApiDefinitionList | undefined",
+          "type": "Readonly<Record<string, ApiDefinition>> | undefined",
           "required": false,
           "description": null
         },
@@ -2452,7 +2452,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -2492,7 +2492,7 @@
         {
           "name": "apis",
           "kind": "property",
-          "type": "ApiDefinitionList | undefined",
+          "type": "Readonly<Record<string, ApiDefinition>> | undefined",
           "required": false,
           "description": null
         },
@@ -2527,7 +2527,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -2616,7 +2616,7 @@
         {
           "name": "apis",
           "kind": "property",
-          "type": "ApiDefinitionList | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
           "required": false,
           "description": null
         },
@@ -2679,7 +2679,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -3049,7 +3049,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -3307,7 +3307,7 @@
         {
           "name": "initialState",
           "kind": "property",
-          "type": "Readonly<Record<string, StateValue>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue>> | undefined",
           "required": false,
           "description": null
         }
@@ -3400,7 +3400,7 @@
         {
           "name": "apis",
           "kind": "property",
-          "type": "ApiDefinitionList | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
           "required": false,
           "description": null
         },
@@ -3484,7 +3484,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -3590,7 +3590,7 @@
         {
           "name": "apis",
           "kind": "property",
-          "type": "ApiDefinitionList | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
           "required": false,
           "description": null
         },
@@ -3674,7 +3674,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -3865,7 +3865,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>>",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
           "required": true,
           "description": null
         }
@@ -3905,7 +3905,7 @@
         {
           "name": "operationResults",
           "kind": "property",
-          "type": "Readonly<Record<string, BindingValue | undefined>>",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
           "required": true,
           "description": null
         },
@@ -4144,18 +4144,18 @@
       "modulePath": "src/runtimeApiSelection.ts",
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       },
       "exportPaths": ["src/index.ts"],
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(operation: BindingOperationRef, apis: ApiDefinitionList | undefined) => readonly DataSourceDiagnostic[]",
+          "label": "(operation: BindingOperationRef, apis: Readonly<Record<string, ApiDefinition>> | undefined) => readonly DataSourceDiagnostic[]",
           "parameters": [
             {
               "name": "apis",
-              "type": "ApiDefinitionList | undefined",
+              "type": "Readonly<Record<string, ApiDefinition>> | undefined",
               "required": true,
               "description": null
             },
@@ -4288,7 +4288,7 @@
       "props": [
         {
           "name": "apis",
-          "type": "ApiDefinitionList | undefined",
+          "type": "ApiDefinitionRegistry | undefined",
           "required": false,
           "description": null
         },
@@ -4508,7 +4508,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
-        "line": 29,
+        "line": 43,
         "column": 1
       }
     },
@@ -4517,7 +4517,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
-        "line": 34,
+        "line": 48,
         "column": 1
       }
     },
@@ -4526,7 +4526,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
-        "line": 39,
+        "line": 53,
         "column": 1
       }
     },
@@ -4976,7 +4976,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       }
     },
@@ -4985,7 +4985,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 50,
+        "line": 51,
         "column": 1
       }
     },
@@ -4994,7 +4994,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 65,
+        "line": 66,
         "column": 1
       }
     },
@@ -5003,7 +5003,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 72,
+        "line": 73,
         "column": 1
       }
     },
@@ -5012,7 +5012,7 @@
       "description": null,
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
-        "line": 83,
+        "line": 86,
         "column": 1
       }
     },
@@ -7889,6 +7889,12 @@
         "sourcePath": "src/runtimeApiSelection.ts"
       },
       {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toSymbol": "readOwnProperty",
+        "callExpression": "readOwnProperty",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
         "fromSymbol": "resolveRuntimeBindingOperationSelection",
         "toSymbol": "validateRuntimeBindingOperationRef",
         "callExpression": "validateRuntimeBindingOperationRef",
@@ -7904,6 +7910,24 @@
         "fromSymbol": "resolveRuntimeBindingOperationSelection",
         "toSymbol": "resolveRuntimeApiEndpoint",
         "callExpression": "resolveRuntimeApiEndpoint",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "findRuntimeApi",
+        "toSymbol": "readOwnProperty",
+        "callExpression": "readOwnProperty",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeApiEndpoint",
+        "toSymbol": "readOwnProperty",
+        "callExpression": "readOwnProperty",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiSelection.ts",
+        "toSymbol": "readOwnProperty",
+        "callExpression": "readOwnProperty",
         "sourcePath": "src/runtimeApiSelection.ts"
       },
       {
@@ -10076,11 +10100,6 @@
       },
       {
         "fromSymbol": "RuntimeActionResolutionArgs",
-        "toType": "BindingValue",
-        "sourcePath": "src/runtimeActionRegistry.ts"
-      },
-      {
-        "fromSymbol": "RuntimeActionResolutionArgs",
         "toType": "ComponentEventDto",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
@@ -10090,8 +10109,8 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
-        "fromSymbol": "RuntimeActionResolutionScope",
-        "toType": "BindingValue",
+        "fromSymbol": "RuntimeActionResolutionArgs",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10100,13 +10119,13 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
-        "fromSymbol": "RuntimeComponentEventDispatchArgs",
-        "toType": "ApiDefinitionList",
+        "fromSymbol": "RuntimeActionResolutionScope",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
         "fromSymbol": "RuntimeComponentEventDispatchArgs",
-        "toType": "BindingValue",
+        "toType": "ApiDefinition",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10146,12 +10165,12 @@
       },
       {
         "fromSymbol": "RuntimeComponentEventDispatchArgs",
-        "toType": "UiNode",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
-        "fromSymbol": "RuntimeEventPropWrapArgs",
-        "toType": "BindingValue",
+        "fromSymbol": "RuntimeComponentEventDispatchArgs",
+        "toType": "UiNode",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10167,6 +10186,11 @@
       {
         "fromSymbol": "RuntimeEventPropWrapArgs",
         "toType": "RuntimeComponentEventDispatchArgs",
+        "sourcePath": "src/runtimeActionRegistry.ts"
+      },
+      {
+        "fromSymbol": "RuntimeEventPropWrapArgs",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10191,7 +10215,7 @@
       },
       {
         "fromSymbol": "createRuntimeActionRegistry",
-        "toType": "ApiDefinitionList",
+        "toType": "ApiDefinitionRegistry",
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
@@ -10296,7 +10320,7 @@
       },
       {
         "fromSymbol": "validateRuntimeBindingOperationRef",
-        "toType": "ApiDefinitionList",
+        "toType": "ApiDefinition",
         "sourcePath": "src/runtimeApiSelection.ts"
       },
       {
@@ -10307,6 +10331,11 @@
       {
         "fromSymbol": "validateRuntimeBindingOperationRef",
         "toType": "DataSourceDiagnostic",
+        "sourcePath": "src/runtimeApiSelection.ts"
+      },
+      {
+        "fromSymbol": "validateRuntimeBindingOperationRef",
+        "toType": "Readonly",
         "sourcePath": "src/runtimeApiSelection.ts"
       },
       {
@@ -10321,12 +10350,12 @@
       },
       {
         "fromSymbol": "RuntimeBindingOperationExecutionArgs",
-        "toType": "BindingValue",
+        "toType": "DataEndpointConfig",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
         "fromSymbol": "RuntimeBindingOperationExecutionArgs",
-        "toType": "DataEndpointConfig",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10336,12 +10365,7 @@
       },
       {
         "fromSymbol": "RuntimeBindingResolutionArgs",
-        "toType": "ApiDefinitionList",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "RuntimeBindingResolutionArgs",
-        "toType": "BindingValue",
+        "toType": "ApiDefinition",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10362,6 +10386,11 @@
       {
         "fromSymbol": "RuntimeBindingResolutionArgs",
         "toType": "RuntimeBindingOperationExecutor",
+        "sourcePath": "src/runtimeBindings.ts"
+      },
+      {
+        "fromSymbol": "RuntimeBindingResolutionArgs",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10376,12 +10405,7 @@
       },
       {
         "fromSymbol": "RuntimeBindingResolutionContext",
-        "toType": "ApiDefinitionList",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "RuntimeBindingResolutionContext",
-        "toType": "BindingValue",
+        "toType": "ApiDefinition",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10402,6 +10426,11 @@
       {
         "fromSymbol": "RuntimeBindingResolutionContext",
         "toType": "RuntimeBindingOperationExecutor",
+        "sourcePath": "src/runtimeBindings.ts"
+      },
+      {
+        "fromSymbol": "RuntimeBindingResolutionContext",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10426,11 +10455,6 @@
       },
       {
         "fromSymbol": "resolveBindingInputMap",
-        "toType": "BindingValue",
-        "sourcePath": "src/runtimeBindings.ts"
-      },
-      {
-        "fromSymbol": "resolveBindingInputMap",
         "toType": "DataSourceDiagnostic",
         "sourcePath": "src/runtimeBindings.ts"
       },
@@ -10442,6 +10466,11 @@
       {
         "fromSymbol": "resolveBindingInputMap",
         "toType": "RuntimeBindingResolutionContext",
+        "sourcePath": "src/runtimeBindings.ts"
+      },
+      {
+        "fromSymbol": "resolveBindingInputMap",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -10711,12 +10740,7 @@
       },
       {
         "fromSymbol": "RuntimeRendererProps",
-        "toType": "ApiDefinitionList",
-        "sourcePath": "src/RuntimeRenderer.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererProps",
-        "toType": "BindingValue",
+        "toType": "ApiDefinition",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -10796,6 +10820,11 @@
       },
       {
         "fromSymbol": "RuntimeRendererProps",
+        "toType": "SerializableValue",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererProps",
         "toType": "StateAdapter",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
@@ -10856,12 +10885,7 @@
       },
       {
         "fromSymbol": "RuntimeRendererConfig",
-        "toType": "ApiDefinitionList",
-        "sourcePath": "src/RuntimeRendererConfig.tsx"
-      },
-      {
-        "fromSymbol": "RuntimeRendererConfig",
-        "toType": "BindingValue",
+        "toType": "ApiDefinition",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -10957,6 +10981,11 @@
       {
         "fromSymbol": "RuntimeRendererConfig",
         "toType": "RuntimeRendererWrapArgs",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
+        "toType": "SerializableValue",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
@@ -11061,11 +11090,6 @@
       },
       {
         "fromSymbol": "RuntimeScreenOperationLoaderExecutionResult",
-        "toType": "BindingValue",
-        "sourcePath": "src/runtimeScreenLoaders.ts"
-      },
-      {
-        "fromSymbol": "RuntimeScreenOperationLoaderExecutionResult",
         "toType": "DataSourceDiagnostic",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
@@ -11075,8 +11099,8 @@
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
-        "fromSymbol": "RuntimeScreenOperationLoaderState",
-        "toType": "BindingValue",
+        "fromSymbol": "RuntimeScreenOperationLoaderExecutionResult",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
@@ -11087,6 +11111,11 @@
       {
         "fromSymbol": "RuntimeScreenOperationLoaderState",
         "toType": "Readonly",
+        "sourcePath": "src/runtimeScreenLoaders.ts"
+      },
+      {
+        "fromSymbol": "RuntimeScreenOperationLoaderState",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
@@ -11181,7 +11210,7 @@
       },
       {
         "fromSymbol": "RuntimeMemoryStateAdapterOptions",
-        "toType": "StateValue",
+        "toType": "SerializableValue",
         "sourcePath": "src/runtimeStateAdapter.ts"
       },
       {

@@ -277,11 +277,11 @@
     ],
     "signatures": [
       {
-        "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
+        "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
         "parameters": [
           {
             "name": "options",
-            "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
+            "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
             "required": false,
             "description": null
           }
@@ -750,7 +750,7 @@
     "relatedSymbols": ["RuntimeBindingResolutionContext"],
     "signatures": [
       {
-        "label": "(input: Readonly<Record<string, BindingInputValue>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<BindingValue | undefined>",
+        "label": "(input: Readonly<Record<string, BindingInputValue>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
         "parameters": [
           {
             "name": "context",
@@ -771,7 +771,7 @@
             "description": null
           }
         ],
-        "returnType": "Promise<BindingValue | undefined>",
+        "returnType": "Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
         "returnDescription": null
       }
     ],
@@ -1334,7 +1334,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -1374,7 +1374,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -1470,7 +1470,7 @@
     "modulePath": "src/runtimeApiSelection.ts",
     "sourceLocation": {
       "filePath": "src/runtimeApiSelection.ts",
-      "line": 9,
+      "line": 10,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
@@ -1581,7 +1581,7 @@
       {
         "name": "input",
         "kind": "property",
-        "type": "BindingValue | undefined",
+        "type": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "required": false,
         "description": null
       },
@@ -1711,7 +1711,7 @@
       {
         "name": "apis",
         "kind": "property",
-        "type": "ApiDefinitionList | undefined",
+        "type": "Readonly<Record<string, ApiDefinition>> | undefined",
         "required": false,
         "description": null
       },
@@ -1753,7 +1753,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -1793,7 +1793,7 @@
       {
         "name": "apis",
         "kind": "property",
-        "type": "ApiDefinitionList | undefined",
+        "type": "Readonly<Record<string, ApiDefinition>> | undefined",
         "required": false,
         "description": null
       },
@@ -1828,7 +1828,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -1917,7 +1917,7 @@
       {
         "name": "apis",
         "kind": "property",
-        "type": "ApiDefinitionList | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
         "required": false,
         "description": null
       },
@@ -1980,7 +1980,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2350,7 +2350,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2608,7 +2608,7 @@
       {
         "name": "initialState",
         "kind": "property",
-        "type": "Readonly<Record<string, StateValue>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue>> | undefined",
         "required": false,
         "description": null
       }
@@ -2701,7 +2701,7 @@
       {
         "name": "apis",
         "kind": "property",
-        "type": "ApiDefinitionList | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
         "required": false,
         "description": null
       },
@@ -2785,7 +2785,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2891,7 +2891,7 @@
       {
         "name": "apis",
         "kind": "property",
-        "type": "ApiDefinitionList | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").ApiDefinition>> | undefined",
         "required": false,
         "description": null
       },
@@ -2975,7 +2975,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -3166,7 +3166,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>>",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
         "required": true,
         "description": null
       }
@@ -3206,7 +3206,7 @@
       {
         "name": "operationResults",
         "kind": "property",
-        "type": "Readonly<Record<string, BindingValue | undefined>>",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
         "required": true,
         "description": null
       },
@@ -3445,18 +3445,18 @@
     "modulePath": "src/runtimeApiSelection.ts",
     "sourceLocation": {
       "filePath": "src/runtimeApiSelection.ts",
-      "line": 14,
+      "line": 15,
       "column": 1
     },
     "exportPaths": ["src/index.ts"],
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(operation: BindingOperationRef, apis: ApiDefinitionList | undefined) => readonly DataSourceDiagnostic[]",
+        "label": "(operation: BindingOperationRef, apis: Readonly<Record<string, ApiDefinition>> | undefined) => readonly DataSourceDiagnostic[]",
         "parameters": [
           {
             "name": "apis",
-            "type": "ApiDefinitionList | undefined",
+            "type": "Readonly<Record<string, ApiDefinition>> | undefined",
             "required": true,
             "description": null
           },
