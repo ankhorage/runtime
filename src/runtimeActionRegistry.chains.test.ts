@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingOperationRef,
   BindingValue,
   ComponentDataBindingRegistry,
@@ -14,9 +14,9 @@ const lookupOperation: BindingOperationRef = {
   operationId: 'products.byBarcode',
 };
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    nutrition: {
       id: 'nutrition',
       origin: 'external',
       protocol: 'rest',
@@ -38,7 +38,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function createScannerBindings(): ComponentDataBindingRegistry {
