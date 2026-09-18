@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingOperationRef,
   BindingValue,
   ComponentDataBindingRegistry,
@@ -21,9 +21,9 @@ const productDetailOperation: BindingOperationRef = {
   operationId: 'products.getById',
 };
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    nutrition: {
       id: 'nutrition',
       origin: 'external',
       protocol: 'rest',
@@ -45,7 +45,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function createLoader(id = 'product-detail'): OperationScreenDataLoaderDefinition {
