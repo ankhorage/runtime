@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
   DbAdapter,
   DbRealtimeAdapter,
@@ -92,7 +92,7 @@ export function resolveRuntimeNodeProps(args: {
   dbAdapter?: DbAdapter;
   dbRealtimeAdapter?: DbRealtimeAdapter;
   bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionList;
+  apis?: ApiDefinitionRegistry;
   dataBindings?: ComponentDataBindingRegistry;
   operationResults?: RuntimeBindingOperationResultCache;
 }): Record<string, unknown> {
