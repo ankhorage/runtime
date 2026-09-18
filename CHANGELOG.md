@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.0
+
+### Major Changes
+
+- 9327617: Consume the canonical Contracts 22 API registry shape and remove ordered API-list semantics from Runtime.
+
 ## 2.3.1
 
 ### Patch Changes
