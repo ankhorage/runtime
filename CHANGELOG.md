@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.1
+
+### Patch Changes
+
+- d457531: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 3.0.0
 
 ### Major Changes
