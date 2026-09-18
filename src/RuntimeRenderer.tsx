@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingValue,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
@@ -68,7 +68,7 @@ export interface RuntimeRendererProps {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionList;
+  apis?: ApiDefinitionRegistry;
   dataBindings?: ComponentDataBindingRegistry;
   mediaAssets?: MediaAssetRegistry;
   resolveMediaAsset?: RuntimeMediaAssetResolver;
