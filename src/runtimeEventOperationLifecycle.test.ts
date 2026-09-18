@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingOperationRef,
   ComponentDataBindingRegistry,
   UiNode,
@@ -20,8 +20,8 @@ const operation: BindingOperationRef = {
   operationId: 'tasks.answer',
 };
 const node: UiNode = { id: 'answer-button', type: 'Button' };
-const apis: ApiDefinitionList = [
-  {
+const apis: ApiDefinitionRegistry = {
+  poker: {
     id: 'poker',
     origin: 'external',
     protocol: 'rest',
@@ -43,7 +43,7 @@ const apis: ApiDefinitionList = [
       },
     },
   },
-];
+};
 const dataBindings: ComponentDataBindingRegistry = {
   'answer-button': {
     componentId: 'answer-button',
