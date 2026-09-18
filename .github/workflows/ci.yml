@@ -31,7 +31,13 @@ jobs:
           node-version: '24'
 
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        run: bun install
+
+      - name: Export generated lockfile
+        uses: actions/upload-artifact@v4
+        with:
+          name: contracts-22-bun-lock
+          path: bun.lock
 
       - name: Run build
         run: |
