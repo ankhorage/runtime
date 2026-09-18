@@ -185,7 +185,9 @@
       <aside class="sidebar">
         <p class="muted">Generated with Paradox</p>
         <h1>@ankhorage/runtime</h1>
-        <p>Platform-neutral runtime contracts and helpers for Ankhorage generated apps.</p>
+        <p>
+          Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
+        </p>
         <input id="search" class="search" type="search" placeholder="Search current view" />
         <nav aria-label="Documentation sections">
           <ul class="nav-list">
@@ -1571,7 +1573,7 @@
               <article
                 class="item"
                 id="symbol-createruntimeactionregistry"
-                data-search="createRuntimeActionRegistry function src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeActionHandlers RuntimeActionRegistry RuntimeBindingOperationExecutor RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeEventOperationLifecycle (options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry"
+                data-search="createRuntimeActionRegistry function src/runtimeActionRegistry.ts  RuntimeActionHandler RuntimeActionHandlers RuntimeActionRegistry RuntimeBindingOperationExecutor RuntimeBindingOperationResultCache RuntimeBindingOperationResultWriter RuntimeEventOperationLifecycle (options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry"
               >
                 <h4>createRuntimeActionRegistry</h4>
                 <p class="muted">function • <code>src/runtimeActionRegistry.ts:71:1</code></p>
@@ -1592,7 +1594,7 @@
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry</pre>
+(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) =&gt; RuntimeActionRegistry</pre>
                   <table>
                     <thead>
                       <tr>
@@ -1607,7 +1609,7 @@
                         <td><code>options</code></td>
                         <td>
                           <code
-                            >{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionList;
+                            >{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry;
                             dataBindings?: ComponentDataBindingRegistry; executeAction?:
                             RuntimeActionHandler; executeOperation?:
                             RuntimeBindingOperationExecutor; eventOperationLifecycle?:
@@ -1859,8 +1861,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -1910,8 +1913,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -1960,7 +1964,13 @@
                     <tr>
                       <td><code>apis</code></td>
                       <td>property</td>
-                      <td><code>ApiDefinitionList | undefined</code></td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).ApiDefinition&gt;&gt; |
+                          undefined</code
+                        >
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -2031,8 +2041,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -2133,8 +2144,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -2288,7 +2300,7 @@
                 data-search="RuntimeApiOperationSelection type src/runtimeApiSelection.ts "
               >
                 <h4>RuntimeApiOperationSelection</h4>
-                <p class="muted">type • <code>src/runtimeApiSelection.ts:9:1</code></p>
+                <p class="muted">type • <code>src/runtimeApiSelection.ts:10:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
@@ -2324,17 +2336,17 @@
               <article
                 class="item"
                 id="symbol-validateruntimebindingoperationref"
-                data-search="validateRuntimeBindingOperationRef function src/runtimeApiSelection.ts  (operation: BindingOperationRef, apis: ApiDefinitionList | undefined) =&gt; readonly DataSourceDiagnostic[]"
+                data-search="validateRuntimeBindingOperationRef function src/runtimeApiSelection.ts  (operation: BindingOperationRef, apis: Readonly&lt;Record&lt;string, ApiDefinition&gt;&gt; | undefined) =&gt; readonly DataSourceDiagnostic[]"
               >
                 <h4>validateRuntimeBindingOperationRef</h4>
-                <p class="muted">function • <code>src/runtimeApiSelection.ts:14:1</code></p>
+                <p class="muted">function • <code>src/runtimeApiSelection.ts:15:1</code></p>
 
                 <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
                 <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(operation: BindingOperationRef, apis: ApiDefinitionList | undefined) =&gt; readonly DataSourceDiagnostic[]</pre>
+(operation: BindingOperationRef, apis: Readonly&lt;Record&lt;string, ApiDefinition&gt;&gt; | undefined) =&gt; readonly DataSourceDiagnostic[]</pre>
                   <table>
                     <thead>
                       <tr>
@@ -2347,7 +2359,11 @@
                     <tbody>
                       <tr>
                         <td><code>apis</code></td>
-                        <td><code>ApiDefinitionList | undefined</code></td>
+                        <td>
+                          <code
+                            >Readonly&lt;Record&lt;string, ApiDefinition&gt;&gt; | undefined</code
+                          >
+                        </td>
                         <td>yes</td>
                         <td></td>
                       </tr>
@@ -2402,7 +2418,7 @@
               <article
                 class="item"
                 id="symbol-resolvebindinginputmap"
-                data-search="resolveBindingInputMap function src/runtimeBindings.ts  RuntimeBindingResolutionContext (input: Readonly&lt;Record&lt;string, BindingInputValue&gt;&gt; | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) =&gt; Promise&lt;BindingValue | undefined&gt;"
+                data-search='resolveBindingInputMap function src/runtimeBindings.ts  RuntimeBindingResolutionContext (input: Readonly&lt;Record&lt;string, BindingInputValue&gt;&gt; | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) =&gt; Promise&lt;import("@ankhorage/contracts").SerializableValue | undefined&gt;'
               >
                 <h4>resolveBindingInputMap</h4>
                 <p class="muted">function • <code>src/runtimeBindings.ts:131:1</code></p>
@@ -2417,7 +2433,7 @@
                 <div>
                   <h5>Signature</h5>
                   <pre>
-(input: Readonly&lt;Record&lt;string, BindingInputValue&gt;&gt; | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) =&gt; Promise&lt;BindingValue | undefined&gt;</pre>
+(input: Readonly&lt;Record&lt;string, BindingInputValue&gt;&gt; | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) =&gt; Promise&lt;import(&quot;@ankhorage/contracts&quot;).SerializableValue | undefined&gt;</pre>
                   <table>
                     <thead>
                       <tr>
@@ -2454,7 +2470,11 @@
                     </tbody>
                   </table>
                   <p>
-                    <strong>Returns:</strong> <code>Promise&lt;BindingValue | undefined&gt;</code>
+                    <strong>Returns:</strong>
+                    <code
+                      >Promise&lt;import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                      undefined&gt;</code
+                    >
                   </p>
                 </div>
               </article>
@@ -2686,7 +2706,12 @@
                     <tr>
                       <td><code>input</code></td>
                       <td>property</td>
-                      <td><code>BindingValue | undefined</code></td>
+                      <td>
+                        <code
+                          >import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined</code
+                        >
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -2792,7 +2817,9 @@
                     <tr>
                       <td><code>apis</code></td>
                       <td>property</td>
-                      <td><code>ApiDefinitionList | undefined</code></td>
+                      <td>
+                        <code>Readonly&lt;Record&lt;string, ApiDefinition&gt;&gt; | undefined</code>
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -2842,8 +2869,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -2896,7 +2924,9 @@
                     <tr>
                       <td><code>apis</code></td>
                       <td>property</td>
-                      <td><code>ApiDefinitionList | undefined</code></td>
+                      <td>
+                        <code>Readonly&lt;Record&lt;string, ApiDefinition&gt;&gt; | undefined</code>
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -2939,8 +2969,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -4250,7 +4281,13 @@
                     <tr>
                       <td><code>apis</code></td>
                       <td>property</td>
-                      <td><code>ApiDefinitionList | undefined</code></td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).ApiDefinition&gt;&gt; |
+                          undefined</code
+                        >
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -4358,8 +4395,9 @@
                       <td>property</td>
                       <td>
                         <code
-                          >Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt; |
-                          undefined</code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -4706,7 +4744,13 @@
                     <tr>
                       <td><code>apis</code></td>
                       <td>property</td>
-                      <td><code>ApiDefinitionList | undefined</code></td>
+                      <td>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).ApiDefinition&gt;&gt; |
+                          undefined</code
+                        >
+                      </td>
                       <td>no</td>
                       <td></td>
                     </tr>
@@ -4810,8 +4854,8 @@
                       <td>
                         <code
                           >Readonly&lt;Record&lt;string,
-                          import(&quot;@ankhorage/contracts&quot;).BindingValue | undefined&gt;&gt;
-                          | undefined</code
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt; | undefined</code
                         >
                       </td>
                       <td>no</td>
@@ -5353,7 +5397,11 @@
                       <td><code>operationResults</code></td>
                       <td>property</td>
                       <td>
-                        <code>Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt;</code>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt;</code
+                        >
                       </td>
                       <td>yes</td>
                       <td></td>
@@ -5401,7 +5449,11 @@
                       <td><code>operationResults</code></td>
                       <td>property</td>
                       <td>
-                        <code>Readonly&lt;Record&lt;string, BindingValue | undefined&gt;&gt;</code>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue |
+                          undefined&gt;&gt;</code
+                        >
                       </td>
                       <td>yes</td>
                       <td></td>
@@ -5536,7 +5588,11 @@
                       <td><code>initialState</code></td>
                       <td>property</td>
                       <td>
-                        <code>Readonly&lt;Record&lt;string, StateValue&gt;&gt; | undefined</code>
+                        <code
+                          >Readonly&lt;Record&lt;string,
+                          import(&quot;@ankhorage/contracts&quot;).SerializableValue&gt;&gt; |
+                          undefined</code
+                        >
                       </td>
                       <td>no</td>
                       <td></td>
@@ -5631,7 +5687,7 @@
             <article
               class="item"
               id="component-runtimerenderer"
-              data-search="RuntimeRenderer src/RuntimeRenderer.tsx  apis ApiDefinitionList | undefined bindingContext Record&lt;string, unknown&gt; | undefined dataBindings ComponentDataBindingRegistry | undefined dbAdapter DbAdapter | undefined dbRealtimeAdapter DbRealtimeAdapter | undefined disableActions boolean | undefined executeAction RuntimeActionExecutor | undefined executeOperation RuntimeBindingOperationExecutor | undefined isRoot boolean | undefined mediaAssets MediaAssetRegistry | undefined node UiNode onDiagnostics (diagnostics: readonly DataSourceDiagnostic[]) =&gt; void | undefined operationResults RuntimeBindingOperationResultCache | undefined registry ComponentRegistry | undefined resolveMediaAsset RuntimeMediaAssetResolver | undefined stateAdapter StateAdapter | undefined wrapNode (args: RuntimeRendererWrapArgs) =&gt; React.ReactNode | undefined"
+              data-search="RuntimeRenderer src/RuntimeRenderer.tsx  apis ApiDefinitionRegistry | undefined bindingContext Record&lt;string, unknown&gt; | undefined dataBindings ComponentDataBindingRegistry | undefined dbAdapter DbAdapter | undefined dbRealtimeAdapter DbRealtimeAdapter | undefined disableActions boolean | undefined executeAction RuntimeActionExecutor | undefined executeOperation RuntimeBindingOperationExecutor | undefined isRoot boolean | undefined mediaAssets MediaAssetRegistry | undefined node UiNode onDiagnostics (diagnostics: readonly DataSourceDiagnostic[]) =&gt; void | undefined operationResults RuntimeBindingOperationResultCache | undefined registry ComponentRegistry | undefined resolveMediaAsset RuntimeMediaAssetResolver | undefined stateAdapter StateAdapter | undefined wrapNode (args: RuntimeRendererWrapArgs) =&gt; React.ReactNode | undefined"
             >
               <h3>RuntimeRenderer</h3>
               <p class="muted"><code>src/RuntimeRenderer.tsx:81:1</code></p>
@@ -5649,7 +5705,7 @@
                 <tbody>
                   <tr>
                     <td><code>apis</code></td>
-                    <td><code>ApiDefinitionList | undefined</code></td>
+                    <td><code>ApiDefinitionRegistry | undefined</code></td>
                     <td>no</td>
                     <td></td>
                   </tr>
@@ -7769,10 +7825,13 @@ sequenceDiagram
               <div class="mermaid">
                 sequenceDiagram participant participant_createApiDiagnostic as createApiDiagnostic
                 participant participant_findRuntimeApi as findRuntimeApi participant
+                participant_readOwnProperty as readOwnProperty participant
                 participant_resolveRuntimeApiEndpoint as resolveRuntimeApiEndpoint participant
                 participant_validateRuntimeBindingOperationRef as validateRuntimeBindingOperationRef
                 participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_findRuntimeApi:
-                findRuntimeApi()
+                findRuntimeApi() participant_findRuntimeApi-&gt;&gt;participant_readOwnProperty:
+                readOwnProperty() participant_readOwnProperty--&gt;&gt;participant_findRuntimeApi:
+                return
                 participant_findRuntimeApi--&gt;&gt;participant_validateRuntimeBindingOperationRef:
                 return
                 participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_createApiDiagnostic:
@@ -7781,7 +7840,14 @@ sequenceDiagram
                 return
                 participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_resolveRuntimeApiEndpoint:
                 resolveRuntimeApiEndpoint()
+                participant_resolveRuntimeApiEndpoint-&gt;&gt;participant_readOwnProperty:
+                readOwnProperty()
+                participant_readOwnProperty--&gt;&gt;participant_resolveRuntimeApiEndpoint: return
                 participant_resolveRuntimeApiEndpoint--&gt;&gt;participant_validateRuntimeBindingOperationRef:
+                return
+                participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_readOwnProperty:
+                readOwnProperty()
+                participant_readOwnProperty--&gt;&gt;participant_validateRuntimeBindingOperationRef:
                 return
               </div>
               <details>
@@ -7790,14 +7856,21 @@ sequenceDiagram
 sequenceDiagram
   participant participant_createApiDiagnostic as createApiDiagnostic
   participant participant_findRuntimeApi as findRuntimeApi
+  participant participant_readOwnProperty as readOwnProperty
   participant participant_resolveRuntimeApiEndpoint as resolveRuntimeApiEndpoint
   participant participant_validateRuntimeBindingOperationRef as validateRuntimeBindingOperationRef
   participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_findRuntimeApi: findRuntimeApi()
+  participant_findRuntimeApi-&gt;&gt;participant_readOwnProperty: readOwnProperty()
+  participant_readOwnProperty--&gt;&gt;participant_findRuntimeApi: return
   participant_findRuntimeApi--&gt;&gt;participant_validateRuntimeBindingOperationRef: return
   participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_createApiDiagnostic: createApiDiagnostic()
   participant_createApiDiagnostic--&gt;&gt;participant_validateRuntimeBindingOperationRef: return
   participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_resolveRuntimeApiEndpoint: resolveRuntimeApiEndpoint()
+  participant_resolveRuntimeApiEndpoint-&gt;&gt;participant_readOwnProperty: readOwnProperty()
+  participant_readOwnProperty--&gt;&gt;participant_resolveRuntimeApiEndpoint: return
   participant_resolveRuntimeApiEndpoint--&gt;&gt;participant_validateRuntimeBindingOperationRef: return
+  participant_validateRuntimeBindingOperationRef-&gt;&gt;participant_readOwnProperty: readOwnProperty()
+  participant_readOwnProperty--&gt;&gt;participant_validateRuntimeBindingOperationRef: return
 </pre>
               </details>
             </article>
@@ -7884,7 +7957,7 @@ sequenceDiagram
             <h2>src/react19Compatibility.test.tsx</h2>
             <article class="item" data-search="ManifestProbe src/react19Compatibility.test.tsx ">
               <h3>ManifestProbe</h3>
-              <p class="muted"><code>src/react19Compatibility.test.tsx:29:1</code></p>
+              <p class="muted"><code>src/react19Compatibility.test.tsx:43:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7892,7 +7965,7 @@ sequenceDiagram
               data-search="RendererConfigProbe src/react19Compatibility.test.tsx "
             >
               <h3>RendererConfigProbe</h3>
-              <p class="muted"><code>src/react19Compatibility.test.tsx:34:1</code></p>
+              <p class="muted"><code>src/react19Compatibility.test.tsx:48:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -7900,7 +7973,7 @@ sequenceDiagram
               data-search="OptionalManifestProbe src/react19Compatibility.test.tsx "
             >
               <h3>OptionalManifestProbe</h3>
-              <p class="muted"><code>src/react19Compatibility.test.tsx:39:1</code></p>
+              <p class="muted"><code>src/react19Compatibility.test.tsx:53:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>
@@ -8336,7 +8409,7 @@ sequenceDiagram
               data-search="validateRuntimeBindingOperationRef src/runtimeApiSelection.ts "
             >
               <h3>validateRuntimeBindingOperationRef</h3>
-              <p class="muted"><code>src/runtimeApiSelection.ts:14:1</code></p>
+              <p class="muted"><code>src/runtimeApiSelection.ts:15:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8344,12 +8417,12 @@ sequenceDiagram
               data-search="resolveRuntimeBindingOperationSelection src/runtimeApiSelection.ts "
             >
               <h3>resolveRuntimeBindingOperationSelection</h3>
-              <p class="muted"><code>src/runtimeApiSelection.ts:50:1</code></p>
+              <p class="muted"><code>src/runtimeApiSelection.ts:51:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="findRuntimeApi src/runtimeApiSelection.ts ">
               <h3>findRuntimeApi</h3>
-              <p class="muted"><code>src/runtimeApiSelection.ts:65:1</code></p>
+              <p class="muted"><code>src/runtimeApiSelection.ts:66:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article
@@ -8357,12 +8430,12 @@ sequenceDiagram
               data-search="resolveRuntimeApiEndpoint src/runtimeApiSelection.ts "
             >
               <h3>resolveRuntimeApiEndpoint</h3>
-              <p class="muted"><code>src/runtimeApiSelection.ts:72:1</code></p>
+              <p class="muted"><code>src/runtimeApiSelection.ts:73:1</code></p>
               <p class="empty">No description available.</p>
             </article>
             <article class="item" data-search="createApiDiagnostic src/runtimeApiSelection.ts ">
               <h3>createApiDiagnostic</h3>
-              <p class="muted"><code>src/runtimeApiSelection.ts:83:1</code></p>
+              <p class="muted"><code>src/runtimeApiSelection.ts:86:1</code></p>
               <p class="empty">No description available.</p>
             </article>
           </section>

@@ -32,7 +32,7 @@ Export paths: `src/index.ts`
 
 | Prop              | Type                                                                  | Required | Default | Description |
 | ----------------- | --------------------------------------------------------------------- | -------- | ------- | ----------- |
-| apis              | `ApiDefinitionList \| undefined`                                      | no       | —       |             |
+| apis              | `ApiDefinitionRegistry \| undefined`                                  | no       | —       |             |
 | bindingContext    | `Record<string, unknown> \| undefined`                                | no       | —       |             |
 | dataBindings      | `ComponentDataBindingRegistry \| undefined`                           | no       | —       |             |
 | dbAdapter         | `DbAdapter \| undefined`                                              | no       | —       |             |

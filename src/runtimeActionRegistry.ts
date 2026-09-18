@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingCondition,
   BindingInputMap,
   BindingValue,
@@ -51,7 +51,7 @@ export interface RuntimeComponentEventDispatchArgs extends RuntimeActionResoluti
   readonly event: ComponentEventDto<string, object>;
   readonly eventName?: string;
   readonly executeAction?: RuntimeActionHandler;
-  readonly apis?: ApiDefinitionList;
+  readonly apis?: ApiDefinitionRegistry;
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly executeOperation?: RuntimeBindingOperationExecutor;
   readonly writeOperationResult?: RuntimeBindingOperationResultWriter;
@@ -71,7 +71,7 @@ export interface RuntimeEventPropWrapArgs extends RuntimeActionResolutionScope {
 export function createRuntimeActionRegistry(
   options: {
     actionHandlers?: RuntimeActionHandlers;
-    apis?: ApiDefinitionList;
+    apis?: ApiDefinitionRegistry;
     dataBindings?: ComponentDataBindingRegistry;
     executeAction?: RuntimeActionHandler;
     executeOperation?: RuntimeBindingOperationExecutor;

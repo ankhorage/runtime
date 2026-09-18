@@ -1,10 +1,11 @@
 import type {
   ApiDefinition,
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingOperationRef,
   DataEndpointConfig,
   DataSourceDiagnostic,
 } from '@ankhorage/contracts';
+import { readOwnProperty } from '@ankhorage/utility/object';
 
 export interface RuntimeApiOperationSelection {
   readonly api: ApiDefinition;
@@ -13,7 +14,7 @@ export interface RuntimeApiOperationSelection {
 
 export function validateRuntimeBindingOperationRef(
   operation: BindingOperationRef,
-  apis: ApiDefinitionList | undefined,
+  apis: ApiDefinitionRegistry | undefined,
 ): readonly DataSourceDiagnostic[] {
   const api = findRuntimeApi(apis, operation.apiId);
   if (api === undefined) {
@@ -33,7 +34,7 @@ export function validateRuntimeBindingOperationRef(
     ];
   }
 
-  if (endpoint.operations[operation.operationId] === undefined) {
+  if (readOwnProperty(endpoint.operations, operation.operationId) === undefined) {
     return [
       createApiDiagnostic(
         operation,
@@ -49,7 +50,7 @@ export function validateRuntimeBindingOperationRef(
 
 export function resolveRuntimeBindingOperationSelection(
   operation: BindingOperationRef,
-  apis: ApiDefinitionList | undefined,
+  apis: ApiDefinitionRegistry | undefined,
   diagnostics: DataSourceDiagnostic[],
 ): RuntimeApiOperationSelection | undefined {
   const validationDiagnostics = validateRuntimeBindingOperationRef(operation, apis);
@@ -63,20 +64,22 @@ export function resolveRuntimeBindingOperationSelection(
 }
 
 function findRuntimeApi(
-  apis: ApiDefinitionList | undefined,
+  apis: ApiDefinitionRegistry | undefined,
   apiId: string,
 ): ApiDefinition | undefined {
-  return apis?.find((api) => api.id === apiId);
+  return apis ? readOwnProperty<ApiDefinition>(apis, apiId) : undefined;
 }
 
 function resolveRuntimeApiEndpoint(
   operation: BindingOperationRef,
   api: ApiDefinition,
 ): DataEndpointConfig | undefined {
-  if (operation.endpointId !== undefined) return api.endpoints[operation.endpointId];
+  if (operation.endpointId !== undefined) {
+    return readOwnProperty<DataEndpointConfig>(api.endpoints, operation.endpointId);
+  }
 
   return Object.values(api.endpoints).find(
-    (endpoint) => endpoint.operations[operation.operationId] !== undefined,
+    (endpoint) => readOwnProperty(endpoint.operations, operation.operationId) !== undefined,
   );
 }
 

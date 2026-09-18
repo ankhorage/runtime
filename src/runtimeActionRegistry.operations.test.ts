@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingOperationRef,
   BindingValue,
   ComponentDataBindingRegistry,
@@ -20,9 +20,9 @@ const postsOperation: BindingOperationRef = {
   operationId: 'posts.list',
 };
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    cms: {
       id: 'cms',
       origin: 'external',
       protocol: 'rest',
@@ -52,7 +52,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function createOperationBindings(operation = postsOperation): ComponentDataBindingRegistry {
@@ -198,7 +198,7 @@ describe('runtime action registry API operations', () => {
     let executorCalls = 0;
     const diagnostics = await dispatchRuntimeComponentEvent({
       ...refreshEventArgs(),
-      apis: [],
+      apis: {},
       dataBindings: createOperationBindings(),
       executeOperation: () => {
         executorCalls += 1;

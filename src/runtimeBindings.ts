@@ -1,6 +1,6 @@
 import type {
   ApiDefinition,
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingFallback,
   BindingInputMap,
   BindingInputValue,
@@ -57,7 +57,7 @@ export interface RuntimeBindingResolutionContext {
   readonly context?: Record<string, unknown>;
   readonly event?: ComponentEventDto<string, object>;
   readonly stateAdapter?: StateAdapter;
-  readonly apis?: ApiDefinitionList;
+  readonly apis?: ApiDefinitionRegistry;
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly operationResults?: RuntimeBindingOperationResultCache;
   readonly executeOperation?: RuntimeBindingOperationExecutor;

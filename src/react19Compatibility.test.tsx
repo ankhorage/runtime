@@ -18,9 +18,23 @@ const manifest = {
     category: 'developer_tools',
     themeId: 'default',
   },
-  themes: [],
+  themes: {
+    default: {
+      id: 'default',
+      name: 'Default',
+      light: { primaryColor: '#3366ff', harmony: 'analogous' },
+      dark: { primaryColor: '#6699ff', harmony: 'analogous' },
+    },
+  },
   activeThemeId: 'default',
-  infra: { modules: [] },
+  infra: {
+    environments: {
+      local: {
+        deployment: { compute: { provider: 'local' }, runtime: { provider: 'minikube' } },
+      },
+    },
+    modules: {},
+  },
   navigator: { type: 'stack', routes: [] },
   screens: {},
   settings: { localization: { defaultLocale: 'en', locales: ['en'] } },

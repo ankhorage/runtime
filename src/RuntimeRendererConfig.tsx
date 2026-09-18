@@ -1,6 +1,6 @@
 import type {
   Action,
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
   ComponentEventDto,
   DataSourceDiagnostic,
@@ -60,7 +60,7 @@ export interface RuntimeRendererConfig {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionList;
+  apis?: ApiDefinitionRegistry;
   dataBindings?: ComponentDataBindingRegistry;
   operationResults?: RuntimeBindingOperationResultCache;
   writeOperationResult?: RuntimeBindingOperationResultWriter;

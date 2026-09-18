@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingValue,
   ComponentDataBindingRegistry,
   UiNode,
@@ -15,9 +15,9 @@ import {
   resolveRuntimeRepeatItemsSync,
 } from './runtimeRepeat';
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    'nutrition-api': {
       id: 'nutrition-api',
       origin: 'external',
       protocol: 'rest',
@@ -39,7 +39,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function createRepeatedGridNode(): UiNode {

@@ -1,11 +1,11 @@
-import type { ApiDefinitionList, BindingOperationRef } from '@ankhorage/contracts';
+import type { ApiDefinitionRegistry, BindingOperationRef } from '@ankhorage/contracts';
 import { describe, expect, it } from 'bun:test';
 
 import { validateRuntimeBindingOperationRef } from './runtimeApiSelection';
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    nutrition: {
       id: 'nutrition',
       origin: 'external',
       protocol: 'rest',
@@ -27,7 +27,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function operation(overrides: Partial<BindingOperationRef> = {}): BindingOperationRef {
