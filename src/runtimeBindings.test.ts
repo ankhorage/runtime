@@ -1,5 +1,5 @@
 import type {
-  ApiDefinitionList,
+  ApiDefinitionRegistry,
   BindingInputMap,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
@@ -22,9 +22,9 @@ import {
 } from './runtimeBindings';
 import { resolveRuntimeNodeProps } from './runtimeNodeProps';
 
-function createApis(): ApiDefinitionList {
-  return [
-    {
+function createApis(): ApiDefinitionRegistry {
+  return {
+    cms: {
       id: 'cms',
       origin: 'external',
       protocol: 'rest',
@@ -54,7 +54,7 @@ function createApis(): ApiDefinitionList {
         },
       },
     },
-  ];
+  };
 }
 
 function createFakeStateAdapter(values: Record<string, StateValue>): StateAdapter {
