@@ -6,7 +6,7 @@
       "name": "@ankhorage/runtime",
       "dependencies": {
         "@ankhorage/contracts": "^22.1.2",
-        "@ankhorage/data-sources": "^2.0.9",
+        "@ankhorage/data-sources": "^2.0.10",
         "@ankhorage/utility": "^1.4.0",
       },
       "devDependencies": {
@@ -39,7 +39,7 @@
 
     "@ankhorage/contracts": ["@ankhorage/contracts@22.1.2", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.1", "@ankhorage/utility": "^1.4.0" } }, "sha512-dNLih4WsSpHNzCEPUw44xSVDjseXRtUplS75FKijZvaG7O03zWZF/eUjs3HgczufHIR++1RjfO5PN0k9MMvzbA=="],
 
-    "@ankhorage/data-sources": ["@ankhorage/data-sources@2.0.9", "", { "dependencies": { "@ankhorage/contracts": "^22.1.1" } }, "sha512-KixGL7TkLiINM2pi8lm/kCz1oDT4y64aM+3La0S0Y7sHzW2a+if4SKkf7LR5hBwT9b5gvRWc+Vn+STbUYIAyBg=="],
+    "@ankhorage/data-sources": ["@ankhorage/data-sources@2.0.10", "", { "dependencies": { "@ankhorage/contracts": "^22.1.2" } }, "sha512-usjgdWoHC1m3xrd60T4WlX6WLRZhw70lYFY8bAr85lF+1gaO5tKnBvQlJL2WxJZ5P1w2Kj5elG2Z64oolKj5BQ=="],
 
     "@ankhorage/devtools": ["@ankhorage/devtools@1.18.2", "", { "dependencies": { "@ankhorage/apm": "^0.6.0", "@ankhorage/contracts": "^22.1.1", "@ankhorage/project-detector": "^0.1.0", "@ankhorage/utility": "^0.5.1", "@changesets/cli": "^3.0.2", "@eslint/compat": "^2.1.1", "@eslint/js": "^10.0.1", "@next/eslint-plugin-next": "^16.3.5", "eslint": "^10.10.0", "eslint-config-prettier": "^10.1.8", "eslint-plugin-import": "^2.32.0", "eslint-plugin-prettier": "^5.5.6", "eslint-plugin-react": "^7.37.5", "eslint-plugin-react-hooks": "^7.0.0", "eslint-plugin-react-native": "^5.0.0", "eslint-plugin-security": "^4.0.1", "eslint-plugin-simple-import-sort": "^14.0.0", "eslint-plugin-unused-imports": "^4.4.1", "knip": "^6.34.0", "prettier": "^3.9.6", "typescript": "~6.0.3", "typescript-eslint": "^8.69.0" }, "bin": { "ankhorage-knip": "dist/cli/bin/knip.js", "ankhorage-eslint": "dist/cli/bin/eslint.js", "ankhorage-prettier": "dist/cli/bin/prettier.js", "ankhorage-changeset": "dist/cli/bin/changeset.js", "ankhorage-structure": "dist/cli/bin/structure.js", "ankhorage-apm-release": "dist/cli/bin/apm-release.js" } }, "sha512-n03+m7iDDSlmQRVENSwqjeTP3BDc+1MFgFTomLzUx7W7imRdrfGLUY0tuEuznkgLBvwuUi5/ytwGfFxg4YKm3w=="],
 

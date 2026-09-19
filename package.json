@@ -68,7 +68,7 @@
   },
   "dependencies": {
     "@ankhorage/contracts": "^22.1.2",
-    "@ankhorage/data-sources": "^2.0.9",
+    "@ankhorage/data-sources": "^2.0.10",
     "@ankhorage/utility": "^1.4.0"
   },
   "peerDependencies": {
