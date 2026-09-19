@@ -67,9 +67,9 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^22.0.2",
+    "@ankhorage/contracts": "^22.0.3",
     "@ankhorage/data-sources": "^2.0.5",
-    "@ankhorage/utility": "^1.2.0"
+    "@ankhorage/utility": "^1.4.0"
   },
   "peerDependencies": {
     "react": "19.2.3",
