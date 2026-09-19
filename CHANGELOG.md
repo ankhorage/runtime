@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.9
+
+### Patch Changes
+
+- c93a595: Update Ankhorage dependencies: `@ankhorage/contracts`.
+
 ## 3.0.8
 
 ### Patch Changes
