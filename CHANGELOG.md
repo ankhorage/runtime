@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.4
+
+### Patch Changes
+
+- b43d97f: Update Ankhorage dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`.
+
 ## 3.0.3
 
 ### Patch Changes
