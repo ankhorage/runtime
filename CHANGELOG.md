@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.16
+
+### Patch Changes
+
+- ce1b070: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 3.0.15
 
 ### Patch Changes
