@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.20
+
+### Patch Changes
+
+- ff0ef50: Update Ankhorage dependencies: `@ankhorage/data-sources`.
+
 ## 3.0.19
 
 ### Patch Changes
