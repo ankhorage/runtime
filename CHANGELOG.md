@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.22
+
+### Patch Changes
+
+- f1645ce: Update Ankhorage dependencies: `@ankhorage/contracts`.
+
 ## 3.0.21
 
 ### Patch Changes
