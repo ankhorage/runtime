@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.24
+
+### Patch Changes
+
+- ccbb2e3: Update Ankhorage dependencies: `@ankhorage/utility`.
+
 ## 3.0.23
 
 ### Patch Changes
