@@ -69,7 +69,7 @@
   "dependencies": {
     "@ankhorage/contracts": "^22.8.1",
     "@ankhorage/data-sources": "^2.0.16",
-    "@ankhorage/utility": "^1.6.0"
+    "@ankhorage/utility": "^1.8.0"
   },
   "peerDependencies": {
     "react": "19.2.3",
