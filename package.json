@@ -69,7 +69,7 @@
   "dependencies": {
     "@ankhorage/contracts": "^22.8.2",
     "@ankhorage/data-sources": "^2.0.16",
-    "@ankhorage/utility": "^1.8.0"
+    "@ankhorage/utility": "^1.8.1"
   },
   "peerDependencies": {
     "react": "19.2.3",
@@ -83,7 +83,7 @@
   },
   "devDependencies": {
     "@ankhorage/devtools": "^1.20.0",
-    "@ankhorage/paradox": "^0.1.27",
+    "@ankhorage/paradox": "^0.2.6",
     "@types/bun": "^1.4.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
