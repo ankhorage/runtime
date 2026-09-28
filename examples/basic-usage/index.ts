@@ -1,7 +1,7 @@
-import { createRuntimeManifest } from './runtimeManifest.js';
+import { createRuntimeManifest } from '../../src/runtimeManifest.js';
 
 /***
- * Framework-neutral runtime boundary
+ * @title Basic Usage
  *
  * `@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.
  *
@@ -9,6 +9,7 @@ import { createRuntimeManifest } from './runtimeManifest.js';
  * inject it at the runtime boundary.
  *
  * @usage
+ * @readme
  */
 createRuntimeManifest({
   config: {
