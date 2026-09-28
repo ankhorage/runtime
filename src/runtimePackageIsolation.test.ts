@@ -86,18 +86,18 @@ describe('@ankhorage/runtime package isolation', () => {
 });
 
 describe('@ankhorage/runtime platform baseline', () => {
-  it('declares the React 19.3, RN 0.86, and optional RN Web 0.21 consumer contract', () => {
+  it('declares the React 19.3, RN 0.87, and optional RN Web 0.21 consumer contract', () => {
     const packageJson = readRuntimePackageManifest();
 
     expect(packageJson.peerDependencies).toMatchObject({
       react: '19.3.0',
-      'react-native': '0.86.x',
+      'react-native': '0.87.1',
       'react-native-web': '~0.21.3',
     });
     expect(packageJson.peerDependenciesMeta?.['react-native-web']?.optional).toBe(true);
     expect(packageJson.devDependencies).toMatchObject({
       react: '19.3.0',
-      'react-native': '0.86.3',
+      'react-native': '0.87.1',
       'react-native-web': '~0.21.3',
       typescript: '~6.0.3',
     });
