@@ -92,13 +92,13 @@ describe('@ankhorage/runtime platform baseline', () => {
     expect(packageJson.peerDependencies).toMatchObject({
       react: '19.2.3',
       'react-native': '0.86.x',
-      'react-native-web': '~0.21.0',
+      'react-native-web': '~0.21.3',
     });
     expect(packageJson.peerDependenciesMeta?.['react-native-web']?.optional).toBe(true);
     expect(packageJson.devDependencies).toMatchObject({
       react: '19.2.3',
       'react-native': '0.86.3',
-      'react-native-web': '~0.21.0',
+      'react-native-web': '~0.21.3',
       typescript: '~6.0.3',
     });
   });
