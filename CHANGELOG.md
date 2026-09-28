@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.30
+
+### Patch Changes
+
+- a6687ce: Update dependencies from Renovate pull request #153.
+
 ## 3.0.29
 
 ### Patch Changes
