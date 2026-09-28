@@ -1,13 +1,17 @@
 import { createKnipConfig } from '@ankhorage/devtools/knip';
 
 export default createKnipConfig({
-  entry: ['src/index.ts', 'src/bindings.ts', 'tests/reactNativeWebCompatibility.fixture.tsx'],
+  entry: [
+    'examples/basic-usage/index.ts',
+    'src/index.ts',
+    'src/bindings.ts',
+    'tests/reactNativeWebCompatibility.fixture.tsx',
+  ],
   ignoreFiles: [
     '.prettierrc.js',
     'eslint.config.mjs',
     'eslint.local.config.mjs',
     'paradox.config.ts',
     'prettier.local.config.js',
-    'src/readme-usage.ts',
   ],
 });
