@@ -5,9 +5,9 @@
     "": {
       "name": "@ankhorage/runtime",
       "dependencies": {
-        "@ankhorage/contracts": "^22.8.10",
+        "@ankhorage/contracts": "^22.8.12",
         "@ankhorage/data-sources": "^2.0.16",
-        "@ankhorage/utility": "^1.9.8",
+        "@ankhorage/utility": "^1.9.9",
       },
       "devDependencies": {
         "@ankhorage/devtools": "^2.0.25",
@@ -37,7 +37,7 @@
 
     "@ankhorage/color-theory": ["@ankhorage/color-theory@0.3.1", "", { "dependencies": { "culori": "^4.0.2" } }, "sha512-PqGeC16IkWzTA3Qig3T1p6CE6oN6JC1fv83cJ8SdohY5vlNE1YqJAZsLkzCy59ylJOwgPITA98TRH3jIVnlGBw=="],
 
-    "@ankhorage/contracts": ["@ankhorage/contracts@22.8.10", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.1", "@ankhorage/utility": "^1.9.4" } }, "sha512-JNmzSY6s9oO2leMRR4M7Cxy4JwYp+zcO+HpGGdqzkTvVz91ASQv3v31bOI+fqLZYan0wwrh1lLrm+Gjogi0cfg=="],
+    "@ankhorage/contracts": ["@ankhorage/contracts@22.8.12", "", { "dependencies": { "@ankhorage/color-theory": "^0.3.1", "@ankhorage/utility": "^1.9.8" } }, "sha512-elcT0I55/236CYGlFwN1nnNS2DTASLfSXVsJbngukWslJswfb03MISwpgY5pnek38fJmhlq1KlqAzwlXYJcK8g=="],
 
     "@ankhorage/data-sources": ["@ankhorage/data-sources@2.0.16", "", { "dependencies": { "@ankhorage/contracts": "^22.8.1" } }, "sha512-0InTJLtyIY0f0CVxi77qnf16/59eozI+zVDUrCYncJF6vfbKoWHlBTbEeEHnlJ/ZbMs+6Q9pUve7I5qkaHh1fQ=="],
 
