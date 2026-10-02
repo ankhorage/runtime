@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.50
+
+### Patch Changes
+
+- e1c2097: Update Renovate-managed workflows.
+
 ## 3.0.49
 
 ### Patch Changes
