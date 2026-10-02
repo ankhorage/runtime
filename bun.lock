@@ -23,8 +23,8 @@
         "typescript": "~6.0.3",
       },
       "peerDependencies": {
-        "react": "19.3.0",
-        "react-native": "0.87.1",
+        "react": ">=19.2.0 <20",
+        "react-native": ">=0.86.0 <0.88",
         "react-native-web": "~0.21.3",
       },
       "optionalPeers": [
