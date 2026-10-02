@@ -102,9 +102,13 @@ describe('@ankhorage/runtime platform baseline', () => {
       [reactDevelopmentVersion, reactPeerRange],
       [reactNativeDevelopmentVersion, reactNativePeerRange],
     ] as const) {
-      if (!developmentVersion || !peerRange) throw new Error('Platform peer contract is incomplete.');
+      if (!developmentVersion || !peerRange) {
+        throw new Error('Platform peer contract is incomplete.');
+      }
       const match = /^(\d+)\.(\d+)\.(\d+)$/u.exec(developmentVersion);
-      if (!match) throw new Error(`Expected an exact development version, received ${developmentVersion}.`);
+      if (!match) {
+        throw new Error(`Expected an exact development version, received ${developmentVersion}.`);
+      }
 
       const [, major, minor] = match;
       const previousMinorVersion = `${major}.${Math.max(0, Number(minor) - 1)}.0`;
