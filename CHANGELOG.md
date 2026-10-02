@@ -1,5 +1,13 @@
 # @ankhorage/runtime
 
+## 3.0.43
+
+### Patch Changes
+
+- 80ae8ea: Update dependencies: `@ankhorage/devtools`.
+- 2588a74: Update Renovate-managed workflows.
+- 523a63e: Update dependencies: `@ankhorage/utility`.
+
 ## 3.0.42
 
 ### Patch Changes
