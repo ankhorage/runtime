@@ -4,7 +4,7 @@ This audit covers `@ankhorage/runtime` ownership for roadmap step `[expo 2]`. Ru
 
 ## Target baseline
 
-- **CHANGE REQUIRED — consumer and validation baseline.** React remains exactly 19.2.3. Runtime intentionally supports the RN `0.86.x` patch line because it owns no native ABI, while development and validation are pinned to the canonical RN 0.86.3 app baseline. React Native Web is an optional `~0.21.0` peer and a 0.21.2 development dependency. TypeScript validation remains on 6.0.3.
+- **CURRENT CONTRACT — consumer and validation baseline.** Runtime owns no native ABI, so its public React and React Native peers cover the current and immediately previous validated minor lines instead of pinning consumers to the development version. Development remains on the newest validated React 19.3 / React Native 0.87 line, while Expo SDK 57 consumers on React 19.2 / React Native 0.86 remain valid. React Native Web stays an optional peer. TypeScript validation remains on the current TypeScript 6 line.
 - **CHANGE REQUIRED — tooling baseline.** Devtools moves to 1.6.0, Bun remains on the Devtools-owned 1.3.14 policy, repository Node execution declares 24.x, and Node typings move from 25.x to 24.13.3.
 - **VERIFIED: NO CHANGE REQUIRED — internal package releases.** The current published direct Ankhorage releases remain `@ankhorage/contracts` 8.0.0, `@ankhorage/data-sources` 2.0.0, and `@ankhorage/paradox` 0.1.21. No cross-repository compatibility blocker was found.
 
@@ -45,4 +45,4 @@ React's [library compiler guidance](https://react.dev/reference/react-compiler/c
 
 The migration is covered by the repository test suite, explicit React 19.2 context tests, package-isolation/baseline assertions, TypeScript 6 compilation, the React Compiler health check, and the issue-required repository/release gates. The Web compatibility test bundles the real Runtime renderer with `react-native` resolved to RNW 0.21.2 and server-renders injected `View`/`Text` registry entries. The package-isolation test rejects Expo, Expo modules, and `@ankhorage/expo-runtime` in implementation source and all dependency sections.
 
-The RN 0.86 patch peer is the Runtime-owned part of the owner-first graph required by Studio roadmap step `[expo 11]`. Applications remain responsible for selecting one exact RN patch, and Runtime validation proves the current canonical 0.86.3 selection.
+The widened React and React Native peers are the Runtime-owned part of the owner-first graph required by generated applications. Applications remain responsible for selecting one exact platform version; Runtime development stays on the newest validated line while its public peer metadata does not unnecessarily exclude the immediately previous compatible line.
