@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.0.30",
+      "value": "v3.0.31",
       "color": "cb3837"
     },
     {
@@ -55,24 +55,323 @@
     },
     {
       "id": "docs",
-      "label": "docs",
-      "value": "paradox",
-      "color": "0f766e"
+      "label": "paradox",
+      "value": "warnings",
+      "color": "ca8a04"
     }
   ],
-  "usage": null,
-  "readmeUsageDescription": null,
-  "readmeUsage": [
+  "usage": {
+    "packageName": "@ankhorage/runtime",
+    "command": "ankh runtime --help"
+  },
+  "usageEntries": [
     {
-      "title": "Framework-neutral runtime boundary",
-      "description": "Framework-neutral runtime boundary\n\n`@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.\n\nHost apps keep router, theme, and other framework-specific behavior outside this package and\ninject it at the runtime boundary.",
+      "area": "examples",
+      "title": "Basic Usage",
+      "description": "`@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.\n\nHost apps keep router, theme, and other framework-specific behavior outside this package and\ninject it at the runtime boundary.",
       "language": "ts",
-      "code": "import { createRuntimeManifest } from './runtimeManifest.js';\n\ncreateRuntimeManifest({\n  config: {\n    appId: 'demo',\n  },\n});",
-      "sourcePath": "src/readme-usage.ts"
+      "code": "createRuntimeManifest({\n  config: {\n    appId: 'demo',\n  },\n});",
+      "sourcePath": "examples/basic-usage/index.ts",
+      "isReadme": true,
+      "see": [],
+      "security": []
     }
   ],
-  "readmeCli": null,
-  "readmeConfig": null,
+  "exampleCount": 1,
+  "findings": [
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function ManifestProvider has no Paradox description.",
+      "sourcePath": "src/ManifestContext.tsx",
+      "line": 12
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function useManifest has no Paradox description.",
+      "sourcePath": "src/ManifestContext.tsx",
+      "line": 22
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function useManifestContext has no Paradox description.",
+      "sourcePath": "src/ManifestContext.tsx",
+      "line": 30
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function useOptionalManifestContext has no Paradox description.",
+      "sourcePath": "src/ManifestContext.tsx",
+      "line": 38
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createComponentRegistry has no Paradox description.",
+      "sourcePath": "src/componentRegistry.ts",
+      "line": 5
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createComponentEventFromHandlerArgs has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 223
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeActionRegistry has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 71
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function dispatchRuntimeComponentEvent has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 109
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeActionPayload has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 237
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeActionValue has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 248
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function wrapRuntimeEventProps has no Paradox description.",
+      "sourcePath": "src/runtimeActionRegistry.ts",
+      "line": 186
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeApiOperationExecutor has no Paradox description.",
+      "sourcePath": "src/runtimeApiOperations.ts",
+      "line": 12
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function validateRuntimeBindingOperationRef has no Paradox description.",
+      "sourcePath": "src/runtimeApiSelection.ts",
+      "line": 15
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeBindingOperationKey has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 165
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveBindingInputMap has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 131
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeBindings has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 91
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeBindingsAsync has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 76
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeBindingValue has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 105
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeBindingValueSync has no Paradox description.",
+      "sourcePath": "src/runtimeBindings.ts",
+      "line": 118
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createDbPersistActionHandler has no Paradox description.",
+      "sourcePath": "src/runtimeDbPersist.ts",
+      "line": 36
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createDbPersistAdapterError has no Paradox description.",
+      "sourcePath": "src/runtimeDbPersist.ts",
+      "line": 126
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function executeDbPersistAction has no Paradox description.",
+      "sourcePath": "src/runtimeDbPersist.ts",
+      "line": 48
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveDbPersistInput has no Paradox description.",
+      "sourcePath": "src/runtimeDbPersist.ts",
+      "line": 68
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function dispatchRuntimeComponentEventWithReporting has no Paradox description.",
+      "sourcePath": "src/runtimeEventExecution.ts",
+      "line": 14
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeEventOperationBindingContext has no Paradox description.",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "line": 92
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeEventOperationLifecycle has no Paradox description.",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "line": 39
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveRuntimeEventOperationErrorMessage has no Paradox description.",
+      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
+      "line": 113
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function RuntimeRenderer has no Paradox description.",
+      "sourcePath": "src/RuntimeRenderer.tsx",
+      "line": 81
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function composeRuntimeNodePropsResolver has no Paradox description.",
+      "sourcePath": "src/RuntimeRendererConfig.tsx",
+      "line": 95
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function composeRuntimeRendererWrapNode has no Paradox description.",
+      "sourcePath": "src/RuntimeRendererConfig.tsx",
+      "line": 80
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function mergeRuntimeRendererConfig has no Paradox description.",
+      "sourcePath": "src/RuntimeRendererConfig.tsx",
+      "line": 113
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function RuntimeRendererConfigProvider has no Paradox description.",
+      "sourcePath": "src/RuntimeRendererConfig.tsx",
+      "line": 164
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function useRuntimeRendererConfig has no Paradox description.",
+      "sourcePath": "src/RuntimeRendererConfig.tsx",
+      "line": 177
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function shouldRenderRuntimeRepeatEmptyState has no Paradox description.",
+      "sourcePath": "src/runtimeRepeatEmptyState.ts",
+      "line": 3
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function RuntimeScreen has no Paradox description.",
+      "sourcePath": "src/RuntimeScreen.tsx",
+      "line": 17
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createPendingRuntimeScreenOperationLoaderState has no Paradox description.",
+      "sourcePath": "src/runtimeScreenLoaders.ts",
+      "line": 82
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeScreenLoaderRequestKey has no Paradox description.",
+      "sourcePath": "src/runtimeScreenLoaders.ts",
+      "line": 49
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function executeRuntimeScreenOperationLoaders has no Paradox description.",
+      "sourcePath": "src/runtimeScreenLoaders.ts",
+      "line": 178
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function resolveScreenOperationLoaders has no Paradox description.",
+      "sourcePath": "src/runtimeScreenLoaders.ts",
+      "line": 43
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function useRuntimeScreenOperationLoaders has no Paradox description.",
+      "sourcePath": "src/runtimeScreenLoaders.ts",
+      "line": 273
+    },
+    {
+      "ruleId": "documentation.public-function.description",
+      "severity": "warning",
+      "message": "Public function createRuntimeMemoryStateAdapter has no Paradox description.",
+      "sourcePath": "src/runtimeStateAdapter.ts",
+      "line": 18
+    }
+  ],
+  "readmeConfig": {
+    "language": "ts",
+    "code": "import { defineParadoxConfig } from '@ankhorage/paradox';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n  output: {\n    dir: 'paradox',\n  },\n});",
+    "sourcePath": "paradox.config.ts"
+  },
   "config": null,
   "entrypoints": [
     "src/index.ts"
@@ -818,9 +1117,11 @@
   "exports": [
     {
       "name": "ComponentRegistry",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/componentRegistry.ts",
       "sourceLocation": {
@@ -838,9 +1139,11 @@
     },
     {
       "name": "composeRuntimeNodePropsResolver",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -880,9 +1183,11 @@
     },
     {
       "name": "composeRuntimeRendererWrapNode",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -922,9 +1227,11 @@
     },
     {
       "name": "createComponentEventFromHandlerArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -956,9 +1263,11 @@
     },
     {
       "name": "createComponentRegistry",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/componentRegistry.ts",
       "sourceLocation": {
@@ -990,9 +1299,11 @@
     },
     {
       "name": "createDbPersistActionHandler",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -1027,9 +1338,11 @@
     },
     {
       "name": "createDbPersistAdapterError",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -1063,9 +1376,11 @@
     },
     {
       "name": "createPendingRuntimeScreenOperationLoaderState",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -1099,9 +1414,11 @@
     },
     {
       "name": "createRuntimeActionRegistry",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -1141,9 +1458,11 @@
     },
     {
       "name": "createRuntimeApiOperationExecutor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeApiOperations.ts",
       "sourceLocation": {
@@ -1178,9 +1497,11 @@
     },
     {
       "name": "createRuntimeBindingOperationKey",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1212,9 +1533,11 @@
     },
     {
       "name": "createRuntimeEventOperationBindingContext",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -1254,9 +1577,11 @@
     },
     {
       "name": "createRuntimeEventOperationLifecycle",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -1291,9 +1616,11 @@
     },
     {
       "name": "createRuntimeMemoryStateAdapter",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeStateAdapter.ts",
       "sourceLocation": {
@@ -1327,9 +1654,11 @@
     },
     {
       "name": "createRuntimeScreenLoaderRequestKey",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -1363,9 +1692,11 @@
     },
     {
       "name": "dispatchRuntimeComponentEvent",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -1400,9 +1731,11 @@
     },
     {
       "name": "dispatchRuntimeComponentEventWithReporting",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeEventExecution.ts",
       "sourceLocation": {
@@ -1438,9 +1771,11 @@
     },
     {
       "name": "executeDbPersistAction",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -1475,9 +1810,11 @@
     },
     {
       "name": "executeRuntimeScreenOperationLoaders",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -1514,9 +1851,11 @@
     },
     {
       "name": "IDLE_RUNTIME_EVENT_OPERATION_STATE",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -1534,9 +1873,11 @@
     },
     {
       "name": "ManifestContext",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "value",
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
@@ -1554,9 +1895,11 @@
     },
     {
       "name": "ManifestProvider",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
@@ -1588,9 +1931,11 @@
     },
     {
       "name": "mergeRuntimeRendererConfig",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -1630,9 +1975,11 @@
     },
     {
       "name": "resolveBindingInputMap",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1678,9 +2025,11 @@
     },
     {
       "name": "resolveDbPersistInput",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -1714,9 +2063,11 @@
     },
     {
       "name": "resolveRuntimeActionPayload",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -1756,9 +2107,11 @@
     },
     {
       "name": "resolveRuntimeActionValue",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -1798,9 +2151,11 @@
     },
     {
       "name": "resolveRuntimeBindings",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1835,9 +2190,11 @@
     },
     {
       "name": "resolveRuntimeBindingsAsync",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1872,9 +2229,11 @@
     },
     {
       "name": "resolveRuntimeBindingValue",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1920,9 +2279,11 @@
     },
     {
       "name": "resolveRuntimeBindingValueSync",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -1968,9 +2329,11 @@
     },
     {
       "name": "resolveRuntimeEventOperationErrorMessage",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -2002,9 +2365,11 @@
     },
     {
       "name": "resolveScreenOperationLoaders",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -2036,9 +2401,11 @@
     },
     {
       "name": "RuntimeAction",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -2056,9 +2423,11 @@
     },
     {
       "name": "RuntimeActionDescriptor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -2105,9 +2474,11 @@
     },
     {
       "name": "RuntimeActionExecutor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -2125,9 +2496,11 @@
     },
     {
       "name": "RuntimeActionHandler",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -2145,9 +2518,11 @@
     },
     {
       "name": "RuntimeActionHandlerArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -2196,9 +2571,11 @@
     },
     {
       "name": "RuntimeActionHandlers",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -2216,9 +2593,11 @@
     },
     {
       "name": "RuntimeActionRegistry",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -2254,9 +2633,11 @@
     },
     {
       "name": "RuntimeActionResolutionArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -2303,9 +2684,11 @@
     },
     {
       "name": "RuntimeActionResolutionScope",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -2345,9 +2728,11 @@
     },
     {
       "name": "RuntimeAdapterDescriptor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -2387,9 +2772,11 @@
     },
     {
       "name": "RuntimeApiOperationExecutorOptions",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeApiOperations.ts",
       "sourceLocation": {
@@ -2422,9 +2809,11 @@
     },
     {
       "name": "RuntimeApiOperationSelection",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeApiSelection.ts",
       "sourceLocation": {
@@ -2457,9 +2846,11 @@
     },
     {
       "name": "RuntimeBindingDescriptor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -2513,9 +2904,11 @@
     },
     {
       "name": "RuntimeBindingOperationExecutionArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2569,9 +2962,11 @@
     },
     {
       "name": "RuntimeBindingOperationExecutionResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2589,9 +2984,11 @@
     },
     {
       "name": "RuntimeBindingOperationExecutor",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2609,9 +3006,11 @@
     },
     {
       "name": "RuntimeBindingOperationKey",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2629,9 +3028,11 @@
     },
     {
       "name": "RuntimeBindingOperationResultCache",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2649,9 +3050,11 @@
     },
     {
       "name": "RuntimeBindingOperationResultWriter",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2669,9 +3072,11 @@
     },
     {
       "name": "RuntimeBindingResolutionArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2755,9 +3160,11 @@
     },
     {
       "name": "RuntimeBindingResolutionContext",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2827,9 +3234,11 @@
     },
     {
       "name": "RuntimeBindingResolutionResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
@@ -2862,9 +3271,11 @@
     },
     {
       "name": "RuntimeCapability",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -2882,9 +3293,11 @@
     },
     {
       "name": "RuntimeComponentEventDispatchArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -2992,9 +3405,11 @@
     },
     {
       "name": "RuntimeDbPersistError",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -3027,9 +3442,11 @@
     },
     {
       "name": "RuntimeDbPersistExecutionResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -3047,9 +3464,11 @@
     },
     {
       "name": "RuntimeDbPersistResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeDbPersist.ts",
       "sourceLocation": {
@@ -3082,9 +3501,11 @@
     },
     {
       "name": "RuntimeDiagnostic",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -3124,9 +3545,11 @@
     },
     {
       "name": "RuntimeEventDiagnosticsReporter",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeEventExecution.ts",
       "sourceLocation": {
@@ -3159,9 +3582,11 @@
     },
     {
       "name": "RuntimeEventOperationInvocation",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -3187,9 +3612,11 @@
     },
     {
       "name": "RuntimeEventOperationLifecycle",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -3231,9 +3658,11 @@
     },
     {
       "name": "RuntimeEventOperationState",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -3289,9 +3718,11 @@
     },
     {
       "name": "RuntimeEventOperationStatus",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
@@ -3309,9 +3740,11 @@
     },
     {
       "name": "RuntimeEventPropWrapArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -3388,9 +3821,11 @@
     },
     {
       "name": "RuntimeManifest",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -3464,9 +3899,11 @@
     },
     {
       "name": "RuntimeManifestConfig",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -3506,9 +3943,11 @@
     },
     {
       "name": "RuntimeManifestInput",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeManifest.ts",
       "sourceLocation": {
@@ -3568,9 +4007,11 @@
     },
     {
       "name": "RuntimeMediaAssetResolver",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeMedia.ts",
       "sourceLocation": {
@@ -3588,9 +4029,11 @@
     },
     {
       "name": "RuntimeMediaAssetResolverArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeMedia.ts",
       "sourceLocation": {
@@ -3616,9 +4059,11 @@
     },
     {
       "name": "RuntimeMemoryStateAdapterOptions",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeStateAdapter.ts",
       "sourceLocation": {
@@ -3644,9 +4089,11 @@
     },
     {
       "name": "RuntimeNodePropsResolver",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
       "sourceLocation": {
@@ -3664,9 +4111,11 @@
     },
     {
       "name": "RuntimeRenderer",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
@@ -3700,9 +4149,11 @@
     },
     {
       "name": "RuntimeRendererConfig",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -3871,9 +4322,11 @@
     },
     {
       "name": "RuntimeRendererConfigProvider",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -3907,9 +4360,11 @@
     },
     {
       "name": "RuntimeRendererProps",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
@@ -4053,9 +4508,11 @@
     },
     {
       "name": "RuntimeRendererWrapArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -4095,9 +4552,11 @@
     },
     {
       "name": "RuntimeResolvedMediaValue",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "unknown",
       "modulePath": "src/runtimeMedia.ts",
       "sourceLocation": {
@@ -4115,9 +4574,11 @@
     },
     {
       "name": "RuntimeResolveNodePropsArgs",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts",
       "sourceLocation": {
@@ -4150,9 +4611,11 @@
     },
     {
       "name": "RuntimeScreen",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
@@ -4186,9 +4649,11 @@
     },
     {
       "name": "RuntimeScreenOperationLoaderExecutionResult",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -4228,9 +4693,11 @@
     },
     {
       "name": "RuntimeScreenOperationLoaderState",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -4277,9 +4744,11 @@
     },
     {
       "name": "RuntimeScreenProps",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "type",
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
@@ -4326,9 +4795,11 @@
     },
     {
       "name": "shouldRenderRuntimeRepeatEmptyState",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeRepeatEmptyState.ts",
       "sourceLocation": {
@@ -4360,9 +4831,11 @@
     },
     {
       "name": "useManifest",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
@@ -4387,9 +4860,11 @@
     },
     {
       "name": "useManifestContext",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
@@ -4414,9 +4889,11 @@
     },
     {
       "name": "useOptionalManifestContext",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
@@ -4441,9 +4918,11 @@
     },
     {
       "name": "useRuntimeRendererConfig",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
@@ -4470,9 +4949,11 @@
     },
     {
       "name": "useRuntimeScreenOperationLoaders",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeScreenLoaders.ts",
       "sourceLocation": {
@@ -4509,9 +4990,11 @@
     },
     {
       "name": "validateRuntimeBindingOperationRef",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeApiSelection.ts",
       "sourceLocation": {
@@ -4549,9 +5032,11 @@
     },
     {
       "name": "wrapRuntimeEventProps",
+      "title": null,
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "kind": "function",
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
@@ -4589,7 +5074,8 @@
       "name": "ManifestContext",
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
@@ -4618,7 +5104,8 @@
       "name": "ManifestProvider",
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
@@ -4659,7 +5146,8 @@
       "name": "RuntimeRenderer",
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
@@ -4778,7 +5266,8 @@
       "name": "RuntimeRendererConfigProvider",
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
@@ -4807,7 +5296,8 @@
       "name": "RuntimeScreen",
       "description": null,
       "isReadme": false,
-      "examples": [],
+      "see": [],
+      "security": [],
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
@@ -4849,6 +5339,8 @@
     {
       "name": "createComponentRegistry",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/componentRegistry.ts",
         "line": 5,
@@ -4858,6 +5350,8 @@
     {
       "name": "ManifestProvider",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 12,
@@ -4867,6 +5361,8 @@
     {
       "name": "useManifest",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 22,
@@ -4876,6 +5372,8 @@
     {
       "name": "useManifestContext",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 30,
@@ -4885,6 +5383,8 @@
     {
       "name": "useOptionalManifestContext",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 38,
@@ -4894,6 +5394,8 @@
     {
       "name": "ManifestProbe",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
         "line": 43,
@@ -4903,6 +5405,8 @@
     {
       "name": "RendererConfigProbe",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
         "line": 48,
@@ -4912,6 +5416,8 @@
     {
       "name": "OptionalManifestProbe",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/react19Compatibility.test.tsx",
         "line": 53,
@@ -4921,6 +5427,8 @@
     {
       "name": "BaseComponent",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
         "line": 6,
@@ -4930,6 +5438,8 @@
     {
       "name": "ExtensionComponent",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/registry.test.ts",
         "line": 10,
@@ -4939,6 +5449,8 @@
     {
       "name": "BoxFixture",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.test.ts",
         "line": 21,
@@ -4948,6 +5460,8 @@
     {
       "name": "PageFixture",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.test.ts",
         "line": 24,
@@ -4957,6 +5471,8 @@
     {
       "name": "StackFixture",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.test.ts",
         "line": 27,
@@ -4966,6 +5482,8 @@
     {
       "name": "TextFixture",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.test.ts",
         "line": 47,
@@ -4975,6 +5493,8 @@
     {
       "name": "resolveRuntimeRegistry",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.ts",
         "line": 7,
@@ -4984,6 +5504,8 @@
     {
       "name": "resolveRenderedChildren",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.ts",
         "line": 15,
@@ -4993,6 +5515,8 @@
     {
       "name": "getUnknownComponentDiagnostic",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/rendering.ts",
         "line": 28,
@@ -5002,6 +5526,8 @@
     {
       "name": "isNoArgFunction",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.actions.test.ts",
         "line": 11,
@@ -5011,6 +5537,8 @@
     {
       "name": "createActionBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.actions.test.ts",
         "line": 15,
@@ -5020,6 +5548,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.chains.test.ts",
         "line": 17,
@@ -5029,6 +5559,8 @@
     {
       "name": "createScannerBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.chains.test.ts",
         "line": 44,
@@ -5038,6 +5570,8 @@
     {
       "name": "scannerEvent",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.chains.test.ts",
         "line": 107,
@@ -5047,6 +5581,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.operations.test.ts",
         "line": 23,
@@ -5056,6 +5592,8 @@
     {
       "name": "createOperationBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.operations.test.ts",
         "line": 58,
@@ -5065,6 +5603,8 @@
     {
       "name": "refreshEventArgs",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.operations.test.ts",
         "line": 78,
@@ -5074,6 +5614,8 @@
     {
       "name": "createRuntimeActionRegistry",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 71,
@@ -5083,6 +5625,8 @@
     {
       "name": "dispatchRuntimeComponentEvent",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 109,
@@ -5092,6 +5636,8 @@
     {
       "name": "wrapRuntimeEventProps",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 186,
@@ -5101,6 +5647,8 @@
     {
       "name": "createComponentEventFromHandlerArgs",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 223,
@@ -5110,6 +5658,8 @@
     {
       "name": "resolveRuntimeActionPayload",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 237,
@@ -5119,6 +5669,8 @@
     {
       "name": "resolveRuntimeActionValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 248,
@@ -5128,6 +5680,8 @@
     {
       "name": "dispatchRuntimeOperationEventBinding",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 259,
@@ -5137,6 +5691,8 @@
     {
       "name": "failLifecycle",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 276,
@@ -5146,6 +5702,8 @@
     {
       "name": "resolveRuntimeActionValueEntry",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 344,
@@ -5155,6 +5713,8 @@
     {
       "name": "resolveObjectEventBindingInput",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 362,
@@ -5164,6 +5724,8 @@
     {
       "name": "resolveEventBindingInput",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 371,
@@ -5173,6 +5735,8 @@
     {
       "name": "matchesBindingCondition",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 390,
@@ -5182,6 +5746,8 @@
     {
       "name": "readBindingConditionSource",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 410,
@@ -5191,6 +5757,8 @@
     {
       "name": "createPayloadForEvent",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 433,
@@ -5200,6 +5768,8 @@
     {
       "name": "localEventNameToEventType",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 471,
@@ -5209,6 +5779,8 @@
     {
       "name": "inferLocalEventName",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 479,
@@ -5218,6 +5790,8 @@
     {
       "name": "eventNameToCallbackProp",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 485,
@@ -5227,6 +5801,8 @@
     {
       "name": "isRuntimeEventHandler",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 489,
@@ -5236,6 +5812,8 @@
     {
       "name": "readPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 493,
@@ -5245,6 +5823,8 @@
     {
       "name": "createBarcodeScannedPayload",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 502,
@@ -5254,6 +5834,8 @@
     {
       "name": "readItemId",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 518,
@@ -5263,6 +5845,8 @@
     {
       "name": "asRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 527,
@@ -5272,6 +5856,8 @@
     {
       "name": "isRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
         "line": 531,
@@ -5281,6 +5867,8 @@
     {
       "name": "createNutritionApi",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.test.ts",
         "line": 6,
@@ -5290,6 +5878,8 @@
     {
       "name": "createProductsEndpoint",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.test.ts",
         "line": 18,
@@ -5299,6 +5889,8 @@
     {
       "name": "getProductsEndpoint",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.test.ts",
         "line": 35,
@@ -5308,6 +5900,8 @@
     {
       "name": "createRuntimeApiOperationExecutor",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.ts",
         "line": 12,
@@ -5317,6 +5911,8 @@
     {
       "name": "invalidInput",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.ts",
         "line": 36,
@@ -5326,6 +5922,8 @@
     {
       "name": "asBindingValueRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.ts",
         "line": 48,
@@ -5335,6 +5933,8 @@
     {
       "name": "isBindingValueRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiOperations.ts",
         "line": 54,
@@ -5344,6 +5944,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.test.ts",
         "line": 6,
@@ -5353,6 +5955,8 @@
     {
       "name": "operation",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.test.ts",
         "line": 33,
@@ -5362,6 +5966,8 @@
     {
       "name": "validateRuntimeBindingOperationRef",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
         "line": 15,
@@ -5371,6 +5977,8 @@
     {
       "name": "resolveRuntimeBindingOperationSelection",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
         "line": 51,
@@ -5380,6 +5988,8 @@
     {
       "name": "findRuntimeApi",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
         "line": 66,
@@ -5389,6 +5999,8 @@
     {
       "name": "resolveRuntimeApiEndpoint",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
         "line": 73,
@@ -5398,6 +6010,8 @@
     {
       "name": "createApiDiagnostic",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiSelection.ts",
         "line": 86,
@@ -5407,6 +6021,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.test.ts",
         "line": 25,
@@ -5416,6 +6032,8 @@
     {
       "name": "createFakeStateAdapter",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.test.ts",
         "line": 60,
@@ -5425,6 +6043,8 @@
     {
       "name": "resolveRuntimeBindingsAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 76,
@@ -5434,6 +6054,8 @@
     {
       "name": "resolveRuntimeBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 91,
@@ -5443,6 +6065,8 @@
     {
       "name": "resolveRuntimeBindingValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 105,
@@ -5452,6 +6076,8 @@
     {
       "name": "resolveRuntimeBindingValueSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 118,
@@ -5461,6 +6087,8 @@
     {
       "name": "resolveBindingInputMap",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 131,
@@ -5470,6 +6098,8 @@
     {
       "name": "resolveBindingInputMapSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 148,
@@ -5479,6 +6109,8 @@
     {
       "name": "createRuntimeBindingOperationKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 165,
@@ -5488,6 +6120,8 @@
     {
       "name": "resolveRuntimeBindingValueSource",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 171,
@@ -5497,6 +6131,8 @@
     {
       "name": "resolveRuntimeBindingValueSourceSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 213,
@@ -5506,6 +6142,8 @@
     {
       "name": "resolveCachedOperationValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 244,
@@ -5515,6 +6153,8 @@
     {
       "name": "resolveBindingFallback",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 254,
@@ -5524,6 +6164,8 @@
     {
       "name": "resolveBindingFallbackSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 266,
@@ -5533,6 +6175,8 @@
     {
       "name": "resolveBindingInputValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 278,
@@ -5542,6 +6186,8 @@
     {
       "name": "resolveBindingInputValueSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 310,
@@ -5551,6 +6197,8 @@
     {
       "name": "createRuntimeBindingDiagnostic",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 342,
@@ -5560,6 +6208,8 @@
     {
       "name": "applyBindingValueTransforms",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 357,
@@ -5569,6 +6219,8 @@
     {
       "name": "applyRuntimeBindingDataPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 375,
@@ -5578,6 +6230,8 @@
     {
       "name": "readPath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 383,
@@ -5587,6 +6241,8 @@
     {
       "name": "isArrayIndexPathPart",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 395,
@@ -5596,6 +6252,8 @@
     {
       "name": "asBindingValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 399,
@@ -5605,6 +6263,8 @@
     {
       "name": "isBindingValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 403,
@@ -5614,6 +6274,8 @@
     {
       "name": "isRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
         "line": 415,
@@ -5623,6 +6285,8 @@
     {
       "name": "createFakeDbAdapter",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.test.ts",
         "line": 12,
@@ -5632,6 +6296,8 @@
     {
       "name": "createDbPersistActionHandler",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 36,
@@ -5641,6 +6307,8 @@
     {
       "name": "executeDbPersistAction",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 48,
@@ -5650,6 +6318,8 @@
     {
       "name": "resolveDbPersistInput",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 68,
@@ -5659,6 +6329,8 @@
     {
       "name": "createError",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 116,
@@ -5668,6 +6340,8 @@
     {
       "name": "createDbPersistAdapterError",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 126,
@@ -5677,6 +6351,8 @@
     {
       "name": "isFieldValueEntry",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 133,
@@ -5686,6 +6362,8 @@
     {
       "name": "isRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeDbPersist.ts",
         "line": 141,
@@ -5695,6 +6373,8 @@
     {
       "name": "dispatchRuntimeComponentEventWithReporting",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventExecution.ts",
         "line": 14,
@@ -5704,6 +6384,8 @@
     {
       "name": "eventArgs",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.test.ts",
         "line": 54,
@@ -5713,6 +6395,8 @@
     {
       "name": "executeOperation",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.test.ts",
         "line": 85,
@@ -5722,6 +6406,8 @@
     {
       "name": "executeOperation",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.test.ts",
         "line": 128,
@@ -5731,6 +6417,8 @@
     {
       "name": "createRuntimeEventOperationLifecycle",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
         "line": 39,
@@ -5740,6 +6428,8 @@
     {
       "name": "finish",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
         "line": 47,
@@ -5749,6 +6439,8 @@
     {
       "name": "createRuntimeEventOperationBindingContext",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
         "line": 92,
@@ -5758,6 +6450,8 @@
     {
       "name": "resolveRuntimeEventOperationErrorMessage",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
         "line": 113,
@@ -5767,6 +6461,8 @@
     {
       "name": "defineRuntimeAction",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeManifest.ts",
         "line": 63,
@@ -5776,6 +6472,8 @@
     {
       "name": "defineRuntimeAdapter",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeManifest.ts",
         "line": 69,
@@ -5785,6 +6483,8 @@
     {
       "name": "defineRuntimeBinding",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeManifest.ts",
         "line": 75,
@@ -5794,6 +6494,8 @@
     {
       "name": "createRuntimeManifest",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeManifest.ts",
         "line": 81,
@@ -5803,6 +6505,8 @@
     {
       "name": "listRuntimeCapabilities",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeManifest.ts",
         "line": 93,
@@ -5812,6 +6516,8 @@
     {
       "name": "resolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.test.ts",
         "line": 59,
@@ -5821,6 +6527,8 @@
     {
       "name": "firstResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.test.ts",
         "line": 84,
@@ -5830,6 +6538,8 @@
     {
       "name": "secondResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.test.ts",
         "line": 85,
@@ -5839,6 +6549,8 @@
     {
       "name": "createRuntimeMediaResolutionCache",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 24,
@@ -5848,6 +6560,8 @@
     {
       "name": "collectRuntimeMediaReferenceIds",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 28,
@@ -5857,6 +6571,8 @@
     {
       "name": "replaceRuntimeMediaReferences",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 34,
@@ -5866,6 +6582,8 @@
     {
       "name": "resolveRuntimeMediaAsset",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 42,
@@ -5875,6 +6593,8 @@
     {
       "name": "createSyncRuntimeMediaResolutionMap",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 64,
@@ -5884,6 +6604,8 @@
     {
       "name": "collectMediaReferenceIds",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 78,
@@ -5893,6 +6615,8 @@
     {
       "name": "replaceMediaValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 93,
@@ -5902,6 +6626,8 @@
     {
       "name": "isPlainObject",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMedia.ts",
         "line": 118,
@@ -5911,6 +6637,8 @@
     {
       "name": "useRuntimeMediaResolutionCache",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMediaCache.tsx",
         "line": 10,
@@ -5920,6 +6648,8 @@
     {
       "name": "RuntimeMediaResolutionCacheProvider",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMediaCache.tsx",
         "line": 16,
@@ -5929,6 +6659,8 @@
     {
       "name": "resolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMediaConfig.test.ts",
         "line": 26,
@@ -5938,6 +6670,8 @@
     {
       "name": "inheritedResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMediaConfig.test.ts",
         "line": 40,
@@ -5947,6 +6681,8 @@
     {
       "name": "localResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeMediaConfig.test.ts",
         "line": 41,
@@ -5956,6 +6692,8 @@
     {
       "name": "isCallable",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.test.ts",
         "line": 6,
@@ -5965,6 +6703,8 @@
     {
       "name": "isRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 19,
@@ -5974,6 +6714,8 @@
     {
       "name": "isPlainObject",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 23,
@@ -5983,6 +6725,8 @@
     {
       "name": "hasActionShape",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 32,
@@ -5992,6 +6736,8 @@
     {
       "name": "isCallbackProp",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 38,
@@ -6001,6 +6747,8 @@
     {
       "name": "isNonEmptyActionId",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 42,
@@ -6010,6 +6758,8 @@
     {
       "name": "createStringActionPayload",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 46,
@@ -6019,6 +6769,8 @@
     {
       "name": "noopRuntimeActionHandler",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 63,
@@ -6028,6 +6780,8 @@
     {
       "name": "resolveImageAssetUrl",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 65,
@@ -6037,6 +6791,8 @@
     {
       "name": "resolveRuntimeNodeProps",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 88,
@@ -6046,6 +6802,8 @@
     {
       "name": "wrapRuntimeActionProps",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 131,
@@ -6055,6 +6813,8 @@
     {
       "name": "actionHandler",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
         "line": 158,
@@ -6064,6 +6824,8 @@
     {
       "name": "listSourceFiles",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimePackageIsolation.test.ts",
         "line": 13,
@@ -6073,6 +6835,8 @@
     {
       "name": "readRuntimePackageManifest",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimePackageIsolation.test.ts",
         "line": 28,
@@ -6082,6 +6846,8 @@
     {
       "name": "RuntimeRenderer",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
         "line": 81,
@@ -6091,6 +6857,8 @@
     {
       "name": "explicitWrap",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 13,
@@ -6100,6 +6868,8 @@
     {
       "name": "inheritedWrap",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 23,
@@ -6109,6 +6879,8 @@
     {
       "name": "inheritedWrap",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 62,
@@ -6118,6 +6890,8 @@
     {
       "name": "inheritedResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 77,
@@ -6127,6 +6901,8 @@
     {
       "name": "localResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 81,
@@ -6136,6 +6912,8 @@
     {
       "name": "inheritedNavigate",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 103,
@@ -6145,6 +6923,8 @@
     {
       "name": "inheritedSetLanguage",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 104,
@@ -6154,6 +6934,8 @@
     {
       "name": "localSetLanguage",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 105,
@@ -6163,6 +6945,8 @@
     {
       "name": "inheritedExecuteAction",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 128,
@@ -6172,6 +6956,8 @@
     {
       "name": "localExecuteAction",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.test.tsx",
         "line": 129,
@@ -6181,6 +6967,8 @@
     {
       "name": "composeRuntimeRendererWrapNode",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 80,
@@ -6190,6 +6978,8 @@
     {
       "name": "composeRuntimeNodePropsResolver",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 95,
@@ -6199,6 +6989,8 @@
     {
       "name": "mergeRuntimeRendererConfig",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 113,
@@ -6208,6 +7000,8 @@
     {
       "name": "RuntimeRendererConfigProvider",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 164,
@@ -6217,6 +7011,8 @@
     {
       "name": "useRuntimeRendererConfig",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 177,
@@ -6226,6 +7022,8 @@
     {
       "name": "mergeRecordConfig",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
         "line": 181,
@@ -6235,6 +7033,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
         "line": 18,
@@ -6244,6 +7044,8 @@
     {
       "name": "createRepeatedGridNode",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
         "line": 45,
@@ -6253,6 +7055,8 @@
     {
       "name": "createRepeatedCardBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.test.ts",
         "line": 71,
@@ -6262,6 +7066,8 @@
     {
       "name": "resolveRuntimeRepeatItemsSync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 31,
@@ -6271,6 +7077,8 @@
     {
       "name": "resolveRuntimeRepeatItemsAsync",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 78,
@@ -6280,6 +7088,8 @@
     {
       "name": "createRuntimeRepeatBindingContext",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 143,
@@ -6289,6 +7099,8 @@
     {
       "name": "resolveRuntimeRepeatItemKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 154,
@@ -6298,6 +7110,8 @@
     {
       "name": "finalizeRuntimeRepeatItems",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 178,
@@ -6307,6 +7121,8 @@
     {
       "name": "createRepeatDiagnostic",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 199,
@@ -6316,6 +7132,8 @@
     {
       "name": "readRepeatPrimitive",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeat.ts",
         "line": 215,
@@ -6325,6 +7143,8 @@
     {
       "name": "createRepeatDiagnosticsKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeatDiagnostics.ts",
         "line": 3,
@@ -6334,6 +7154,8 @@
     {
       "name": "shouldRenderRuntimeRepeatEmptyState",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeRepeatEmptyState.ts",
         "line": 3,
@@ -6343,6 +7165,8 @@
     {
       "name": "RuntimeScreen",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
         "line": 17,
@@ -6352,6 +7176,8 @@
     {
       "name": "createCachedProductDetailLoader",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.arrayPath.test.ts",
         "line": 22,
@@ -6361,6 +7187,8 @@
     {
       "name": "createOperationResults",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.arrayPath.test.ts",
         "line": 40,
@@ -6370,6 +7198,8 @@
     {
       "name": "createApis",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.execution.test.ts",
         "line": 24,
@@ -6379,6 +7209,8 @@
     {
       "name": "createLoader",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.execution.test.ts",
         "line": 51,
@@ -6388,6 +7220,8 @@
     {
       "name": "createScreen",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.execution.test.ts",
         "line": 65,
@@ -6397,6 +7231,8 @@
     {
       "name": "createBindings",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.execution.test.ts",
         "line": 76,
@@ -6406,6 +7242,8 @@
     {
       "name": "routeContext",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.execution.test.ts",
         "line": 93,
@@ -6415,6 +7253,8 @@
     {
       "name": "loadedResult",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.lifecycle.test.ts",
         "line": 19,
@@ -6424,6 +7264,8 @@
     {
       "name": "resolveScreenOperationLoaders",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 43,
@@ -6433,6 +7275,8 @@
     {
       "name": "createRuntimeScreenLoaderRequestKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 49,
@@ -6442,6 +7286,8 @@
     {
       "name": "createRuntimeScreenOperationLoaderLifecycle",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 63,
@@ -6451,6 +7297,8 @@
     {
       "name": "createIdleRuntimeScreenOperationLoaderState",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 70,
@@ -6460,6 +7308,8 @@
     {
       "name": "createPendingRuntimeScreenOperationLoaderState",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 82,
@@ -6469,6 +7319,8 @@
     {
       "name": "beginRuntimeScreenOperationLoaderRequest",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 94,
@@ -6478,6 +7330,8 @@
     {
       "name": "completeRuntimeScreenOperationLoaderRequest",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 151,
@@ -6487,6 +7341,8 @@
     {
       "name": "executeRuntimeScreenOperationLoaders",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 178,
@@ -6496,6 +7352,8 @@
     {
       "name": "executePreparedRuntimeScreenOperationLoaders",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 201,
@@ -6505,6 +7363,8 @@
     {
       "name": "useRuntimeScreenOperationLoaders",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 273,
@@ -6514,6 +7374,8 @@
     {
       "name": "createRuntimeScreenOperationLoaderPlan",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 388,
@@ -6523,6 +7385,8 @@
     {
       "name": "createRuntimeScreenOperationLoaderPlanRequestKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 445,
@@ -6532,6 +7396,8 @@
     {
       "name": "createScreenOperationLoaderDiagnostic",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 460,
@@ -6541,6 +7407,8 @@
     {
       "name": "createRuntimeScreenOperationLoaderIdleKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 475,
@@ -6550,6 +7418,8 @@
     {
       "name": "stableSerialize",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 479,
@@ -6559,6 +7429,8 @@
     {
       "name": "sortSerializableValue",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeScreenLoaders.ts",
         "line": 483,
@@ -6568,6 +7440,8 @@
     {
       "name": "createRuntimeMemoryStateAdapter",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 18,
@@ -6577,6 +7451,8 @@
     {
       "name": "emit",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 24,
@@ -6586,6 +7462,8 @@
     {
       "name": "wrappedListener",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 71,
@@ -6595,6 +7473,8 @@
     {
       "name": "normalizeStatePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 113,
@@ -6604,6 +7484,8 @@
     {
       "name": "pathPartsToKey",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 127,
@@ -6613,6 +7495,8 @@
     {
       "name": "readStatePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 131,
@@ -6622,6 +7506,8 @@
     {
       "name": "setStatePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 148,
@@ -6631,6 +7517,8 @@
     {
       "name": "deleteStatePath",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 183,
@@ -6640,6 +7528,8 @@
     {
       "name": "isStateRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 224,
@@ -6649,6 +7539,8 @@
     {
       "name": "createStateError",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 228,
@@ -6658,6 +7550,8 @@
     {
       "name": "createStateDataResult",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
         "line": 233,
@@ -6667,6 +7561,8 @@
     {
       "name": "createFakeStateAdapter",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapterConfig.test.ts",
         "line": 16,
@@ -6676,6 +7572,8 @@
     {
       "name": "useRuntimeMediaProps",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/useRuntimeMediaProps.ts",
         "line": 14,
@@ -6685,6 +7583,8 @@
     {
       "name": "isRecord",
       "description": null,
+      "see": [],
+      "security": [],
       "sourceLocation": {
         "filePath": "src/useRuntimeMediaProps.ts",
         "line": 64,
@@ -7143,11 +8043,6 @@
         "fromPath": "src/react19Compatibility.test.tsx",
         "toPath": "src/RuntimeRendererConfig.tsx",
         "sourcePath": "src/react19Compatibility.test.tsx"
-      },
-      {
-        "fromPath": "src/readme-usage.ts",
-        "toPath": "src/runtimeManifest.ts",
-        "sourcePath": "src/readme-usage.ts"
       },
       {
         "fromPath": "src/registry.test.ts",
@@ -7645,12 +8540,6 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "src/react19Compatibility.test.tsx"
-      },
-      {
-        "fromSymbol": "src/readme-usage.ts",
-        "toSymbol": "createRuntimeManifest",
-        "callExpression": "createRuntimeManifest",
-        "sourcePath": "src/readme-usage.ts"
       },
       {
         "fromSymbol": "src/registry.test.ts",

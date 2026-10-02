@@ -3,27 +3,53 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v3.0.30](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![docs: paradox](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v3.0.31](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
 
 Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
 
 ## Usage
 
-### Framework-neutral runtime boundary
+### CLI
+
+Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
+
+```zsh
+# Install the Ankhorage CLI
+bun add --global @ankhorage/ankh
+
+# Show usage information for runtime
+ankh runtime --help
+```
+
+### Basic Usage
 
 `@ankhorage/runtime` owns platform-neutral runtime renderer contracts for generated apps.
 
 Host apps keep router, theme, and other framework-specific behavior outside this package and
 inject it at the runtime boundary.
 
-Source: `src/readme-usage.ts`
-
 ```ts
-import { createRuntimeManifest } from './runtimeManifest.js';
-
 createRuntimeManifest({
   config: {
     appId: 'demo',
+  },
+});
+```
+
+## Configuration
+
+### Example
+
+```ts
+import { defineParadoxConfig } from '@ankhorage/paradox';
+
+export default defineParadoxConfig({
+  mode: 'write',
+  package: {
+    entrypoints: ['src/index.ts'],
+  },
+  output: {
+    dir: 'paradox',
   },
 });
 ```
