@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.0.36",
+      "value": "v3.0.37",
       "color": "cb3837"
     },
     {
@@ -367,11 +367,6 @@
       "line": 18
     }
   ],
-  "readmeConfig": {
-    "language": "ts",
-    "code": "import { defineParadoxConfig } from '@ankhorage/paradox';\n\nexport default defineParadoxConfig({\n  mode: 'write',\n  package: {\n    entrypoints: ['src/index.ts'],\n  },\n  output: {\n    dir: 'paradox',\n  },\n});",
-    "sourcePath": "paradox.config.ts"
-  },
   "config": null,
   "entrypoints": [
     "src/index.ts"

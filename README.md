@@ -3,7 +3,7 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v3.0.36](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v3.0.37](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
 
 Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
 
@@ -32,24 +32,6 @@ inject it at the runtime boundary.
 createRuntimeManifest({
   config: {
     appId: 'demo',
-  },
-});
-```
-
-## Configuration
-
-### Example
-
-```ts
-import { defineParadoxConfig } from '@ankhorage/paradox';
-
-export default defineParadoxConfig({
-  mode: 'write',
-  package: {
-    entrypoints: ['src/index.ts'],
-  },
-  output: {
-    dir: 'paradox',
   },
 });
 ```
