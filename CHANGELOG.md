@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.53
+
+### Patch Changes
+
+- ddacd35: Update Renovate-managed workflows.
+
 ## 3.0.52
 
 ### Patch Changes
