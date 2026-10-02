@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.46
+
+### Patch Changes
+
+- 46c4d58: Update dependencies: `@ankhorage/devtools`.
+
 ## 3.0.45
 
 ### Patch Changes
