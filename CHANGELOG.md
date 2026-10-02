@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.51
+
+### Patch Changes
+
+- e2eacad: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`, `@ankhorage/utility`.
+
 ## 3.0.50
 
 ### Patch Changes
