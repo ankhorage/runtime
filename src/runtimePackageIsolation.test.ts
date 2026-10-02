@@ -86,20 +86,36 @@ describe('@ankhorage/runtime package isolation', () => {
 });
 
 describe('@ankhorage/runtime platform baseline', () => {
-  it('declares the React 19.3, RN 0.87, and optional RN Web 0.21 consumer contract', () => {
+  it('supports the current and previous React and React Native minor lines', () => {
     const packageJson = readRuntimePackageManifest();
+    const reactDevelopmentVersion = packageJson.devDependencies?.react;
+    const reactNativeDevelopmentVersion = packageJson.devDependencies?.['react-native'];
+    const reactPeerRange = packageJson.peerDependencies?.react;
+    const reactNativePeerRange = packageJson.peerDependencies?.['react-native'];
 
-    expect(packageJson.peerDependencies).toMatchObject({
-      react: '19.3.0',
-      'react-native': '0.87.1',
-      'react-native-web': '~0.21.3',
-    });
+    expect(reactDevelopmentVersion).toBeDefined();
+    expect(reactNativeDevelopmentVersion).toBeDefined();
+    expect(reactPeerRange).toBeDefined();
+    expect(reactNativePeerRange).toBeDefined();
+
+    for (const [developmentVersion, peerRange] of [
+      [reactDevelopmentVersion, reactPeerRange],
+      [reactNativeDevelopmentVersion, reactNativePeerRange],
+    ] as const) {
+      if (!developmentVersion || !peerRange) throw new Error('Platform peer contract is incomplete.');
+      const match = /^(\d+)\.(\d+)\.(\d+)$/u.exec(developmentVersion);
+      if (!match) throw new Error(`Expected an exact development version, received ${developmentVersion}.`);
+
+      const [, major, minor] = match;
+      const previousMinorVersion = `${major}.${Math.max(0, Number(minor) - 1)}.0`;
+
+      expect(Bun.semver.satisfies(developmentVersion, peerRange)).toBe(true);
+      expect(Bun.semver.satisfies(previousMinorVersion, peerRange)).toBe(true);
+    }
+
+    expect(packageJson.peerDependencies?.['react-native-web']).toBe(
+      packageJson.devDependencies?.['react-native-web'],
+    );
     expect(packageJson.peerDependenciesMeta?.['react-native-web']?.optional).toBe(true);
-    expect(packageJson.devDependencies).toMatchObject({
-      react: '19.3.0',
-      'react-native': '0.87.1',
-      'react-native-web': '~0.21.3',
-      typescript: '~6.0.3',
-    });
   });
 });
