@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.45
+
+### Patch Changes
+
+- 9512004: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`, `@ankhorage/utility`.
+
 ## 3.0.44
 
 ### Patch Changes
