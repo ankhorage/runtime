@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.42
+
+### Patch Changes
+
+- 450fe1b: Update Renovate-managed workflows.
+
 ## 3.0.41
 
 ### Patch Changes
