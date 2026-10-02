@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.33
+
+### Patch Changes
+
+- e8da730: Update dependencies: `@ankhorage/contracts`, `@ankhorage/utility`.
+
 ## 3.0.32
 
 ### Patch Changes
