@@ -1,5 +1,12 @@
 # @ankhorage/runtime
 
+## 3.0.52
+
+### Patch Changes
+
+- 814590a: Update dependencies: `@ankhorage/devtools`.
+- d9d382e: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`, `@ankhorage/utility`.
+
 ## 3.0.51
 
 ### Patch Changes
