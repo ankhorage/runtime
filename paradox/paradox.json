@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v3.0.54",
+      "value": "v3.0.55",
       "color": "cb3837"
     },
     {
@@ -82,287 +82,287 @@
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function ManifestProvider has no Paradox description.",
+      "message": "Exported function ManifestProvider has no documentation description.",
       "sourcePath": "src/ManifestContext.tsx",
       "line": 12
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function useManifest has no Paradox description.",
+      "message": "Exported function useManifest has no documentation description.",
       "sourcePath": "src/ManifestContext.tsx",
       "line": 22
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function useManifestContext has no Paradox description.",
+      "message": "Exported function useManifestContext has no documentation description.",
       "sourcePath": "src/ManifestContext.tsx",
       "line": 30
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function useOptionalManifestContext has no Paradox description.",
+      "message": "Exported function useOptionalManifestContext has no documentation description.",
       "sourcePath": "src/ManifestContext.tsx",
       "line": 38
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createComponentRegistry has no Paradox description.",
+      "message": "Exported function createComponentRegistry has no documentation description.",
       "sourcePath": "src/componentRegistry.ts",
       "line": 5
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createComponentEventFromHandlerArgs has no Paradox description.",
+      "message": "Exported function createComponentEventFromHandlerArgs has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 223
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeActionRegistry has no Paradox description.",
+      "message": "Exported function createRuntimeActionRegistry has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 71
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function dispatchRuntimeComponentEvent has no Paradox description.",
+      "message": "Exported function dispatchRuntimeComponentEvent has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 109
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeActionPayload has no Paradox description.",
+      "message": "Exported function resolveRuntimeActionPayload has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 237
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeActionValue has no Paradox description.",
+      "message": "Exported function resolveRuntimeActionValue has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 248
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function wrapRuntimeEventProps has no Paradox description.",
+      "message": "Exported function wrapRuntimeEventProps has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
       "line": 186
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeApiOperationExecutor has no Paradox description.",
+      "message": "Exported function createRuntimeApiOperationExecutor has no documentation description.",
       "sourcePath": "src/runtimeApiOperations.ts",
       "line": 12
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function validateRuntimeBindingOperationRef has no Paradox description.",
+      "message": "Exported function validateRuntimeBindingOperationRef has no documentation description.",
       "sourcePath": "src/runtimeApiSelection.ts",
       "line": 15
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeBindingOperationKey has no Paradox description.",
+      "message": "Exported function createRuntimeBindingOperationKey has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 165
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveBindingInputMap has no Paradox description.",
+      "message": "Exported function resolveBindingInputMap has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 131
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeBindings has no Paradox description.",
+      "message": "Exported function resolveRuntimeBindings has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 91
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeBindingsAsync has no Paradox description.",
+      "message": "Exported function resolveRuntimeBindingsAsync has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 76
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeBindingValue has no Paradox description.",
+      "message": "Exported function resolveRuntimeBindingValue has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 105
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeBindingValueSync has no Paradox description.",
+      "message": "Exported function resolveRuntimeBindingValueSync has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
       "line": 118
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createDbPersistActionHandler has no Paradox description.",
+      "message": "Exported function createDbPersistActionHandler has no documentation description.",
       "sourcePath": "src/runtimeDbPersist.ts",
       "line": 36
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createDbPersistAdapterError has no Paradox description.",
+      "message": "Exported function createDbPersistAdapterError has no documentation description.",
       "sourcePath": "src/runtimeDbPersist.ts",
       "line": 126
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function executeDbPersistAction has no Paradox description.",
+      "message": "Exported function executeDbPersistAction has no documentation description.",
       "sourcePath": "src/runtimeDbPersist.ts",
       "line": 48
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveDbPersistInput has no Paradox description.",
+      "message": "Exported function resolveDbPersistInput has no documentation description.",
       "sourcePath": "src/runtimeDbPersist.ts",
       "line": 68
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function dispatchRuntimeComponentEventWithReporting has no Paradox description.",
+      "message": "Exported function dispatchRuntimeComponentEventWithReporting has no documentation description.",
       "sourcePath": "src/runtimeEventExecution.ts",
       "line": 14
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeEventOperationBindingContext has no Paradox description.",
+      "message": "Exported function createRuntimeEventOperationBindingContext has no documentation description.",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "line": 92
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeEventOperationLifecycle has no Paradox description.",
+      "message": "Exported function createRuntimeEventOperationLifecycle has no documentation description.",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "line": 39
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveRuntimeEventOperationErrorMessage has no Paradox description.",
+      "message": "Exported function resolveRuntimeEventOperationErrorMessage has no documentation description.",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "line": 113
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function RuntimeRenderer has no Paradox description.",
+      "message": "Exported function RuntimeRenderer has no documentation description.",
       "sourcePath": "src/RuntimeRenderer.tsx",
       "line": 81
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function composeRuntimeNodePropsResolver has no Paradox description.",
+      "message": "Exported function composeRuntimeNodePropsResolver has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
       "line": 95
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function composeRuntimeRendererWrapNode has no Paradox description.",
+      "message": "Exported function composeRuntimeRendererWrapNode has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
       "line": 80
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function mergeRuntimeRendererConfig has no Paradox description.",
+      "message": "Exported function mergeRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
       "line": 113
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function RuntimeRendererConfigProvider has no Paradox description.",
+      "message": "Exported function RuntimeRendererConfigProvider has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
       "line": 164
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function useRuntimeRendererConfig has no Paradox description.",
+      "message": "Exported function useRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
       "line": 177
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function shouldRenderRuntimeRepeatEmptyState has no Paradox description.",
+      "message": "Exported function shouldRenderRuntimeRepeatEmptyState has no documentation description.",
       "sourcePath": "src/runtimeRepeatEmptyState.ts",
       "line": 3
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function RuntimeScreen has no Paradox description.",
+      "message": "Exported function RuntimeScreen has no documentation description.",
       "sourcePath": "src/RuntimeScreen.tsx",
       "line": 17
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createPendingRuntimeScreenOperationLoaderState has no Paradox description.",
+      "message": "Exported function createPendingRuntimeScreenOperationLoaderState has no documentation description.",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "line": 82
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeScreenLoaderRequestKey has no Paradox description.",
+      "message": "Exported function createRuntimeScreenLoaderRequestKey has no documentation description.",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "line": 49
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function executeRuntimeScreenOperationLoaders has no Paradox description.",
+      "message": "Exported function executeRuntimeScreenOperationLoaders has no documentation description.",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "line": 178
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function resolveScreenOperationLoaders has no Paradox description.",
+      "message": "Exported function resolveScreenOperationLoaders has no documentation description.",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "line": 43
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function useRuntimeScreenOperationLoaders has no Paradox description.",
+      "message": "Exported function useRuntimeScreenOperationLoaders has no documentation description.",
       "sourcePath": "src/runtimeScreenLoaders.ts",
       "line": 273
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Public function createRuntimeMemoryStateAdapter has no Paradox description.",
+      "message": "Exported function createRuntimeMemoryStateAdapter has no documentation description.",
       "sourcePath": "src/runtimeStateAdapter.ts",
       "line": 18
     }
