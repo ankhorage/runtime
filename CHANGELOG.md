@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.62
+
+### Patch Changes
+
+- 164d69f: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`, `@ankhorage/paradox`, `@ankhorage/utility`.
+
 ## 3.0.61
 
 ### Patch Changes
