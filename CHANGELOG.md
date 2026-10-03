@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.64
+
+### Patch Changes
+
+- c0f8822: Update dependencies: `@ankhorage/utility`.
+
 ## 3.0.63
 
 ### Patch Changes
