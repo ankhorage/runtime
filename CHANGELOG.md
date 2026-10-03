@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 3.0.66
+
+### Patch Changes
+
+- a995e97: Update dependencies: `@ankhorage/data-sources`.
+
 ## 3.0.65
 
 ### Patch Changes
