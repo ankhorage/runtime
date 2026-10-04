@@ -10,6 +10,7 @@ import type {
   EventBindingTarget,
   UiNode,
 } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capabilities';
 
 import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
@@ -33,7 +34,7 @@ type RuntimeOperationEventTarget = Extract<EventBindingTarget, { readonly kind: 
 
 export interface RuntimeActionRegistry {
   dispatchComponentEvent(args: RuntimeComponentEventDispatchArgs): Promise<void>;
-  registerActionHandler(type: string, handler: RuntimeActionHandler): () => void;
+  registerActionHandler(type: Capability['id'], handler: RuntimeActionHandler): () => void;
 }
 
 export interface RuntimeActionResolutionScope {
@@ -129,6 +130,16 @@ export async function dispatchRuntimeComponentEvent(
     if (!matchesBindingCondition(binding.when, resolutionArgs)) continue;
 
     if (binding.target.kind === 'action') {
+      const capabilityId = resolveCapabilityId(binding.target.type);
+      if (capabilityId === null) {
+        diagnostics.push({
+          code: 'invalid-action-capability',
+          message: `Action '${binding.target.type}' is not a canonical namespaced capability id.`,
+          severity: 'error',
+        });
+        continue;
+      }
+
       const resolvedPayload = await resolveObjectEventBindingInput(
         binding.input,
         resolutionArgs,
@@ -136,8 +147,8 @@ export async function dispatchRuntimeComponentEvent(
       );
       const action =
         resolvedPayload === undefined
-          ? { type: binding.target.type }
-          : { type: binding.target.type, payload: resolvedPayload };
+          ? { type: capabilityId }
+          : { type: capabilityId, payload: resolvedPayload };
       if (resolutionArgs.executeAction) {
         await resolutionArgs.executeAction({
           action,
@@ -148,7 +159,7 @@ export async function dispatchRuntimeComponentEvent(
         continue;
       }
 
-      const handler = actionHandlers?.[binding.target.type];
+      const handler = actionHandlers?.[capabilityId];
       if (handler) {
         await handler({
           action,
@@ -161,7 +172,7 @@ export async function dispatchRuntimeComponentEvent(
 
       diagnostics.push({
         code: 'missing-action-handler',
-        message: `Action '${binding.target.type}' could not be executed because no runtime executor or handler is registered.`,
+        message: `Action '${capabilityId}' could not be executed because no runtime executor or handler is registered.`,
         severity: 'error',
       });
       continue;
@@ -484,6 +495,12 @@ function inferLocalEventName(eventType: string): string {
 
 function eventNameToCallbackProp(eventName: string): string {
   return `on${eventName.charAt(0).toUpperCase()}${eventName.slice(1)}`;
+}
+
+/*** Resolve a canonical namespaced capability id from authored action metadata. */
+function resolveCapabilityId(value: string): Capability['id'] | null {
+  const segments = value.split('.');
+  return segments.length >= 2 && segments.every((segment) => segment.length > 0) ? value : null;
 }
 
 function isRuntimeEventHandler(value: unknown): value is RuntimeEventHandler {
