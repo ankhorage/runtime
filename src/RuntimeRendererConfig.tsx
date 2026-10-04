@@ -48,7 +48,7 @@ export interface RuntimeAction {
   readonly payload?: object;
 }
 export type RuntimeActionHandler = (args: RuntimeActionHandlerArgs) => Promise<void> | void;
-export type RuntimeActionHandlers = Record<string, RuntimeActionHandler>;
+export type RuntimeActionHandlers = Partial<Record<Capability['id'], RuntimeActionHandler>>;
 export type RuntimeActionExecutor = RuntimeActionHandler;
 
 export interface RuntimeRendererConfig {
