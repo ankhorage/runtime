@@ -131,6 +131,30 @@ describe('runtime action registry actions', () => {
     expect(handled).toEqual([{ message: 'Hello' }]);
   });
 
+  it('rejects legacy bare action ids before dispatch', async () => {
+    const diagnostics = await dispatchRuntimeComponentEvent({
+      node: { id: 'legacy-button', type: 'Button' },
+      eventName: 'press',
+      event: { type: 'button.press', sourceNodeId: 'legacy-button', payload: {} },
+      dataBindings: {
+        'legacy-button': {
+          componentId: 'legacy-button',
+          events: {
+            press: [{ target: { kind: 'action', type: 'navigate' } }],
+          },
+        },
+      },
+    });
+
+    expect(diagnostics).toEqual([
+      {
+        code: 'invalid-action-capability',
+        message: "Action 'navigate' is not a canonical namespaced capability id.",
+        severity: 'error',
+      },
+    ]);
+  });
+
   it('reports an action binding without an executor or handler', async () => {
     const diagnostics = await dispatchRuntimeComponentEvent({
       node: { id: 'save-button', type: 'Button' },
