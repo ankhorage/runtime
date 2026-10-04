@@ -39,9 +39,8 @@ function isCallbackProp(value: unknown): value is (...args: unknown[]) => unknow
 }
 
 function isCapabilityId(value: unknown): value is Capability['id'] {
-  if (typeof value !== 'string') return false;
-  const normalized = value.trim();
-  const segments = normalized.split('.');
+  if (typeof value !== 'string' || value.trim() !== value) return false;
+  const segments = value.split('.');
   return segments.length >= 2 && segments.every((segment) => segment.length > 0);
 }
 
@@ -172,7 +171,7 @@ export function wrapRuntimeActionProps(args: {
     }
 
     if (isNonEmptyActionId(value)) {
-      const actionId = value.trim();
+      const actionId = value;
       wrappedProps[key] = (...handlerArgs: unknown[]) => {
         handleAction({
           type: actionId,
