@@ -1,7 +1,6 @@
-import type { Action } from '@ankhorage/contracts';
-import type { RuntimeAction } from './RuntimeRendererConfig';
 import { describe, expect, it } from 'bun:test';
 
+import type { RuntimeAction } from './RuntimeRendererConfig';
 import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
 
 function isCallable(value: unknown): value is (...args: unknown[]) => void {
