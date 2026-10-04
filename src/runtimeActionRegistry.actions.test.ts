@@ -17,7 +17,7 @@ function createActionBindings(): ComponentDataBindingRegistry {
     'save-button': {
       componentId: 'save-button',
       events: {
-        press: [{ target: { kind: 'action', type: 'console' } }],
+        press: [{ target: { kind: 'action', type: 'debug.console' } }],
       },
     },
   };
@@ -208,7 +208,7 @@ describe('runtime action registry actions', () => {
   it('supports imperative action handler registration and unregistration', async () => {
     const handled: string[] = [];
     const registry = createRuntimeActionRegistry({ dataBindings: createActionBindings() });
-    const unregister = registry.registerActionHandler('console', ({ action }) => {
+    const unregister = registry.registerActionHandler('debug.console', ({ action }) => {
       handled.push(action.type);
     });
     const event = { type: 'button.press', sourceNodeId: 'save-button', payload: {} };
@@ -218,6 +218,6 @@ describe('runtime action registry actions', () => {
     unregister();
     await registry.dispatchComponentEvent({ node, eventName: 'press', event });
 
-    expect(handled).toEqual(['console']);
+    expect(handled).toEqual(['debug.console']);
   });
 });
