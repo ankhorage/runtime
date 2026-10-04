@@ -76,7 +76,6 @@ export type {
   RuntimeActionDescriptor,
   RuntimeAdapterDescriptor,
   RuntimeBindingDescriptor,
-  RuntimeCapability,
   RuntimeDiagnostic,
   RuntimeManifest,
   RuntimeManifestConfig,
