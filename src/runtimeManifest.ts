@@ -2,8 +2,6 @@ import type { Capability } from '@ankhorage/contracts/capabilities';
 
 export const RUNTIME_MANIFEST_KIND = 'ankhorage-runtime-manifest';
 
-export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];
-
 export interface RuntimeDiagnostic {
   readonly code: string;
   readonly message: string;
