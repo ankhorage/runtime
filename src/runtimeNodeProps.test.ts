@@ -1,4 +1,5 @@
 import type { Action } from '@ankhorage/contracts';
+import type { RuntimeAction } from './RuntimeRendererConfig';
 import { describe, expect, it } from 'bun:test';
 
 import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
@@ -9,12 +10,12 @@ function isCallable(value: unknown): value is (...args: unknown[]) => void {
 
 describe('runtimeNodeProps', () => {
   it('applies resolveNodeProps before action wrapping and preserves source node props', () => {
-    const originalAction: Action = {
-      type: 'alert',
+    const originalAction: RuntimeAction = {
+      type: 'ui.alert',
       payload: { message: 'original' },
     };
-    const resolvedAction: Action = {
-      type: 'setLanguage',
+    const resolvedAction: RuntimeAction = {
+      type: 'localization.setLanguage',
       payload: { locale: 'de' },
     };
     const node = {
@@ -74,8 +75,8 @@ describe('runtimeNodeProps', () => {
   });
 
   it('disables action props without mutating the resolved props input', () => {
-    const action: Action = {
-      type: 'console',
+    const action: RuntimeAction = {
+      type: 'debug.console',
       payload: { message: 'hidden' },
     };
     const resolvedProps = {
