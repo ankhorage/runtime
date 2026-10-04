@@ -7,6 +7,7 @@ import type {
   UiNode,
 } from '@ankhorage/contracts';
 import { isMediaAssetReference } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capabilities';
 
 import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
 import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';
@@ -30,17 +31,22 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 }
 
 function hasActionShape(value: unknown): value is RuntimeAction {
-  return (
-    typeof value === 'object' && value !== null && 'type' in value && typeof value.type === 'string'
-  );
+  return isRecord(value) && isCapabilityId(value.type);
 }
 
 function isCallbackProp(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === 'function';
 }
 
-function isNonEmptyActionId(value: unknown): value is string {
-  return typeof value === 'string' && value.trim().length > 0;
+function isCapabilityId(value: unknown): value is Capability['id'] {
+  if (typeof value !== 'string') return false;
+  const normalized = value.trim();
+  const segments = normalized.split('.');
+  return segments.length >= 2 && segments.every((segment) => segment.length > 0);
+}
+
+function isNonEmptyActionId(value: unknown): value is Capability['id'] {
+  return isCapabilityId(value);
 }
 
 function createStringActionPayload(args: unknown[]): { payload?: object } {
