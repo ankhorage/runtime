@@ -194,6 +194,20 @@ describe('runtimeNodeProps', () => {
     ]);
   });
 
+  it('does not turn legacy bare action ids into handlers', () => {
+    const wrappedProps = wrapRuntimeActionProps({
+      props: {
+        onPress: 'navigate',
+      },
+      disableActions: false,
+      handleAction: () => undefined,
+      actionHandlerCache: new WeakMap(),
+      functionHandlerCache: new WeakMap(),
+    });
+
+    expect(wrappedProps.onPress).toBe('navigate');
+  });
+
   it('does not turn blank string action ids into handlers', () => {
     const wrappedProps = wrapRuntimeActionProps({
       props: {
