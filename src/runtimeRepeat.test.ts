@@ -98,7 +98,7 @@ function createRepeatedCardBindings(): ComponentDataBindingRegistry {
           {
             target: {
               kind: 'action',
-              type: 'navigate',
+              type: 'navigator.navigate',
             },
             input: {
               route: {
@@ -294,7 +294,7 @@ describe('runtime repeat resolution', () => {
     expect(diagnostics).toEqual([]);
     expect(executedActions).toEqual([
       {
-        type: 'navigate',
+        type: 'navigator.navigate',
         payload: {
           route: '/products/[id]',
           params: {
