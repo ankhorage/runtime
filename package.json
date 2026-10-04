@@ -38,7 +38,11 @@
       "types": "./dist/bindings.d.ts",
       "import": "./dist/bindings.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./capabilities": {
+      "types": "./dist/capabilities/index.d.ts",
+      "import": "./dist/capabilities/index.js"
+    }
   },
   "files": [
     "dist",
@@ -50,7 +54,41 @@
   "ankh": {
     "category": "runtime",
     "provider": null,
-    "capabilities": []
+    "capabilities": [
+      {
+        "id": "runtime.render",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "invoke"
+        ],
+        "label": "Render runtime"
+      },
+      {
+        "id": "runtime.actions",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "invoke"
+        ],
+        "label": "Execute runtime actions"
+      },
+      {
+        "id": "runtime.bindings",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "read",
+          "write"
+        ],
+        "label": "Runtime bindings"
+      },
+      {
+        "id": "runtime.adapters",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "read"
+        ],
+        "label": "Runtime adapters"
+      }
+    ]
   },
   "scripts": {
     "build": "rm -rf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo && bun x tsc -p tsconfig.build.json",
@@ -67,7 +105,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^22.8.103",
+    "@ankhorage/contracts": "^23.0.0",
     "@ankhorage/data-sources": "^2.0.35",
     "@ankhorage/utility": "^1.9.85"
   },
