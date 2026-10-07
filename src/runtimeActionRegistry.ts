@@ -1,3 +1,4 @@
+import { isCapabilityId, type Capability } from '@ankhorage/contracts/capabilities';
 import type {
   ApiDefinitionRegistry,
   BindingCondition,
@@ -10,7 +11,6 @@ import type {
   EventBindingTarget,
   UiNode,
 } from '@ankhorage/contracts';
-import { isCapabilityId, type Capability } from '@ankhorage/contracts/capabilities';
 
 import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
