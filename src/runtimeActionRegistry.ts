@@ -10,7 +10,7 @@ import type {
   EventBindingTarget,
   UiNode,
 } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import { isCapabilityId, type Capability } from '@ankhorage/contracts/capabilities';
 
 import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
@@ -500,13 +500,6 @@ function eventNameToCallbackProp(eventName: string): string {
 /*** Resolve a canonical namespaced capability id from authored action metadata. */
 function resolveCapabilityId(value: string): Capability['id'] | null {
   return isCapabilityId(value) ? value : null;
-}
-
-/*** Validate one canonical namespaced capability identifier. */
-function isCapabilityId(value: unknown): value is Capability['id'] {
-  if (typeof value !== 'string' || value.trim() !== value) return false;
-  const segments = value.split('.');
-  return segments.length >= 2 && segments.every((segment) => segment.length > 0);
 }
 
 function isRuntimeEventHandler(value: unknown): value is RuntimeEventHandler {
