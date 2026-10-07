@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { describe, expect, it } from 'bun:test';
 
@@ -12,7 +13,7 @@ import {
 } from '../src/runtimeManifest';
 
 const PACKAGE_METADATA = JSON.parse(
-  readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
+  readFileSync(join(import.meta.dir, '..', 'package.json'), 'utf8'),
 ) as { readonly ankh: { readonly capabilities: unknown } };
 
 describe('runtime contracts', () => {
