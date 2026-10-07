@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 4.0.3
+
+### Patch Changes
+
+- 98fc815: Mark the renderer root export as React Native/browser-specific so standalone release verification continues to smoke-test only the headless Runtime entrypoints under Node/Bun.
+
 ## 4.0.2
 
 ### Patch Changes
