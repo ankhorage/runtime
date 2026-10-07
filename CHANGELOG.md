@@ -1,5 +1,12 @@
 # @ankhorage/runtime
 
+## 4.0.2
+
+### Patch Changes
+
+- 277c55a: Adopt Contracts 24 capability binding semantics and publish canonical Runtime capability descriptors in package metadata.
+- 277c55a: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`.
+
 ## 4.0.1
 
 ### Patch Changes

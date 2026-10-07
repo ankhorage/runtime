@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v4.0.1",
+      "value": "v4.0.2",
       "color": "cb3837"
     },
     {
@@ -5803,24 +5803,13 @@
       }
     },
     {
-      "name": "isCapabilityId",
-      "description": "Validate one canonical namespaced capability identifier.",
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/runtimeActionRegistry.ts",
-        "line": 506,
-        "column": 1
-      }
-    },
-    {
       "name": "isRuntimeEventHandler",
       "description": null,
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 512,
+        "line": 505,
         "column": 1
       }
     },
@@ -5831,7 +5820,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 516,
+        "line": 509,
         "column": 1
       }
     },
@@ -5842,7 +5831,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 525,
+        "line": 518,
         "column": 1
       }
     },
@@ -5853,7 +5842,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 541,
+        "line": 534,
         "column": 1
       }
     },
@@ -5864,7 +5853,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 550,
+        "line": 543,
         "column": 1
       }
     },
@@ -5875,7 +5864,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 554,
+        "line": 547,
         "column": 1
       }
     },
@@ -6760,7 +6749,7 @@
       }
     },
     {
-      "name": "isCapabilityId",
+      "name": "isNonEmptyActionId",
       "description": null,
       "see": [],
       "security": [],
@@ -6771,24 +6760,13 @@
       }
     },
     {
-      "name": "isNonEmptyActionId",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/runtimeNodeProps.ts",
-        "line": 47,
-        "column": 1
-      }
-    },
-    {
       "name": "createStringActionPayload",
       "description": null,
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 51,
+        "line": 45,
         "column": 1
       }
     },
@@ -6799,7 +6777,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 68,
+        "line": 62,
         "column": 7
       }
     },
@@ -6810,7 +6788,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 70,
+        "line": 64,
         "column": 1
       }
     },
@@ -6821,7 +6799,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 93,
+        "line": 87,
         "column": 1
       }
     },
@@ -6832,7 +6810,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 136,
+        "line": 130,
         "column": 1
       }
     },
@@ -6843,7 +6821,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 163,
+        "line": 157,
         "column": 15
       }
     },
@@ -11336,6 +11314,18 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "tests/reactNativeWebCompatibility.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "readFileSync",
+        "callExpression": "readFileSync",
+        "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtime.test.ts",
+        "toSymbol": "join",
+        "callExpression": "join",
+        "sourcePath": "tests/runtime.test.ts"
       },
       {
         "fromSymbol": "tests/runtime.test.ts",
