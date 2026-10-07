@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { describe, expect, it } from 'bun:test';
 
 import { CAPABILITIES } from '../src/capabilities/index';
@@ -8,6 +11,10 @@ import {
   defineRuntimeBinding,
   RUNTIME_MANIFEST_KIND,
 } from '../src/runtimeManifest';
+
+const PACKAGE_METADATA = JSON.parse(
+  readFileSync(join(import.meta.dir, '..', 'package.json'), 'utf8'),
+) as { readonly ankh: { readonly capabilities: unknown } };
 
 describe('runtime contracts', () => {
   it('publishes canonical runtime capabilities', () => {
@@ -23,6 +30,13 @@ describe('runtime contracts', () => {
       '@ankhorage/runtime',
       '@ankhorage/runtime',
     ]);
+    expect(CAPABILITIES.map((capability) => capability.binding)).toEqual([
+      { kind: 'action', bindableAs: ['target'] },
+      { kind: 'action', bindableAs: ['target'] },
+      { kind: 'state', bindableAs: ['source', 'target'] },
+      { kind: 'context', bindableAs: ['source'] },
+    ]);
+    expect(PACKAGE_METADATA.ankh.capabilities).toEqual(CAPABILITIES);
   });
 
   it('creates a serializable runtime manifest', () => {

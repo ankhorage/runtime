@@ -55,10 +55,64 @@
     "category": "runtime",
     "provider": null,
     "capabilities": [
-      "runtime.render",
-      "runtime.actions",
-      "runtime.bindings",
-      "runtime.adapters"
+      {
+        "id": "runtime.render",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Render runtime"
+      },
+      {
+        "id": "runtime.actions",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "invoke"
+        ],
+        "binding": {
+          "kind": "action",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Execute runtime actions"
+      },
+      {
+        "id": "runtime.bindings",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "read",
+          "write"
+        ],
+        "binding": {
+          "kind": "state",
+          "bindableAs": [
+            "source",
+            "target"
+          ]
+        },
+        "label": "Runtime bindings"
+      },
+      {
+        "id": "runtime.adapters",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "read"
+        ],
+        "binding": {
+          "kind": "context",
+          "bindableAs": [
+            "source"
+          ]
+        },
+        "label": "Runtime adapters"
+      }
     ]
   },
   "scripts": {
@@ -76,8 +130,8 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^23.0.0",
-    "@ankhorage/data-sources": "^2.0.36",
+    "@ankhorage/contracts": "^24.1.0",
+    "@ankhorage/data-sources": "^2.0.38",
     "@ankhorage/utility": "^1.9.85"
   },
   "peerDependencies": {
