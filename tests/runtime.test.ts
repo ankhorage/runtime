@@ -17,7 +17,12 @@ describe('runtime contracts', () => {
       'runtime.bindings',
       'runtime.adapters',
     ]);
-    expect(CAPABILITIES.every((capability) => capability.owner === '@ankhorage/runtime')).toBe(true);
+    expect(CAPABILITIES.map((capability) => capability.owner)).toEqual([
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+    ]);
   });
 
   it('creates a serializable runtime manifest', () => {
