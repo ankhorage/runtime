@@ -1,13 +1,6 @@
-export const RUNTIME_CAPABILITIES = [
-  'runtime.render',
-  'runtime.actions',
-  'runtime.bindings',
-  'runtime.adapters',
-] as const;
+import type { Capability } from '@ankhorage/contracts/capabilities';
 
 export const RUNTIME_MANIFEST_KIND = 'ankhorage-runtime-manifest';
-
-export type RuntimeCapability = (typeof RUNTIME_CAPABILITIES)[number];
 
 export interface RuntimeDiagnostic {
   readonly code: string;
@@ -22,7 +15,7 @@ export interface RuntimeManifestConfig {
 }
 
 export interface RuntimeActionDescriptor<Data = unknown> {
-  readonly capability?: RuntimeCapability;
+  readonly capability?: Capability['id'];
   readonly description?: string;
   readonly id: string;
   readonly data?: Data;
@@ -88,8 +81,4 @@ export function createRuntimeManifest(input: RuntimeManifestInput): RuntimeManif
     kind: RUNTIME_MANIFEST_KIND,
     version: 1,
   };
-}
-
-export function listRuntimeCapabilities(): readonly RuntimeCapability[] {
-  return RUNTIME_CAPABILITIES;
 }

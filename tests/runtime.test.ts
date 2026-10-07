@@ -1,24 +1,28 @@
 import { describe, expect, it } from 'bun:test';
 
+import { CAPABILITIES } from '../src/capabilities/index';
 import {
   createRuntimeManifest,
   defineRuntimeAction,
   defineRuntimeAdapter,
   defineRuntimeBinding,
-  listRuntimeCapabilities,
-  RUNTIME_CAPABILITIES,
   RUNTIME_MANIFEST_KIND,
 } from '../src/runtimeManifest';
 
 describe('runtime contracts', () => {
-  it('lists canonical metadata capabilities', () => {
-    expect(RUNTIME_CAPABILITIES).toEqual([
+  it('publishes canonical runtime capabilities', () => {
+    expect(CAPABILITIES.map((capability) => capability.id)).toEqual([
       'runtime.render',
       'runtime.actions',
       'runtime.bindings',
       'runtime.adapters',
     ]);
-    expect(listRuntimeCapabilities()).toBe(RUNTIME_CAPABILITIES);
+    expect(CAPABILITIES.map((capability) => capability.owner)).toEqual([
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+      '@ankhorage/runtime',
+    ]);
   });
 
   it('creates a serializable runtime manifest', () => {

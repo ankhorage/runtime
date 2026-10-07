@@ -1,5 +1,4 @@
 import type {
-  Action,
   ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
   ComponentEventDto,
@@ -10,6 +9,7 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capabilities';
 import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
 import React, { createContext, use } from 'react';
 
@@ -43,9 +43,12 @@ export interface RuntimeActionHandlerArgs {
   resolvedPayload?: object;
 }
 
-export type RuntimeAction = Action | { readonly type: string; readonly payload?: object };
+export interface RuntimeAction {
+  readonly type: Capability['id'];
+  readonly payload?: object;
+}
 export type RuntimeActionHandler = (args: RuntimeActionHandlerArgs) => Promise<void> | void;
-export type RuntimeActionHandlers = Record<string, RuntimeActionHandler>;
+export type RuntimeActionHandlers = Partial<Record<Capability['id'], RuntimeActionHandler>>;
 export type RuntimeActionExecutor = RuntimeActionHandler;
 
 export interface RuntimeRendererConfig {

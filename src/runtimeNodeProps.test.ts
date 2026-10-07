@@ -1,20 +1,24 @@
-import type { Action } from '@ankhorage/contracts';
 import { describe, expect, it } from 'bun:test';
 
 import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
+import type { RuntimeAction } from './RuntimeRendererConfig';
 
 function isCallable(value: unknown): value is (...args: unknown[]) => void {
   return typeof value === 'function';
 }
 
+function getCallable(value: unknown): (...args: unknown[]) => void {
+  if (!isCallable(value)) throw new Error('expected a callable action handler');
+  return value;
+}
 describe('runtimeNodeProps', () => {
   it('applies resolveNodeProps before action wrapping and preserves source node props', () => {
-    const originalAction: Action = {
-      type: 'alert',
+    const originalAction: RuntimeAction = {
+      type: 'ui.alert',
       payload: { message: 'original' },
     };
-    const resolvedAction: Action = {
-      type: 'setLanguage',
+    const resolvedAction: RuntimeAction = {
+      type: 'localization.setLanguage',
       payload: { locale: 'de' },
     };
     const node = {
@@ -62,20 +66,15 @@ describe('runtimeNodeProps', () => {
       },
     });
 
-    const { onPress } = wrappedProps;
-    expect(isCallable(onPress)).toBe(true);
-    if (!isCallable(onPress)) {
-      throw new Error('expected wrapped onPress handler');
-    }
+    const onPress = getCallable(wrappedProps.onPress);
 
     onPress();
 
     expect(triggeredActions).toEqual([resolvedAction]);
   });
-
   it('disables action props without mutating the resolved props input', () => {
-    const action: Action = {
-      type: 'console',
+    const action: RuntimeAction = {
+      type: 'debug.console',
       payload: { message: 'hidden' },
     };
     const resolvedProps = {
@@ -97,15 +96,10 @@ describe('runtimeNodeProps', () => {
       text: 'Static',
     });
 
-    const { onPress } = wrappedProps;
-    expect(isCallable(onPress)).toBe(true);
-    if (!isCallable(onPress)) {
-      throw new Error('expected disabled onPress to remain callable');
-    }
+    const onPress = getCallable(wrappedProps.onPress);
 
     onPress();
   });
-
   it('converts non-empty string action ids into callable handlers', () => {
     const triggeredActions: unknown[] = [];
     const wrappedProps = wrapRuntimeActionProps({
@@ -120,17 +114,12 @@ describe('runtimeNodeProps', () => {
       functionHandlerCache: new WeakMap(),
     });
 
-    const { onManualEntry } = wrappedProps;
-    expect(isCallable(onManualEntry)).toBe(true);
-    if (!isCallable(onManualEntry)) {
-      throw new Error('expected wrapped onManualEntry handler');
-    }
+    const onManualEntry = getCallable(wrappedProps.onManualEntry);
 
     onManualEntry();
 
     expect(triggeredActions).toEqual([{ type: 'action.manualEntryRequested' }]);
   });
-
   it('passes plain-object callback payloads through string action shorthand handlers', () => {
     const triggeredActions: unknown[] = [];
     const wrappedProps = wrapRuntimeActionProps({
@@ -145,11 +134,7 @@ describe('runtimeNodeProps', () => {
       functionHandlerCache: new WeakMap(),
     });
 
-    const { onBarcodeScanned } = wrappedProps;
-    expect(isCallable(onBarcodeScanned)).toBe(true);
-    if (!isCallable(onBarcodeScanned)) {
-      throw new Error('expected wrapped onBarcodeScanned handler');
-    }
+    const onBarcodeScanned = getCallable(wrappedProps.onBarcodeScanned);
 
     const scanPayload = { data: '0123456789', format: 'ean13' };
     onBarcodeScanned(scanPayload);
@@ -161,7 +146,6 @@ describe('runtimeNodeProps', () => {
       },
     ]);
   });
-
   it('wraps non-object callback args in an args payload for string action shorthand handlers', () => {
     const triggeredActions: unknown[] = [];
     const wrappedProps = wrapRuntimeActionProps({
@@ -176,11 +160,7 @@ describe('runtimeNodeProps', () => {
       functionHandlerCache: new WeakMap(),
     });
 
-    const { onValueChange } = wrappedProps;
-    expect(isCallable(onValueChange)).toBe(true);
-    if (!isCallable(onValueChange)) {
-      throw new Error('expected wrapped onValueChange handler');
-    }
+    const onValueChange = getCallable(wrappedProps.onValueChange);
 
     onValueChange('abc', 7);
 
@@ -192,6 +172,20 @@ describe('runtimeNodeProps', () => {
         },
       },
     ]);
+  });
+
+  it('does not turn legacy bare action ids into handlers', () => {
+    const wrappedProps = wrapRuntimeActionProps({
+      props: {
+        onPress: 'navigate',
+      },
+      disableActions: false,
+      handleAction: () => undefined,
+      actionHandlerCache: new WeakMap(),
+      functionHandlerCache: new WeakMap(),
+    });
+
+    expect(wrappedProps.onPress).toBe('navigate');
   });
 
   it('does not turn blank string action ids into handlers', () => {
@@ -227,11 +221,7 @@ describe('runtimeNodeProps', () => {
       functionHandlerCache: new WeakMap(),
     });
 
-    const { onManualEntry } = wrappedProps;
-    expect(isCallable(onManualEntry)).toBe(true);
-    if (!isCallable(onManualEntry)) {
-      throw new Error('expected disabled string action to remain callable');
-    }
+    const onManualEntry = getCallable(wrappedProps.onManualEntry);
 
     onManualEntry({ data: '0123456789' });
 
@@ -255,11 +245,7 @@ describe('runtimeNodeProps', () => {
       functionHandlerCache: new WeakMap(),
     });
 
-    const { onPress } = wrappedProps;
-    expect(isCallable(onPress)).toBe(true);
-    if (!isCallable(onPress)) {
-      throw new Error('expected disabled action object to remain callable');
-    }
+    const onPress = getCallable(wrappedProps.onPress);
 
     onPress();
 

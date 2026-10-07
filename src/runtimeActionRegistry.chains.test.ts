@@ -57,7 +57,7 @@ function createScannerBindings(): ComponentDataBindingRegistry {
             },
           },
           {
-            target: { kind: 'action', type: 'navigate' },
+            target: { kind: 'action', type: 'navigator.navigate' },
             when: {
               source: { kind: 'operation', operation: lookupOperation, path: 'product.id' },
               operator: 'exists',
@@ -80,7 +80,7 @@ function createScannerBindings(): ComponentDataBindingRegistry {
             },
           },
           {
-            target: { kind: 'action', type: 'navigate' },
+            target: { kind: 'action', type: 'navigator.navigate' },
             when: {
               source: { kind: 'operation', operation: lookupOperation, path: 'product.id' },
               operator: 'notExists',
@@ -137,7 +137,7 @@ describe('runtime chained API event bindings', () => {
     expect(inputs).toEqual([{ barcode: '7612345678901' }]);
     expect(actions).toEqual([
       {
-        type: 'navigate',
+        type: 'navigator.navigate',
         payload: { route: '/products/[id]', params: { id: 'product-1' } },
       },
     ]);
@@ -158,7 +158,7 @@ describe('runtime chained API event bindings', () => {
     expect(diagnostics).toEqual([]);
     expect(actions).toEqual([
       {
-        type: 'navigate',
+        type: 'navigator.navigate',
         payload: {
           route: '/products/create',
           params: { barcode: '7612345678901' },

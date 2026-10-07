@@ -107,20 +107,20 @@ describe('RuntimeRendererConfig', () => {
     const merged = mergeRuntimeRendererConfig(
       {
         actionHandlers: {
-          setLanguage: localSetLanguage,
+          'localization.setLanguage': localSetLanguage,
         },
       },
       {
         actionHandlers: {
-          navigate: inheritedNavigate,
-          setLanguage: inheritedSetLanguage,
+          'navigator.navigate': inheritedNavigate,
+          'localization.setLanguage': inheritedSetLanguage,
         },
       },
     );
 
     expect(merged.actionHandlers).toEqual({
-      navigate: inheritedNavigate,
-      setLanguage: localSetLanguage,
+      'navigator.navigate': inheritedNavigate,
+      'localization.setLanguage': localSetLanguage,
     });
   });
 
