@@ -2,6 +2,7 @@ graph LR
   module_paradox_config_ts["paradox.config.ts"]
   module_src_bindings_test_ts["src/bindings.test.ts"]
   module_src_bindings_ts["src/bindings.ts"]
+  module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
@@ -90,6 +91,7 @@ graph LR
   module_src_runtimeMediaCache_tsx --> module_src_runtimeMedia_ts
   module_src_runtimeMediaConfig_test_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeNodeProps_test_ts --> module_src_runtimeNodeProps_ts
+  module_src_runtimeNodeProps_test_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeNodeProps_ts --> module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeRenderer_test_ts --> module_src_runtimeRepeatEmptyState_ts
@@ -136,4 +138,5 @@ graph LR
   module_src_runtimeStateAdapterConfig_test_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx
+  module_tests_runtime_test_ts --> module_src_capabilities_index_ts
   module_tests_runtime_test_ts --> module_src_runtimeManifest_ts

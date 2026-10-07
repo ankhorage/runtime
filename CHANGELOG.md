@@ -1,5 +1,13 @@
 # @ankhorage/runtime
 
+## 4.0.0
+
+### Major Changes
+
+- 254b3d3: Adopt the canonical Contracts capability descriptor, publish the Runtime CAPABILITIES catalog,
+  remove the Runtime-specific capability type and constants, and require namespaced capability ids
+  for runtime action dispatch.
+
 ## 3.0.68
 
 ### Patch Changes

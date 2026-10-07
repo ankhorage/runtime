@@ -10,7 +10,7 @@ Source: `src/componentRegistry.ts:3:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:95:1`
+Source: `src/RuntimeRendererConfig.tsx:98:1`
 
 ### Signatures
 
@@ -23,7 +23,7 @@ Source: `src/RuntimeRendererConfig.tsx:95:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:80:1`
+Source: `src/RuntimeRendererConfig.tsx:83:1`
 
 ### Signatures
 
@@ -36,7 +36,7 @@ Source: `src/RuntimeRendererConfig.tsx:80:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:223:1`
+Source: `src/runtimeActionRegistry.ts:234:1`
 
 ### Signatures
 
@@ -96,7 +96,7 @@ Source: `src/runtimeScreenLoaders.ts:82:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:71:1`
+Source: `src/runtimeActionRegistry.ts:72:1`
 
 ### Signatures
 
@@ -181,7 +181,7 @@ Source: `src/runtimeScreenLoaders.ts:49:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:109:1`
+Source: `src/runtimeActionRegistry.ts:110:1`
 
 ### Signatures
 
@@ -253,7 +253,7 @@ Source: `src/ManifestContext.tsx:12:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:113:1`
+Source: `src/RuntimeRendererConfig.tsx:116:1`
 
 ### Signatures
 
@@ -292,7 +292,7 @@ Source: `src/runtimeDbPersist.ts:68:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:237:1`
+Source: `src/runtimeActionRegistry.ts:248:1`
 
 ### Signatures
 
@@ -305,7 +305,7 @@ Source: `src/runtimeActionRegistry.ts:237:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:248:1`
+Source: `src/runtimeActionRegistry.ts:259:1`
 
 ### Signatures
 
@@ -392,21 +392,28 @@ Source: `src/runtimeScreenLoaders.ts:43:1`
 
 ## RuntimeAction
 
-Kind: `unknown`
+Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
 Source: `src/RuntimeRendererConfig.tsx:46:1`
-
-## RuntimeActionDescriptor
-
-Kind: `type`
-Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:24:1`
 
 ### Members
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| capability | property | `"runtime.render" \| "runtime.actions" \| "runtime.bindings" \| "runtime.adapters" \| undefined` | no |  |
+| payload | property | `object \| undefined` | no |  |
+| type | property | ``${string}.${string}`` | yes |  |
+
+## RuntimeActionDescriptor
+
+Kind: `type`
+Module: `src/runtimeManifest.ts`
+Source: `src/runtimeManifest.ts:17:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| capability | property | ``${string}.${string}` \| undefined` | no |  |
 | data | property | `Data \| undefined` | no |  |
 | description | property | `string \| undefined` | no |  |
 | id | property | `string` | yes |  |
@@ -415,13 +422,13 @@ Source: `src/runtimeManifest.ts:24:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:49:1`
+Source: `src/RuntimeRendererConfig.tsx:52:1`
 
 ## RuntimeActionHandler
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:47:1`
+Source: `src/RuntimeRendererConfig.tsx:50:1`
 
 ## RuntimeActionHandlerArgs
 
@@ -442,26 +449,26 @@ Source: `src/RuntimeRendererConfig.tsx:39:1`
 
 Kind: `unknown`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:48:1`
+Source: `src/RuntimeRendererConfig.tsx:51:1`
 
 ## RuntimeActionRegistry
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:34:1`
+Source: `src/runtimeActionRegistry.ts:35:1`
 
 ### Members
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | dispatchComponentEvent | method | `(args: RuntimeComponentEventDispatchArgs) => Promise<void>` | yes |  |
-| registerActionHandler | method | `(type: string, handler: RuntimeActionHandler) => () => void` | yes |  |
+| registerActionHandler | method | `(type: Capability["id"], handler: RuntimeActionHandler) => () => void` | yes |  |
 
 ## RuntimeActionResolutionArgs
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:45:1`
+Source: `src/runtimeActionRegistry.ts:46:1`
 
 ### Members
 
@@ -476,7 +483,7 @@ Source: `src/runtimeActionRegistry.ts:45:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:39:1`
+Source: `src/runtimeActionRegistry.ts:40:1`
 
 ### Members
 
@@ -490,7 +497,7 @@ Source: `src/runtimeActionRegistry.ts:39:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:39:1`
+Source: `src/runtimeManifest.ts:32:1`
 
 ### Members
 
@@ -530,7 +537,7 @@ Source: `src/runtimeApiSelection.ts:10:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:31:1`
+Source: `src/runtimeManifest.ts:24:1`
 
 ### Members
 
@@ -639,17 +646,11 @@ Source: `src/runtimeBindings.ts:71:1`
 | diagnostics | property | `readonly DataSourceDiagnostic[]` | yes |  |
 | props | property | `Record<string, unknown>` | yes |  |
 
-## RuntimeCapability
-
-Kind: `unknown`
-Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:10:1`
-
 ## RuntimeComponentEventDispatchArgs
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:49:1`
+Source: `src/runtimeActionRegistry.ts:50:1`
 
 ### Members
 
@@ -704,7 +705,7 @@ Source: `src/runtimeDbPersist.ts:11:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:12:1`
+Source: `src/runtimeManifest.ts:5:1`
 
 ### Members
 
@@ -779,7 +780,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:4:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:61:1`
+Source: `src/runtimeActionRegistry.ts:62:1`
 
 ### Members
 
@@ -798,7 +799,7 @@ Source: `src/runtimeActionRegistry.ts:61:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:45:1`
+Source: `src/runtimeManifest.ts:38:1`
 
 ### Members
 
@@ -816,7 +817,7 @@ Source: `src/runtimeManifest.ts:45:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:18:1`
+Source: `src/runtimeManifest.ts:11:1`
 
 ### Members
 
@@ -830,7 +831,7 @@ Source: `src/runtimeManifest.ts:18:1`
 
 Kind: `type`
 Module: `src/runtimeManifest.ts`
-Source: `src/runtimeManifest.ts:55:1`
+Source: `src/runtimeManifest.ts:48:1`
 
 ### Members
 
@@ -894,13 +895,13 @@ Source: `src/RuntimeRenderer.tsx:81:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:51:1`
+Source: `src/RuntimeRendererConfig.tsx:54:1`
 
 ### Members
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| actionHandlers | property | `RuntimeActionHandlers \| undefined` | no |  |
+| actionHandlers | property | `Partial<Record<`${string}.${string}`, RuntimeActionHandler>> \| undefined` | no |  |
 | apis | property | `ApiDefinitionRegistry \| undefined` | no |  |
 | bindingContext | property | `Record<string, unknown> \| undefined` | no |  |
 | dataBindings | property | `ComponentDataBindingRegistry \| undefined` | no |  |
@@ -925,7 +926,7 @@ Source: `src/RuntimeRendererConfig.tsx:51:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:164:1`
+Source: `src/RuntimeRendererConfig.tsx:167:1`
 
 ### Signatures
 
@@ -1099,7 +1100,7 @@ Source: `src/ManifestContext.tsx:38:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:177:1`
+Source: `src/RuntimeRendererConfig.tsx:180:1`
 
 ### Signatures
 
@@ -1135,7 +1136,7 @@ Source: `src/runtimeApiSelection.ts:15:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:186:1`
+Source: `src/runtimeActionRegistry.ts:197:1`
 
 ### Signatures
 
