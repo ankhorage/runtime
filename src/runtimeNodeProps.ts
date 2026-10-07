@@ -7,7 +7,7 @@ import type {
   UiNode,
 } from '@ankhorage/contracts';
 import { isMediaAssetReference } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import { type Capability, isCapabilityId } from '@ankhorage/contracts/capabilities';
 
 import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
 import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';
@@ -36,12 +36,6 @@ function hasActionShape(value: unknown): value is RuntimeAction {
 
 function isCallbackProp(value: unknown): value is (...args: unknown[]) => unknown {
   return typeof value === 'function';
-}
-
-function isCapabilityId(value: unknown): value is Capability['id'] {
-  if (typeof value !== 'string' || value.trim() !== value) return false;
-  const segments = value.split('.');
-  return segments.length >= 2 && segments.every((segment) => segment.length > 0);
 }
 
 function isNonEmptyActionId(value: unknown): value is Capability['id'] {
