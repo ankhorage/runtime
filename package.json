@@ -132,7 +132,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^24.1.0",
+    "@ankhorage/contracts": "^24.2.0",
     "@ankhorage/data-sources": "^2.0.38",
     "@ankhorage/utility": "^1.9.85"
   },
