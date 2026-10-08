@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 4.0.4
+
+### Patch Changes
+
+- f4befaa: Update dependencies: `@ankhorage/contracts`.
+
 ## 4.0.3
 
 ### Patch Changes
