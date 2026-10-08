@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 4.0.5
+
+### Patch Changes
+
+- c24aff4: Update dependencies: `@ankhorage/data-sources`.
+
 ## 4.0.4
 
 ### Patch Changes
