@@ -102,7 +102,70 @@
         "label": "Runtime bindings"
       },
       {
-        "id": "runtime.adapters",
+        "id": "runtime.eventOperation",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "read",
+          "subscribe"
+        ],
+        "binding": {
+          "kind": "context",
+          "bindableAs": [
+            "source"
+          ]
+        },
+        "label": "Runtime event operation",
+        "output": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "status",
+              "loading",
+              "errorMessage"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "idle",
+                  "loading",
+                  "success",
+                  "error"
+                ]
+              },
+              "loading": {
+                "type": "boolean"
+              },
+              "errorMessage": {
+                "type": "string"
+              },
+              "nodeId": {
+                "type": "string"
+              },
+              "operation": {
+                "type": "object",
+                "required": [
+                  "apiId",
+                  "operationId"
+                ],
+                "properties": {
+                  "apiId": {
+                    "type": "string"
+                  },
+                  "endpointId": {
+                    "type": "string"
+                  },
+                  "operationId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "runtime.repeat.item",
         "owner": "@ankhorage/runtime",
         "access": [
           "read"
@@ -113,7 +176,7 @@
             "source"
           ]
         },
-        "label": "Runtime adapters"
+        "label": "Runtime repeat item"
       }
     ]
   },
@@ -132,7 +195,8 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/contracts": "^24.2.1",
+    "@ankhorage/capability": "^0.2.1",
+    "@ankhorage/contracts": "^25.0.1",
     "@ankhorage/data-sources": "^2.1.0",
     "@ankhorage/utility": "^1.9.85"
   },

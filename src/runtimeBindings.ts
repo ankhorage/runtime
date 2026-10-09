@@ -16,6 +16,7 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
+import { isRecord } from '@ankhorage/utility/object';
 
 import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 
@@ -410,8 +411,4 @@ function isBindingValue(value: unknown): value is BindingValue {
   if (!isRecord(value)) return false;
 
   return Object.values(value).every(isBindingValue);
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }

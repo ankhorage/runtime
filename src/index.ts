@@ -1,3 +1,11 @@
+export type {
+  RuntimeContextCapabilityId,
+  RuntimeContextCapabilityResolution,
+} from './capabilities/resolveRuntimeContextCapability';
+export {
+  isRuntimeContextCapabilityOutputPath,
+  resolveRuntimeContextCapability,
+} from './capabilities/resolveRuntimeContextCapability';
 export {
   ManifestContext,
   ManifestProvider,

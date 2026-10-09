@@ -1,4 +1,4 @@
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 
 export const RUNTIME_MANIFEST_KIND = 'ankhorage-runtime-manifest';
 
