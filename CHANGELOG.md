@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 4.1.1
+
+### Patch Changes
+
+- 9ba3154: Update dependencies: `@ankhorage/contracts`, `@ankhorage/paradox`.
+
 ## 4.1.0
 
 ### Minor Changes
