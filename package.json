@@ -196,7 +196,7 @@
   },
   "dependencies": {
     "@ankhorage/capability": "^0.2.1",
-    "@ankhorage/contracts": "^25.0.1",
+    "@ankhorage/contracts": "^25.1.0",
     "@ankhorage/data-sources": "^2.1.0",
     "@ankhorage/utility": "^1.9.85"
   },
@@ -212,7 +212,7 @@
   },
   "devDependencies": {
     "@ankhorage/devtools": "^2.3.9",
-    "@ankhorage/paradox": "^0.3.1",
+    "@ankhorage/paradox": "^0.3.3",
     "@types/bun": "^1.4.2",
     "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
