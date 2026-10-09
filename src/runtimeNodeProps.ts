@@ -1,3 +1,4 @@
+import { isCapabilityId } from '@ankhorage/capability';
 import type {
   ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
@@ -7,7 +8,7 @@ import type {
   UiNode,
 } from '@ankhorage/contracts';
 import { isMediaAssetReference } from '@ankhorage/contracts';
-import { type Capability, isCapabilityId } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 
 import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
 import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';

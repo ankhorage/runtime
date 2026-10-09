@@ -9,7 +9,7 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capabilities';
+import type { Capability } from '@ankhorage/contracts/capability';
 import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
 import React, { createContext, use } from 'react';
 
