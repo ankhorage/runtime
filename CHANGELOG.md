@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 4.1.0
+
+### Minor Changes
+
+- 6a3492d: Publish schema-backed `runtime.eventOperation` and scoped `runtime.repeat.item` context capabilities, and migrate Runtime capability mechanics to the released standalone toolkit.
+
 ## 4.0.7
 
 ### Patch Changes

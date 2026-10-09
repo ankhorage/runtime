@@ -11,6 +11,12 @@ graph TD
   package__ankhorage_runtime -.-> module_src_bindings_ts
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
   package__ankhorage_runtime -.-> module_src_capabilities_index_ts
+  module_src_capabilities_resolveRuntimeContextCapability_test_ts["src/capabilities/resolveRuntimeContextCapability.test.ts"]
+  package__ankhorage_runtime -.-> module_src_capabilities_resolveRuntimeContextCapability_test_ts
+  module_src_capabilities_resolveRuntimeContextCapability_test_ts --> module_src_capabilities_resolveRuntimeContextCapability_ts
+  module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
+  package__ankhorage_runtime -.-> module_src_capabilities_resolveRuntimeContextCapability_ts
+  module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   package__ankhorage_runtime -.-> module_src_componentRegistry_ts
   module_src_index_ts["src/index.ts"]

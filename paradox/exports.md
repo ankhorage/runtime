@@ -36,7 +36,7 @@ Source: `src/RuntimeRendererConfig.tsx:83:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:234:1`
+Source: `src/runtimeActionRegistry.ts:235:1`
 
 ### Signatures
 
@@ -96,7 +96,7 @@ Source: `src/runtimeScreenLoaders.ts:82:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:72:1`
+Source: `src/runtimeActionRegistry.ts:73:1`
 
 ### Signatures
 
@@ -120,7 +120,7 @@ Source: `src/runtimeApiOperations.ts:12:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:165:1`
+Source: `src/runtimeBindings.ts:166:1`
 
 ### Signatures
 
@@ -181,7 +181,7 @@ Source: `src/runtimeScreenLoaders.ts:49:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:110:1`
+Source: `src/runtimeActionRegistry.ts:111:1`
 
 ### Signatures
 
@@ -231,6 +231,20 @@ Kind: `value`
 Module: `src/runtimeEventOperationLifecycle.ts`
 Source: `src/runtimeEventOperationLifecycle.ts:27:14`
 
+## isRuntimeContextCapabilityOutputPath
+
+Kind: `function`
+Module: `src/capabilities/resolveRuntimeContextCapability.ts`
+Source: `src/capabilities/resolveRuntimeContextCapability.ts:45:1`
+
+Determines whether a dot-separated path is exposed by a capability output schema.
+
+### Signatures
+
+- `(args: { readonly capability: Capability; readonly path: string; }) => boolean`
+  - args: `{ readonly capability: Capability; readonly path: string; }`
+  - returns: `boolean`
+
 ## ManifestContext
 
 Kind: `value`
@@ -266,7 +280,7 @@ Source: `src/RuntimeRendererConfig.tsx:116:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:131:1`
+Source: `src/runtimeBindings.ts:132:1`
 
 ### Signatures
 
@@ -292,7 +306,7 @@ Source: `src/runtimeDbPersist.ts:68:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:248:1`
+Source: `src/runtimeActionRegistry.ts:249:1`
 
 ### Signatures
 
@@ -305,7 +319,7 @@ Source: `src/runtimeActionRegistry.ts:248:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:259:1`
+Source: `src/runtimeActionRegistry.ts:260:1`
 
 ### Signatures
 
@@ -318,7 +332,7 @@ Source: `src/runtimeActionRegistry.ts:259:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:91:1`
+Source: `src/runtimeBindings.ts:92:1`
 
 ### Signatures
 
@@ -330,7 +344,7 @@ Source: `src/runtimeBindings.ts:91:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:76:1`
+Source: `src/runtimeBindings.ts:77:1`
 
 ### Signatures
 
@@ -342,7 +356,7 @@ Source: `src/runtimeBindings.ts:76:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:105:1`
+Source: `src/runtimeBindings.ts:106:1`
 
 ### Signatures
 
@@ -356,7 +370,7 @@ Source: `src/runtimeBindings.ts:105:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:118:1`
+Source: `src/runtimeBindings.ts:119:1`
 
 ### Signatures
 
@@ -365,6 +379,20 @@ Source: `src/runtimeBindings.ts:118:1`
   - context: `RuntimeBindingResolutionContext`
   - diagnostics: `DataSourceDiagnostic[]` (optional)
   - returns: `unknown`
+
+## resolveRuntimeContextCapability
+
+Kind: `function`
+Module: `src/capabilities/resolveRuntimeContextCapability.ts`
+Source: `src/capabilities/resolveRuntimeContextCapability.ts:16:1`
+
+Materializes a Runtime-owned context capability for the active renderer scope.
+
+### Signatures
+
+- `(args: { readonly id: string; readonly repeatSourceSchema?: DataSchema; }) => RuntimeContextCapabilityResolution`
+  - args: `{ readonly id: string; readonly repeatSourceSchema?: DataSchema; }`
+  - returns: `RuntimeContextCapabilityResolution`
 
 ## resolveRuntimeEventOperationErrorMessage
 
@@ -455,7 +483,7 @@ Source: `src/RuntimeRendererConfig.tsx:51:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:35:1`
+Source: `src/runtimeActionRegistry.ts:36:1`
 
 ### Members
 
@@ -468,7 +496,7 @@ Source: `src/runtimeActionRegistry.ts:35:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:46:1`
+Source: `src/runtimeActionRegistry.ts:47:1`
 
 ### Members
 
@@ -483,7 +511,7 @@ Source: `src/runtimeActionRegistry.ts:46:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:40:1`
+Source: `src/runtimeActionRegistry.ts:41:1`
 
 ### Members
 
@@ -553,7 +581,7 @@ Source: `src/runtimeManifest.ts:24:1`
 
 Kind: `type`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:24:1`
+Source: `src/runtimeBindings.ts:25:1`
 
 ### Members
 
@@ -569,37 +597,37 @@ Source: `src/runtimeBindings.ts:24:1`
 
 Kind: `unknown`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:32:1`
+Source: `src/runtimeBindings.ts:33:1`
 
 ## RuntimeBindingOperationExecutor
 
 Kind: `unknown`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:43:1`
+Source: `src/runtimeBindings.ts:44:1`
 
 ## RuntimeBindingOperationKey
 
 Kind: `unknown`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:22:1`
+Source: `src/runtimeBindings.ts:23:1`
 
 ## RuntimeBindingOperationResultCache
 
 Kind: `unknown`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:47:1`
+Source: `src/runtimeBindings.ts:48:1`
 
 ## RuntimeBindingOperationResultWriter
 
 Kind: `unknown`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:51:1`
+Source: `src/runtimeBindings.ts:52:1`
 
 ## RuntimeBindingResolutionArgs
 
 Kind: `type`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:66:1`
+Source: `src/runtimeBindings.ts:67:1`
 
 ### Members
 
@@ -619,7 +647,7 @@ Source: `src/runtimeBindings.ts:66:1`
 
 Kind: `type`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:56:1`
+Source: `src/runtimeBindings.ts:57:1`
 
 ### Members
 
@@ -637,7 +665,7 @@ Source: `src/runtimeBindings.ts:56:1`
 
 Kind: `type`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:71:1`
+Source: `src/runtimeBindings.ts:72:1`
 
 ### Members
 
@@ -650,7 +678,7 @@ Source: `src/runtimeBindings.ts:71:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:50:1`
+Source: `src/runtimeActionRegistry.ts:51:1`
 
 ### Members
 
@@ -668,6 +696,18 @@ Source: `src/runtimeActionRegistry.ts:50:1`
 | operationResults | property | `Readonly<Record<string, import("@ankhorage/contracts").SerializableValue \| undefined>> \| undefined` | no |  |
 | state | property | `Record<string, unknown> \| undefined` | no |  |
 | writeOperationResult | property | `RuntimeBindingOperationResultWriter \| undefined` | no |  |
+
+## RuntimeContextCapabilityId
+
+Kind: `unknown`
+Module: `src/capabilities/resolveRuntimeContextCapability.ts`
+Source: `src/capabilities/resolveRuntimeContextCapability.ts:6:1`
+
+## RuntimeContextCapabilityResolution
+
+Kind: `unknown`
+Module: `src/capabilities/resolveRuntimeContextCapability.ts`
+Source: `src/capabilities/resolveRuntimeContextCapability.ts:8:1`
 
 ## RuntimeDbPersistError
 
@@ -780,7 +820,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:4:1`
 
 Kind: `type`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:62:1`
+Source: `src/runtimeActionRegistry.ts:63:1`
 
 ### Members
 
@@ -1136,7 +1176,7 @@ Source: `src/runtimeApiSelection.ts:15:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:197:1`
+Source: `src/runtimeActionRegistry.ts:198:1`
 
 ### Signatures
 

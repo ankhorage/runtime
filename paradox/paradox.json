@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v4.0.7",
+      "value": "v4.1.0",
       "color": "cb3837"
     },
     {
@@ -119,42 +119,42 @@
       "severity": "warning",
       "message": "Exported function createComponentEventFromHandlerArgs has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 234
+      "line": 235
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function createRuntimeActionRegistry has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 72
+      "line": 73
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function dispatchRuntimeComponentEvent has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 110
+      "line": 111
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeActionPayload has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 248
+      "line": 249
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeActionValue has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 259
+      "line": 260
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function wrapRuntimeEventProps has no documentation description.",
       "sourcePath": "src/runtimeActionRegistry.ts",
-      "line": 197
+      "line": 198
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -175,42 +175,42 @@
       "severity": "warning",
       "message": "Exported function createRuntimeBindingOperationKey has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 165
+      "line": 166
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveBindingInputMap has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 131
+      "line": 132
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeBindings has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 91
+      "line": 92
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeBindingsAsync has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 76
+      "line": 77
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeBindingValue has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 105
+      "line": 106
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function resolveRuntimeBindingValueSync has no documentation description.",
       "sourcePath": "src/runtimeBindings.ts",
-      "line": 118
+      "line": 119
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -431,6 +431,27 @@
       ]
     },
     {
+      "path": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/capabilities/resolveRuntimeContextCapability.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/capabilities/index.ts"
+      ],
+      "exports": [
+        "isRuntimeContextCapabilityOutputPath",
+        "resolveRuntimeContextCapability",
+        "RuntimeContextCapabilityId",
+        "RuntimeContextCapabilityResolution"
+      ]
+    },
+    {
       "path": "src/componentRegistry.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -464,6 +485,7 @@
         "executeDbPersistAction",
         "executeRuntimeScreenOperationLoaders",
         "IDLE_RUNTIME_EVENT_OPERATION_STATE",
+        "isRuntimeContextCapabilityOutputPath",
         "ManifestContext",
         "ManifestProvider",
         "mergeRuntimeRendererConfig",
@@ -475,6 +497,7 @@
         "resolveRuntimeBindingsAsync",
         "resolveRuntimeBindingValue",
         "resolveRuntimeBindingValueSync",
+        "resolveRuntimeContextCapability",
         "resolveRuntimeEventOperationErrorMessage",
         "resolveScreenOperationLoaders",
         "RuntimeAction",
@@ -500,6 +523,8 @@
         "RuntimeBindingResolutionContext",
         "RuntimeBindingResolutionResult",
         "RuntimeComponentEventDispatchArgs",
+        "RuntimeContextCapabilityId",
+        "RuntimeContextCapabilityResolution",
         "RuntimeDbPersistError",
         "RuntimeDbPersistExecutionResult",
         "RuntimeDbPersistResult",
@@ -1237,7 +1262,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 234,
+        "line": 235,
         "column": 1
       },
       "exportPaths": [
@@ -1424,7 +1449,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 72,
+        "line": 73,
         "column": 1
       },
       "exportPaths": [
@@ -1507,7 +1532,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 165,
+        "line": 166,
         "column": 1
       },
       "exportPaths": [
@@ -1702,7 +1727,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 110,
+        "line": 111,
         "column": 1
       },
       "exportPaths": [
@@ -1873,6 +1898,42 @@
       "structuredRows": []
     },
     {
+      "name": "isRuntimeContextCapabilityOutputPath",
+      "title": null,
+      "description": "Determines whether a dot-separated path is exposed by a capability output schema.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [
+        {
+          "label": "(args: { readonly capability: Capability; readonly path: string; }) => boolean",
+          "parameters": [
+            {
+              "name": "args",
+              "type": "{ readonly capability: Capability; readonly path: string; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "boolean",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "ManifestContext",
       "title": null,
       "description": null,
@@ -1985,7 +2046,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 131,
+        "line": 132,
         "column": 1
       },
       "exportPaths": [
@@ -2073,7 +2134,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 248,
+        "line": 249,
         "column": 1
       },
       "exportPaths": [
@@ -2117,7 +2178,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 259,
+        "line": 260,
         "column": 1
       },
       "exportPaths": [
@@ -2161,7 +2222,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 91,
+        "line": 92,
         "column": 1
       },
       "exportPaths": [
@@ -2200,7 +2261,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 76,
+        "line": 77,
         "column": 1
       },
       "exportPaths": [
@@ -2239,7 +2300,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 105,
+        "line": 106,
         "column": 1
       },
       "exportPaths": [
@@ -2289,7 +2350,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 118,
+        "line": 119,
         "column": 1
       },
       "exportPaths": [
@@ -2322,6 +2383,44 @@
             }
           ],
           "returnType": "unknown",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "resolveRuntimeContextCapability",
+      "title": null,
+      "description": "Materializes a Runtime-owned context capability for the active renderer scope.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 16,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "RuntimeContextCapabilityResolution"
+      ],
+      "signatures": [
+        {
+          "label": "(args: { readonly id: string; readonly repeatSourceSchema?: DataSchema; }) => RuntimeContextCapabilityResolution",
+          "parameters": [
+            {
+              "name": "args",
+              "type": "{ readonly id: string; readonly repeatSourceSchema?: DataSchema; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "RuntimeContextCapabilityResolution",
           "returnDescription": null
         }
       ],
@@ -2618,7 +2717,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 35,
+        "line": 36,
         "column": 1
       },
       "exportPaths": [
@@ -2658,7 +2757,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 46,
+        "line": 47,
         "column": 1
       },
       "exportPaths": [
@@ -2709,7 +2808,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 40,
+        "line": 41,
         "column": 1
       },
       "exportPaths": [
@@ -2929,7 +3028,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 24,
+        "line": 25,
         "column": 1
       },
       "exportPaths": [
@@ -2987,7 +3086,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 32,
+        "line": 33,
         "column": 1
       },
       "exportPaths": [
@@ -3009,7 +3108,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 43,
+        "line": 44,
         "column": 1
       },
       "exportPaths": [
@@ -3031,7 +3130,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 22,
+        "line": 23,
         "column": 1
       },
       "exportPaths": [
@@ -3053,7 +3152,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 47,
+        "line": 48,
         "column": 1
       },
       "exportPaths": [
@@ -3075,7 +3174,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 51,
+        "line": 52,
         "column": 1
       },
       "exportPaths": [
@@ -3097,7 +3196,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 66,
+        "line": 67,
         "column": 1
       },
       "exportPaths": [
@@ -3185,7 +3284,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 56,
+        "line": 57,
         "column": 1
       },
       "exportPaths": [
@@ -3259,7 +3358,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 71,
+        "line": 72,
         "column": 1
       },
       "exportPaths": [
@@ -3296,7 +3395,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 50,
+        "line": 51,
         "column": 1
       },
       "exportPaths": [
@@ -3395,6 +3494,50 @@
           "description": null
         }
       ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeContextCapabilityId",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 6,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeContextCapabilityResolution",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
       "structuredRows": []
     },
     {
@@ -3743,7 +3886,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 62,
+        "line": 63,
         "column": 1
       },
       "exportPaths": [
@@ -5034,7 +5177,7 @@
       "modulePath": "src/runtimeActionRegistry.ts",
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 197,
+        "line": 198,
         "column": 1
       },
       "exportPaths": [
@@ -5330,6 +5473,61 @@
   ],
   "sourceFunctions": [
     {
+      "name": "resolveRuntimeContextCapability",
+      "description": "Materializes a Runtime-owned context capability for the active renderer scope.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 16,
+        "column": 1
+      }
+    },
+    {
+      "name": "isRuntimeContextCapabilityOutputPath",
+      "description": "Determines whether a dot-separated path is exposed by a capability output schema.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 45,
+        "column": 1
+      }
+    },
+    {
+      "name": "findRuntimeContextCapability",
+      "description": "Finds a Runtime-owned context descriptor without accepting host-provided context roots.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 63,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveSchemaPathPart",
+      "description": "Resolves one schema path segment without treating arbitrary object fields as declared output.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 70,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveRepeatItemSchema",
+      "description": "Derives the item schema only from an enclosing declared repeat-source array.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "line": 81,
+        "column": 1
+      }
+    },
+    {
       "name": "createComponentRegistry",
       "description": null,
       "see": [],
@@ -5611,7 +5809,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 72,
+        "line": 73,
         "column": 1
       }
     },
@@ -5622,7 +5820,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 110,
+        "line": 111,
         "column": 1
       }
     },
@@ -5633,7 +5831,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 197,
+        "line": 198,
         "column": 1
       }
     },
@@ -5644,7 +5842,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 234,
+        "line": 235,
         "column": 1
       }
     },
@@ -5655,7 +5853,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 248,
+        "line": 249,
         "column": 1
       }
     },
@@ -5666,7 +5864,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 259,
+        "line": 260,
         "column": 1
       }
     },
@@ -5677,7 +5875,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 270,
+        "line": 271,
         "column": 1
       }
     },
@@ -5688,7 +5886,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 287,
+        "line": 288,
         "column": 9
       }
     },
@@ -5699,7 +5897,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 355,
+        "line": 356,
         "column": 1
       }
     },
@@ -5710,7 +5908,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 373,
+        "line": 374,
         "column": 1
       }
     },
@@ -5721,7 +5919,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 382,
+        "line": 383,
         "column": 1
       }
     },
@@ -5732,7 +5930,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 401,
+        "line": 402,
         "column": 1
       }
     },
@@ -5743,7 +5941,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 421,
+        "line": 422,
         "column": 1
       }
     },
@@ -5754,7 +5952,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 444,
+        "line": 445,
         "column": 1
       }
     },
@@ -5765,7 +5963,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 482,
+        "line": 483,
         "column": 1
       }
     },
@@ -5776,7 +5974,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 490,
+        "line": 491,
         "column": 1
       }
     },
@@ -5787,7 +5985,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 496,
+        "line": 497,
         "column": 1
       }
     },
@@ -5798,7 +5996,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 501,
+        "line": 502,
         "column": 1
       }
     },
@@ -5809,7 +6007,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 505,
+        "line": 506,
         "column": 1
       }
     },
@@ -5820,7 +6018,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 509,
+        "line": 510,
         "column": 1
       }
     },
@@ -5831,7 +6029,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 518,
+        "line": 519,
         "column": 1
       }
     },
@@ -5842,7 +6040,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 534,
+        "line": 535,
         "column": 1
       }
     },
@@ -5853,7 +6051,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 543,
+        "line": 544,
         "column": 1
       }
     },
@@ -5864,7 +6062,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeActionRegistry.ts",
-        "line": 547,
+        "line": 548,
         "column": 1
       }
     },
@@ -6051,7 +6249,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 76,
+        "line": 77,
         "column": 1
       }
     },
@@ -6062,7 +6260,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 91,
+        "line": 92,
         "column": 1
       }
     },
@@ -6073,7 +6271,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 105,
+        "line": 106,
         "column": 1
       }
     },
@@ -6084,7 +6282,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 118,
+        "line": 119,
         "column": 1
       }
     },
@@ -6095,7 +6293,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 131,
+        "line": 132,
         "column": 1
       }
     },
@@ -6106,7 +6304,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 148,
+        "line": 149,
         "column": 1
       }
     },
@@ -6117,7 +6315,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 165,
+        "line": 166,
         "column": 1
       }
     },
@@ -6128,7 +6326,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 171,
+        "line": 172,
         "column": 1
       }
     },
@@ -6139,7 +6337,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 213,
+        "line": 214,
         "column": 1
       }
     },
@@ -6150,7 +6348,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 244,
+        "line": 245,
         "column": 1
       }
     },
@@ -6161,7 +6359,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 254,
+        "line": 255,
         "column": 1
       }
     },
@@ -6172,7 +6370,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 266,
+        "line": 267,
         "column": 1
       }
     },
@@ -6183,7 +6381,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 278,
+        "line": 279,
         "column": 1
       }
     },
@@ -6194,7 +6392,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 310,
+        "line": 311,
         "column": 1
       }
     },
@@ -6205,7 +6403,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 342,
+        "line": 343,
         "column": 1
       }
     },
@@ -6216,7 +6414,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 357,
+        "line": 358,
         "column": 1
       }
     },
@@ -6227,7 +6425,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 375,
+        "line": 376,
         "column": 1
       }
     },
@@ -6238,7 +6436,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 383,
+        "line": 384,
         "column": 1
       }
     },
@@ -6249,7 +6447,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 395,
+        "line": 396,
         "column": 1
       }
     },
@@ -6260,7 +6458,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 399,
+        "line": 400,
         "column": 1
       }
     },
@@ -6271,18 +6469,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 403,
-        "column": 1
-      }
-    },
-    {
-      "name": "isRecord",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/runtimeBindings.ts",
-        "line": 415,
+        "line": 404,
         "column": 1
       }
     },
@@ -6711,7 +6898,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 20,
+        "line": 21,
         "column": 1
       }
     },
@@ -6722,7 +6909,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 24,
+        "line": 25,
         "column": 1
       }
     },
@@ -6733,7 +6920,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 33,
+        "line": 34,
         "column": 1
       }
     },
@@ -6744,7 +6931,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 37,
+        "line": 38,
         "column": 1
       }
     },
@@ -6755,7 +6942,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 41,
+        "line": 42,
         "column": 1
       }
     },
@@ -6766,7 +6953,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 45,
+        "line": 46,
         "column": 1
       }
     },
@@ -6777,7 +6964,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 62,
+        "line": 63,
         "column": 7
       }
     },
@@ -6788,7 +6975,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 64,
+        "line": 65,
         "column": 1
       }
     },
@@ -6799,7 +6986,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 87,
+        "line": 88,
         "column": 1
       }
     },
@@ -6810,7 +6997,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 130,
+        "line": 131,
         "column": 1
       }
     },
@@ -6821,7 +7008,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 157,
+        "line": 158,
         "column": 15
       }
     },
@@ -7743,6 +7930,14 @@
     },
     {
       "kind": "export",
+      "name": "isRuntimeContextCapabilityOutputPath",
+      "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "symbolName": "isRuntimeContextCapabilityOutputPath",
+      "description": "Determines whether a dot-separated path is exposed by a capability output schema.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "ManifestProvider",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "ManifestProvider",
@@ -7819,6 +8014,14 @@
       "sourcePath": "src/runtimeBindings.ts",
       "symbolName": "resolveRuntimeBindingValueSync",
       "description": null,
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "resolveRuntimeContextCapability",
+      "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts",
+      "symbolName": "resolveRuntimeContextCapability",
+      "description": "Materializes a Runtime-owned context capability for the active renderer scope.",
       "isReadme": false
     },
     {
@@ -7952,6 +8155,11 @@
         "fromPath": "src/bindings.ts",
         "toPath": "src/runtimeEventOperationLifecycle.ts",
         "sourcePath": "src/bindings.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "sourcePath": "src/index.ts"
       },
       {
         "fromPath": "src/index.ts",
@@ -8462,6 +8670,16 @@
         "fromPath": "tests/runtime.test.ts",
         "toPath": "src/runtimeManifest.ts",
         "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromPath": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toPath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromPath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "toPath": "src/capabilities/index.ts",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
       }
     ],
     "calls": [
@@ -11368,9 +11586,72 @@
         "toSymbol": "createRuntimeManifest",
         "callExpression": "createRuntimeManifest",
         "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toSymbol": "resolveRuntimeContextCapability",
+        "callExpression": "resolveRuntimeContextCapability",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",
+        "toSymbol": "isRuntimeContextCapabilityOutputPath",
+        "callExpression": "isRuntimeContextCapabilityOutputPath",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.test.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeContextCapability",
+        "toSymbol": "resolveRepeatItemSchema",
+        "callExpression": "resolveRepeatItemSchema",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeContextCapability",
+        "toSymbol": "findRuntimeContextCapability",
+        "callExpression": "findRuntimeContextCapability",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
+      {
+        "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "toSymbol": "resolveSchemaPathPart",
+        "callExpression": "resolveSchemaPathPart",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
       }
     ],
     "typeReferences": [
+      {
+        "fromSymbol": "isRuntimeContextCapabilityOutputPath",
+        "toType": "Capability",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeContextCapability",
+        "toType": "DataSchema",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
+      {
+        "fromSymbol": "resolveRuntimeContextCapability",
+        "toType": "RuntimeContextCapabilityResolution",
+        "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
       {
         "fromSymbol": "ManifestProvider",
         "toType": "ManifestContextValue",

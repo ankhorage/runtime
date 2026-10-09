@@ -3,6 +3,8 @@ graph LR
   module_src_bindings_test_ts["src/bindings.test.ts"]
   module_src_bindings_ts["src/bindings.ts"]
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
+  module_src_capabilities_resolveRuntimeContextCapability_test_ts["src/capabilities/resolveRuntimeContextCapability.test.ts"]
+  module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
@@ -126,6 +128,8 @@ graph LR
   export_executeRuntimeScreenOperationLoaders -.-> export_RuntimeScreenOperationLoaderExecutionResult
   export_IDLE_RUNTIME_EVENT_OPERATION_STATE["IDLE_RUNTIME_EVENT_OPERATION_STATE"]
   module_src_runtimeEventOperationLifecycle_ts --> export_IDLE_RUNTIME_EVENT_OPERATION_STATE
+  export_isRuntimeContextCapabilityOutputPath["isRuntimeContextCapabilityOutputPath"]
+  module_src_capabilities_resolveRuntimeContextCapability_ts --> export_isRuntimeContextCapabilityOutputPath
   export_ManifestContext["ManifestContext"]
   module_src_ManifestContext_tsx --> export_ManifestContext
   export_ManifestProvider["ManifestProvider"]
@@ -159,6 +163,9 @@ graph LR
   export_resolveRuntimeBindingValueSync["resolveRuntimeBindingValueSync"]
   module_src_runtimeBindings_ts --> export_resolveRuntimeBindingValueSync
   export_resolveRuntimeBindingValueSync -.-> export_RuntimeBindingResolutionContext
+  export_resolveRuntimeContextCapability["resolveRuntimeContextCapability"]
+  module_src_capabilities_resolveRuntimeContextCapability_ts --> export_resolveRuntimeContextCapability
+  export_resolveRuntimeContextCapability -.-> export_RuntimeContextCapabilityResolution
   export_resolveRuntimeEventOperationErrorMessage["resolveRuntimeEventOperationErrorMessage"]
   module_src_runtimeEventOperationLifecycle_ts --> export_resolveRuntimeEventOperationErrorMessage
   export_resolveScreenOperationLoaders["resolveScreenOperationLoaders"]
@@ -218,6 +225,10 @@ graph LR
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeBindingOperationExecutor
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeBindingOperationResultWriter
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeEventOperationLifecycle
+  export_RuntimeContextCapabilityId["RuntimeContextCapabilityId"]
+  module_src_capabilities_resolveRuntimeContextCapability_ts --> export_RuntimeContextCapabilityId
+  export_RuntimeContextCapabilityResolution["RuntimeContextCapabilityResolution"]
+  module_src_capabilities_resolveRuntimeContextCapability_ts --> export_RuntimeContextCapabilityResolution
   export_RuntimeDbPersistError["RuntimeDbPersistError"]
   module_src_runtimeDbPersist_ts --> export_RuntimeDbPersistError
   export_RuntimeDbPersistExecutionResult["RuntimeDbPersistExecutionResult"]

@@ -1,0 +1,8 @@
+sequenceDiagram
+  participant participant_findRuntimeContextCapability as findRuntimeContextCapability
+  participant participant_resolveRepeatItemSchema as resolveRepeatItemSchema
+  participant participant_resolveRuntimeContextCapability as resolveRuntimeContextCapability
+  participant_resolveRuntimeContextCapability->>participant_resolveRepeatItemSchema: resolveRepeatItemSchema()
+  participant_resolveRepeatItemSchema-->>participant_resolveRuntimeContextCapability: return
+  participant_resolveRuntimeContextCapability->>participant_findRuntimeContextCapability: findRuntimeContextCapability()
+  participant_findRuntimeContextCapability-->>participant_resolveRuntimeContextCapability: return

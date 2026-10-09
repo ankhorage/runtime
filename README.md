@@ -3,7 +3,7 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v4.0.7](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v4.1.0](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
 
 Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
 
@@ -51,6 +51,7 @@ createRuntimeManifest({
 - [resolveDbPersistInput sequence](./paradox/diagrams/sequences/resolve-db-persist-input.mmd)
 - [resolveRuntimeActionPayload sequence](./paradox/diagrams/sequences/resolve-runtime-action-payload.mmd)
 - [resolveRuntimeActionValue sequence](./paradox/diagrams/sequences/resolve-runtime-action-value.mmd)
+- [resolveRuntimeContextCapability sequence](./paradox/diagrams/sequences/resolve-runtime-context-capability.mmd)
 - [RuntimeRendererConfigProvider sequence](./paradox/diagrams/sequences/runtime-renderer-config-provider.mmd)
 - [RuntimeScreen sequence](./paradox/diagrams/sequences/runtime-screen.mmd)
 - [useManifest sequence](./paradox/diagrams/sequences/use-manifest.mmd)
