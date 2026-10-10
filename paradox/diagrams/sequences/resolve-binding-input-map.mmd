@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_resolveBindingInputMap as resolveBindingInputMap
+  participant participant_resolveObjectAsync as resolveObjectAsync
+  participant_resolveBindingInputMap->>participant_resolveObjectAsync: resolveObjectAsync()
+  participant_resolveObjectAsync-->>participant_resolveBindingInputMap: return

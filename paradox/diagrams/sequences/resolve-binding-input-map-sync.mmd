@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_resolveBindingInputMapSync as resolveBindingInputMapSync
+  participant participant_resolveObjectSync as resolveObjectSync
+  participant_resolveBindingInputMapSync->>participant_resolveObjectSync: resolveObjectSync()
+  participant_resolveObjectSync-->>participant_resolveBindingInputMapSync: return

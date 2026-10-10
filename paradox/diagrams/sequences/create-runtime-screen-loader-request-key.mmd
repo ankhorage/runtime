@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_createRuntimeScreenLoaderRequestKey as createRuntimeScreenLoaderRequestKey
+  participant participant_stableSerialize as stableSerialize
+  participant_createRuntimeScreenLoaderRequestKey->>participant_stableSerialize: stableSerialize()
+  participant_stableSerialize-->>participant_createRuntimeScreenLoaderRequestKey: return

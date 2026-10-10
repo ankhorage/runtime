@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant participant_applyRuntimeBindingDataPath as applyRuntimeBindingDataPath
+  participant participant_asBindingValue as asBindingValue
+  participant participant_isBindingValue as isBindingValue
+  participant participant_isRecord as isRecord
+  participant participant_readPath as readPath
+  participant_applyRuntimeBindingDataPath->>participant_asBindingValue: asBindingValue()
+  participant_asBindingValue->>participant_isBindingValue: isBindingValue()
+  participant_isBindingValue->>participant_isRecord: isRecord()
+  participant_isRecord-->>participant_isBindingValue: return
+  participant_isBindingValue-->>participant_asBindingValue: return
+  participant_asBindingValue-->>participant_applyRuntimeBindingDataPath: return
+  participant_applyRuntimeBindingDataPath->>participant_readPath: readPath()
+  participant_readPath-->>participant_applyRuntimeBindingDataPath: return

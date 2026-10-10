@@ -1,0 +1,19 @@
+sequenceDiagram
+  participant participant_createMissingCapabilityExecutorDiagnostic as createMissingCapabilityExecutorDiagnostic
+  participant participant_executeCapability as executeCapability
+  participant participant_executeRuntimeBindingInvocation as executeRuntimeBindingInvocation
+  participant participant_resolveBindingInputMap as resolveBindingInputMap
+  participant participant_resolveObjectAsync as resolveObjectAsync
+  participant participant_writeResultSlot as writeResultSlot
+  participant_executeRuntimeBindingInvocation->>participant_createMissingCapabilityExecutorDiagnostic: createMissingCapabilityExecutorDiagnostic()
+  participant_createMissingCapabilityExecutorDiagnostic-->>participant_executeRuntimeBindingInvocation: return
+  participant_executeRuntimeBindingInvocation->>participant_resolveBindingInputMap: resolveBindingInputMap()
+  participant_resolveBindingInputMap->>participant_resolveObjectAsync: resolveObjectAsync()
+  participant_resolveObjectAsync-->>participant_resolveBindingInputMap: return
+  participant_resolveBindingInputMap-->>participant_executeRuntimeBindingInvocation: return
+  participant_executeRuntimeBindingInvocation->>participant_executeCapability: context.executeCapability()
+  participant_executeCapability-->>participant_executeRuntimeBindingInvocation: return
+  participant_executeRuntimeBindingInvocation->>participant_writeResultSlot: context.writeResultSlot()
+  participant_writeResultSlot->>participant_writeResultSlot: args.writeResultSlot()
+  participant_writeResultSlot-->>participant_writeResultSlot: return
+  participant_writeResultSlot-->>participant_executeRuntimeBindingInvocation: return

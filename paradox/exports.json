@@ -1,5 +1,47 @@
 [
   {
+    "name": "applyRuntimeBindingDataPath",
+    "title": null,
+    "description": "Applies a dotted path to a serializable binding value.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 206,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "(value: import(\"@ankhorage/contracts\").SerializableValue | undefined, path: string | undefined) => import(\"@ankhorage/contracts\").SerializableValue | undefined",
+        "parameters": [
+          {
+            "name": "path",
+            "type": "string | undefined",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "value",
+            "type": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "ComponentRegistry",
     "title": null,
     "description": null,
@@ -22,6 +64,45 @@
     "structuredRows": []
   },
   {
+    "name": "composeRuntimeCapabilityExecutor",
+    "title": null,
+    "description": "Routes manifest-owned API capabilities before delegating application-owned capabilities.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/runtimeCapabilityExecutor.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeCapabilityExecutor.ts",
+      "line": 13,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "RuntimeCapabilityExecutor",
+      "RuntimeCapabilityExecutorComposition"
+    ],
+    "signatures": [
+      {
+        "label": "(composition: RuntimeCapabilityExecutorComposition) => RuntimeCapabilityExecutor",
+        "parameters": [
+          {
+            "name": "composition",
+            "type": "RuntimeCapabilityExecutorComposition",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "RuntimeCapabilityExecutor",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "composeRuntimeNodePropsResolver",
     "title": null,
     "description": null,
@@ -32,7 +113,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 98,
+      "line": 79,
       "column": 1
     },
     "exportPaths": [
@@ -76,7 +157,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 83,
+      "line": 64,
       "column": 1
     },
     "exportPaths": [
@@ -112,7 +193,7 @@
   {
     "name": "createComponentEventFromHandlerArgs",
     "title": null,
-    "description": null,
+    "description": "Maps a platform callback invocation to the portable component event representation.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -120,7 +201,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 235,
+      "line": 179,
       "column": 1
     },
     "exportPaths": [
@@ -129,11 +210,11 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(args: { readonly node: UiNode; readonly eventName: string; readonly handlerArgs: readonly unknown[]; }) => ComponentEventDto<string, RuntimeEventPayload>",
+        "label": "(args: { readonly capability?: Capability[\"id\"]; readonly node: UiNode; readonly eventName: string; readonly handlerArgs: readonly unknown[]; }) => ComponentEventDto<string, RuntimeEventPayload>",
         "parameters": [
           {
             "name": "args",
-            "type": "{ readonly node: UiNode; readonly eventName: string; readonly handlerArgs: readonly unknown[]; }",
+            "type": "{ readonly capability?: Capability[\"id\"]; readonly node: UiNode; readonly eventName: string; readonly handlerArgs: readonly unknown[]; }",
             "required": true,
             "description": null
           }
@@ -182,86 +263,9 @@
     "structuredRows": []
   },
   {
-    "name": "createDbPersistActionHandler",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "function",
-    "modulePath": "src/runtimeDbPersist.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 36,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [
-      "RuntimeActionHandler",
-      "RuntimeDbPersistExecutionResult"
-    ],
-    "signatures": [
-      {
-        "label": "(args: { readonly dbAdapter: DbAdapter; readonly onResult?: (result: RuntimeDbPersistExecutionResult) => void; }) => RuntimeActionHandler",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "{ readonly dbAdapter: DbAdapter; readonly onResult?: (result: RuntimeDbPersistExecutionResult) => void; }",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "RuntimeActionHandler",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "createDbPersistAdapterError",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "function",
-    "modulePath": "src/runtimeDbPersist.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 126,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [
-      "RuntimeDbPersistError"
-    ],
-    "signatures": [
-      {
-        "label": "(error: RuntimeDbPersistError) => DbAdapterError",
-        "parameters": [
-          {
-            "name": "error",
-            "type": "RuntimeDbPersistError",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "DbAdapterError",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "createPendingRuntimeScreenOperationLoaderState",
     "title": null,
-    "description": null,
+    "description": "Constructs a pending state for capability-backed screen loaders.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -269,7 +273,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 82,
+      "line": 85,
       "column": 1
     },
     "exportPaths": [
@@ -299,7 +303,7 @@
   {
     "name": "createRuntimeActionRegistry",
     "title": null,
-    "description": null,
+    "description": "Creates a registry that dispatches every authored event through one capability executor.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -307,28 +311,23 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 73,
+      "line": 69,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandler",
-      "RuntimeActionHandlers",
       "RuntimeActionRegistry",
-      "RuntimeBindingOperationExecutor",
-      "RuntimeBindingOperationResultCache",
-      "RuntimeBindingOperationResultWriter",
-      "RuntimeEventOperationLifecycle"
+      "RuntimeComponentEventDispatchArgs"
     ],
     "signatures": [
       {
-        "label": "(options?: { actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }) => RuntimeActionRegistry",
+        "label": "(options?: Pick<RuntimeComponentEventDispatchArgs, \"dataBindings\" | \"eventOperationLifecycle\" | \"executeCapability\" | \"resultSlots\" | \"writeResultSlot\">) => RuntimeActionRegistry",
         "parameters": [
           {
             "name": "options",
-            "type": "{ actionHandlers?: RuntimeActionHandlers; apis?: ApiDefinitionRegistry; dataBindings?: ComponentDataBindingRegistry; executeAction?: RuntimeActionHandler; executeOperation?: RuntimeBindingOperationExecutor; eventOperationLifecycle?: RuntimeEventOperationLifecycle; operationResults?: RuntimeBindingOperationResultCache; writeOperationResult?: RuntimeBindingOperationResultWriter; }",
+            "type": "Pick<RuntimeComponentEventDispatchArgs, \"dataBindings\" | \"eventOperationLifecycle\" | \"executeCapability\" | \"resultSlots\" | \"writeResultSlot\">",
             "required": false,
             "description": null
           }
@@ -341,74 +340,38 @@
     "structuredRows": []
   },
   {
-    "name": "createRuntimeApiOperationExecutor",
+    "name": "createRuntimeApiCapabilityExecutor",
     "title": null,
-    "description": null,
+    "description": "Creates the canonical API capability adapter over Runtime's existing data-operation executor.",
     "isReadme": false,
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/runtimeApiOperations.ts",
+    "modulePath": "src/runtimeApiCapabilities.ts",
     "sourceLocation": {
-      "filePath": "src/runtimeApiOperations.ts",
-      "line": 12,
+      "filePath": "src/runtimeApiCapabilities.ts",
+      "line": 23,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeApiOperationExecutorOptions",
-      "RuntimeBindingOperationExecutor"
+      "RuntimeApiCapabilityExecutorOptions",
+      "RuntimeCapabilityExecutor"
     ],
     "signatures": [
       {
-        "label": "(options: RuntimeApiOperationExecutorOptions) => RuntimeBindingOperationExecutor",
+        "label": "(options: RuntimeApiCapabilityExecutorOptions) => RuntimeCapabilityExecutor",
         "parameters": [
           {
             "name": "options",
-            "type": "RuntimeApiOperationExecutorOptions",
+            "type": "RuntimeApiCapabilityExecutorOptions",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "RuntimeBindingOperationExecutor",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "createRuntimeBindingOperationKey",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "function",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 166,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "(operation: BindingOperationRef) => string",
-        "parameters": [
-          {
-            "name": "operation",
-            "type": "BindingOperationRef",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "string",
+        "returnType": "RuntimeCapabilityExecutor",
         "returnDescription": null
       }
     ],
@@ -426,7 +389,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 92,
+      "line": 93,
       "column": 1
     },
     "exportPaths": [
@@ -470,7 +433,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 39,
+      "line": 40,
       "column": 1
     },
     "exportPaths": [
@@ -539,7 +502,7 @@
   {
     "name": "createRuntimeScreenLoaderRequestKey",
     "title": null,
-    "description": null,
+    "description": "Creates a deterministic loader request key from resolved inputs and declared result slots.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -547,22 +510,22 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 49,
+      "line": 65,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeBindingOperationResultCache"
+      "RuntimeBindingResultCache"
     ],
     "signatures": [
       {
-        "label": "(args: { readonly screenId: string; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; readonly bindingContext?: Record<string, unknown>; readonly operationResults?: RuntimeBindingOperationResultCache; }) => string",
+        "label": "(args: { readonly screenId: string; readonly loaders: readonly ScreenDataLoaderDefinition[]; readonly bindingContext?: Record<string, unknown>; readonly resultSlots?: RuntimeBindingResultCache; }) => string",
         "parameters": [
           {
             "name": "args",
-            "type": "{ readonly screenId: string; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; readonly bindingContext?: Record<string, unknown>; readonly operationResults?: RuntimeBindingOperationResultCache; }",
+            "type": "{ readonly screenId: string; readonly loaders: readonly ScreenDataLoaderDefinition[]; readonly bindingContext?: Record<string, unknown>; readonly resultSlots?: RuntimeBindingResultCache; }",
             "required": true,
             "description": null
           }
@@ -575,9 +538,38 @@
     "structuredRows": []
   },
   {
+    "name": "createRuntimeScreenOperationLoaderRequestLifecycle",
+    "title": null,
+    "description": "Tracks one active screen-loader request per effective dependency key.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/runtimeScreenLoaders.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeScreenLoaders.ts",
+      "line": 37,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [
+      {
+        "label": "() => RuntimeScreenOperationLoaderRequestLifecycle",
+        "parameters": [],
+        "returnType": "RuntimeScreenOperationLoaderRequestLifecycle",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "dispatchRuntimeComponentEvent",
     "title": null,
-    "description": null,
+    "description": "Executes every matching event invocation through the canonical capability path.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -585,23 +577,22 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 111,
+      "line": 87,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandlers",
       "RuntimeComponentEventDispatchArgs"
     ],
     "signatures": [
       {
-        "label": "(args: RuntimeComponentEventDispatchArgs & { readonly actionHandlers?: RuntimeActionHandlers; }) => Promise<readonly DataSourceDiagnostic[]>",
+        "label": "(args: RuntimeComponentEventDispatchArgs) => Promise<readonly DataSourceDiagnostic[]>",
         "parameters": [
           {
             "name": "args",
-            "type": "RuntimeComponentEventDispatchArgs & { readonly actionHandlers?: RuntimeActionHandlers; }",
+            "type": "RuntimeComponentEventDispatchArgs",
             "required": true,
             "description": null
           }
@@ -624,24 +615,23 @@
     "modulePath": "src/runtimeEventExecution.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventExecution.ts",
-      "line": 14,
+      "line": 13,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandlers",
       "RuntimeComponentEventDispatchArgs",
       "RuntimeEventDiagnosticsReporter"
     ],
     "signatures": [
       {
-        "label": "(args: RuntimeComponentEventDispatchArgs & RuntimeEventDiagnosticsReporter & { readonly actionHandlers?: RuntimeActionHandlers; }) => Promise<readonly DataSourceDiagnostic[]>",
+        "label": "(args: RuntimeComponentEventDispatchArgs & RuntimeEventDiagnosticsReporter) => Promise<readonly DataSourceDiagnostic[]>",
         "parameters": [
           {
             "name": "args",
-            "type": "RuntimeComponentEventDispatchArgs & RuntimeEventDiagnosticsReporter & { readonly actionHandlers?: RuntimeActionHandlers; }",
+            "type": "RuntimeComponentEventDispatchArgs & RuntimeEventDiagnosticsReporter",
             "required": true,
             "description": null
           }
@@ -654,38 +644,57 @@
     "structuredRows": []
   },
   {
-    "name": "executeDbPersistAction",
+    "name": "executeRuntimeBindingInvocation",
     "title": null,
-    "description": null,
+    "description": "Invokes one capability and records its structured result under its declared local slot.",
     "isReadme": false,
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/runtimeDbPersist.ts",
+    "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 48,
+      "filePath": "src/runtimeBindings.ts",
+      "line": 179,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandlerArgs",
-      "RuntimeDbPersistExecutionResult"
+      "RuntimeBindingResolutionContext",
+      "RuntimeCapabilityExecutionArgs",
+      "RuntimeCapabilityExecutionResult"
     ],
     "signatures": [
       {
-        "label": "(args: { readonly dbAdapter: DbAdapter; readonly handlerArgs: RuntimeActionHandlerArgs; }) => Promise<RuntimeDbPersistExecutionResult>",
+        "label": "(invocation: BindingInvocation, context: RuntimeBindingResolutionContext, args?: Pick<RuntimeCapabilityExecutionArgs, \"event\" | \"node\">, diagnostics?: DataSourceDiagnostic[]) => Promise<RuntimeCapabilityExecutionResult | undefined>",
         "parameters": [
           {
             "name": "args",
-            "type": "{ readonly dbAdapter: DbAdapter; readonly handlerArgs: RuntimeActionHandlerArgs; }",
+            "type": "Pick<RuntimeCapabilityExecutionArgs, \"event\" | \"node\">",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "context",
+            "type": "RuntimeBindingResolutionContext",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "diagnostics",
+            "type": "DataSourceDiagnostic[]",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "invocation",
+            "type": "BindingInvocation",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "Promise<RuntimeDbPersistExecutionResult>",
+        "returnType": "Promise<RuntimeCapabilityExecutionResult | undefined>",
         "returnDescription": null
       }
     ],
@@ -695,7 +704,7 @@
   {
     "name": "executeRuntimeScreenOperationLoaders",
     "title": null,
-    "description": null,
+    "description": "Executes screen loaders through the same invocation and result-slot machinery as events.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -703,25 +712,24 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 178,
+      "line": 98,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeBindingOperationExecutor",
-      "RuntimeBindingOperationResultCache",
-      "RuntimeBindingResolutionContext",
+      "RuntimeBindingResultCache",
+      "RuntimeCapabilityExecutor",
       "RuntimeScreenOperationLoaderExecutionResult"
     ],
     "signatures": [
       {
-        "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }) => Promise<RuntimeScreenOperationLoaderExecutionResult>",
+        "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly executeCapability?: RuntimeCapabilityExecutor; readonly resultSlots?: RuntimeBindingResultCache; readonly screen: ScreenSpec; readonly loaders: readonly ScreenDataLoaderDefinition[]; }) => Promise<RuntimeScreenOperationLoaderExecutionResult>",
         "parameters": [
           {
             "name": "args",
-            "type": "{ readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly screen: ScreenSpec; readonly loaders: readonly OperationScreenDataLoaderDefinition[]; }",
+            "type": "{ readonly bindingContext?: Record<string, unknown>; readonly executeCapability?: RuntimeCapabilityExecutor; readonly resultSlots?: RuntimeBindingResultCache; readonly screen: ScreenSpec; readonly loaders: readonly ScreenDataLoaderDefinition[]; }",
             "required": true,
             "description": null
           }
@@ -744,7 +752,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 27,
+      "line": 28,
       "column": 14
     },
     "exportPaths": [
@@ -860,7 +868,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 116,
+      "line": 97,
       "column": 1
     },
     "exportPaths": [
@@ -896,7 +904,7 @@
   {
     "name": "resolveBindingInputMap",
     "title": null,
-    "description": null,
+    "description": "Resolves an invocation input map recursively.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -904,7 +912,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 132,
+      "line": 159,
       "column": 1
     },
     "exportPaths": [
@@ -915,7 +923,7 @@
     ],
     "signatures": [
       {
-        "label": "(input: Readonly<Record<string, BindingInputValue>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
+        "label": "(input: Readonly<Record<string, BindingExpression>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
         "parameters": [
           {
             "name": "context",
@@ -931,7 +939,7 @@
           },
           {
             "name": "input",
-            "type": "Readonly<Record<string, BindingInputValue>> | undefined",
+            "type": "Readonly<Record<string, BindingExpression>> | undefined",
             "required": true,
             "description": null
           }
@@ -944,81 +952,49 @@
     "structuredRows": []
   },
   {
-    "name": "resolveDbPersistInput",
+    "name": "resolveBindingInputMapSync",
     "title": null,
-    "description": null,
+    "description": "Resolves an invocation input map without executing a capability.",
     "isReadme": false,
     "see": [],
     "security": [],
     "kind": "function",
-    "modulePath": "src/runtimeDbPersist.ts",
+    "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 68,
+      "filePath": "src/runtimeBindings.ts",
+      "line": 170,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeDbPersistError"
+      "RuntimeBindingResolutionContext"
     ],
     "signatures": [
       {
-        "label": "(payload: object | undefined) => { readonly ok: true; readonly data: DbInsertInput; } | { readonly ok: false; readonly error: RuntimeDbPersistError; }",
+        "label": "(input: Readonly<Record<string, BindingExpression>> | undefined, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "parameters": [
           {
-            "name": "payload",
-            "type": "object | undefined",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "{ readonly ok: true; readonly data: DbInsertInput; } | { readonly ok: false; readonly error: RuntimeDbPersistError; }",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "resolveRuntimeActionPayload",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "function",
-    "modulePath": "src/runtimeActionRegistry.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeActionRegistry.ts",
-      "line": 249,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [
-      "RuntimeActionResolutionArgs"
-    ],
-    "signatures": [
-      {
-        "label": "(payload: object | undefined, args: RuntimeActionResolutionArgs) => object | undefined",
-        "parameters": [
-          {
-            "name": "args",
-            "type": "RuntimeActionResolutionArgs",
+            "name": "context",
+            "type": "RuntimeBindingResolutionContext",
             "required": true,
             "description": null
           },
           {
-            "name": "payload",
-            "type": "object | undefined",
+            "name": "diagnostics",
+            "type": "DataSourceDiagnostic[]",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "input",
+            "type": "Readonly<Record<string, BindingExpression>> | undefined",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "object | undefined",
+        "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "returnDescription": null
       }
     ],
@@ -1028,7 +1004,7 @@
   {
     "name": "resolveRuntimeActionValue",
     "title": null,
-    "description": null,
+    "description": "Resolves an authored expression-shaped payload for imperative consumers.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1036,7 +1012,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 260,
+      "line": 193,
       "column": 1
     },
     "exportPaths": [
@@ -1047,7 +1023,7 @@
     ],
     "signatures": [
       {
-        "label": "(value: unknown, args: RuntimeActionResolutionArgs) => object | undefined",
+        "label": "(value: BindingExpression, args: RuntimeActionResolutionArgs) => import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "parameters": [
           {
             "name": "args",
@@ -1057,12 +1033,112 @@
           },
           {
             "name": "value",
-            "type": "unknown",
+            "type": "BindingExpression",
             "required": true,
             "description": null
           }
         ],
-        "returnType": "object | undefined",
+        "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "resolveRuntimeBindingExpression",
+    "title": null,
+    "description": "Resolves one recursive Contracts expression, executing a capability only when needed.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 90,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "RuntimeBindingResolutionContext"
+    ],
+    "signatures": [
+      {
+        "label": "(expression: BindingExpression, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
+        "parameters": [
+          {
+            "name": "context",
+            "type": "RuntimeBindingResolutionContext",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "diagnostics",
+            "type": "DataSourceDiagnostic[]",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "expression",
+            "type": "BindingExpression",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "resolveRuntimeBindingExpressionSync",
+    "title": null,
+    "description": "Resolves one expression without side effects for synchronous rendering.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 116,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "RuntimeBindingResolutionContext"
+    ],
+    "signatures": [
+      {
+        "label": "(expression: BindingExpression, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => import(\"@ankhorage/contracts\").SerializableValue | undefined",
+        "parameters": [
+          {
+            "name": "context",
+            "type": "RuntimeBindingResolutionContext",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "diagnostics",
+            "type": "DataSourceDiagnostic[]",
+            "required": false,
+            "description": null
+          },
+          {
+            "name": "expression",
+            "type": "BindingExpression",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "returnDescription": null
       }
     ],
@@ -1072,7 +1148,7 @@
   {
     "name": "resolveRuntimeBindings",
     "title": null,
-    "description": null,
+    "description": "Resolves property bindings using only already materialized capability values.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1080,7 +1156,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 92,
+      "line": 76,
       "column": 1
     },
     "exportPaths": [
@@ -1111,7 +1187,7 @@
   {
     "name": "resolveRuntimeBindingsAsync",
     "title": null,
-    "description": null,
+    "description": "Resolves every property binding through the canonical expression boundary.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1119,7 +1195,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 77,
+      "line": 62,
       "column": 1
     },
     "exportPaths": [
@@ -1150,7 +1226,7 @@
   {
     "name": "resolveRuntimeBindingValue",
     "title": null,
-    "description": null,
+    "description": "Resolves a property binding expression.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1158,7 +1234,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 106,
+      "line": 141,
       "column": 1
     },
     "exportPaths": [
@@ -1169,7 +1245,7 @@
     ],
     "signatures": [
       {
-        "label": "(binding: PropBinding, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<unknown>",
+        "label": "(binding: PropBinding, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
         "parameters": [
           {
             "name": "binding",
@@ -1190,7 +1266,7 @@
             "description": null
           }
         ],
-        "returnType": "Promise<unknown>",
+        "returnType": "Promise<import(\"@ankhorage/contracts\").SerializableValue | undefined>",
         "returnDescription": null
       }
     ],
@@ -1200,7 +1276,7 @@
   {
     "name": "resolveRuntimeBindingValueSync",
     "title": null,
-    "description": null,
+    "description": "Resolves a property binding expression without executing a capability.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1208,7 +1284,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 119,
+      "line": 150,
       "column": 1
     },
     "exportPaths": [
@@ -1219,7 +1295,7 @@
     ],
     "signatures": [
       {
-        "label": "(binding: PropBinding, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => unknown",
+        "label": "(binding: PropBinding, context: RuntimeBindingResolutionContext, diagnostics?: DataSourceDiagnostic[]) => import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "parameters": [
           {
             "name": "binding",
@@ -1240,7 +1316,7 @@
             "description": null
           }
         ],
-        "returnType": "unknown",
+        "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
         "returnDescription": null
       }
     ],
@@ -1296,7 +1372,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 113,
+      "line": 114,
       "column": 1
     },
     "exportPaths": [
@@ -1324,7 +1400,7 @@
   {
     "name": "resolveScreenOperationLoaders",
     "title": null,
-    "description": null,
+    "description": "Returns the portable capability invocations authored on a screen.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1332,7 +1408,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 43,
+      "line": 58,
       "column": 1
     },
     "exportPaths": [
@@ -1341,7 +1417,7 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(screen: ScreenSpec) => readonly OperationScreenDataLoaderDefinition[]",
+        "label": "(screen: ScreenSpec) => readonly import(\"@ankhorage/contracts\").BindingInvocation[]",
         "parameters": [
           {
             "name": "screen",
@@ -1350,48 +1426,11 @@
             "description": null
           }
         ],
-        "returnType": "readonly OperationScreenDataLoaderDefinition[]",
+        "returnType": "readonly import(\"@ankhorage/contracts\").BindingInvocation[]",
         "returnDescription": null
       }
     ],
     "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeAction",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
-    "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 46,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "payload",
-        "kind": "property",
-        "type": "object | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "type",
-        "kind": "property",
-        "type": "`${string}.${string}`",
-        "required": true,
-        "description": null
-      }
-    ],
     "structuredRows": []
   },
   {
@@ -1446,125 +1485,6 @@
     "structuredRows": []
   },
   {
-    "name": "RuntimeActionExecutor",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
-    "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 52,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeActionHandler",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
-    "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 50,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeActionHandlerArgs",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
-    "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 39,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [
-      "RuntimeAction"
-    ],
-    "signatures": [],
-    "members": [
-      {
-        "name": "action",
-        "kind": "property",
-        "type": "RuntimeAction",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "event",
-        "kind": "property",
-        "type": "ComponentEventDto<string, object> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "node",
-        "kind": "property",
-        "type": "UiNode | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "resolvedPayload",
-        "kind": "property",
-        "type": "object | undefined",
-        "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeActionHandlers",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/RuntimeRendererConfig.tsx",
-    "sourceLocation": {
-      "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 51,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "RuntimeActionRegistry",
     "title": null,
     "description": null,
@@ -1575,14 +1495,13 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 36,
+      "line": 33,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandler",
       "RuntimeComponentEventDispatchArgs"
     ],
     "signatures": [],
@@ -1591,13 +1510,6 @@
         "name": "dispatchComponentEvent",
         "kind": "method",
         "type": "(args: RuntimeComponentEventDispatchArgs) => Promise<void>",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "registerActionHandler",
-        "kind": "method",
-        "type": "(type: Capability[\"id\"], handler: RuntimeActionHandler) => () => void",
         "required": true,
         "description": null
       }
@@ -1615,7 +1527,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 47,
+      "line": 43,
       "column": 1
     },
     "exportPaths": [
@@ -1639,7 +1551,7 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "resultSlots",
         "kind": "property",
         "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
@@ -1666,7 +1578,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 41,
+      "line": 37,
       "column": 1
     },
     "exportPaths": [
@@ -1683,7 +1595,7 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "resultSlots",
         "kind": "property",
         "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
@@ -1744,17 +1656,17 @@
     "structuredRows": []
   },
   {
-    "name": "RuntimeApiOperationExecutorOptions",
+    "name": "RuntimeApiCapabilityExecutorOptions",
     "title": null,
     "description": null,
     "isReadme": false,
     "see": [],
     "security": [],
     "kind": "type",
-    "modulePath": "src/runtimeApiOperations.ts",
+    "modulePath": "src/runtimeApiCapabilities.ts",
     "sourceLocation": {
-      "filePath": "src/runtimeApiOperations.ts",
-      "line": 7,
+      "filePath": "src/runtimeApiCapabilities.ts",
+      "line": 16,
       "column": 1
     },
     "exportPaths": [
@@ -1763,6 +1675,13 @@
     "relatedSymbols": [],
     "signatures": [],
     "members": [
+      {
+        "name": "apis",
+        "kind": "property",
+        "type": "ApiDefinitionRegistry",
+        "required": true,
+        "description": null
+      },
       {
         "name": "credentialResolver",
         "kind": "property",
@@ -1775,43 +1694,6 @@
         "kind": "property",
         "type": "EndpointTestFetch | undefined",
         "required": false,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeApiOperationSelection",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/runtimeApiSelection.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiSelection.ts",
-      "line": 10,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "api",
-        "kind": "property",
-        "type": "ApiDefinition",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "endpoint",
-        "kind": "property",
-        "type": "DataEndpointConfig",
-        "required": true,
         "description": null
       }
     ],
@@ -1876,174 +1758,6 @@
     "structuredRows": []
   },
   {
-    "name": "RuntimeBindingOperationExecutionArgs",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 25,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "api",
-        "kind": "property",
-        "type": "ApiDefinition",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "endpoint",
-        "kind": "property",
-        "type": "DataEndpointConfig",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "input",
-        "kind": "property",
-        "type": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "node",
-        "kind": "property",
-        "type": "UiNode | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "operation",
-        "kind": "property",
-        "type": "BindingOperationRef",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeBindingOperationExecutionResult",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 33,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeBindingOperationExecutor",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 44,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeBindingOperationKey",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 23,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeBindingOperationResultCache",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 48,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeBindingOperationResultWriter",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeBindings.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeBindings.ts",
-      "line": 52,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "RuntimeBindingResolutionArgs",
     "title": null,
     "description": null,
@@ -2054,21 +1768,22 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 67,
+      "line": 51,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeBindingOperationExecutor"
+      "RuntimeBindingResultWriter",
+      "RuntimeCapabilityExecutor"
     ],
     "signatures": [],
     "members": [
       {
-        "name": "apis",
+        "name": "capabilityValues",
         "kind": "property",
-        "type": "ApiDefinitionRegistry | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2094,9 +1809,9 @@
         "description": null
       },
       {
-        "name": "executeOperation",
+        "name": "executeCapability",
         "kind": "property",
-        "type": "RuntimeBindingOperationExecutor | undefined",
+        "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
         "description": null
       },
@@ -2108,13 +1823,6 @@
         "description": null
       },
       {
-        "name": "operationResults",
-        "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
         "name": "props",
         "kind": "property",
         "type": "Record<string, unknown>",
@@ -2122,9 +1830,23 @@
         "description": null
       },
       {
+        "name": "resultSlots",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "stateAdapter",
         "kind": "property",
         "type": "StateAdapter | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "writeResultSlot",
+        "kind": "property",
+        "type": "RuntimeBindingResultWriter | undefined",
         "required": false,
         "description": null
       }
@@ -2142,21 +1864,22 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 57,
+      "line": 40,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeBindingOperationExecutor"
+      "RuntimeBindingResultWriter",
+      "RuntimeCapabilityExecutor"
     ],
     "signatures": [],
     "members": [
       {
-        "name": "apis",
+        "name": "capabilityValues",
         "kind": "property",
-        "type": "ApiDefinitionRegistry | undefined",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -2182,14 +1905,14 @@
         "description": null
       },
       {
-        "name": "executeOperation",
+        "name": "executeCapability",
         "kind": "property",
-        "type": "RuntimeBindingOperationExecutor | undefined",
+        "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "resultSlots",
         "kind": "property",
         "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
@@ -2199,6 +1922,13 @@
         "name": "stateAdapter",
         "kind": "property",
         "type": "StateAdapter | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "writeResultSlot",
+        "kind": "property",
+        "type": "RuntimeBindingResultWriter | undefined",
         "required": false,
         "description": null
       }
@@ -2216,7 +1946,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 72,
+      "line": 56,
       "column": 1
     },
     "exportPaths": [
@@ -2243,6 +1973,184 @@
     "structuredRows": []
   },
   {
+    "name": "RuntimeBindingResultCache",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 18,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeBindingResultWriter",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 19,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeCapabilityExecutionArgs",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 21,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [
+      {
+        "name": "capability",
+        "kind": "property",
+        "type": "`${string}.${string}`",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "event",
+        "kind": "property",
+        "type": "ComponentEventDto<string, object> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "input",
+        "kind": "property",
+        "type": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "node",
+        "kind": "property",
+        "type": "UiNode | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeCapabilityExecutionResult",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 28,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeCapabilityExecutor",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeBindings.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeBindings.ts",
+      "line": 36,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeCapabilityExecutorComposition",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/runtimeCapabilityExecutor.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeCapabilityExecutor.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "RuntimeCapabilityExecutor"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "apiCapabilityExecutor",
+        "kind": "property",
+        "type": "RuntimeCapabilityExecutor",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "capabilityExecutor",
+        "kind": "property",
+        "type": "RuntimeCapabilityExecutor | undefined",
+        "required": false,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
     "name": "RuntimeComponentEventDispatchArgs",
     "title": null,
     "description": null,
@@ -2253,27 +2161,19 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 51,
+      "line": 47,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandler",
-      "RuntimeBindingOperationExecutor",
-      "RuntimeBindingOperationResultWriter",
+      "RuntimeBindingResultWriter",
+      "RuntimeCapabilityExecutor",
       "RuntimeEventOperationLifecycle"
     ],
     "signatures": [],
     "members": [
-      {
-        "name": "apis",
-        "kind": "property",
-        "type": "ApiDefinitionRegistry | undefined",
-        "required": false,
-        "description": null
-      },
       {
         "name": "context",
         "kind": "property",
@@ -2310,16 +2210,9 @@
         "description": null
       },
       {
-        "name": "executeAction",
+        "name": "executeCapability",
         "kind": "property",
-        "type": "RuntimeActionHandler | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "executeOperation",
-        "kind": "property",
-        "type": "RuntimeBindingOperationExecutor | undefined",
+        "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
         "description": null
       },
@@ -2331,7 +2224,7 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "resultSlots",
         "kind": "property",
         "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
@@ -2345,9 +2238,9 @@
         "description": null
       },
       {
-        "name": "writeOperationResult",
+        "name": "writeResultSlot",
         "kind": "property",
-        "type": "RuntimeBindingOperationResultWriter | undefined",
+        "type": "RuntimeBindingResultWriter | undefined",
         "required": false,
         "description": null
       }
@@ -2399,102 +2292,6 @@
     "structuredRows": []
   },
   {
-    "name": "RuntimeDbPersistError",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/runtimeDbPersist.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 16,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "code",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "message",
-        "kind": "property",
-        "type": "string",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeDbPersistExecutionResult",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "unknown",
-    "modulePath": "src/runtimeDbPersist.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 21,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [],
-    "structuredRows": []
-  },
-  {
-    "name": "RuntimeDbPersistResult",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "type",
-    "modulePath": "src/runtimeDbPersist.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeDbPersist.ts",
-      "line": 11,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [],
-    "members": [
-      {
-        "name": "input",
-        "kind": "property",
-        "type": "DbInsertInput<DbRecord>",
-        "required": true,
-        "description": null
-      },
-      {
-        "name": "result",
-        "kind": "property",
-        "type": "DbResult<DbRecord[]>",
-        "required": true,
-        "description": null
-      }
-    ],
-    "structuredRows": []
-  },
-  {
     "name": "RuntimeDiagnostic",
     "title": null,
     "description": null,
@@ -2539,6 +2336,28 @@
     "structuredRows": []
   },
   {
+    "name": "RuntimeEventCapabilityResolver",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/runtimeActionRegistry.ts",
+    "sourceLocation": {
+      "filePath": "src/runtimeActionRegistry.ts",
+      "line": 28,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "RuntimeEventDiagnosticsReporter",
     "title": null,
     "description": null,
@@ -2549,7 +2368,7 @@
     "modulePath": "src/runtimeEventExecution.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventExecution.ts",
-      "line": 9,
+      "line": 8,
       "column": 1
     },
     "exportPaths": [
@@ -2586,7 +2405,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 14,
+      "line": 15,
       "column": 1
     },
     "exportPaths": [
@@ -2616,7 +2435,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 18,
+      "line": 19,
       "column": 1
     },
     "exportPaths": [
@@ -2637,7 +2456,7 @@
       {
         "name": "start",
         "kind": "method",
-        "type": "(args: { readonly nodeId: string; readonly operation: BindingOperationRef; }) => RuntimeEventOperationInvocation | undefined",
+        "type": "(args: { readonly nodeId: string; readonly capability: Capability[\"id\"]; }) => RuntimeEventOperationInvocation | undefined",
         "required": true,
         "description": null
       },
@@ -2662,7 +2481,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 6,
+      "line": 7,
       "column": 1
     },
     "exportPaths": [
@@ -2673,6 +2492,13 @@
     ],
     "signatures": [],
     "members": [
+      {
+        "name": "capability",
+        "kind": "property",
+        "type": "`${string}.${string}` | undefined",
+        "required": false,
+        "description": null
+      },
       {
         "name": "errorMessage",
         "kind": "property",
@@ -2691,13 +2517,6 @@
         "name": "nodeId",
         "kind": "property",
         "type": "string | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "operation",
-        "kind": "property",
-        "type": "BindingOperationRef | undefined",
         "required": false,
         "description": null
       },
@@ -2722,7 +2541,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 4,
+      "line": 5,
       "column": 1
     },
     "exportPaths": [
@@ -2744,14 +2563,15 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 63,
+      "line": 57,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeComponentEventDispatchArgs"
+      "RuntimeComponentEventDispatchArgs",
+      "RuntimeEventCapabilityResolver"
     ],
     "signatures": [],
     "members": [
@@ -2791,17 +2611,24 @@
         "description": null
       },
       {
-        "name": "operationResults",
-        "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
         "name": "props",
         "kind": "property",
         "type": "Record<string, unknown>",
         "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveEventCapability",
+        "kind": "property",
+        "type": "RuntimeEventCapabilityResolver | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "resultSlots",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
+        "required": false,
         "description": null
       },
       {
@@ -3115,7 +2942,7 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 81,
+      "line": 73,
       "column": 1
     },
     "exportPaths": [
@@ -3153,16 +2980,16 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 54,
+      "line": 37,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandler",
-      "RuntimeBindingOperationExecutor",
-      "RuntimeBindingOperationResultWriter",
+      "RuntimeBindingResultWriter",
+      "RuntimeCapabilityExecutor",
+      "RuntimeEventCapabilityResolver",
       "RuntimeEventOperationLifecycle",
       "RuntimeEventOperationState",
       "RuntimeMediaAssetResolver",
@@ -3171,20 +2998,6 @@
     ],
     "signatures": [],
     "members": [
-      {
-        "name": "actionHandlers",
-        "kind": "property",
-        "type": "Partial<Record<`${string}.${string}`, RuntimeActionHandler>> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "apis",
-        "kind": "property",
-        "type": "ApiDefinitionRegistry | undefined",
-        "required": false,
-        "description": null
-      },
       {
         "name": "bindingContext",
         "kind": "property",
@@ -3235,16 +3048,9 @@
         "description": null
       },
       {
-        "name": "executeAction",
+        "name": "executeCapability",
         "kind": "property",
-        "type": "RuntimeActionHandler | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "executeOperation",
-        "kind": "property",
-        "type": "RuntimeBindingOperationExecutor | undefined",
+        "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
         "description": null
       },
@@ -3263,16 +3069,16 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "registry",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
+        "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
         "required": false,
         "description": null
       },
       {
-        "name": "registry",
+        "name": "resolveEventCapability",
         "kind": "property",
-        "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
+        "type": "RuntimeEventCapabilityResolver | undefined",
         "required": false,
         "description": null
       },
@@ -3291,6 +3097,13 @@
         "description": null
       },
       {
+        "name": "resultSlots",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "stateAdapter",
         "kind": "property",
         "type": "StateAdapter | undefined",
@@ -3305,9 +3118,9 @@
         "description": null
       },
       {
-        "name": "writeOperationResult",
+        "name": "writeResultSlot",
         "kind": "property",
-        "type": "RuntimeBindingOperationResultWriter | undefined",
+        "type": "RuntimeBindingResultWriter | undefined",
         "required": false,
         "description": null
       }
@@ -3325,7 +3138,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 167,
+      "line": 139,
       "column": 1
     },
     "exportPaths": [
@@ -3363,28 +3176,20 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 61,
+      "line": 54,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeActionHandler",
-      "RuntimeBindingOperationExecutor",
+      "RuntimeCapabilityExecutor",
+      "RuntimeEventCapabilityResolver",
       "RuntimeMediaAssetResolver",
-      "RuntimeRendererConfig",
       "RuntimeRendererWrapArgs"
     ],
     "signatures": [],
     "members": [
-      {
-        "name": "apis",
-        "kind": "property",
-        "type": "ApiDefinitionRegistry | undefined",
-        "required": false,
-        "description": null
-      },
       {
         "name": "bindingContext",
         "kind": "property",
@@ -3421,16 +3226,9 @@
         "description": null
       },
       {
-        "name": "executeAction",
+        "name": "executeCapability",
         "kind": "property",
-        "type": "import(\"./RuntimeRendererConfig\").RuntimeActionHandler | undefined",
-        "required": false,
-        "description": null
-      },
-      {
-        "name": "executeOperation",
-        "kind": "property",
-        "type": "RuntimeBindingOperationExecutor | undefined",
+        "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
         "description": null
       },
@@ -3463,13 +3261,6 @@
         "description": null
       },
       {
-        "name": "operationResults",
-        "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
-        "required": false,
-        "description": null
-      },
-      {
         "name": "registry",
         "kind": "property",
         "type": "Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> | undefined",
@@ -3477,9 +3268,23 @@
         "description": null
       },
       {
+        "name": "resolveEventCapability",
+        "kind": "property",
+        "type": "RuntimeEventCapabilityResolver | undefined",
+        "required": false,
+        "description": null
+      },
+      {
         "name": "resolveMediaAsset",
         "kind": "property",
         "type": "RuntimeMediaAssetResolver | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "resultSlots",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -3511,7 +3316,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 33,
+      "line": 31,
       "column": 1
     },
     "exportPaths": [
@@ -3614,7 +3419,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 17,
+      "line": 19,
       "column": 1
     },
     "exportPaths": [
@@ -3652,7 +3457,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 25,
+      "line": 24,
       "column": 1
     },
     "exportPaths": [
@@ -3676,7 +3481,7 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "resultSlots",
         "kind": "property",
         "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
         "required": true,
@@ -3696,7 +3501,7 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 18,
+      "line": 17,
       "column": 1
     },
     "exportPaths": [
@@ -3720,16 +3525,16 @@
         "description": null
       },
       {
-        "name": "operationResults",
+        "name": "renderVersion",
         "kind": "property",
-        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
+        "type": "number",
         "required": true,
         "description": null
       },
       {
-        "name": "renderVersion",
+        "name": "resultSlots",
         "kind": "property",
-        "type": "number",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>>",
         "required": true,
         "description": null
       }
@@ -3747,7 +3552,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 10,
+      "line": 12,
       "column": 1
     },
     "exportPaths": [
@@ -3921,7 +3726,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 180,
+      "line": 152,
       "column": 1
     },
     "exportPaths": [
@@ -3944,7 +3749,7 @@
   {
     "name": "useRuntimeScreenOperationLoaders",
     "title": null,
-    "description": null,
+    "description": "Runs screen capability invocations when their serialized request input changes.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -3952,25 +3757,24 @@
     "modulePath": "src/runtimeScreenLoaders.ts",
     "sourceLocation": {
       "filePath": "src/runtimeScreenLoaders.ts",
-      "line": 273,
+      "line": 146,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeBindingOperationExecutor",
-      "RuntimeBindingOperationResultCache",
-      "RuntimeBindingResolutionContext",
+      "RuntimeBindingResultCache",
+      "RuntimeCapabilityExecutor",
       "RuntimeScreenOperationLoaderState"
     ],
     "signatures": [
       {
-        "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }) => RuntimeScreenOperationLoaderState",
+        "label": "(args: { readonly bindingContext?: Record<string, unknown>; readonly executeCapability?: RuntimeCapabilityExecutor; readonly resultSlots?: RuntimeBindingResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }) => RuntimeScreenOperationLoaderState",
         "parameters": [
           {
             "name": "args",
-            "type": "{ readonly bindingContext?: Record<string, unknown>; readonly apis?: RuntimeBindingResolutionContext[\"apis\"]; readonly executeOperation?: RuntimeBindingOperationExecutor; readonly operationResults?: RuntimeBindingOperationResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }",
+            "type": "{ readonly bindingContext?: Record<string, unknown>; readonly executeCapability?: RuntimeCapabilityExecutor; readonly resultSlots?: RuntimeBindingResultCache; readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void; readonly screen: ScreenSpec; }",
             "required": true,
             "description": null
           }
@@ -3983,51 +3787,9 @@
     "structuredRows": []
   },
   {
-    "name": "validateRuntimeBindingOperationRef",
-    "title": null,
-    "description": null,
-    "isReadme": false,
-    "see": [],
-    "security": [],
-    "kind": "function",
-    "modulePath": "src/runtimeApiSelection.ts",
-    "sourceLocation": {
-      "filePath": "src/runtimeApiSelection.ts",
-      "line": 15,
-      "column": 1
-    },
-    "exportPaths": [
-      "src/index.ts"
-    ],
-    "relatedSymbols": [],
-    "signatures": [
-      {
-        "label": "(operation: BindingOperationRef, apis: ApiDefinitionRegistry | undefined) => readonly DataSourceDiagnostic[]",
-        "parameters": [
-          {
-            "name": "apis",
-            "type": "ApiDefinitionRegistry | undefined",
-            "required": true,
-            "description": null
-          },
-          {
-            "name": "operation",
-            "type": "BindingOperationRef",
-            "required": true,
-            "description": null
-          }
-        ],
-        "returnType": "readonly DataSourceDiagnostic[]",
-        "returnDescription": null
-      }
-    ],
-    "members": [],
-    "structuredRows": []
-  },
-  {
     "name": "wrapRuntimeEventProps",
     "title": null,
-    "description": null,
+    "description": "Wraps component callbacks so manifest event bindings retain the original callback behavior.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -4035,7 +3797,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 198,
+      "line": 149,
       "column": 1
     },
     "exportPaths": [

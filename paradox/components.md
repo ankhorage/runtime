@@ -26,33 +26,32 @@ Export paths: `src/index.ts`
 
 ## RuntimeRenderer
 
-Source: `src/RuntimeRenderer.tsx:81:1`
+Source: `src/RuntimeRenderer.tsx:73:1`
 
 Export paths: `src/index.ts`
 
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| apis | `ApiDefinitionRegistry \| undefined` | no | — |  |
 | bindingContext | `Record<string, unknown> \| undefined` | no | — |  |
 | dataBindings | `ComponentDataBindingRegistry \| undefined` | no | — |  |
 | dbAdapter | `DbAdapter \| undefined` | no | — |  |
 | dbRealtimeAdapter | `DbRealtimeAdapter \| undefined` | no | — |  |
 | disableActions | `boolean \| undefined` | no | — |  |
-| executeAction | `RuntimeActionExecutor \| undefined` | no | — |  |
-| executeOperation | `RuntimeBindingOperationExecutor \| undefined` | no | — |  |
+| executeCapability | `RuntimeCapabilityExecutor \| undefined` | no | — |  |
 | isRoot | `boolean \| undefined` | no | — |  |
 | mediaAssets | `MediaAssetRegistry \| undefined` | no | — |  |
 | node | `UiNode` | yes | — |  |
 | onDiagnostics | `(diagnostics: readonly DataSourceDiagnostic[]) => void \| undefined` | no | — |  |
-| operationResults | `RuntimeBindingOperationResultCache \| undefined` | no | — |  |
 | registry | `ComponentRegistry \| undefined` | no | — |  |
+| resolveEventCapability | `RuntimeEventCapabilityResolver \| undefined` | no | — |  |
 | resolveMediaAsset | `RuntimeMediaAssetResolver \| undefined` | no | — |  |
+| resultSlots | `RuntimeBindingResultCache \| undefined` | no | — |  |
 | stateAdapter | `StateAdapter \| undefined` | no | — |  |
 | wrapNode | `(args: RuntimeRendererWrapArgs) => React.ReactNode \| undefined` | no | — |  |
 
 ## RuntimeRendererConfigProvider
 
-Source: `src/RuntimeRendererConfig.tsx:167:1`
+Source: `src/RuntimeRendererConfig.tsx:139:1`
 
 Export paths: `src/index.ts`
 
@@ -63,7 +62,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeScreen
 
-Source: `src/RuntimeScreen.tsx:17:1`
+Source: `src/RuntimeScreen.tsx:19:1`
 
 Export paths: `src/index.ts`
 

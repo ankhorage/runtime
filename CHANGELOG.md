@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.0
+
+### Major Changes
+
+- cadf2f1: Migrate runtime bindings to Contracts 26 capability expressions, invocations, and result slots.
+
 ## 4.1.2
 
 ### Patch Changes
