@@ -4,7 +4,6 @@ import {
   dispatchRuntimeComponentEvent,
   type RuntimeComponentEventDispatchArgs,
 } from './runtimeActionRegistry';
-import type { RuntimeActionHandlers } from './RuntimeRendererConfig';
 
 export interface RuntimeEventDiagnosticsReporter {
   readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
@@ -12,10 +11,7 @@ export interface RuntimeEventDiagnosticsReporter {
 }
 
 export async function dispatchRuntimeComponentEventWithReporting(
-  args: RuntimeComponentEventDispatchArgs &
-    RuntimeEventDiagnosticsReporter & {
-      readonly actionHandlers?: RuntimeActionHandlers;
-    },
+  args: RuntimeComponentEventDispatchArgs & RuntimeEventDiagnosticsReporter,
 ): Promise<readonly DataSourceDiagnostic[]> {
   const diagnostics = await dispatchRuntimeComponentEvent(args);
 

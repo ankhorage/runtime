@@ -2,6 +2,8 @@ import type { AppManifest, ScreenSpec, StateAdapter } from '@ankhorage/contracts
 import React from 'react';
 
 import type { ComponentRegistry } from './registry';
+import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
+import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
 import { RuntimeRenderer } from './RuntimeRenderer';
 import { useRuntimeRendererConfig } from './RuntimeRendererConfig';
 import { useRuntimeScreenOperationLoaders } from './runtimeScreenLoaders';
@@ -17,14 +19,24 @@ export interface RuntimeScreenProps {
 export function RuntimeScreen(props: RuntimeScreenProps) {
   const { manifest, screen, registry, stateAdapter: injectedStateAdapter } = props;
   const runtimeConfig = useRuntimeRendererConfig();
+  const apiCapabilityExecutor = React.useMemo(
+    () => createRuntimeApiCapabilityExecutor({ apis: manifest.infra.apis ?? {} }),
+    [manifest.infra.apis],
+  );
+  const executeCapability = React.useMemo(
+    () =>
+      composeRuntimeCapabilityExecutor({
+        apiCapabilityExecutor,
+        capabilityExecutor: runtimeConfig.executeCapability,
+      }),
+    [apiCapabilityExecutor, runtimeConfig.executeCapability],
+  );
   const fallbackStateAdapter = React.useMemo(() => createRuntimeMemoryStateAdapter(), []);
   const stateAdapter = injectedStateAdapter ?? fallbackStateAdapter;
-  const { apis } = manifest.infra;
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
-    apis,
     bindingContext: runtimeConfig.bindingContext,
-    executeOperation: runtimeConfig.executeOperation,
-    operationResults: runtimeConfig.operationResults,
+    executeCapability,
+    resultSlots: runtimeConfig.resultSlots,
     onDiagnostics: runtimeConfig.onDiagnostics,
     screen,
   });
@@ -36,10 +48,10 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       isRoot
       registry={registry}
       stateAdapter={stateAdapter}
-      apis={apis}
       dataBindings={manifest.dataBindings}
       mediaAssets={manifest.media?.assets}
-      operationResults={screenOperationLoaders.operationResults}
+      resultSlots={screenOperationLoaders.resultSlots}
+      executeCapability={executeCapability}
     />
   );
 }

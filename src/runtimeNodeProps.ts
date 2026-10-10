@@ -1,6 +1,4 @@
-import { isCapabilityId } from '@ankhorage/capability';
 import type {
-  ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
   DbAdapter,
   DbRealtimeAdapter,
@@ -8,184 +6,49 @@ import type {
   UiNode,
 } from '@ankhorage/contracts';
 import { isMediaAssetReference } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capability';
 
-import { resolveRuntimeBindings, type RuntimeBindingOperationResultCache } from './runtimeBindings';
-import type { RuntimeAction, RuntimeRendererConfig } from './RuntimeRendererConfig';
+import { resolveRuntimeBindings, type RuntimeBindingResultCache } from './runtimeBindings';
+import type { RuntimeRendererConfig } from './RuntimeRendererConfig';
 
-interface RuntimeActionHandlerCacheEntry {
-  readonly handleAction: (action: RuntimeAction) => void;
-  readonly handler: (...args: unknown[]) => void;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
-function isPlainObject(value: unknown): value is Record<string, unknown> {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  const prototype = Reflect.getPrototypeOf(value);
-  return prototype === Object.prototype || prototype === null;
-}
-
-function hasActionShape(value: unknown): value is RuntimeAction {
-  return isRecord(value) && isCapabilityId(value.type);
-}
-
-function isCallbackProp(value: unknown): value is (...args: unknown[]) => unknown {
-  return typeof value === 'function';
-}
-
-function isNonEmptyActionId(value: unknown): value is Capability['id'] {
-  return isCapabilityId(value);
-}
-
-function createStringActionPayload(args: unknown[]): { payload?: object } {
-  if (args.length === 0) {
-    return {};
-  }
-
-  const [firstArg] = args;
-  if (isPlainObject(firstArg)) {
-    return { payload: firstArg };
-  }
-
-  return {
-    payload: {
-      args,
-    },
-  };
-}
-
-const noopRuntimeActionHandler = () => undefined;
-
-function resolveImageAssetUrl(value: unknown): string | null {
-  if (typeof value === 'string') {
-    const url = value.trim();
-    return url.length ? url : null;
-  }
-
-  if (!isRecord(value) || typeof value.kind !== 'string') {
-    return null;
-  }
-
-  if (value.kind === 'url' && typeof value.url === 'string') {
-    const url = value.url.trim();
-    return url.length ? url : null;
-  }
-
-  if (value.kind === 'storage' && typeof value.publicUrl === 'string') {
-    const publicUrl = value.publicUrl.trim();
-    return publicUrl.length ? publicUrl : null;
-  }
-
-  return null;
-}
-
+/*** Resolves a node's authored props and synchronous binding expressions for one render pass. */
 export function resolveRuntimeNodeProps(args: {
-  node: UiNode;
-  resolveNodeProps?: RuntimeRendererConfig['resolveNodeProps'];
-  stateAdapter?: StateAdapter;
-  dbAdapter?: DbAdapter;
-  dbRealtimeAdapter?: DbRealtimeAdapter;
-  bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionRegistry;
-  dataBindings?: ComponentDataBindingRegistry;
-  operationResults?: RuntimeBindingOperationResultCache;
+  readonly node: UiNode;
+  readonly resolveNodeProps?: RuntimeRendererConfig['resolveNodeProps'];
+  readonly stateAdapter?: StateAdapter;
+  readonly dbAdapter?: DbAdapter;
+  readonly dbRealtimeAdapter?: DbRealtimeAdapter;
+  readonly bindingContext?: Record<string, unknown>;
+  readonly dataBindings?: ComponentDataBindingRegistry;
+  readonly resultSlots?: RuntimeBindingResultCache;
 }): Record<string, unknown> {
-  const { node, resolveNodeProps } = args;
-
-  const baseProps: Record<string, unknown> = {
-    testID: node.id,
-    ...(node.props ?? {}),
-  };
-
-  if (node.type === 'Image' && !isMediaAssetReference(baseProps.source)) {
-    const resolvedSource = resolveImageAssetUrl(baseProps.source);
-    if (resolvedSource !== null) baseProps.source = resolvedSource;
-    else delete baseProps.source;
+  const props: Record<string, unknown> = { testID: args.node.id, ...(args.node.props ?? {}) };
+  if (args.node.type === 'Image' && !isMediaAssetReference(props.source)) {
+    const source = resolveImageAssetUrl(props.source);
+    if (source === undefined) delete props.source;
+    else props.source = source;
   }
+  if (args.node.style) props.style = props.style ? [props.style, args.node.style] : args.node.style;
 
-  if (node.style) {
-    baseProps.style = baseProps.style ? [baseProps.style, node.style] : node.style;
-  }
-
-  const bindingResult = resolveRuntimeBindings({
-    apis: args.apis,
+  const binding = resolveRuntimeBindings({
     context: args.bindingContext,
     dataBindings: args.dataBindings,
-    node,
-    operationResults: args.operationResults,
-    props: baseProps,
+    node: args.node,
+    props,
+    resultSlots: args.resultSlots,
     stateAdapter: args.stateAdapter,
   });
-
-  return resolveNodeProps
-    ? resolveNodeProps({ node, props: bindingResult.props })
-    : bindingResult.props;
+  return args.resolveNodeProps
+    ? args.resolveNodeProps({ node: args.node, props: binding.props })
+    : binding.props;
 }
 
-export function wrapRuntimeActionProps(args: {
-  props: Record<string, unknown>;
-  disableActions: boolean;
-  handleAction: (action: RuntimeAction) => void;
-  actionHandlerCache: WeakMap<object, RuntimeActionHandlerCacheEntry>;
-  functionHandlerCache: WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>;
-}): Record<string, unknown> {
-  const { props, disableActions, handleAction, actionHandlerCache, functionHandlerCache } = args;
-  const wrappedProps: Record<string, unknown> = { ...props };
-
-  Object.keys(wrappedProps).forEach((key) => {
-    if (!key.startsWith('on')) {
-      return;
-    }
-
-    const value = wrappedProps[key];
-
-    if (disableActions) {
-      wrappedProps[key] =
-        hasActionShape(value) || isNonEmptyActionId(value) ? noopRuntimeActionHandler : undefined;
-      return;
-    }
-
-    if (hasActionShape(value)) {
-      const actionObject = value;
-      let cachedActionHandler = actionHandlerCache.get(actionObject);
-      if (cachedActionHandler?.handleAction !== handleAction) {
-        const actionHandler = () => {
-          handleAction(actionObject);
-        };
-        cachedActionHandler = { handleAction, handler: actionHandler };
-        actionHandlerCache.set(actionObject, cachedActionHandler);
-      }
-      wrappedProps[key] = cachedActionHandler.handler;
-      return;
-    }
-
-    if (isNonEmptyActionId(value)) {
-      const actionId = value;
-      wrappedProps[key] = (...handlerArgs: unknown[]) => {
-        handleAction({
-          type: actionId,
-          ...createStringActionPayload(handlerArgs),
-        });
-      };
-      return;
-    }
-
-    if (isCallbackProp(value)) {
-      const handler = value;
-      let wrappedHandler = functionHandlerCache.get(handler);
-      if (!wrappedHandler) {
-        wrappedHandler = (...handlerArgs: unknown[]) => handler(...handlerArgs);
-        functionHandlerCache.set(handler, wrappedHandler);
-      }
-      wrappedProps[key] = wrappedHandler;
-    }
-  });
-
-  return wrappedProps;
+function resolveImageAssetUrl(value: unknown): string | undefined {
+  if (typeof value === 'string') return value.trim() || undefined;
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) return undefined;
+  const record = value as Record<string, unknown>;
+  if (record.kind === 'url' && typeof record.url === 'string')
+    return record.url.trim() || undefined;
+  if (record.kind === 'storage' && typeof record.publicUrl === 'string')
+    return record.publicUrl.trim() || undefined;
+  return undefined;
 }

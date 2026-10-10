@@ -20,50 +20,42 @@ export type {
   RuntimeActionResolutionArgs,
   RuntimeActionResolutionScope,
   RuntimeComponentEventDispatchArgs,
+  RuntimeEventCapabilityResolver,
   RuntimeEventPropWrapArgs,
 } from './runtimeActionRegistry';
 export {
   createComponentEventFromHandlerArgs,
   createRuntimeActionRegistry,
   dispatchRuntimeComponentEvent,
-  resolveRuntimeActionPayload,
   resolveRuntimeActionValue,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
-export type { RuntimeApiOperationExecutorOptions } from './runtimeApiOperations';
-export { createRuntimeApiOperationExecutor } from './runtimeApiOperations';
-export type { RuntimeApiOperationSelection } from './runtimeApiSelection';
-export { validateRuntimeBindingOperationRef } from './runtimeApiSelection';
+export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
+export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 export type {
-  RuntimeBindingOperationExecutionArgs,
-  RuntimeBindingOperationExecutionResult,
-  RuntimeBindingOperationExecutor,
-  RuntimeBindingOperationKey,
-  RuntimeBindingOperationResultCache,
-  RuntimeBindingOperationResultWriter,
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
   RuntimeBindingResolutionResult,
+  RuntimeBindingResultCache,
+  RuntimeBindingResultWriter,
+  RuntimeCapabilityExecutionArgs,
+  RuntimeCapabilityExecutionResult,
+  RuntimeCapabilityExecutor,
 } from './runtimeBindings';
 export {
-  createRuntimeBindingOperationKey,
+  applyRuntimeBindingDataPath,
+  executeRuntimeBindingInvocation,
   resolveBindingInputMap,
+  resolveBindingInputMapSync,
+  resolveRuntimeBindingExpression,
+  resolveRuntimeBindingExpressionSync,
   resolveRuntimeBindings,
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
 } from './runtimeBindings';
-export type {
-  RuntimeDbPersistError,
-  RuntimeDbPersistExecutionResult,
-  RuntimeDbPersistResult,
-} from './runtimeDbPersist';
-export {
-  createDbPersistActionHandler,
-  createDbPersistAdapterError,
-  executeDbPersistAction,
-  resolveDbPersistInput,
-} from './runtimeDbPersist';
+export type { RuntimeCapabilityExecutorComposition } from './runtimeCapabilityExecutor';
+export { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
 export {
   dispatchRuntimeComponentEventWithReporting,
   type RuntimeEventDiagnosticsReporter,
@@ -100,11 +92,6 @@ export {
   composeRuntimeNodePropsResolver,
   composeRuntimeRendererWrapNode,
   mergeRuntimeRendererConfig,
-  type RuntimeAction,
-  type RuntimeActionExecutor,
-  type RuntimeActionHandler,
-  type RuntimeActionHandlerArgs,
-  type RuntimeActionHandlers,
   type RuntimeNodePropsResolver,
   type RuntimeRendererConfig,
   RuntimeRendererConfigProvider,
@@ -122,6 +109,7 @@ export type {
 export {
   createPendingRuntimeScreenOperationLoaderState,
   createRuntimeScreenLoaderRequestKey,
+  createRuntimeScreenOperationLoaderRequestLifecycle,
   executeRuntimeScreenOperationLoaders,
   resolveScreenOperationLoaders,
   useRuntimeScreenOperationLoaders,

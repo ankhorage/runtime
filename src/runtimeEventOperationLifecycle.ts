@@ -1,4 +1,5 @@
-import type { BindingOperationRef, DataSourceDiagnostic } from '@ankhorage/contracts';
+import type { DataSourceDiagnostic } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capability';
 import { isRecord } from '@ankhorage/utility/object';
 
 export type RuntimeEventOperationStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -8,7 +9,7 @@ export interface RuntimeEventOperationState {
   readonly loading: boolean;
   readonly errorMessage: string;
   readonly nodeId?: string;
-  readonly operation?: BindingOperationRef;
+  readonly capability?: Capability['id'];
 }
 
 export interface RuntimeEventOperationInvocation {
@@ -18,7 +19,7 @@ export interface RuntimeEventOperationInvocation {
 export interface RuntimeEventOperationLifecycle {
   start(args: {
     readonly nodeId: string;
-    readonly operation: BindingOperationRef;
+    readonly capability: Capability['id'];
   }): RuntimeEventOperationInvocation | undefined;
   succeed(invocation: RuntimeEventOperationInvocation): void;
   fail(invocation: RuntimeEventOperationInvocation, message: string): void;
@@ -41,7 +42,7 @@ export function createRuntimeEventOperationLifecycle(
 ): RuntimeEventOperationLifecycle {
   let nextInvocationId = 0;
   let activeInvocationId: number | undefined;
-  let activeOperation: BindingOperationRef | undefined;
+  let activeCapability: Capability['id'] | undefined;
   let activeNodeId: string | undefined;
 
   const finish = (
@@ -56,20 +57,20 @@ export function createRuntimeEventOperationLifecycle(
       loading: false,
       errorMessage,
       nodeId: activeNodeId,
-      operation: activeOperation,
+      capability: activeCapability,
     });
     activeInvocationId = undefined;
   };
 
   return {
-    start({ nodeId, operation }) {
+    start({ capability, nodeId }) {
       if (activeInvocationId !== undefined) return undefined;
 
       nextInvocationId += 1;
       activeInvocationId = nextInvocationId;
       activeNodeId = nodeId;
-      activeOperation = operation;
-      onStateChange({ status: 'loading', loading: true, errorMessage: '', nodeId, operation });
+      activeCapability = capability;
+      onStateChange({ status: 'loading', loading: true, errorMessage: '', nodeId, capability });
 
       return { id: activeInvocationId };
     },
