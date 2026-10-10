@@ -195,8 +195,7 @@
     "knip:check": "ankhorage-knip"
   },
   "dependencies": {
-    "@ankhorage/capability": "^0.2.1",
-    "@ankhorage/contracts": "^25.2.0",
+    "@ankhorage/contracts": "^26.0.0",
     "@ankhorage/data-sources": "^2.1.0",
     "@ankhorage/utility": "^1.9.85"
   },
@@ -224,5 +223,11 @@
     "typescript": "~6.0.3"
   },
   "sideEffects": false,
-  "packageManager": "bun@1.4.2"
+  "packageManager": "bun@1.4.2",
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "tests"
+  },
+  "author": ""
 }

@@ -5,18 +5,16 @@ import type {
   UiNodeRepeatSpec,
 } from '@ankhorage/contracts';
 
-import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
-  applyRuntimeBindingDataPath,
-  createRuntimeBindingOperationKey,
-  resolveRuntimeBindingValueSourceSync,
-  type RuntimeBindingOperationResultWriter,
+  resolveRuntimeBindingExpression,
+  resolveRuntimeBindingExpressionSync,
   type RuntimeBindingResolutionContext,
+  type RuntimeBindingResultWriter,
 } from './runtimeBindings';
 
 export interface RuntimeRepeatResolutionContext extends RuntimeBindingResolutionContext {
   readonly node: UiNode;
-  readonly writeOperationResult?: RuntimeBindingOperationResultWriter;
+  readonly writeResultSlot?: RuntimeBindingResultWriter;
 }
 
 export interface RuntimeRepeatItemsResult {
@@ -28,151 +26,51 @@ export interface RuntimeRepeatItemsSyncResult extends RuntimeRepeatItemsResult {
   readonly status: 'ready' | 'pending';
 }
 
+/*** Resolves an already materialized repeat expression for the current render pass. */
 export function resolveRuntimeRepeatItemsSync(
   repeat: UiNodeRepeatSpec,
   context: RuntimeRepeatResolutionContext,
 ): RuntimeRepeatItemsSyncResult {
-  if (repeat.source.kind !== 'operation') {
-    const diagnostics: DataSourceDiagnostic[] = [];
-    const resolved = resolveRuntimeBindingValueSourceSync(repeat.source, context, diagnostics);
-    return {
-      status: 'ready',
-      ...finalizeRuntimeRepeatItems(repeat, resolved, diagnostics),
-    };
+  const diagnostics: DataSourceDiagnostic[] = [];
+  const value = resolveRuntimeBindingExpressionSync(repeat.source, context, diagnostics);
+  if (value !== undefined || context.executeCapability === undefined) {
+    return { status: 'ready', ...finalizeRuntimeRepeatItems(repeat, value, diagnostics) };
   }
-
-  const operationKey = createRuntimeBindingOperationKey(repeat.source.operation);
-  const cached = context.operationResults?.[operationKey];
-  if (cached !== undefined) {
-    return {
-      status: 'ready',
-      ...finalizeRuntimeRepeatItems(
-        repeat,
-        applyRuntimeBindingDataPath(cached, repeat.source.path),
-        [],
-      ),
-    };
-  }
-
-  if (context.executeOperation !== undefined) {
-    return {
-      status: 'pending',
-      items: [],
-      diagnostics: [],
-    };
-  }
-
-  return {
-    status: 'ready',
-    items: [],
-    diagnostics: [
-      createRepeatDiagnostic(
-        repeat,
-        'missing-adapter',
-        'Repeat API operation source requires an injected operation executor.',
-      ),
-    ],
-  };
+  return { status: 'pending', diagnostics, items: [] };
 }
 
+/*** Resolves a repeat expression asynchronously through the canonical capability executor. */
 export async function resolveRuntimeRepeatItemsAsync(
   repeat: UiNodeRepeatSpec,
   context: RuntimeRepeatResolutionContext,
 ): Promise<RuntimeRepeatItemsResult> {
-  if (repeat.source.kind !== 'operation') {
-    const diagnostics: DataSourceDiagnostic[] = [];
-    const resolved = await Promise.resolve(
-      resolveRuntimeBindingValueSourceSync(repeat.source, context, diagnostics),
-    );
-    return finalizeRuntimeRepeatItems(repeat, resolved, diagnostics);
-  }
-
-  const operationKey = createRuntimeBindingOperationKey(repeat.source.operation);
-  const cached = context.operationResults?.[operationKey];
-  if (cached !== undefined) {
-    return finalizeRuntimeRepeatItems(
-      repeat,
-      applyRuntimeBindingDataPath(cached, repeat.source.path),
-      [],
-    );
-  }
-
-  if (context.executeOperation === undefined) {
-    return {
-      items: [],
-      diagnostics: [
-        createRepeatDiagnostic(
-          repeat,
-          'missing-adapter',
-          'Repeat API operation source requires an injected operation executor.',
-        ),
-      ],
-    };
-  }
-
   const diagnostics: DataSourceDiagnostic[] = [];
-  const selection = resolveRuntimeBindingOperationSelection(
-    repeat.source.operation,
-    context.apis,
-    diagnostics,
-  );
-  if (selection === undefined) {
-    return { items: [], diagnostics };
-  }
-
-  const result = await context.executeOperation({
-    api: selection.api,
-    endpoint: selection.endpoint,
-    operation: repeat.source.operation,
-    node: context.node,
-  });
-  diagnostics.push(...(result.diagnostics ?? []));
-
-  if (!result.ok) {
-    return { items: [], diagnostics };
-  }
-
-  context.writeOperationResult?.(operationKey, result.data);
-  return finalizeRuntimeRepeatItems(
-    repeat,
-    applyRuntimeBindingDataPath(result.data, repeat.source.path),
-    diagnostics,
-  );
+  const value = await resolveRuntimeBindingExpression(repeat.source, context, diagnostics);
+  return finalizeRuntimeRepeatItems(repeat, value, diagnostics);
 }
 
+/*** Adds one repeat item under its configured alias without discarding outer context values. */
 export function createRuntimeRepeatBindingContext(args: {
   readonly baseContext?: Record<string, unknown>;
   readonly item: BindingValue;
   readonly itemAlias?: string;
 }): Record<string, unknown> {
-  return {
-    ...(args.baseContext ?? {}),
-    [args.itemAlias ?? 'item']: args.item,
-  };
+  return { ...(args.baseContext ?? {}), [args.itemAlias ?? 'item']: args.item };
 }
 
+/*** Selects a stable primitive key from the repeat item, falling back to its index. */
 export function resolveRuntimeRepeatItemKey(args: {
   readonly item: BindingValue;
   readonly itemAlias?: string;
   readonly index: number;
   readonly keyPath?: string;
 }): string | number {
-  const explicitKey = readRepeatPrimitive(args.item, args.keyPath ?? 'id');
-  if (explicitKey !== undefined) {
-    return explicitKey;
-  }
-
-  const fallbackId = readRepeatPrimitive(args.item, 'id');
-  if (fallbackId !== undefined) {
-    return fallbackId;
-  }
-
-  const fallbackItemId = readRepeatPrimitive(args.item, 'itemId');
-  if (fallbackItemId !== undefined) {
-    return fallbackItemId;
-  }
-
-  return args.index;
+  return (
+    readRepeatPrimitive(args.item, args.keyPath ?? 'id') ??
+    readRepeatPrimitive(args.item, 'id') ??
+    readRepeatPrimitive(args.item, 'itemId') ??
+    args.index
+  );
 }
 
 function finalizeRuntimeRepeatItems(
@@ -180,50 +78,24 @@ function finalizeRuntimeRepeatItems(
   value: BindingValue | undefined,
   diagnostics: readonly DataSourceDiagnostic[],
 ): RuntimeRepeatItemsResult {
-  if (Array.isArray(value)) {
-    return {
-      items: value,
-      diagnostics,
-    };
-  }
-
+  if (Array.isArray(value)) return { diagnostics, items: value };
   return {
-    items: [],
     diagnostics: [
       ...diagnostics,
-      createRepeatDiagnostic(repeat, 'invalid-config', 'Repeat source must resolve to an array.'),
+      {
+        code: 'invalid-config',
+        message: 'Repeat source must resolve to an array.',
+        severity: 'error',
+      },
     ],
-  };
-}
-
-function createRepeatDiagnostic(
-  repeat: UiNodeRepeatSpec,
-  code: DataSourceDiagnostic['code'],
-  message: string,
-): DataSourceDiagnostic {
-  return {
-    apiId: repeat.source.kind === 'operation' ? repeat.source.operation.apiId : undefined,
-    endpointId: repeat.source.kind === 'operation' ? repeat.source.operation.endpointId : undefined,
-    operationId:
-      repeat.source.kind === 'operation' ? repeat.source.operation.operationId : undefined,
-    code,
-    message,
-    severity: 'error',
+    items: [],
   };
 }
 
 function readRepeatPrimitive(value: BindingValue, path: string): string | number | undefined {
-  const resolved = path.split('.').reduce<unknown>((currentValue, part) => {
-    if (typeof currentValue !== 'object' || currentValue === null || Array.isArray(currentValue)) {
-      return undefined;
-    }
-
-    return (currentValue as Record<string, unknown>)[part];
+  const resolved = path.split('.').reduce<unknown>((current, part) => {
+    if (typeof current !== 'object' || current === null || Array.isArray(current)) return undefined;
+    return (current as Record<string, unknown>)[part];
   }, value);
-
-  if (typeof resolved === 'string' || typeof resolved === 'number') {
-    return resolved;
-  }
-
-  return undefined;
+  return typeof resolved === 'string' || typeof resolved === 'number' ? resolved : undefined;
 }

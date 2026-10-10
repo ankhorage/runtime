@@ -1,5 +1,4 @@
 import type {
-  ApiDefinitionRegistry,
   BindingValue,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
@@ -22,12 +21,7 @@ import {
   type RuntimeComponentEventDispatchArgs,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
-import type {
-  RuntimeBindingOperationExecutor,
-  RuntimeBindingOperationKey,
-  RuntimeBindingOperationResultCache,
-} from './runtimeBindings';
-import { createDbPersistActionHandler } from './runtimeDbPersist';
+import type { RuntimeBindingResultCache, RuntimeCapabilityExecutor } from './runtimeBindings';
 import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution';
 import {
   createRuntimeEventOperationBindingContext,
@@ -39,11 +33,9 @@ import {
   RuntimeMediaResolutionCacheProvider,
   useRuntimeMediaResolutionCache,
 } from './runtimeMediaCache';
-import { resolveRuntimeNodeProps, wrapRuntimeActionProps } from './runtimeNodeProps';
-import type { RuntimeActionHandlerArgs } from './RuntimeRendererConfig';
+import { resolveRuntimeNodeProps } from './runtimeNodeProps';
 import {
   mergeRuntimeRendererConfig,
-  type RuntimeActionExecutor,
   RuntimeRendererConfigProvider,
   type RuntimeRendererWrapArgs,
   useRuntimeRendererConfig,
@@ -68,13 +60,11 @@ export interface RuntimeRendererProps {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionRegistry;
   dataBindings?: ComponentDataBindingRegistry;
   mediaAssets?: MediaAssetRegistry;
   resolveMediaAsset?: RuntimeMediaAssetResolver;
-  operationResults?: RuntimeBindingOperationResultCache;
-  executeAction?: RuntimeActionExecutor;
-  executeOperation?: RuntimeBindingOperationExecutor;
+  resultSlots?: RuntimeBindingResultCache;
+  executeCapability?: RuntimeCapabilityExecutor;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
 }
 
@@ -89,13 +79,11 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     dbRealtimeAdapter,
     stateAdapter,
     bindingContext,
-    apis,
     dataBindings,
     mediaAssets,
     resolveMediaAsset,
-    operationResults,
-    executeAction,
-    executeOperation,
+    resultSlots,
+    executeCapability,
     onDiagnostics,
   } = props;
   const inheritedConfig = useRuntimeRendererConfig();
@@ -122,60 +110,52 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       ? createRuntimeEventOperationBindingContext(rootBindingContext, eventOperationState)
       : bindingContext;
   const mediaResolutionCache = useRuntimeMediaResolutionCache();
-  const inheritedOperationResults = inheritedConfig.operationResults;
-  const [localOperationResults, setLocalOperationResults] =
-    React.useState<RuntimeBindingOperationResultCache>({});
-  const writeLocalOperationResult = React.useCallback(
-    (key: RuntimeBindingOperationKey, value: BindingValue) => {
-      setLocalOperationResults((currentResults) => ({
-        ...currentResults,
-        [key]: value,
-      }));
-    },
-    [],
-  );
-  const effectiveOperationResults = React.useMemo(
+  const inheritedResultSlots = inheritedConfig.resultSlots;
+  const [localResultSlots, setLocalResultSlots] = React.useState<RuntimeBindingResultCache>({});
+  const writeLocalResultSlot = React.useCallback((key: string, value: BindingValue) => {
+    setLocalResultSlots((currentResults) => ({
+      ...currentResults,
+      [key]: value,
+    }));
+  }, []);
+  const effectiveResultSlots = React.useMemo(
     () => ({
-      ...(inheritedOperationResults ?? {}),
-      ...(operationResults ?? {}),
-      ...localOperationResults,
+      ...(inheritedResultSlots ?? {}),
+      ...(resultSlots ?? {}),
+      ...localResultSlots,
     }),
-    [inheritedOperationResults, localOperationResults, operationResults],
+    [inheritedResultSlots, localResultSlots, resultSlots],
   );
   const explicitConfig = React.useMemo(
     () => ({
-      apis,
       bindingContext: effectiveBindingContext,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
       disableActions,
-      executeAction,
-      executeOperation,
+      executeCapability,
       mediaAssets,
-      operationResults: effectiveOperationResults,
+      resultSlots: effectiveResultSlots,
       onDiagnostics,
       registry,
       resolveMediaAsset,
       stateAdapter,
       wrapNode,
-      writeOperationResult: inheritedConfig.writeOperationResult ?? writeLocalOperationResult,
+      writeResultSlot: inheritedConfig.writeResultSlot ?? writeLocalResultSlot,
       eventOperationLifecycle: isRoot
         ? rootEventOperationLifecycle
         : inheritedConfig.eventOperationLifecycle,
       eventOperationState,
     }),
     [
-      apis,
       effectiveBindingContext,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
       disableActions,
-      executeAction,
-      effectiveOperationResults,
-      executeOperation,
-      inheritedConfig.writeOperationResult,
+      executeCapability,
+      effectiveResultSlots,
+      inheritedConfig.writeResultSlot,
       inheritedConfig.eventOperationLifecycle,
       isRoot,
       mediaAssets,
@@ -184,7 +164,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       resolveMediaAsset,
       stateAdapter,
       wrapNode,
-      writeLocalOperationResult,
+      writeLocalResultSlot,
       eventOperationState,
       rootEventOperationLifecycle,
     ],
@@ -193,69 +173,20 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     () => mergeRuntimeRendererConfig(explicitConfig, inheritedConfig),
     [explicitConfig, inheritedConfig],
   );
-  const effectiveActionHandlers = React.useMemo(() => {
-    if (!effectiveConfig.dbAdapter) {
-      return effectiveConfig.actionHandlers;
-    }
-
-    return {
-      'db.persist': createDbPersistActionHandler({ dbAdapter: effectiveConfig.dbAdapter }),
-      ...(effectiveConfig.actionHandlers ?? {}),
-    };
-  }, [effectiveConfig.actionHandlers, effectiveConfig.dbAdapter]);
-  const executeRuntimeAction = React.useCallback(
-    async (actionArgs: RuntimeActionHandlerArgs) => {
-      if (effectiveConfig.executeAction) {
-        await effectiveConfig.executeAction(actionArgs);
-        return;
-      }
-
-      const handler = effectiveActionHandlers?.[actionArgs.action.type];
-      if (handler) {
-        await handler(actionArgs);
-      }
-    },
-    [effectiveActionHandlers, effectiveConfig],
-  );
   const dispatchRuntimeEvent = React.useCallback(
     async (eventArgs: RuntimeComponentEventDispatchArgs) => {
       await dispatchRuntimeComponentEventWithReporting({
         ...eventArgs,
-        actionHandlers: effectiveActionHandlers,
-        apis: eventArgs.apis ?? effectiveConfig.apis,
         dataBindings: eventArgs.dataBindings ?? effectiveConfig.dataBindings,
-        executeAction: effectiveConfig.executeAction ?? executeRuntimeAction,
-        executeOperation: eventArgs.executeOperation ?? effectiveConfig.executeOperation,
+        executeCapability: eventArgs.executeCapability ?? effectiveConfig.executeCapability,
         onDiagnostics: effectiveConfig.onDiagnostics,
-        operationResults: eventArgs.operationResults ?? effectiveConfig.operationResults,
-        writeOperationResult:
-          eventArgs.writeOperationResult ?? effectiveConfig.writeOperationResult,
+        resultSlots: eventArgs.resultSlots ?? effectiveConfig.resultSlots,
+        writeResultSlot: eventArgs.writeResultSlot ?? effectiveConfig.writeResultSlot,
         eventOperationLifecycle:
           eventArgs.eventOperationLifecycle ?? effectiveConfig.eventOperationLifecycle,
       });
     },
-    [effectiveActionHandlers, effectiveConfig, executeRuntimeAction],
-  );
-  const actionHandlerCache = React.useMemo(
-    () =>
-      new WeakMap<
-        object,
-        {
-          readonly handleAction: (action: RuntimeActionHandlerArgs['action']) => void;
-          readonly handler: (...args: unknown[]) => void;
-        }
-      >(),
-    [],
-  );
-  const functionHandlerCache = React.useMemo(
-    () => new WeakMap<(...args: unknown[]) => unknown, (...args: unknown[]) => unknown>(),
-    [],
-  );
-  const handleAction = React.useCallback(
-    (action: RuntimeActionHandlerArgs['action']) => {
-      void executeRuntimeAction({ action });
-    },
-    [executeRuntimeAction],
+    [effectiveConfig],
   );
   const effectiveRegistry = React.useMemo(
     () =>
@@ -274,23 +205,21 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     }
 
     return resolveRuntimeRepeatItemsSync(repeat, {
-      apis: effectiveConfig.apis,
       context: effectiveConfig.bindingContext,
       dataBindings: effectiveConfig.dataBindings,
-      executeOperation: effectiveConfig.executeOperation,
+      executeCapability: effectiveConfig.executeCapability,
       node,
-      operationResults: effectiveConfig.operationResults,
+      resultSlots: effectiveConfig.resultSlots,
       stateAdapter: effectiveConfig.stateAdapter,
-      writeOperationResult: effectiveConfig.writeOperationResult,
+      writeResultSlot: effectiveConfig.writeResultSlot,
     });
   }, [
-    effectiveConfig.apis,
     effectiveConfig.bindingContext,
     effectiveConfig.dataBindings,
-    effectiveConfig.executeOperation,
-    effectiveConfig.operationResults,
+    effectiveConfig.executeCapability,
+    effectiveConfig.resultSlots,
     effectiveConfig.stateAdapter,
-    effectiveConfig.writeOperationResult,
+    effectiveConfig.writeResultSlot,
     node,
   ]);
   const repeatRequestToken = React.useMemo(
@@ -316,14 +245,13 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
     void (async () => {
       const result = await resolveRuntimeRepeatItemsAsync(repeat, {
-        apis: effectiveConfig.apis,
         context: effectiveConfig.bindingContext,
         dataBindings: effectiveConfig.dataBindings,
-        executeOperation: effectiveConfig.executeOperation,
+        executeCapability: effectiveConfig.executeCapability,
         node,
-        operationResults: effectiveConfig.operationResults,
+        resultSlots: effectiveConfig.resultSlots,
         stateAdapter: effectiveConfig.stateAdapter,
-        writeOperationResult: effectiveConfig.writeOperationResult,
+        writeResultSlot: effectiveConfig.writeResultSlot,
       });
 
       if (repeatRequestIdRef.current !== requestId) {
@@ -337,13 +265,12 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       repeatRequestIdRef.current += 1;
     };
   }, [
-    effectiveConfig.apis,
     effectiveConfig.bindingContext,
     effectiveConfig.dataBindings,
-    effectiveConfig.executeOperation,
-    effectiveConfig.operationResults,
+    effectiveConfig.executeCapability,
+    effectiveConfig.resultSlots,
     effectiveConfig.stateAdapter,
-    effectiveConfig.writeOperationResult,
+    effectiveConfig.writeResultSlot,
     node,
     repeatRequestToken,
   ]);
@@ -369,13 +296,12 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   }, [effectiveConfig, node, repeatDiagnostics]);
 
   const bindingResolvedProps = resolveRuntimeNodeProps({
-    apis: effectiveConfig.apis,
     bindingContext: effectiveConfig.bindingContext,
     dataBindings: effectiveConfig.dataBindings,
     dbAdapter: effectiveConfig.dbAdapter,
     dbRealtimeAdapter: effectiveConfig.dbRealtimeAdapter,
     node,
-    operationResults: effectiveConfig.operationResults,
+    resultSlots: effectiveConfig.resultSlots,
     stateAdapter: effectiveConfig.stateAdapter,
   });
   const mediaResolvedProps = useRuntimeMediaProps({
@@ -448,20 +374,14 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
         <RuntimeRenderer key={child.id} node={child} registry={effectiveRegistry} />
       ));
 
-  const propsWithActions = wrapRuntimeActionProps({
-    props: resolvedProps,
-    disableActions: effectiveConfig.disableActions === true,
-    handleAction,
-    actionHandlerCache,
-    functionHandlerCache,
-  });
   const propsWithEvents = wrapRuntimeEventProps({
     context: effectiveConfig.bindingContext,
     dataBindings: effectiveConfig.dataBindings,
-    props: propsWithActions,
+    props: resolvedProps,
     disableActions: effectiveConfig.disableActions === true,
     dispatchComponentEvent: dispatchRuntimeEvent,
     node,
+    resultSlots: effectiveConfig.resultSlots,
   });
 
   const componentChildren = resolveRenderedChildren({

@@ -1,84 +1,60 @@
 import type {
   BindingValue,
   DataSourceDiagnostic,
-  OperationScreenDataLoaderDefinition,
+  ScreenDataLoaderDefinition,
   ScreenSpec,
 } from '@ankhorage/contracts';
 import React from 'react';
 
-import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
-  createRuntimeBindingOperationKey,
+  executeRuntimeBindingInvocation,
   resolveBindingInputMapSync,
-  type RuntimeBindingOperationExecutor,
-  type RuntimeBindingOperationResultCache,
-  type RuntimeBindingResolutionContext,
+  type RuntimeBindingResultCache,
+  type RuntimeBindingResultWriter,
+  type RuntimeCapabilityExecutor,
 } from './runtimeBindings';
 
 export interface RuntimeScreenOperationLoaderState {
   readonly dependencyKey: string;
   readonly diagnostics: readonly DataSourceDiagnostic[];
-  readonly operationResults: RuntimeBindingOperationResultCache;
+  readonly resultSlots: RuntimeBindingResultCache;
   readonly renderVersion: number;
 }
 
 export interface RuntimeScreenOperationLoaderExecutionResult {
   readonly dependencyKey: string;
   readonly diagnostics: readonly DataSourceDiagnostic[];
-  readonly operationResults: RuntimeBindingOperationResultCache;
+  readonly resultSlots: RuntimeBindingResultCache;
 }
 
-export interface RuntimeScreenOperationLoaderLifecycle {
-  readonly activeRequestId: number;
-  readonly activeRequestKey: string | null;
-}
-
-const EMPTY_RUNTIME_SCREEN_OPERATION_LOADER_DIAGNOSTICS = Object.freeze(
-  [],
-) as readonly DataSourceDiagnostic[];
-const EMPTY_RUNTIME_SCREEN_OPERATION_RESULTS = Object.freeze(
-  {},
-) as RuntimeBindingOperationResultCache;
-
+/*** Returns the portable capability invocations authored on a screen. */
 export function resolveScreenOperationLoaders(
   screen: ScreenSpec,
-): readonly OperationScreenDataLoaderDefinition[] {
+): readonly ScreenDataLoaderDefinition[] {
   return screen.dataLoaders ?? [];
 }
 
+/*** Creates a deterministic loader request key from resolved inputs and declared result slots. */
 export function createRuntimeScreenLoaderRequestKey(args: {
   readonly screenId: string;
-  readonly loaders: readonly OperationScreenDataLoaderDefinition[];
+  readonly loaders: readonly ScreenDataLoaderDefinition[];
   readonly bindingContext?: Record<string, unknown>;
-  readonly operationResults?: RuntimeBindingOperationResultCache;
+  readonly resultSlots?: RuntimeBindingResultCache;
 }): string {
-  return createRuntimeScreenOperationLoaderPlan({
-    bindingContext: args.bindingContext,
-    loaders: args.loaders,
-    operationResults: args.operationResults,
+  return stableSerialize({
+    loaders: args.loaders.map((loader) => ({
+      capability: loader.capability,
+      input: resolveBindingInputMapSync(loader.input, {
+        context: args.bindingContext,
+        resultSlots: args.resultSlots,
+      }),
+      result: loader.result,
+    })),
     screenId: args.screenId,
-  }).requestKey;
+  });
 }
 
-export function createRuntimeScreenOperationLoaderLifecycle(): RuntimeScreenOperationLoaderLifecycle {
-  return {
-    activeRequestId: 0,
-    activeRequestKey: null,
-  };
-}
-
-export function createIdleRuntimeScreenOperationLoaderState(args: {
-  readonly dependencyKey: string;
-  readonly previousState?: RuntimeScreenOperationLoaderState;
-}): RuntimeScreenOperationLoaderState {
-  return {
-    dependencyKey: args.dependencyKey,
-    diagnostics: EMPTY_RUNTIME_SCREEN_OPERATION_LOADER_DIAGNOSTICS,
-    operationResults: EMPTY_RUNTIME_SCREEN_OPERATION_RESULTS,
-    renderVersion: args.previousState?.renderVersion ?? 0,
-  };
-}
-
+/*** Constructs a pending state for capability-backed screen loaders. */
 export function createPendingRuntimeScreenOperationLoaderState(args: {
   readonly dependencyKey: string;
   readonly previousState?: RuntimeScreenOperationLoaderState;
@@ -86,413 +62,128 @@ export function createPendingRuntimeScreenOperationLoaderState(args: {
   return {
     dependencyKey: args.dependencyKey,
     diagnostics: [],
-    operationResults: {},
+    resultSlots: {},
     renderVersion: (args.previousState?.renderVersion ?? -1) + 1,
   };
 }
 
-export function beginRuntimeScreenOperationLoaderRequest(args: {
-  readonly hasLoaders: boolean;
-  readonly lifecycle: RuntimeScreenOperationLoaderLifecycle;
-  readonly requestKey: string;
-  readonly state: RuntimeScreenOperationLoaderState;
-}): {
-  readonly lifecycle: RuntimeScreenOperationLoaderLifecycle;
-  readonly requestId?: number;
-  readonly shouldExecute: boolean;
-  readonly state: RuntimeScreenOperationLoaderState;
-} {
-  if (!args.hasLoaders) {
-    if (args.lifecycle.activeRequestKey === null) {
-      return {
-        lifecycle: args.lifecycle,
-        shouldExecute: false,
-        state: args.state,
-      };
-    }
-
-    return {
-      lifecycle: {
-        activeRequestId: args.lifecycle.activeRequestId + 1,
-        activeRequestKey: null,
-      },
-      shouldExecute: false,
-      state: args.state,
-    };
-  }
-
-  if (args.lifecycle.activeRequestKey === args.requestKey) {
-    return {
-      lifecycle: args.lifecycle,
-      shouldExecute: false,
-      state: args.state,
-    };
-  }
-
-  const requestId = args.lifecycle.activeRequestId + 1;
-
-  return {
-    lifecycle: {
-      activeRequestId: requestId,
-      activeRequestKey: args.requestKey,
-    },
-    requestId,
-    shouldExecute: true,
-    state:
-      args.state.dependencyKey === args.requestKey
-        ? args.state
-        : createPendingRuntimeScreenOperationLoaderState({
-            dependencyKey: args.requestKey,
-            previousState: args.state,
-          }),
-  };
-}
-
-export function completeRuntimeScreenOperationLoaderRequest(args: {
-  readonly lifecycle: RuntimeScreenOperationLoaderLifecycle;
-  readonly requestId: number;
-  readonly result: RuntimeScreenOperationLoaderExecutionResult;
-  readonly state: RuntimeScreenOperationLoaderState;
-}): {
-  readonly accepted: boolean;
-  readonly state: RuntimeScreenOperationLoaderState;
-} {
-  if (args.lifecycle.activeRequestId !== args.requestId) {
-    return {
-      accepted: false,
-      state: args.state,
-    };
-  }
-
-  return {
-    accepted: true,
-    state: {
-      dependencyKey: args.result.dependencyKey,
-      diagnostics: args.result.diagnostics,
-      operationResults: args.result.operationResults,
-      renderVersion: args.state.renderVersion,
-    },
-  };
-}
-
+/*** Executes screen loaders through the same invocation and result-slot machinery as events. */
 export async function executeRuntimeScreenOperationLoaders(args: {
   readonly bindingContext?: Record<string, unknown>;
-  readonly apis?: RuntimeBindingResolutionContext['apis'];
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
-  readonly operationResults?: RuntimeBindingOperationResultCache;
+  readonly executeCapability?: RuntimeCapabilityExecutor;
+  readonly resultSlots?: RuntimeBindingResultCache;
   readonly screen: ScreenSpec;
-  readonly loaders: readonly OperationScreenDataLoaderDefinition[];
+  readonly loaders: readonly ScreenDataLoaderDefinition[];
 }): Promise<RuntimeScreenOperationLoaderExecutionResult> {
-  const plan = createRuntimeScreenOperationLoaderPlan({
-    bindingContext: args.bindingContext,
-    loaders: args.loaders,
-    operationResults: args.operationResults,
-    screenId: args.screen.id,
-  });
+  const resultSlots: Record<string, BindingValue | undefined> = { ...(args.resultSlots ?? {}) };
+  const diagnostics: DataSourceDiagnostic[] = [];
+  const writeResultSlot: RuntimeBindingResultWriter = (slot, value) => {
+    resultSlots[slot] = value;
+  };
 
-  return executePreparedRuntimeScreenOperationLoaders({
-    apis: args.apis,
-    executeOperation: args.executeOperation,
-    plan,
-    screen: args.screen,
-  });
-}
-
-function executePreparedRuntimeScreenOperationLoaders(args: {
-  readonly apis?: RuntimeBindingResolutionContext['apis'];
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
-  readonly plan: RuntimeScreenOperationLoaderPlan;
-  readonly screen: ScreenSpec;
-}): Promise<RuntimeScreenOperationLoaderExecutionResult> {
-  const diagnostics: DataSourceDiagnostic[] = [...args.plan.diagnostics];
-
-  if (args.plan.loaders.length === 0) {
-    return Promise.resolve({
-      dependencyKey: args.plan.requestKey,
-      diagnostics,
-      operationResults: {},
-    });
-  }
-
-  if (args.executeOperation === undefined) {
-    diagnostics.push(
-      ...args.plan.loaders.map((preparedLoader) =>
-        createScreenOperationLoaderDiagnostic(
-          preparedLoader.loader,
-          'missing-adapter',
-          'Screen API operation loader requires an injected operation executor.',
-        ),
-      ),
-    );
-
-    return Promise.resolve({
-      dependencyKey: args.plan.requestKey,
-      diagnostics,
-      operationResults: {},
-    });
-  }
-  const { executeOperation } = args;
-
-  return (async () => {
-    const operationResults: Record<string, BindingValue | undefined> = {};
-
-    for (const preparedLoader of args.plan.loaders) {
-      const selection = resolveRuntimeBindingOperationSelection(
-        preparedLoader.loader.operation,
-        args.apis,
+  for (const loader of args.loaders) {
+    try {
+      await executeRuntimeBindingInvocation(
+        loader,
+        {
+          context: args.bindingContext,
+          executeCapability: args.executeCapability,
+          resultSlots,
+          writeResultSlot,
+        },
+        { node: args.screen.root },
         diagnostics,
       );
-      if (selection === undefined) {
-        continue;
-      }
-
-      const result = await executeOperation({
-        api: selection.api,
-        endpoint: selection.endpoint,
-        input: preparedLoader.input,
-        node: args.screen.root,
-        operation: preparedLoader.loader.operation,
+    } catch {
+      diagnostics.push({
+        code: 'adapter-error',
+        message: `Capability '${loader.capability}' could not be completed. Please try again.`,
+        severity: 'error',
       });
-      diagnostics.push(...(result.diagnostics ?? []));
-
-      if (!result.ok) {
-        continue;
-      }
-
-      operationResults[preparedLoader.operationKey] = result.data;
     }
+  }
 
-    return {
-      dependencyKey: args.plan.requestKey,
-      diagnostics,
-      operationResults,
-    };
-  })();
+  return {
+    dependencyKey: createRuntimeScreenLoaderRequestKey({
+      bindingContext: args.bindingContext,
+      loaders: args.loaders,
+      resultSlots: args.resultSlots,
+      screenId: args.screen.id,
+    }),
+    diagnostics,
+    resultSlots,
+  };
 }
 
+/*** Runs screen capability invocations when their serialized request input changes. */
 export function useRuntimeScreenOperationLoaders(args: {
   readonly bindingContext?: Record<string, unknown>;
-  readonly apis?: RuntimeBindingResolutionContext['apis'];
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
-  readonly operationResults?: RuntimeBindingOperationResultCache;
+  readonly executeCapability?: RuntimeCapabilityExecutor;
+  readonly resultSlots?: RuntimeBindingResultCache;
   readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
   readonly screen: ScreenSpec;
 }): RuntimeScreenOperationLoaderState {
-  const { apis, bindingContext, executeOperation, onDiagnostics, operationResults, screen } = args;
-  const loaders = React.useMemo(() => resolveScreenOperationLoaders(screen), [screen]);
-  const hasLoaders = loaders.length > 0;
-  const plan = React.useMemo(
+  const { onDiagnostics } = args;
+  const loaders = React.useMemo(() => resolveScreenOperationLoaders(args.screen), [args.screen]);
+  const dependencyKey = React.useMemo(
     () =>
-      createRuntimeScreenOperationLoaderPlan({
-        bindingContext,
+      createRuntimeScreenLoaderRequestKey({
+        bindingContext: args.bindingContext,
         loaders,
-        operationResults,
-        screenId: screen.id,
+        resultSlots: args.resultSlots,
+        screenId: args.screen.id,
       }),
-    [bindingContext, loaders, operationResults, screen.id],
-  );
-  const { requestKey } = plan;
-  const emptyState = React.useMemo(
-    () =>
-      createIdleRuntimeScreenOperationLoaderState({
-        dependencyKey: requestKey,
-      }),
-    [requestKey],
+    [args.bindingContext, args.resultSlots, args.screen.id, loaders],
   );
   const [state, setState] = React.useState<RuntimeScreenOperationLoaderState>(() =>
-    hasLoaders
-      ? createPendingRuntimeScreenOperationLoaderState({ dependencyKey: requestKey })
-      : emptyState,
-  );
-  const pendingState = React.useMemo(
-    () =>
-      state.dependencyKey === requestKey
-        ? state
-        : createPendingRuntimeScreenOperationLoaderState({
-            dependencyKey: requestKey,
-            previousState: state,
-          }),
-    [requestKey, state],
-  );
-  const effectiveState = hasLoaders ? pendingState : emptyState;
-  const lastDiagnosticsKeyRef = React.useRef<string | null>(null);
-  const lifecycleRef = React.useRef<RuntimeScreenOperationLoaderLifecycle>(
-    createRuntimeScreenOperationLoaderLifecycle(),
+    createPendingRuntimeScreenOperationLoaderState({ dependencyKey }),
   );
 
   React.useEffect(() => {
-    const request = beginRuntimeScreenOperationLoaderRequest({
-      hasLoaders,
-      lifecycle: lifecycleRef.current,
-      requestKey,
-      state,
+    let cancelled = false;
+    if (loaders.length === 0)
+      return () => {
+        cancelled = true;
+      };
+    void executeRuntimeScreenOperationLoaders({
+      bindingContext: args.bindingContext,
+      executeCapability: args.executeCapability,
+      loaders,
+      resultSlots: args.resultSlots,
+      screen: args.screen,
+    }).then((result) => {
+      if (!cancelled) {
+        setState((current) => ({
+          ...result,
+          renderVersion:
+            current.dependencyKey === dependencyKey
+              ? current.renderVersion
+              : current.renderVersion + 1,
+        }));
+      }
     });
-
-    lifecycleRef.current = request.lifecycle;
-
-    if (!request.shouldExecute || request.requestId === undefined) {
-      return;
-    }
-    const { requestId } = request;
-
-    void (async () => {
-      const result = await executePreparedRuntimeScreenOperationLoaders({
-        apis,
-        executeOperation,
-        plan,
-        screen,
-      });
-
-      setState((currentState) => {
-        const completion = completeRuntimeScreenOperationLoaderRequest({
-          lifecycle: lifecycleRef.current,
-          requestId,
-          result,
-          state: currentState.dependencyKey === requestKey ? currentState : request.state,
-        });
-
-        return completion.accepted ? completion.state : currentState;
-      });
-    })();
-  }, [apis, executeOperation, hasLoaders, plan, requestKey, screen, state]);
-
-  React.useEffect(() => {
-    if (effectiveState.diagnostics.length === 0) {
-      return;
-    }
-
-    const diagnosticsKey = stableSerialize(effectiveState.diagnostics);
-    if (lastDiagnosticsKeyRef.current === diagnosticsKey) {
-      return;
-    }
-
-    lastDiagnosticsKeyRef.current = diagnosticsKey;
-    onDiagnostics?.(effectiveState.diagnostics);
-  }, [effectiveState.diagnostics, onDiagnostics]);
-
-  return effectiveState;
-}
-
-interface PreparedRuntimeScreenOperationLoader {
-  readonly input?: BindingValue;
-  readonly loader: OperationScreenDataLoaderDefinition;
-  readonly operationKey: string;
-}
-
-interface RuntimeScreenOperationLoaderPlan {
-  readonly diagnostics: readonly DataSourceDiagnostic[];
-  readonly loaders: readonly PreparedRuntimeScreenOperationLoader[];
-  readonly requestKey: string;
-}
-
-function createRuntimeScreenOperationLoaderPlan(args: {
-  readonly bindingContext?: Record<string, unknown>;
-  readonly loaders: readonly OperationScreenDataLoaderDefinition[];
-  readonly operationResults?: RuntimeBindingOperationResultCache;
-  readonly screenId: string;
-}): RuntimeScreenOperationLoaderPlan {
-  if (args.loaders.length === 0) {
-    return {
-      diagnostics: EMPTY_RUNTIME_SCREEN_OPERATION_LOADER_DIAGNOSTICS,
-      loaders: [],
-      requestKey: createRuntimeScreenOperationLoaderIdleKey(args.screenId),
+    return () => {
+      cancelled = true;
     };
-  }
+  }, [
+    args.bindingContext,
+    args.executeCapability,
+    args.resultSlots,
+    args.screen,
+    dependencyKey,
+    loaders,
+    state.renderVersion,
+  ]);
 
-  const diagnostics: DataSourceDiagnostic[] = [];
-  const preparedLoaders: PreparedRuntimeScreenOperationLoader[] = [];
-  const operationKeys = new Set<string>();
+  React.useEffect(() => {
+    if (state.diagnostics.length > 0) onDiagnostics?.(state.diagnostics);
+  }, [onDiagnostics, state.diagnostics]);
 
-  for (const loader of args.loaders) {
-    const input = resolveBindingInputMapSync(
-      loader.input,
-      {
-        context: args.bindingContext,
-        operationResults: args.operationResults,
-      },
-      diagnostics,
-    );
-    const operationKey = createRuntimeBindingOperationKey(loader.operation);
-    if (operationKeys.has(operationKey)) {
-      diagnostics.push(
-        createScreenOperationLoaderDiagnostic(
-          loader,
-          'duplicate-operation-id',
-          `Screen operation loaders must not reuse operation key '${operationKey}' on the same screen.`,
-        ),
-      );
-      continue;
-    }
-
-    operationKeys.add(operationKey);
-    preparedLoaders.push({
-      input,
-      loader,
-      operationKey,
-    });
-  }
-
-  return {
-    diagnostics,
-    loaders: preparedLoaders,
-    requestKey: createRuntimeScreenOperationLoaderPlanRequestKey({
-      loaders: preparedLoaders,
-      screenId: args.screenId,
-    }),
-  };
-}
-
-function createRuntimeScreenOperationLoaderPlanRequestKey(args: {
-  readonly loaders: readonly PreparedRuntimeScreenOperationLoader[];
-  readonly screenId: string;
-}): string {
-  return stableSerialize({
-    loaders: args.loaders.map((loader) => ({
-      id: loader.loader.id,
-      input: loader.input,
-      operation: loader.loader.operation,
-      operationKey: loader.operationKey,
-    })),
-    screenId: args.screenId,
-  });
-}
-
-function createScreenOperationLoaderDiagnostic(
-  loader: OperationScreenDataLoaderDefinition,
-  code: DataSourceDiagnostic['code'],
-  message: string,
-): DataSourceDiagnostic {
-  return {
-    apiId: loader.operation.apiId,
-    code,
-    endpointId: loader.operation.endpointId,
-    operationId: loader.operation.operationId,
-    message,
-    severity: 'error',
-  };
-}
-
-function createRuntimeScreenOperationLoaderIdleKey(screenId: string): string {
-  return `screen:${screenId}:no-operation-loaders`;
+  return state.dependencyKey === dependencyKey
+    ? state
+    : createPendingRuntimeScreenOperationLoaderState({ dependencyKey, previousState: state });
 }
 
 function stableSerialize(value: unknown): string {
-  return JSON.stringify(sortSerializableValue(value));
-}
-
-function sortSerializableValue(value: unknown): unknown {
-  if (Array.isArray(value)) {
-    return value.map(sortSerializableValue);
-  }
-
-  if (typeof value !== 'object' || value === null) {
-    return value;
-  }
-
-  return Object.keys(value)
-    .sort((left, right) => left.localeCompare(right))
-    .reduce<Record<string, unknown>>((result, key) => {
-      result[key] = sortSerializableValue((value as Record<string, unknown>)[key]);
-      return result;
-    }, {});
+  return JSON.stringify(value);
 }
