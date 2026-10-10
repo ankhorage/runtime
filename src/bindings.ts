@@ -1,35 +1,24 @@
-export type { RuntimeApiOperationExecutorOptions } from './runtimeApiOperations';
-export { createRuntimeApiOperationExecutor } from './runtimeApiOperations';
-export type { RuntimeApiOperationSelection } from './runtimeApiSelection';
-export { validateRuntimeBindingOperationRef } from './runtimeApiSelection';
+export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
+export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 export type {
-  RuntimeBindingOperationExecutionArgs,
-  RuntimeBindingOperationExecutionResult,
-  RuntimeBindingOperationExecutor,
-  RuntimeBindingOperationKey,
-  RuntimeBindingOperationResultCache,
-  RuntimeBindingOperationResultWriter,
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
   RuntimeBindingResolutionResult,
+  RuntimeBindingResultCache,
+  RuntimeBindingResultWriter,
+  RuntimeCapabilityExecutionArgs,
+  RuntimeCapabilityExecutionResult,
+  RuntimeCapabilityExecutor,
 } from './runtimeBindings';
 export {
-  createRuntimeBindingOperationKey,
+  applyRuntimeBindingDataPath,
+  executeRuntimeBindingInvocation,
   resolveBindingInputMap,
+  resolveBindingInputMapSync,
+  resolveRuntimeBindingExpression,
+  resolveRuntimeBindingExpressionSync,
   resolveRuntimeBindings,
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
 } from './runtimeBindings';
-export type {
-  RuntimeEventOperationInvocation,
-  RuntimeEventOperationLifecycle,
-  RuntimeEventOperationState,
-  RuntimeEventOperationStatus,
-} from './runtimeEventOperationLifecycle';
-export {
-  createRuntimeEventOperationBindingContext,
-  createRuntimeEventOperationLifecycle,
-  IDLE_RUNTIME_EVENT_OPERATION_STATE,
-  resolveRuntimeEventOperationErrorMessage,
-} from './runtimeEventOperationLifecycle';

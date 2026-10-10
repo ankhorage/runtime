@@ -1,7 +1,5 @@
 import type {
-  ApiDefinitionRegistry,
   ComponentDataBindingRegistry,
-  ComponentEventDto,
   DataSourceDiagnostic,
   DbAdapter,
   DbRealtimeAdapter,
@@ -9,15 +7,14 @@ import type {
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capability';
 import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
 import React, { createContext, use } from 'react';
 
 import type { ComponentRegistry } from './registry';
 import type {
-  RuntimeBindingOperationExecutor,
-  RuntimeBindingOperationResultCache,
-  RuntimeBindingOperationResultWriter,
+  RuntimeBindingResultCache,
+  RuntimeBindingResultWriter,
+  RuntimeCapabilityExecutor,
 } from './runtimeBindings';
 import type {
   RuntimeEventOperationLifecycle,
@@ -36,21 +33,6 @@ export interface RuntimeRendererWrapArgs {
   isRoot: boolean;
 }
 
-export interface RuntimeActionHandlerArgs {
-  action: RuntimeAction;
-  event?: ComponentEventDto<string, object>;
-  node?: UiNode;
-  resolvedPayload?: object;
-}
-
-export interface RuntimeAction {
-  readonly type: Capability['id'];
-  readonly payload?: object;
-}
-export type RuntimeActionHandler = (args: RuntimeActionHandlerArgs) => Promise<void> | void;
-export type RuntimeActionHandlers = Partial<Record<Capability['id'], RuntimeActionHandler>>;
-export type RuntimeActionExecutor = RuntimeActionHandler;
-
 export interface RuntimeRendererConfig {
   disableActions?: boolean;
   registry?: ComponentRegistry;
@@ -58,17 +40,14 @@ export interface RuntimeRendererConfig {
   resolveNodeProps?: RuntimeNodePropsResolver;
   resolveMediaAsset?: RuntimeMediaAssetResolver;
   mediaAssets?: MediaAssetRegistry;
-  actionHandlers?: RuntimeActionHandlers;
   dbAdapter?: DbAdapter;
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
-  apis?: ApiDefinitionRegistry;
   dataBindings?: ComponentDataBindingRegistry;
-  operationResults?: RuntimeBindingOperationResultCache;
-  writeOperationResult?: RuntimeBindingOperationResultWriter;
-  executeAction?: RuntimeActionExecutor;
-  executeOperation?: RuntimeBindingOperationExecutor;
+  resultSlots?: RuntimeBindingResultCache;
+  writeResultSlot?: RuntimeBindingResultWriter;
+  executeCapability?: RuntimeCapabilityExecutor;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
   eventOperationLifecycle?: RuntimeEventOperationLifecycle;
   eventOperationState?: RuntimeEventOperationState;
@@ -121,18 +100,11 @@ export function mergeRuntimeRendererConfig(
     return EMPTY_RUNTIME_RENDERER_CONFIG;
   }
 
-  const actionHandlers = mergeRecordConfig(
-    inheritedConfig?.actionHandlers,
-    localConfig?.actionHandlers,
-  );
   const bindingContext = mergeRecordConfig(
     inheritedConfig?.bindingContext,
     localConfig?.bindingContext,
   );
-  const operationResults = mergeRecordConfig(
-    inheritedConfig?.operationResults,
-    localConfig?.operationResults,
-  );
+  const resultSlots = mergeRecordConfig(inheritedConfig?.resultSlots, localConfig?.resultSlots);
 
   return {
     disableActions:
@@ -145,18 +117,14 @@ export function mergeRuntimeRendererConfig(
     ),
     resolveMediaAsset: localConfig?.resolveMediaAsset ?? inheritedConfig?.resolveMediaAsset,
     mediaAssets: localConfig?.mediaAssets ?? inheritedConfig?.mediaAssets,
-    actionHandlers,
     dbAdapter: localConfig?.dbAdapter ?? inheritedConfig?.dbAdapter,
     dbRealtimeAdapter: localConfig?.dbRealtimeAdapter ?? inheritedConfig?.dbRealtimeAdapter,
     stateAdapter: localConfig?.stateAdapter ?? inheritedConfig?.stateAdapter,
     bindingContext,
-    apis: localConfig?.apis ?? inheritedConfig?.apis,
     dataBindings: localConfig?.dataBindings ?? inheritedConfig?.dataBindings,
-    operationResults,
-    writeOperationResult:
-      localConfig?.writeOperationResult ?? inheritedConfig?.writeOperationResult,
-    executeAction: localConfig?.executeAction ?? inheritedConfig?.executeAction,
-    executeOperation: localConfig?.executeOperation ?? inheritedConfig?.executeOperation,
+    resultSlots,
+    writeResultSlot: localConfig?.writeResultSlot ?? inheritedConfig?.writeResultSlot,
+    executeCapability: localConfig?.executeCapability ?? inheritedConfig?.executeCapability,
     onDiagnostics: localConfig?.onDiagnostics ?? inheritedConfig?.onDiagnostics,
     eventOperationLifecycle:
       localConfig?.eventOperationLifecycle ?? inheritedConfig?.eventOperationLifecycle,

@@ -1,67 +1,51 @@
 import type {
-  ApiDefinition,
-  ApiDefinitionRegistry,
-  BindingFallback,
+  BindingCapabilityReference,
+  BindingExpression,
   BindingInputMap,
-  BindingInputValue,
-  BindingOperationRef,
+  BindingInvocation,
   BindingValue,
-  BindingValueSource,
   BindingValueTransform,
   ComponentDataBindingRegistry,
   ComponentEventDto,
-  DataEndpointConfig,
   DataSourceDiagnostic,
   PropBinding,
   StateAdapter,
   UiNode,
 } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capability';
 import { isRecord } from '@ankhorage/utility/object';
 
-import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
+export type RuntimeBindingResultCache = Readonly<Record<string, BindingValue | undefined>>;
+export type RuntimeBindingResultWriter = (slot: string, value: BindingValue) => void;
 
-export type RuntimeBindingOperationKey = string;
-
-export interface RuntimeBindingOperationExecutionArgs {
-  readonly operation: BindingOperationRef;
-  readonly api: ApiDefinition;
-  readonly endpoint: DataEndpointConfig;
+export interface RuntimeCapabilityExecutionArgs {
+  readonly capability: Capability['id'];
   readonly input?: BindingValue;
   readonly node?: UiNode;
+  readonly event?: ComponentEventDto<string, object>;
 }
 
-export type RuntimeBindingOperationExecutionResult =
+export type RuntimeCapabilityExecutionResult =
   | {
       readonly ok: true;
       readonly data: BindingValue;
       readonly diagnostics?: readonly DataSourceDiagnostic[];
     }
-  | {
-      readonly ok: false;
-      readonly diagnostics: readonly DataSourceDiagnostic[];
-    };
+  | { readonly ok: false; readonly diagnostics: readonly DataSourceDiagnostic[] };
 
-export type RuntimeBindingOperationExecutor = (
-  args: RuntimeBindingOperationExecutionArgs,
-) => Promise<RuntimeBindingOperationExecutionResult>;
-
-export type RuntimeBindingOperationResultCache = Readonly<
-  Record<RuntimeBindingOperationKey, BindingValue | undefined>
->;
-
-export type RuntimeBindingOperationResultWriter = (
-  key: RuntimeBindingOperationKey,
-  value: BindingValue,
-) => void;
+export type RuntimeCapabilityExecutor = (
+  args: RuntimeCapabilityExecutionArgs,
+) => Promise<RuntimeCapabilityExecutionResult>;
 
 export interface RuntimeBindingResolutionContext {
   readonly context?: Record<string, unknown>;
   readonly event?: ComponentEventDto<string, object>;
   readonly stateAdapter?: StateAdapter;
-  readonly apis?: ApiDefinitionRegistry;
+  readonly capabilityValues?: Readonly<Record<string, BindingValue | undefined>>;
   readonly dataBindings?: ComponentDataBindingRegistry;
-  readonly operationResults?: RuntimeBindingOperationResultCache;
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
+  readonly resultSlots?: RuntimeBindingResultCache;
+  readonly executeCapability?: RuntimeCapabilityExecutor;
+  readonly writeResultSlot?: RuntimeBindingResultWriter;
 }
 
 export interface RuntimeBindingResolutionArgs extends RuntimeBindingResolutionContext {
@@ -74,327 +58,293 @@ export interface RuntimeBindingResolutionResult {
   readonly diagnostics: readonly DataSourceDiagnostic[];
 }
 
+/*** Resolves every property binding through the canonical expression boundary. */
 export async function resolveRuntimeBindingsAsync(
   args: RuntimeBindingResolutionArgs,
 ): Promise<RuntimeBindingResolutionResult> {
   const diagnostics: DataSourceDiagnostic[] = [];
-  const resolvedProps: Record<string, unknown> = { ...args.props };
-  const binding = args.dataBindings?.[args.node.id];
+  const props = { ...args.props };
 
-  for (const [prop, propBinding] of Object.entries(binding?.props ?? {})) {
-    const value = await resolveRuntimeBindingValue(propBinding, args, diagnostics);
-    resolvedProps[prop] = value;
+  for (const [name, binding] of Object.entries(args.dataBindings?.[args.node.id]?.props ?? {})) {
+    props[name] = await resolveRuntimeBindingValue(binding, args, diagnostics);
   }
 
-  return { props: resolvedProps, diagnostics };
+  return { props, diagnostics };
 }
 
+/*** Resolves property bindings using only already materialized capability values. */
 export function resolveRuntimeBindings(
   args: RuntimeBindingResolutionArgs,
 ): RuntimeBindingResolutionResult {
   const diagnostics: DataSourceDiagnostic[] = [];
-  const resolvedProps: Record<string, unknown> = { ...args.props };
-  const binding = args.dataBindings?.[args.node.id];
+  const props = { ...args.props };
 
-  for (const [prop, propBinding] of Object.entries(binding?.props ?? {})) {
-    resolvedProps[prop] = resolveRuntimeBindingValueSync(propBinding, args, diagnostics);
+  for (const [name, binding] of Object.entries(args.dataBindings?.[args.node.id]?.props ?? {})) {
+    props[name] = resolveRuntimeBindingValueSync(binding, args, diagnostics);
   }
 
-  return { props: resolvedProps, diagnostics };
+  return { props, diagnostics };
 }
 
-export async function resolveRuntimeBindingValue(
+/*** Resolves one recursive Contracts expression, executing a capability only when needed. */
+export async function resolveRuntimeBindingExpression(
+  expression: BindingExpression,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[] = [],
+): Promise<BindingValue | undefined> {
+  if (isCapabilityReference(expression)) {
+    return resolveCapabilityReferenceAsync(expression, context, diagnostics);
+  }
+  if (expression.kind === 'literal') return expression.value;
+  if (expression.kind === 'array') return resolveArrayAsync(expression.items, context, diagnostics);
+  if (expression.kind === 'object')
+    return resolveObjectAsync(expression.fields, context, diagnostics);
+  if (expression.kind === 'transform') {
+    return applyBindingValueTransforms(
+      await resolveRuntimeBindingExpression(expression.value, context, diagnostics),
+      expression.transforms,
+    );
+  }
+
+  const value = await resolveRuntimeBindingExpression(expression.value, context, diagnostics);
+  return value === undefined
+    ? resolveRuntimeBindingExpression(expression.fallback, context, diagnostics)
+    : value;
+}
+
+/*** Resolves one expression without side effects for synchronous rendering. */
+export function resolveRuntimeBindingExpressionSync(
+  expression: BindingExpression,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[] = [],
+): BindingValue | undefined {
+  if (isCapabilityReference(expression))
+    return resolveCapabilityReferenceSync(expression, context, diagnostics);
+  if (expression.kind === 'literal') return expression.value;
+  if (expression.kind === 'array') return resolveArraySync(expression.items, context, diagnostics);
+  if (expression.kind === 'object')
+    return resolveObjectSync(expression.fields, context, diagnostics);
+  if (expression.kind === 'transform') {
+    return applyBindingValueTransforms(
+      resolveRuntimeBindingExpressionSync(expression.value, context, diagnostics),
+      expression.transforms,
+    );
+  }
+
+  const value = resolveRuntimeBindingExpressionSync(expression.value, context, diagnostics);
+  return value === undefined
+    ? resolveRuntimeBindingExpressionSync(expression.fallback, context, diagnostics)
+    : value;
+}
+
+/*** Resolves a property binding expression. */
+export function resolveRuntimeBindingValue(
   binding: PropBinding,
   context: RuntimeBindingResolutionContext,
   diagnostics: DataSourceDiagnostic[] = [],
-): Promise<unknown> {
-  const value = await resolveRuntimeBindingValueSource(binding.source, context, diagnostics);
-  const transformedValue = applyBindingValueTransforms(value, binding.transforms);
-
-  if (transformedValue !== undefined) return transformedValue;
-
-  return resolveBindingFallback(binding.fallback, context, diagnostics);
+): Promise<BindingValue | undefined> {
+  return resolveRuntimeBindingExpression(binding.value, context, diagnostics);
 }
 
+/*** Resolves a property binding expression without executing a capability. */
 export function resolveRuntimeBindingValueSync(
   binding: PropBinding,
   context: RuntimeBindingResolutionContext,
   diagnostics: DataSourceDiagnostic[] = [],
-): unknown {
-  const value = resolveRuntimeBindingValueSourceSync(binding.source, context, diagnostics);
-  const transformedValue = applyBindingValueTransforms(value, binding.transforms);
-
-  if (transformedValue !== undefined) return transformedValue;
-
-  return resolveBindingFallbackSync(binding.fallback, context, diagnostics);
+): BindingValue | undefined {
+  return resolveRuntimeBindingExpressionSync(binding.value, context, diagnostics);
 }
 
-export async function resolveBindingInputMap(
+/*** Resolves an invocation input map recursively. */
+export function resolveBindingInputMap(
   input: BindingInputMap | undefined,
   context: RuntimeBindingResolutionContext,
   diagnostics: DataSourceDiagnostic[] = [],
 ): Promise<BindingValue | undefined> {
-  if (input === undefined) return undefined;
-
-  const fields: Record<string, BindingValue> = {};
-
-  for (const [key, value] of Object.entries(input)) {
-    const resolvedValue = await resolveBindingInputValue(value, context, diagnostics);
-    if (resolvedValue !== undefined) fields[key] = resolvedValue;
-  }
-
-  return fields;
+  return input === undefined
+    ? Promise.resolve(undefined)
+    : resolveObjectAsync(input, context, diagnostics);
 }
 
+/*** Resolves an invocation input map without executing a capability. */
 export function resolveBindingInputMapSync(
   input: BindingInputMap | undefined,
   context: RuntimeBindingResolutionContext,
   diagnostics: DataSourceDiagnostic[] = [],
 ): BindingValue | undefined {
-  if (input === undefined) return undefined;
-
-  const fields: Record<string, BindingValue> = {};
-
-  for (const [key, value] of Object.entries(input)) {
-    const resolvedValue = resolveBindingInputValueSync(value, context, diagnostics);
-    if (resolvedValue !== undefined) fields[key] = resolvedValue;
-  }
-
-  return fields;
+  return input === undefined ? undefined : resolveObjectSync(input, context, diagnostics);
 }
 
-export function createRuntimeBindingOperationKey(
-  operation: BindingOperationRef,
-): RuntimeBindingOperationKey {
-  return [operation.apiId, operation.endpointId ?? '', operation.operationId].join(':');
-}
-
-async function resolveRuntimeBindingValueSource(
-  source: BindingValueSource,
+/*** Invokes one capability and records its structured result under its declared local slot. */
+export async function executeRuntimeBindingInvocation(
+  invocation: BindingInvocation,
   context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): Promise<BindingValue | undefined> {
-  if (source.kind !== 'operation') {
-    return resolveRuntimeBindingValueSourceSync(source, context, diagnostics);
-  }
-
-  const cached = resolveCachedOperationValue(source, context);
-  if (cached !== undefined) return cached;
-
-  if (context.executeOperation === undefined) {
-    diagnostics.push(
-      createRuntimeBindingDiagnostic(
-        source.operation,
-        'missing-adapter',
-        'API operation binding requires an injected operation executor.',
-      ),
-    );
+  args: Pick<RuntimeCapabilityExecutionArgs, 'event' | 'node'> = {},
+  diagnostics: DataSourceDiagnostic[] = [],
+): Promise<RuntimeCapabilityExecutionResult | undefined> {
+  if (context.executeCapability === undefined) {
+    diagnostics.push(createMissingCapabilityExecutorDiagnostic(invocation.capability));
     return undefined;
   }
 
-  const selection = resolveRuntimeBindingOperationSelection(
-    source.operation,
-    context.apis,
-    diagnostics,
-  );
-  if (selection === undefined) return undefined;
-
-  const result = await context.executeOperation({
-    api: selection.api,
-    endpoint: selection.endpoint,
-    operation: source.operation,
+  const input = await resolveBindingInputMap(invocation.input, context, diagnostics);
+  const result = await context.executeCapability({
+    capability: invocation.capability,
+    input,
+    ...args,
   });
-
   diagnostics.push(...(result.diagnostics ?? []));
-  if (!result.ok) return undefined;
 
-  return applyRuntimeBindingDataPath(result.data, source.path);
-}
-
-export function resolveRuntimeBindingValueSourceSync(
-  source: BindingValueSource,
-  context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): BindingValue | undefined {
-  switch (source.kind) {
-    case 'context':
-      return asBindingValue(readPath(context.context, source.path));
-    case 'event':
-      return asBindingValue(readPath(context.event, source.path));
-    case 'literal':
-      return source.value;
-    case 'operation': {
-      const cached = resolveCachedOperationValue(source, context);
-      if (cached !== undefined) return cached;
-      diagnostics.push(
-        createRuntimeBindingDiagnostic(
-          source.operation,
-          'missing-adapter',
-          'Synchronous API operation bindings require preloaded operation results.',
-        ),
-      );
-      return undefined;
-    }
-    case 'state': {
-      const result = context.stateAdapter?.get(source.path);
-      return result?.ok ? asBindingValue(result.data) : undefined;
-    }
-  }
-}
-
-function resolveCachedOperationValue(
-  source: Extract<BindingValueSource, { readonly kind: 'operation' }>,
-  context: RuntimeBindingResolutionContext,
-): BindingValue | undefined {
-  const operationKey = createRuntimeBindingOperationKey(source.operation);
-  const cachedValue = context.operationResults?.[operationKey];
-
-  return applyRuntimeBindingDataPath(cachedValue, source.path);
-}
-
-async function resolveBindingFallback(
-  fallback: BindingFallback | undefined,
-  context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): Promise<unknown> {
-  if (fallback === undefined) return undefined;
-  if (fallback.value !== undefined) return fallback.value;
-  if (fallback.source === undefined) return undefined;
-
-  return resolveRuntimeBindingValueSource(fallback.source, context, diagnostics);
-}
-
-function resolveBindingFallbackSync(
-  fallback: BindingFallback | undefined,
-  context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): unknown {
-  if (fallback === undefined) return undefined;
-  if (fallback.value !== undefined) return fallback.value;
-  if (fallback.source === undefined) return undefined;
-
-  return resolveRuntimeBindingValueSourceSync(fallback.source, context, diagnostics);
-}
-
-async function resolveBindingInputValue(
-  input: BindingInputValue,
-  context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): Promise<BindingValue | undefined> {
-  if (input.kind === 'literal') return input.value;
-  if (input.kind === 'source') {
-    const value = await resolveRuntimeBindingValueSource(input.source, context, diagnostics);
-    return applyBindingValueTransforms(value, input.transforms);
+  if (result.ok && invocation.result !== undefined) {
+    context.writeResultSlot?.(invocation.result, result.data);
   }
 
-  if (input.kind === 'array') {
-    const items: BindingValue[] = [];
-
-    for (const item of input.items) {
-      const value = await resolveBindingInputValue(item, context, diagnostics);
-      if (value !== undefined) items.push(value);
-    }
-
-    return items;
-  }
-
-  const fields: Record<string, BindingValue> = {};
-
-  for (const [key, value] of Object.entries(input.fields)) {
-    const resolvedValue = await resolveBindingInputValue(value, context, diagnostics);
-    if (resolvedValue !== undefined) fields[key] = resolvedValue;
-  }
-
-  return fields;
+  return result;
 }
 
-function resolveBindingInputValueSync(
-  input: BindingInputValue,
-  context: RuntimeBindingResolutionContext,
-  diagnostics: DataSourceDiagnostic[],
-): BindingValue | undefined {
-  if (input.kind === 'literal') return input.value;
-  if (input.kind === 'source') {
-    const value = resolveRuntimeBindingValueSourceSync(input.source, context, diagnostics);
-    return applyBindingValueTransforms(value, input.transforms);
-  }
-
-  if (input.kind === 'array') {
-    const items: BindingValue[] = [];
-
-    for (const item of input.items) {
-      const value = resolveBindingInputValueSync(item, context, diagnostics);
-      if (value !== undefined) items.push(value);
-    }
-
-    return items;
-  }
-
-  const fields: Record<string, BindingValue> = {};
-
-  for (const [key, value] of Object.entries(input.fields)) {
-    const resolvedValue = resolveBindingInputValueSync(value, context, diagnostics);
-    if (resolvedValue !== undefined) fields[key] = resolvedValue;
-  }
-
-  return fields;
-}
-
-function createRuntimeBindingDiagnostic(
-  operation: BindingOperationRef,
-  code: DataSourceDiagnostic['code'],
-  message: string,
-): DataSourceDiagnostic {
-  return {
-    apiId: operation.apiId,
-    code,
-    endpointId: operation.endpointId,
-    message,
-    operationId: operation.operationId,
-    severity: 'error',
-  };
-}
-
-function applyBindingValueTransforms(
-  value: unknown,
-  transforms: readonly BindingValueTransform[] | undefined,
-): BindingValue | undefined {
-  const bindingValue = asBindingValue(value);
-  if (typeof bindingValue !== 'string' || transforms === undefined) return bindingValue;
-
-  let currentValue = bindingValue;
-
-  for (const transform of transforms) {
-    if (transform === 'lowercase') currentValue = currentValue.toLowerCase();
-    if (transform === 'trim') currentValue = currentValue.trim();
-    if (transform === 'uppercase') currentValue = currentValue.toUpperCase();
-  }
-
-  return currentValue;
-}
-
+/*** Applies a dotted path to a serializable binding value. */
 export function applyRuntimeBindingDataPath(
   value: BindingValue | undefined,
   path: string | undefined,
 ): BindingValue | undefined {
-  if (path === undefined) return value;
-  return asBindingValue(readPath(value, path));
+  return path === undefined ? value : asBindingValue(readPath(value, path));
 }
 
-function readPath(source: unknown, path: string): unknown {
-  return path.split('.').reduce<unknown>((currentValue, part) => {
-    if (Array.isArray(currentValue)) {
-      if (!isArrayIndexPathPart(part)) return undefined;
-      return currentValue[Number(part)];
-    }
-
-    if (!isRecord(currentValue)) return undefined;
-    return currentValue[part];
-  }, source);
+function isCapabilityReference(
+  expression: BindingExpression,
+): expression is BindingCapabilityReference {
+  return 'capability' in expression;
 }
 
-function isArrayIndexPathPart(part: string): boolean {
-  return /^(0|[1-9]\d*)$/.test(part);
+async function resolveCapabilityReferenceAsync(
+  reference: BindingCapabilityReference,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+): Promise<BindingValue | undefined> {
+  const cached = resolveCapabilityReferenceSync(reference, context, diagnostics, false);
+  if (cached !== undefined || reference.result !== undefined) return cached;
+  if (context.executeCapability === undefined) return cached;
+
+  const result = await context.executeCapability({ capability: reference.capability });
+  diagnostics.push(...(result.diagnostics ?? []));
+  return result.ok ? applyRuntimeBindingDataPath(result.data, reference.path) : undefined;
+}
+
+function resolveCapabilityReferenceSync(
+  reference: BindingCapabilityReference,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+  reportMissing = true,
+): BindingValue | undefined {
+  const value =
+    reference.result === undefined
+      ? resolveReadableCapability(reference.capability, context)
+      : context.resultSlots?.[reference.result];
+  if (value === undefined && reference.result !== undefined && reportMissing) {
+    diagnostics.push({
+      code: 'missing-adapter',
+      message: `Result slot '${reference.result}' is not available.`,
+      severity: 'error',
+    });
+  }
+  return applyRuntimeBindingDataPath(value, reference.path);
+}
+
+function resolveReadableCapability(
+  capability: string,
+  context: RuntimeBindingResolutionContext,
+): BindingValue | undefined {
+  const explicit = context.capabilityValues?.[capability];
+  if (explicit !== undefined) return explicit;
+  if (capability.startsWith('context.'))
+    return asBindingValue(readPath(context.context, capability.slice(8)));
+  if (capability.startsWith('event.'))
+    return asBindingValue(readPath(context.event, capability.slice(6)));
+  if (capability.startsWith('state.')) {
+    const result = context.stateAdapter?.get(capability.slice(6));
+    return result?.ok ? asBindingValue(result.data) : undefined;
+  }
+  return asBindingValue(readPath(context.context, capability));
+}
+
+async function resolveArrayAsync(
+  items: readonly BindingExpression[],
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+): Promise<BindingValue> {
+  const values = await Promise.all(
+    items.map((item) => resolveRuntimeBindingExpression(item, context, diagnostics)),
+  );
+  return values.filter((value): value is BindingValue => value !== undefined);
+}
+
+function resolveArraySync(
+  items: readonly BindingExpression[],
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+): BindingValue {
+  return items
+    .map((item) => resolveRuntimeBindingExpressionSync(item, context, diagnostics))
+    .filter((value): value is BindingValue => value !== undefined);
+}
+
+async function resolveObjectAsync(
+  fields: Readonly<Record<string, BindingExpression>>,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+): Promise<BindingValue> {
+  const entries = await Promise.all(
+    Object.entries(fields).map(async ([key, expression]) => {
+      const value = await resolveRuntimeBindingExpression(expression, context, diagnostics);
+      return value === undefined ? undefined : ([key, value] as const);
+    }),
+  );
+  return Object.fromEntries(
+    entries.filter((entry): entry is readonly [string, BindingValue] => entry !== undefined),
+  );
+}
+
+function resolveObjectSync(
+  fields: Readonly<Record<string, BindingExpression>>,
+  context: RuntimeBindingResolutionContext,
+  diagnostics: DataSourceDiagnostic[],
+): BindingValue {
+  const entries = Object.entries(fields).map(([key, expression]) => {
+    const value = resolveRuntimeBindingExpressionSync(expression, context, diagnostics);
+    return value === undefined ? undefined : ([key, value] as const);
+  });
+  return Object.fromEntries(
+    entries.filter((entry): entry is readonly [string, BindingValue] => entry !== undefined),
+  );
+}
+
+function applyBindingValueTransforms(
+  value: BindingValue | undefined,
+  transforms: readonly BindingValueTransform[],
+): BindingValue | undefined {
+  if (typeof value !== 'string') return value;
+  return transforms.reduce((current, transform) => {
+    if (transform === 'trim') return current.trim();
+    if (transform === 'uppercase') return current.toUpperCase();
+    return current.toLowerCase();
+  }, value);
+}
+
+function createMissingCapabilityExecutorDiagnostic(capability: string): DataSourceDiagnostic {
+  return {
+    code: 'missing-adapter',
+    message: `Capability '${capability}' requires an injected capability executor.`,
+    severity: 'error',
+  };
+}
+
+function readPath(value: unknown, path: string): unknown {
+  if (path.length === 0) return value;
+  return path.split('.').reduce<unknown>((current, part) => {
+    if (Array.isArray(current))
+      return /^(0|[1-9]\\d*)$/.test(part) ? current[Number(part)] : undefined;
+    return isRecord(current) ? current[part] : undefined;
+  }, value);
 }
 
 function asBindingValue(value: unknown): BindingValue | undefined {
@@ -402,13 +352,7 @@ function asBindingValue(value: unknown): BindingValue | undefined {
 }
 
 function isBindingValue(value: unknown): value is BindingValue {
-  if (value === null) return true;
-  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-    return true;
-  }
-
+  if (value === null || ['boolean', 'number', 'string'].includes(typeof value)) return true;
   if (Array.isArray(value)) return value.every(isBindingValue);
-  if (!isRecord(value)) return false;
-
-  return Object.values(value).every(isBindingValue);
+  return isRecord(value) && Object.values(value).every(isBindingValue);
 }

@@ -1,46 +1,36 @@
-import { isCapabilityId } from '@ankhorage/capability';
 import type {
-  ApiDefinitionRegistry,
   BindingCondition,
-  BindingInputMap,
+  BindingExpression,
   BindingValue,
   ComponentDataBindingRegistry,
   ComponentEventDto,
   DataSourceDiagnostic,
-  EventBinding,
-  EventBindingTarget,
   UiNode,
 } from '@ankhorage/contracts';
-import type { Capability } from '@ankhorage/contracts/capability';
+import { isRecord } from '@ankhorage/utility/object';
 
-import { resolveRuntimeBindingOperationSelection } from './runtimeApiSelection';
 import {
-  createRuntimeBindingOperationKey,
-  resolveBindingInputMap,
-  type RuntimeBindingOperationExecutor,
-  type RuntimeBindingOperationResultCache,
-  type RuntimeBindingOperationResultWriter,
+  executeRuntimeBindingInvocation,
+  resolveRuntimeBindingExpressionSync,
+  type RuntimeBindingResultCache,
+  type RuntimeBindingResultWriter,
+  type RuntimeCapabilityExecutor,
 } from './runtimeBindings';
 import {
   resolveRuntimeEventOperationErrorMessage,
   type RuntimeEventOperationLifecycle,
 } from './runtimeEventOperationLifecycle';
-import type { RuntimeActionHandler, RuntimeActionHandlers } from './RuntimeRendererConfig';
 
 type RuntimeEventPayload = Record<string, unknown>;
-
 type RuntimeEventHandler = (...args: unknown[]) => unknown;
-
-type RuntimeOperationEventTarget = Extract<EventBindingTarget, { readonly kind: 'operation' }>;
 
 export interface RuntimeActionRegistry {
   dispatchComponentEvent(args: RuntimeComponentEventDispatchArgs): Promise<void>;
-  registerActionHandler(type: Capability['id'], handler: RuntimeActionHandler): () => void;
 }
 
 export interface RuntimeActionResolutionScope {
   readonly context?: Record<string, unknown>;
-  readonly operationResults?: RuntimeBindingOperationResultCache;
+  readonly resultSlots?: RuntimeBindingResultCache;
   readonly state?: Record<string, unknown>;
 }
 
@@ -52,11 +42,9 @@ export interface RuntimeComponentEventDispatchArgs extends RuntimeActionResoluti
   readonly node: UiNode;
   readonly event: ComponentEventDto<string, object>;
   readonly eventName?: string;
-  readonly executeAction?: RuntimeActionHandler;
-  readonly apis?: ApiDefinitionRegistry;
   readonly dataBindings?: ComponentDataBindingRegistry;
-  readonly executeOperation?: RuntimeBindingOperationExecutor;
-  readonly writeOperationResult?: RuntimeBindingOperationResultWriter;
+  readonly executeCapability?: RuntimeCapabilityExecutor;
+  readonly writeResultSlot?: RuntimeBindingResultWriter;
   readonly eventOperationLifecycle?: RuntimeEventOperationLifecycle;
 }
 
@@ -70,124 +58,79 @@ export interface RuntimeEventPropWrapArgs extends RuntimeActionResolutionScope {
   ) => Promise<void> | void;
 }
 
+/*** Creates a registry that dispatches every authored event through one capability executor. */
 export function createRuntimeActionRegistry(
-  options: {
-    actionHandlers?: RuntimeActionHandlers;
-    apis?: ApiDefinitionRegistry;
-    dataBindings?: ComponentDataBindingRegistry;
-    executeAction?: RuntimeActionHandler;
-    executeOperation?: RuntimeBindingOperationExecutor;
-    eventOperationLifecycle?: RuntimeEventOperationLifecycle;
-    operationResults?: RuntimeBindingOperationResultCache;
-    writeOperationResult?: RuntimeBindingOperationResultWriter;
-  } = {},
+  options: Pick<
+    RuntimeComponentEventDispatchArgs,
+    | 'dataBindings'
+    | 'eventOperationLifecycle'
+    | 'executeCapability'
+    | 'resultSlots'
+    | 'writeResultSlot'
+  > = {},
 ): RuntimeActionRegistry {
-  const actionHandlers: RuntimeActionHandlers = { ...(options.actionHandlers ?? {}) };
-
   return {
     async dispatchComponentEvent(args) {
-      await dispatchRuntimeComponentEvent({
-        ...args,
-        actionHandlers,
-        apis: args.apis ?? options.apis,
-        dataBindings: args.dataBindings ?? options.dataBindings,
-        executeAction: args.executeAction ?? options.executeAction,
-        executeOperation: args.executeOperation ?? options.executeOperation,
-        eventOperationLifecycle: args.eventOperationLifecycle ?? options.eventOperationLifecycle,
-        operationResults: args.operationResults ?? options.operationResults,
-        writeOperationResult: args.writeOperationResult ?? options.writeOperationResult,
-      });
-    },
-    registerActionHandler(type, handler) {
-      actionHandlers[type] = handler;
-
-      return () => {
-        delete actionHandlers[type];
-      };
+      await dispatchRuntimeComponentEvent({ ...options, ...args });
     },
   };
 }
 
+/*** Executes every matching event invocation through the canonical capability path. */
 export async function dispatchRuntimeComponentEvent(
-  args: RuntimeComponentEventDispatchArgs & {
-    readonly actionHandlers?: RuntimeActionHandlers;
-  },
+  args: RuntimeComponentEventDispatchArgs,
 ): Promise<readonly DataSourceDiagnostic[]> {
-  const { node, event, eventName = inferLocalEventName(event.type), actionHandlers } = args;
-  const eventBindings: readonly EventBinding[] =
-    args.dataBindings?.[node.id]?.events?.[eventName] ??
-    args.dataBindings?.[node.id]?.events?.[event.type] ??
+  const eventName = args.eventName ?? inferLocalEventName(args.event.type);
+  const bindings =
+    args.dataBindings?.[args.node.id]?.events?.[eventName] ??
+    args.dataBindings?.[args.node.id]?.events?.[args.event.type] ??
     [];
   const diagnostics: DataSourceDiagnostic[] = [];
-  const dispatchOperationResults: Record<string, BindingValue | undefined> = {
-    ...(args.operationResults ?? {}),
-  };
-  const resolutionArgs: RuntimeComponentEventDispatchArgs = {
-    ...args,
-    operationResults: dispatchOperationResults,
-  };
+  const resultSlots: Record<string, BindingValue | undefined> = { ...(args.resultSlots ?? {}) };
 
-  for (const binding of eventBindings) {
-    if (!matchesBindingCondition(binding.when, resolutionArgs)) continue;
+  for (const binding of bindings) {
+    const context = {
+      context: args.context,
+      event: args.event,
+      executeCapability: args.executeCapability,
+      resultSlots,
+      writeResultSlot: (slot: string, value: BindingValue) => {
+        resultSlots[slot] = value;
+        args.writeResultSlot?.(slot, value);
+      },
+    };
+    if (!matchesBindingCondition(binding.when, context)) continue;
 
-    if (binding.target.kind === 'action') {
-      const capabilityId = resolveCapabilityId(binding.target.type);
-      if (capabilityId === null) {
-        diagnostics.push({
-          code: 'invalid-action-capability',
-          message: `Action '${binding.target.type}' is not a canonical namespaced capability id.`,
-          severity: 'error',
-        });
-        continue;
-      }
+    const lifecycle = args.eventOperationLifecycle?.start({
+      capability: binding.target.capability,
+      nodeId: args.node.id,
+    });
+    if (args.eventOperationLifecycle !== undefined && lifecycle === undefined) break;
 
-      const resolvedPayload = await resolveObjectEventBindingInput(
-        binding.input,
-        resolutionArgs,
+    try {
+      const result = await executeRuntimeBindingInvocation(
+        binding.target,
+        context,
+        { event: args.event, node: args.node },
         diagnostics,
       );
-      const action =
-        resolvedPayload === undefined
-          ? { type: capabilityId }
-          : { type: capabilityId, payload: resolvedPayload };
-      if (resolutionArgs.executeAction) {
-        await resolutionArgs.executeAction({
-          action,
-          event,
-          node,
-          resolvedPayload,
-        });
-        continue;
-      }
-
-      const handler = actionHandlers?.[capabilityId];
-      if (handler) {
-        await handler({
-          action,
-          event,
-          node,
-          resolvedPayload,
-        });
-        continue;
-      }
-
+      if (lifecycle !== undefined && result?.ok) args.eventOperationLifecycle?.succeed(lifecycle);
+      else if (lifecycle !== undefined)
+        args.eventOperationLifecycle?.fail(
+          lifecycle,
+          resolveRuntimeEventOperationErrorMessage(diagnostics),
+        );
+    } catch {
       diagnostics.push({
-        code: 'missing-action-handler',
-        message: `Action '${capabilityId}' could not be executed because no runtime executor or handler is registered.`,
+        code: 'adapter-error',
+        message: `Capability '${binding.target.capability}' could not be completed. Please try again.`,
         severity: 'error',
       });
-      continue;
-    }
-
-    const operationSucceeded = await dispatchRuntimeOperationEventBinding({
-      args: resolutionArgs,
-      binding,
-      diagnostics,
-      operationResults: dispatchOperationResults,
-      target: binding.target,
-    });
-
-    if (!operationSucceeded) {
+      if (lifecycle !== undefined)
+        args.eventOperationLifecycle?.fail(
+          lifecycle,
+          resolveRuntimeEventOperationErrorMessage(diagnostics),
+        );
       break;
     }
   }
@@ -195,356 +138,100 @@ export async function dispatchRuntimeComponentEvent(
   return diagnostics;
 }
 
+/*** Wraps component callbacks so manifest event bindings retain the original callback behavior. */
 export function wrapRuntimeEventProps(args: RuntimeEventPropWrapArgs): Record<string, unknown> {
-  const { node, props, disableActions, dispatchComponentEvent } = args;
-  const wrappedProps: Record<string, unknown> = { ...props };
-  const nodeEventBindings = args.dataBindings?.[node.id]?.events;
+  const props = { ...args.props };
+  if (args.disableActions || args.dataBindings?.[args.node.id]?.events === undefined) return props;
 
-  if (disableActions || !nodeEventBindings) {
-    return wrappedProps;
-  }
-
-  for (const eventName of Object.keys(nodeEventBindings)) {
+  for (const eventName of Object.keys(args.dataBindings[args.node.id]?.events ?? {})) {
     const propName = eventNameToCallbackProp(eventName);
-    const existingHandler = wrappedProps[propName];
-
-    wrappedProps[propName] = (...handlerArgs: unknown[]) => {
-      let existingResult: unknown;
-
-      if (isRuntimeEventHandler(existingHandler)) {
-        existingResult = existingHandler(...handlerArgs);
-      }
-
-      void dispatchComponentEvent({
+    const existing = props[propName];
+    props[propName] = (...handlerArgs: unknown[]) => {
+      const result = isRuntimeEventHandler(existing) ? existing(...handlerArgs) : undefined;
+      void args.dispatchComponentEvent({
         context: args.context,
         dataBindings: args.dataBindings,
-        event: createComponentEventFromHandlerArgs({ eventName, handlerArgs, node }),
+        event: createComponentEventFromHandlerArgs({ eventName, handlerArgs, node: args.node }),
         eventName,
-        node,
-        operationResults: args.operationResults,
+        node: args.node,
+        resultSlots: args.resultSlots,
         state: args.state,
       });
-
-      return existingResult;
+      return result;
     };
   }
-
-  return wrappedProps;
+  return props;
 }
 
+/*** Maps a platform callback invocation to the portable component event representation. */
 export function createComponentEventFromHandlerArgs(args: {
   readonly node: UiNode;
   readonly eventName: string;
   readonly handlerArgs: readonly unknown[];
 }): ComponentEventDto<string, RuntimeEventPayload> {
-  const { node, eventName, handlerArgs } = args;
-
   return {
-    payload: createPayloadForEvent(eventName, handlerArgs),
-    sourceNodeId: node.id,
-    type: localEventNameToEventType(eventName),
+    payload: createPayloadForEvent(args.eventName, args.handlerArgs),
+    sourceNodeId: args.node.id,
+    type: localEventNameToEventType(args.eventName),
   };
 }
 
-export function resolveRuntimeActionPayload(
-  payload: object | undefined,
-  args: RuntimeActionResolutionArgs,
-): object | undefined {
-  if (payload === undefined) {
-    return undefined;
-  }
-
-  return resolveRuntimeActionValue(payload, args);
-}
-
+/*** Resolves an authored expression-shaped payload for imperative consumers. */
 export function resolveRuntimeActionValue(
-  value: unknown,
+  value: BindingExpression,
   args: RuntimeActionResolutionArgs,
-): object | undefined {
-  if (!isRecord(value)) return undefined;
-
-  return Object.fromEntries(
-    Object.entries(value).map(([key, entry]) => [key, resolveRuntimeActionValueEntry(entry, args)]),
-  );
-}
-
-async function dispatchRuntimeOperationEventBinding(args: {
-  readonly args: RuntimeComponentEventDispatchArgs;
-  readonly binding: EventBinding;
-  readonly diagnostics: DataSourceDiagnostic[];
-  readonly operationResults: Record<string, BindingValue | undefined>;
-  readonly target: RuntimeOperationEventTarget;
-}): Promise<boolean> {
-  const { binding, diagnostics, target } = args;
-  const invocation = args.args.eventOperationLifecycle?.start({
-    nodeId: args.args.node.id,
-    operation: target.operation,
-  });
-
-  if (args.args.eventOperationLifecycle !== undefined && invocation === undefined) {
-    return false;
-  }
-
-  const failLifecycle = () => {
-    if (invocation === undefined) return;
-    args.args.eventOperationLifecycle?.fail(
-      invocation,
-      resolveRuntimeEventOperationErrorMessage(diagnostics),
-    );
-  };
-
-  if (args.args.executeOperation === undefined) {
-    diagnostics.push({
-      apiId: target.operation.apiId,
-      code: 'missing-adapter',
-      endpointId: target.operation.endpointId,
-      operationId: target.operation.operationId,
-      message: 'Event API operation binding requires an injected operation executor.',
-      severity: 'error',
-    });
-    failLifecycle();
-    return false;
-  }
-
-  const selection = resolveRuntimeBindingOperationSelection(
-    target.operation,
-    args.args.apis,
-    diagnostics,
-  );
-  if (selection === undefined) {
-    failLifecycle();
-    return false;
-  }
-
-  let result;
-  try {
-    result = await args.args.executeOperation({
-      api: selection.api,
-      endpoint: selection.endpoint,
-      input: await resolveEventBindingInput(binding.input, args.args, diagnostics),
-      node: args.args.node,
-      operation: target.operation,
-    });
-  } catch {
-    diagnostics.push({
-      apiId: target.operation.apiId,
-      code: 'adapter-error',
-      endpointId: target.operation.endpointId,
-      message: 'The operation could not be completed. Please try again.',
-      operationId: target.operation.operationId,
-      severity: 'error',
-    });
-    failLifecycle();
-    return false;
-  }
-  diagnostics.push(...(result.diagnostics ?? []));
-
-  if (result.ok) {
-    const operationKey = createRuntimeBindingOperationKey(target.operation);
-    args.operationResults[operationKey] = result.data;
-    args.args.writeOperationResult?.(operationKey, result.data);
-    if (invocation !== undefined) {
-      args.args.eventOperationLifecycle?.succeed(invocation);
-    }
-    return true;
-  }
-
-  failLifecycle();
-  return false;
-}
-
-function resolveRuntimeActionValueEntry(
-  value: unknown,
-  args: RuntimeActionResolutionArgs,
-): unknown {
-  if (Array.isArray(value)) return value.map((item) => resolveRuntimeActionValueEntry(item, args));
-  if (!isRecord(value)) return value;
-  if (!('valueFrom' in value)) {
-    return Object.fromEntries(
-      Object.entries(value).map(([key, entry]) => [
-        key,
-        resolveRuntimeActionValueEntry(entry, args),
-      ]),
-    );
-  }
-
-  return undefined;
-}
-
-async function resolveObjectEventBindingInput(
-  input: BindingInputMap | undefined,
-  args: RuntimeComponentEventDispatchArgs,
-  diagnostics: DataSourceDiagnostic[],
-): Promise<object | undefined> {
-  const value = await resolveEventBindingInput(input, args, diagnostics);
-  return isRecord(value) ? value : undefined;
-}
-
-async function resolveEventBindingInput(
-  input: BindingInputMap | undefined,
-  args: RuntimeComponentEventDispatchArgs,
-  diagnostics: DataSourceDiagnostic[],
-) {
-  return resolveBindingInputMap(
-    input,
-    {
-      apis: args.apis,
-      context: args.context,
-      dataBindings: args.dataBindings,
-      event: args.event,
-      executeOperation: args.executeOperation,
-      operationResults: args.operationResults,
-    },
-    diagnostics,
-  );
+): BindingValue | undefined {
+  return resolveRuntimeBindingExpressionSync(value, args);
 }
 
 function matchesBindingCondition(
   condition: BindingCondition | undefined,
-  args: RuntimeActionResolutionArgs,
+  context: Parameters<typeof resolveRuntimeBindingExpressionSync>[1],
 ): boolean {
   if (condition === undefined) return true;
-
-  const value = readBindingConditionSource(condition, args);
-
-  switch (condition.operator) {
-    case 'eq':
-      return value === condition.value;
-    case 'exists':
-      return value !== undefined;
-    case 'neq':
-      return value !== condition.value;
-    case 'notExists':
-      return value === undefined;
-  }
+  const source = resolveRuntimeBindingExpressionSync(condition.source, context);
+  const value =
+    condition.value === undefined
+      ? undefined
+      : resolveRuntimeBindingExpressionSync(condition.value, context);
+  if (condition.operator === 'exists') return source !== undefined;
+  if (condition.operator === 'notExists') return source === undefined;
+  if (condition.operator === 'eq') return source === value;
+  return source !== value;
 }
 
-function readBindingConditionSource(
-  condition: BindingCondition,
-  args: RuntimeActionResolutionArgs,
-): unknown {
-  switch (condition.source.kind) {
-    case 'context':
-      return readPath(args.context, condition.source.path);
-    case 'event':
-      return readPath(args.event, condition.source.path);
-    case 'literal':
-      return condition.source.value;
-    case 'operation': {
-      const operationResult =
-        args.operationResults?.[createRuntimeBindingOperationKey(condition.source.operation)];
-      return condition.source.path === undefined
-        ? operationResult
-        : readPath(operationResult, condition.source.path);
-    }
-    case 'state':
-      return readPath(args.state, condition.source.path);
-  }
-}
-
-function createPayloadForEvent(
-  eventName: string,
-  handlerArgs: readonly unknown[],
-): RuntimeEventPayload {
-  if (eventName === 'barcodeScanned') {
-    return createBarcodeScannedPayload(handlerArgs[0]);
-  }
-
-  if (eventName === 'submit') {
-    return { values: asRecord(handlerArgs[0]) ?? {} };
-  }
-
+function createPayloadForEvent(eventName: string, args: readonly unknown[]): RuntimeEventPayload {
+  if (eventName === 'submit') return { values: asRecord(args[0]) ?? {} };
+  if (eventName === 'changeText' || eventName === 'valueChange') return { value: args[0] };
+  if (eventName === 'checkedChange') return { checked: args[0] };
   if (eventName === 'itemPress') {
-    const item = asRecord(handlerArgs[0]) ?? {};
-    const itemId = readItemId(handlerArgs[0]);
-
-    return itemId === undefined ? { item } : { itemId, item };
+    const item = asRecord(args[0]) ?? {};
+    return typeof item.id === 'string' || typeof item.id === 'number'
+      ? { item, itemId: item.id }
+      : { item };
   }
-
-  if (eventName === 'changeText' || eventName === 'valueChange') {
-    return { value: handlerArgs[0] };
-  }
-
-  if (eventName === 'checkedChange') {
-    return { checked: handlerArgs[0] };
-  }
-
-  if (eventName === 'manualEntry') {
-    return handlerArgs[0] === undefined ? {} : { value: handlerArgs[0] };
-  }
-
-  if (eventName === 'requestPermission' || eventName === 'press') {
-    return {};
-  }
-
-  return asRecord(handlerArgs[0]) ?? {};
+  return asRecord(args[0]) ?? {};
 }
 
 function localEventNameToEventType(eventName: string): string {
   if (eventName === 'itemPress') return 'collection.itemPress';
   if (eventName === 'press') return 'button.press';
   if (eventName === 'submit') return 'form.submit';
-
   return eventName;
 }
 
 function inferLocalEventName(eventType: string): string {
-  const parts = eventType.split('.');
-
-  return parts.at(-1) ?? eventType;
+  return eventType.split('.').at(-1) ?? eventType;
 }
 
 function eventNameToCallbackProp(eventName: string): string {
   return `on${eventName.charAt(0).toUpperCase()}${eventName.slice(1)}`;
 }
 
-/*** Resolve a canonical namespaced capability id from authored action metadata. */
-function resolveCapabilityId(value: string): Capability['id'] | null {
-  return isCapabilityId(value) ? value : null;
-}
-
 function isRuntimeEventHandler(value: unknown): value is RuntimeEventHandler {
   return typeof value === 'function';
 }
 
-function readPath(source: unknown, path: string): unknown {
-  if (path.length === 0) return source;
-
-  return path.split('.').reduce<unknown>((currentValue, part) => {
-    if (!isRecord(currentValue)) return undefined;
-    return currentValue[part];
-  }, source);
-}
-
-function createBarcodeScannedPayload(value: unknown): RuntimeEventPayload {
-  if (typeof value === 'string') {
-    return { value };
-  }
-
-  if (!isRecord(value)) {
-    return {};
-  }
-
-  const payload: RuntimeEventPayload = {};
-  if (typeof value.value === 'string') payload.value = value.value;
-  if (typeof value.type === 'string') payload.type = value.type;
-
-  return payload;
-}
-
-function readItemId(value: unknown): string | number | undefined {
-  if (typeof value === 'string' || typeof value === 'number') return value;
-  if (!isRecord(value)) return undefined;
-
-  const id = value.id ?? value.itemId;
-
-  return typeof id === 'string' || typeof id === 'number' ? id : undefined;
-}
-
 function asRecord(value: unknown): Record<string, unknown> | undefined {
   return isRecord(value) ? value : undefined;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
