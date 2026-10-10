@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.1
+
+### Patch Changes
+
+- d1d95d1: Declare `@ankhorage/capability` as a runtime dependency so packed catalog verification resolves from the installed package boundary.
+
 ## 5.0.0
 
 ### Major Changes

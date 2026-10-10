@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.0.0",
+      "value": "v5.0.1",
       "color": "cb3837"
     },
     {
@@ -5972,7 +5972,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimePackageIsolation.test.ts",
-        "line": 13,
+        "line": 15,
         "column": 1
       }
     },
@@ -5983,7 +5983,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimePackageIsolation.test.ts",
-        "line": 28,
+        "line": 30,
         "column": 1
       }
     },
@@ -8090,6 +8090,12 @@
         "fromSymbol": "src/runtimePackageIsolation.test.ts",
         "toSymbol": "readRuntimePackageManifest",
         "callExpression": "readRuntimePackageManifest",
+        "sourcePath": "src/runtimePackageIsolation.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimePackageIsolation.test.ts",
+        "toSymbol": "isCapabilityCatalog",
+        "callExpression": "isCapabilityCatalog",
         "sourcePath": "src/runtimePackageIsolation.test.ts"
       },
       {
