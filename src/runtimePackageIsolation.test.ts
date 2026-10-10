@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
+import { isCapabilityCatalog } from '@ankhorage/capability';
 import { describe, expect, it } from 'bun:test';
 
 interface RuntimePackageManifest {
@@ -8,6 +9,7 @@ interface RuntimePackageManifest {
   readonly devDependencies?: Readonly<Record<string, string>>;
   readonly peerDependencies?: Readonly<Record<string, string>>;
   readonly peerDependenciesMeta?: Readonly<Record<string, { readonly optional?: boolean }>>;
+  readonly ankh?: { readonly capabilities?: unknown };
 }
 
 function listSourceFiles(directoryPath: string): string[] {
@@ -82,6 +84,13 @@ describe('@ankhorage/runtime package isolation', () => {
 
     expect(packageJson.dependencies?.['@ankhorage/zora']).toBeUndefined();
     expect(packageJson.peerDependencies?.['@ankhorage/zora']).toBeUndefined();
+  });
+
+  it('validates published capability metadata through the declared capability runtime dependency', () => {
+    const packageJson = readRuntimePackageManifest();
+
+    expect(packageJson.dependencies?.['@ankhorage/capability']).toBeDefined();
+    expect(isCapabilityCatalog(packageJson.ankh?.capabilities)).toBe(true);
   });
 });
 
