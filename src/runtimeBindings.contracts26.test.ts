@@ -48,8 +48,8 @@ it('resolves literals, nested values, transforms, fallbacks, and readable capabi
   });
 });
 
-it('resolves canonical emitted capability payloads without an event pseudo-namespace', () => {
-  const resolveEventPayload = (capability: `${string}.${string}`, path: string) =>
+it('resolves canonical emitted capability event DTOs without an event pseudo-namespace', () => {
+  const resolveEventValue = (capability: `${string}.${string}`, path: string) =>
     resolveRuntimeBindingExpressionSync(
       { capability, path },
       {
@@ -63,12 +63,26 @@ it('resolves canonical emitted capability payloads without an event pseudo-names
       },
     );
 
-  expect(resolveEventPayload('button.press', 'nested.value')).toBe('button.press');
-  expect(resolveEventPayload('signInForm.submit', 'nested.value')).toBe('signInForm.submit');
-  expect(resolveEventPayload('collection.itemPress', 'nested.value')).toBe('collection.itemPress');
+  expect(resolveEventValue('button.press', 'payload.nested.value')).toBe('button.press');
+  expect(resolveEventValue('signInForm.submit', 'payload.nested.value')).toBe('signInForm.submit');
+  expect(resolveEventValue('collection.itemPress', 'payload.nested.value')).toBe(
+    'collection.itemPress',
+  );
   expect(
     resolveRuntimeBindingExpressionSync(
-      { capability: 'event.submit', path: 'nested.value' },
+      { capability: 'radioGroup.valueChange', path: 'payload.value' },
+      {
+        event: {
+          payload: { value: 'flop' },
+          sourceNodeId: 'radio-group',
+          type: 'radioGroup.valueChange',
+        },
+      },
+    ),
+  ).toBe('flop');
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      { capability: 'event.submit', path: 'payload.nested.value' },
       {
         event: {
           payload: { nested: { value: 'not-readable' } },
