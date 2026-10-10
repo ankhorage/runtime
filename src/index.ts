@@ -15,8 +15,6 @@ export {
 } from './ManifestContext';
 export type { ComponentRegistry } from './registry';
 export { createComponentRegistry } from './registry';
-export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
-export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 export type {
   RuntimeActionRegistry,
   RuntimeActionResolutionArgs,
@@ -31,6 +29,8 @@ export {
   resolveRuntimeActionValue,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
+export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
+export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 export type {
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
