@@ -27,6 +27,33 @@ export interface RuntimeScreenOperationLoaderExecutionResult {
   readonly resultSlots: RuntimeBindingResultCache;
 }
 
+interface RuntimeScreenOperationLoaderRequestLifecycle {
+  invalidate(): void;
+  start(dependencyKey: string): number | undefined;
+  isCurrent(args: { readonly dependencyKey: string; readonly requestId: number }): boolean;
+}
+
+/*** Tracks one active screen-loader request per effective dependency key. */
+export function createRuntimeScreenOperationLoaderRequestLifecycle(): RuntimeScreenOperationLoaderRequestLifecycle {
+  let dependencyKey: string | undefined;
+  let requestId = 0;
+
+  return {
+    invalidate() {
+      requestId += 1;
+    },
+    start(nextDependencyKey) {
+      if (nextDependencyKey === dependencyKey) return undefined;
+      dependencyKey = nextDependencyKey;
+      requestId += 1;
+      return requestId;
+    },
+    isCurrent(args) {
+      return args.dependencyKey === dependencyKey && args.requestId === requestId;
+    },
+  };
+}
+
 /*** Returns the portable capability invocations authored on a screen. */
 export function resolveScreenOperationLoaders(
   screen: ScreenSpec,
@@ -138,13 +165,15 @@ export function useRuntimeScreenOperationLoaders(args: {
   const [state, setState] = React.useState<RuntimeScreenOperationLoaderState>(() =>
     createPendingRuntimeScreenOperationLoaderState({ dependencyKey }),
   );
+  const requestLifecycle = React.useRef(createRuntimeScreenOperationLoaderRequestLifecycle());
 
   React.useEffect(() => {
-    let cancelled = false;
-    if (loaders.length === 0)
-      return () => {
-        cancelled = true;
-      };
+    if (loaders.length === 0) {
+      requestLifecycle.current.invalidate();
+      return;
+    }
+    const requestId = requestLifecycle.current.start(dependencyKey);
+    if (requestId === undefined) return;
     void executeRuntimeScreenOperationLoaders({
       bindingContext: args.bindingContext,
       executeCapability: args.executeCapability,
@@ -152,7 +181,7 @@ export function useRuntimeScreenOperationLoaders(args: {
       resultSlots: args.resultSlots,
       screen: args.screen,
     }).then((result) => {
-      if (!cancelled) {
+      if (requestLifecycle.current.isCurrent({ dependencyKey, requestId })) {
         setState((current) => ({
           ...result,
           renderVersion:
@@ -162,9 +191,6 @@ export function useRuntimeScreenOperationLoaders(args: {
         }));
       }
     });
-    return () => {
-      cancelled = true;
-    };
   }, [
     args.bindingContext,
     args.executeCapability,
@@ -172,8 +198,14 @@ export function useRuntimeScreenOperationLoaders(args: {
     args.screen,
     dependencyKey,
     loaders,
-    state.renderVersion,
   ]);
+
+  React.useEffect(
+    () => () => {
+      requestLifecycle.current.invalidate();
+    },
+    [],
+  );
 
   React.useEffect(() => {
     if (state.diagnostics.length > 0) onDiagnostics?.(state.diagnostics);

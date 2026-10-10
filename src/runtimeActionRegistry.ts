@@ -7,6 +7,7 @@ import type {
   DataSourceDiagnostic,
   UiNode,
 } from '@ankhorage/contracts';
+import type { Capability } from '@ankhorage/contracts/capability';
 import { isRecord } from '@ankhorage/utility/object';
 
 import {
@@ -23,6 +24,11 @@ import {
 
 type RuntimeEventPayload = Record<string, unknown>;
 type RuntimeEventHandler = (...args: unknown[]) => unknown;
+
+export type RuntimeEventCapabilityResolver = (args: {
+  readonly eventName: string;
+  readonly node: UiNode;
+}) => Capability['id'] | undefined;
 
 export interface RuntimeActionRegistry {
   dispatchComponentEvent(args: RuntimeComponentEventDispatchArgs): Promise<void>;
@@ -56,6 +62,7 @@ export interface RuntimeEventPropWrapArgs extends RuntimeActionResolutionScope {
   readonly dispatchComponentEvent: (
     args: RuntimeComponentEventDispatchArgs,
   ) => Promise<void> | void;
+  readonly resolveEventCapability?: RuntimeEventCapabilityResolver;
 }
 
 /*** Creates a registry that dispatches every authored event through one capability executor. */
@@ -151,7 +158,12 @@ export function wrapRuntimeEventProps(args: RuntimeEventPropWrapArgs): Record<st
       void args.dispatchComponentEvent({
         context: args.context,
         dataBindings: args.dataBindings,
-        event: createComponentEventFromHandlerArgs({ eventName, handlerArgs, node: args.node }),
+        event: createComponentEventFromHandlerArgs({
+          capability: args.resolveEventCapability?.({ eventName, node: args.node }),
+          eventName,
+          handlerArgs,
+          node: args.node,
+        }),
         eventName,
         node: args.node,
         resultSlots: args.resultSlots,
@@ -165,6 +177,7 @@ export function wrapRuntimeEventProps(args: RuntimeEventPropWrapArgs): Record<st
 
 /*** Maps a platform callback invocation to the portable component event representation. */
 export function createComponentEventFromHandlerArgs(args: {
+  readonly capability?: Capability['id'];
   readonly node: UiNode;
   readonly eventName: string;
   readonly handlerArgs: readonly unknown[];
@@ -172,7 +185,7 @@ export function createComponentEventFromHandlerArgs(args: {
   return {
     payload: createPayloadForEvent(args.eventName, args.handlerArgs),
     sourceNodeId: args.node.id,
-    type: localEventNameToEventType(args.eventName),
+    type: args.capability ?? args.eventName,
   };
 }
 
@@ -211,13 +224,6 @@ function createPayloadForEvent(eventName: string, args: readonly unknown[]): Run
       : { item };
   }
   return asRecord(args[0]) ?? {};
-}
-
-function localEventNameToEventType(eventName: string): string {
-  if (eventName === 'itemPress') return 'collection.itemPress';
-  if (eventName === 'press') return 'button.press';
-  if (eventName === 'submit') return 'form.submit';
-  return eventName;
 }
 
 function inferLocalEventName(eventType: string): string {

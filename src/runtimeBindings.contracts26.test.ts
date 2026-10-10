@@ -48,6 +48,38 @@ it('resolves literals, nested values, transforms, fallbacks, and readable capabi
   });
 });
 
+it('resolves canonical emitted capability payloads without an event pseudo-namespace', () => {
+  const resolveEventPayload = (capability: `${string}.${string}`, path: string) =>
+    resolveRuntimeBindingExpressionSync(
+      { capability, path },
+      {
+        event: {
+          payload: {
+            nested: { value: capability },
+          },
+          sourceNodeId: 'source',
+          type: capability,
+        },
+      },
+    );
+
+  expect(resolveEventPayload('button.press', 'nested.value')).toBe('button.press');
+  expect(resolveEventPayload('signInForm.submit', 'nested.value')).toBe('signInForm.submit');
+  expect(resolveEventPayload('collection.itemPress', 'nested.value')).toBe('collection.itemPress');
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      { capability: 'event.submit', path: 'nested.value' },
+      {
+        event: {
+          payload: { nested: { value: 'not-readable' } },
+          sourceNodeId: 'source',
+          type: 'signInForm.submit',
+        },
+      },
+    ),
+  ).toBeUndefined();
+});
+
 it('stores named invocation results and reads them without executing again', async () => {
   const slots: Record<string, BindingValue | undefined> = {};
   let calls = 0;

@@ -19,6 +19,7 @@ import {
 } from './rendering';
 import {
   type RuntimeComponentEventDispatchArgs,
+  type RuntimeEventCapabilityResolver,
   wrapRuntimeEventProps,
 } from './runtimeActionRegistry';
 import type { RuntimeBindingResultCache, RuntimeCapabilityExecutor } from './runtimeBindings';
@@ -65,6 +66,7 @@ export interface RuntimeRendererProps {
   resolveMediaAsset?: RuntimeMediaAssetResolver;
   resultSlots?: RuntimeBindingResultCache;
   executeCapability?: RuntimeCapabilityExecutor;
+  resolveEventCapability?: RuntimeEventCapabilityResolver;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
 }
 
@@ -84,6 +86,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     resolveMediaAsset,
     resultSlots,
     executeCapability,
+    resolveEventCapability,
     onDiagnostics,
   } = props;
   const inheritedConfig = useRuntimeRendererConfig();
@@ -134,6 +137,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       dbRealtimeAdapter,
       disableActions,
       executeCapability,
+      resolveEventCapability,
       mediaAssets,
       resultSlots: effectiveResultSlots,
       onDiagnostics,
@@ -154,6 +158,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       dbRealtimeAdapter,
       disableActions,
       executeCapability,
+      resolveEventCapability,
       effectiveResultSlots,
       inheritedConfig.writeResultSlot,
       inheritedConfig.eventOperationLifecycle,
@@ -382,6 +387,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     dispatchComponentEvent: dispatchRuntimeEvent,
     node,
     resultSlots: effectiveConfig.resultSlots,
+    resolveEventCapability: effectiveConfig.resolveEventCapability,
   });
 
   const componentChildren = resolveRenderedChildren({

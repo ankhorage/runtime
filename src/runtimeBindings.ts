@@ -258,8 +258,7 @@ function resolveReadableCapability(
   if (explicit !== undefined) return explicit;
   if (capability.startsWith('context.'))
     return asBindingValue(readPath(context.context, capability.slice(8)));
-  if (capability.startsWith('event.'))
-    return asBindingValue(readPath(context.event, capability.slice(6)));
+  if (context.event?.type === capability) return asBindingValue(context.event.payload);
   if (capability.startsWith('state.')) {
     const result = context.stateAdapter?.get(capability.slice(6));
     return result?.ok ? asBindingValue(result.data) : undefined;

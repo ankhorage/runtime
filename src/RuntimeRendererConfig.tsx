@@ -11,6 +11,7 @@ import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
 import React, { createContext, use } from 'react';
 
 import type { ComponentRegistry } from './registry';
+import type { RuntimeEventCapabilityResolver } from './runtimeActionRegistry';
 import type {
   RuntimeBindingResultCache,
   RuntimeBindingResultWriter,
@@ -48,6 +49,7 @@ export interface RuntimeRendererConfig {
   resultSlots?: RuntimeBindingResultCache;
   writeResultSlot?: RuntimeBindingResultWriter;
   executeCapability?: RuntimeCapabilityExecutor;
+  resolveEventCapability?: RuntimeEventCapabilityResolver;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
   eventOperationLifecycle?: RuntimeEventOperationLifecycle;
   eventOperationState?: RuntimeEventOperationState;
@@ -125,6 +127,8 @@ export function mergeRuntimeRendererConfig(
     resultSlots,
     writeResultSlot: localConfig?.writeResultSlot ?? inheritedConfig?.writeResultSlot,
     executeCapability: localConfig?.executeCapability ?? inheritedConfig?.executeCapability,
+    resolveEventCapability:
+      localConfig?.resolveEventCapability ?? inheritedConfig?.resolveEventCapability,
     onDiagnostics: localConfig?.onDiagnostics ?? inheritedConfig?.onDiagnostics,
     eventOperationLifecycle:
       localConfig?.eventOperationLifecycle ?? inheritedConfig?.eventOperationLifecycle,

@@ -3,6 +3,7 @@ import React from 'react';
 
 import type { ComponentRegistry } from './registry';
 import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
+import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
 import { RuntimeRenderer } from './RuntimeRenderer';
 import { useRuntimeRendererConfig } from './RuntimeRendererConfig';
 import { useRuntimeScreenOperationLoaders } from './runtimeScreenLoaders';
@@ -22,11 +23,19 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
     () => createRuntimeApiCapabilityExecutor({ apis: manifest.infra.apis ?? {} }),
     [manifest.infra.apis],
   );
+  const executeCapability = React.useMemo(
+    () =>
+      composeRuntimeCapabilityExecutor({
+        apiCapabilityExecutor,
+        capabilityExecutor: runtimeConfig.executeCapability,
+      }),
+    [apiCapabilityExecutor, runtimeConfig.executeCapability],
+  );
   const fallbackStateAdapter = React.useMemo(() => createRuntimeMemoryStateAdapter(), []);
   const stateAdapter = injectedStateAdapter ?? fallbackStateAdapter;
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
     bindingContext: runtimeConfig.bindingContext,
-    executeCapability: runtimeConfig.executeCapability ?? apiCapabilityExecutor,
+    executeCapability,
     resultSlots: runtimeConfig.resultSlots,
     onDiagnostics: runtimeConfig.onDiagnostics,
     screen,
@@ -42,7 +51,7 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       dataBindings={manifest.dataBindings}
       mediaAssets={manifest.media?.assets}
       resultSlots={screenOperationLoaders.resultSlots}
-      executeCapability={runtimeConfig.executeCapability ?? apiCapabilityExecutor}
+      executeCapability={executeCapability}
     />
   );
 }

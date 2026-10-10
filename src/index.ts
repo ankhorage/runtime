@@ -20,6 +20,7 @@ export type {
   RuntimeActionResolutionArgs,
   RuntimeActionResolutionScope,
   RuntimeComponentEventDispatchArgs,
+  RuntimeEventCapabilityResolver,
   RuntimeEventPropWrapArgs,
 } from './runtimeActionRegistry';
 export {
@@ -53,6 +54,8 @@ export {
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
 } from './runtimeBindings';
+export type { RuntimeCapabilityExecutorComposition } from './runtimeCapabilityExecutor';
+export { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
 export {
   dispatchRuntimeComponentEventWithReporting,
   type RuntimeEventDiagnosticsReporter,
@@ -106,6 +109,7 @@ export type {
 export {
   createPendingRuntimeScreenOperationLoaderState,
   createRuntimeScreenLoaderRequestKey,
+  createRuntimeScreenOperationLoaderRequestLifecycle,
   executeRuntimeScreenOperationLoaders,
   resolveScreenOperationLoaders,
   useRuntimeScreenOperationLoaders,
