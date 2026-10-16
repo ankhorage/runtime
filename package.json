@@ -197,7 +197,7 @@
   "dependencies": {
     "@ankhorage/capability": "^0.2.1",
     "@ankhorage/contracts": "^26.0.0",
-    "@ankhorage/data-sources": "^2.1.0",
+    "@ankhorage/data-sources": "^2.1.1",
     "@ankhorage/utility": "^1.9.85"
   },
   "peerDependencies": {
