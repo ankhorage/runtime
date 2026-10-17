@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.3
+
+### Patch Changes
+
+- 2663fd9: Update dependencies: `@ankhorage/capability`.
+
 ## 5.0.2
 
 ### Patch Changes
