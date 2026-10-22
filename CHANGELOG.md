@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.4
+
+### Patch Changes
+
+- f554c0f: Update dependencies: `@ankhorage/utility`.
+
 ## 5.0.3
 
 ### Patch Changes
