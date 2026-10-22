@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.5
+
+### Patch Changes
+
+- dfca86c: Update dependencies: `@ankhorage/contracts`.
+
 ## 5.0.4
 
 ### Patch Changes
