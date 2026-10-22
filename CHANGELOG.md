@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.0.6
+
+### Patch Changes
+
+- 4af92e9: Update dependencies: `@ankhorage/data-sources`.
+
 ## 5.0.5
 
 ### Patch Changes
