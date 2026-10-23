@@ -1,4 +1,9 @@
-import type { ComponentDataBindingRegistry, ScreenSpec, UiNode } from '@ankhorage/contracts';
+import type {
+  ComponentDataBindingRegistry,
+  ScreenSpec,
+  StateAdapter,
+  UiNode,
+} from '@ankhorage/contracts';
 import { expect, it } from 'bun:test';
 
 import { dispatchRuntimeComponentEvent } from './runtimeActionRegistry';
@@ -115,6 +120,61 @@ it('reports invalid state.set input without delegating to an application executo
         message: "Capability 'state.set' requires a non-empty path and serializable value.",
         severity: 'error',
       },
+    ],
+    ok: false,
+  });
+});
+
+it('rejects non-finite state values without delegating to an application executor', async () => {
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    capabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    stateAdapter: createRuntimeMemoryStateAdapter(),
+  });
+
+  for (const value of [
+    Number.NaN,
+    Number.POSITIVE_INFINITY,
+    { nested: Number.NEGATIVE_INFINITY },
+  ]) {
+    const result = await executeCapability({
+      capability: 'state.set',
+      input: { path: 'value', value },
+    });
+    expect(result).toEqual({
+      diagnostics: [
+        {
+          code: 'invalid-input',
+          message: "Capability 'state.set' requires a non-empty path and serializable value.",
+          severity: 'error',
+        },
+      ],
+      ok: false,
+    });
+  }
+});
+
+it('returns a structured failure when StateAdapter.set throws', async () => {
+  const stateAdapter = {
+    capabilities: { computed: false, persistence: false, subscriptions: false },
+    get: () => ({ data: undefined, ok: true as const }),
+    set: () => {
+      throw new Error('Storage is unavailable.');
+    },
+    subscribe: () => ({ data: { unsubscribe: () => undefined }, ok: true as const }),
+  } satisfies StateAdapter;
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    stateAdapter,
+  });
+
+  const result = await executeCapability({
+    capability: 'state.set',
+    input: { path: 'value', value: 'Updated' },
+  });
+  expect(result).toEqual({
+    diagnostics: [
+      { code: 'state-adapter-error', message: 'Storage is unavailable.', severity: 'error' },
     ],
     ok: false,
   });

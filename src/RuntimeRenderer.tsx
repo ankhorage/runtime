@@ -182,6 +182,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   useRuntimeStateBindings({
     dataBindings: effectiveConfig.dataBindings,
     nodeId: node.id,
+    repeatSource: node.repeat?.source,
     stateAdapter: effectiveConfig.stateAdapter,
   });
   const dispatchRuntimeEvent = React.useCallback(
@@ -209,7 +210,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   );
   const Component = effectiveRegistry[node.type];
 
-  const repeatSyncResult = React.useMemo(() => {
+  const repeatSyncResult = (() => {
     const { repeat } = node;
     if (!repeat) {
       return null;
@@ -224,15 +225,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       stateAdapter: effectiveConfig.stateAdapter,
       writeResultSlot: effectiveConfig.writeResultSlot,
     });
-  }, [
-    effectiveConfig.bindingContext,
-    effectiveConfig.dataBindings,
-    effectiveConfig.executeCapability,
-    effectiveConfig.resultSlots,
-    effectiveConfig.stateAdapter,
-    effectiveConfig.writeResultSlot,
-    node,
-  ]);
+  })();
   const repeatRequestToken = React.useMemo(
     () => (node.repeat && repeatSyncResult?.status === 'pending' ? {} : null),
     [node.repeat, repeatSyncResult],

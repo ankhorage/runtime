@@ -9,12 +9,13 @@ import React from 'react';
 export function useRuntimeStateBindings(args: {
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly nodeId: string;
+  readonly repeatSource?: BindingExpression;
   readonly stateAdapter?: StateAdapter;
 }): void {
-  const { dataBindings, nodeId, stateAdapter } = args;
+  const { dataBindings, nodeId, repeatSource, stateAdapter } = args;
   const paths = React.useMemo(
-    () => collectStateBindingPaths(findDataBindingProps(dataBindings, nodeId)),
-    [dataBindings, nodeId],
+    () => collectStateBindingPaths(findDataBindingProps(dataBindings, nodeId), repeatSource),
+    [dataBindings, nodeId, repeatSource],
   );
   const [, setVersion] = React.useState(0);
 
@@ -43,10 +44,12 @@ function findDataBindingProps(
 
 function collectStateBindingPaths(
   props: ComponentDataBindingRegistry[string]['props'] | undefined,
+  repeatSource: BindingExpression | undefined,
 ): readonly string[] {
-  const paths = Object.values(props ?? {}).flatMap((binding) =>
-    collectStateExpressionPaths(binding.value),
-  );
+  const paths = [
+    ...Object.values(props ?? {}).flatMap((binding) => collectStateExpressionPaths(binding.value)),
+    ...(repeatSource ? collectStateExpressionPaths(repeatSource) : []),
+  ];
   return [...new Set(paths)].sort();
 }
 

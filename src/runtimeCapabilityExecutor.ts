@@ -35,21 +35,25 @@ function executeStateSetCapabilityAsync(
   const input = resolveStateSetInput(args.input);
   if (input === undefined) return Promise.resolve(invalidStateSetInputResult());
 
-  const result = stateAdapter.set(input.path, input.value);
-  return Promise.resolve(
-    result.ok
-      ? { data: { path: input.path, value: input.value }, ok: true }
-      : {
-          diagnostics: [
-            {
-              code: result.error.code,
-              message: result.error.message,
-              severity: 'error',
-            },
-          ],
-          ok: false,
-        },
-  );
+  try {
+    const result = stateAdapter.set(input.path, input.value);
+    return Promise.resolve(
+      result.ok
+        ? { data: { path: input.path, value: input.value }, ok: true }
+        : {
+            diagnostics: [
+              {
+                code: result.error.code,
+                message: result.error.message,
+                severity: 'error',
+              },
+            ],
+            ok: false,
+          },
+    );
+  } catch (error) {
+    return Promise.resolve(stateAdapterSetErrorResult(error));
+  }
 }
 
 async function executeApplicationCapabilityAsync(
@@ -88,9 +92,24 @@ function isStatePath(value: unknown): value is StatePath {
 }
 
 function isStateValue(value: unknown): value is StateValue {
-  if (value === null || ['boolean', 'number', 'string'].includes(typeof value)) return true;
+  if (value === null || typeof value === 'boolean' || typeof value === 'string') return true;
+  if (typeof value === 'number') return Number.isFinite(value);
   if (Array.isArray(value)) return value.every(isStateValue);
   return isRecord(value) && Object.values(value).every(isStateValue);
+}
+
+/*** Converts thrown adapter failures into capability diagnostics at the public Runtime boundary. */
+function stateAdapterSetErrorResult(error: unknown): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'state-adapter-error',
+        message: error instanceof Error ? error.message : 'StateAdapter.set failed.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
 }
 
 function missingStateAdapterResult(): RuntimeCapabilityExecutionResult {
