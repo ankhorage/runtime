@@ -50,6 +50,7 @@ import {
 import { createRepeatDiagnosticsKey } from './runtimeRepeatDiagnostics';
 import { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
 import { useRuntimeMediaProps } from './useRuntimeMediaProps';
+import { useRuntimeStateBindings } from './useRuntimeStateBindings';
 
 export interface RuntimeRendererProps {
   node: UiNode;
@@ -178,6 +179,11 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     () => mergeRuntimeRendererConfig(explicitConfig, inheritedConfig),
     [explicitConfig, inheritedConfig],
   );
+  useRuntimeStateBindings({
+    dataBindings: effectiveConfig.dataBindings,
+    nodeId: node.id,
+    stateAdapter: effectiveConfig.stateAdapter,
+  });
   const dispatchRuntimeEvent = React.useCallback(
     async (eventArgs: RuntimeComponentEventDispatchArgs) => {
       await dispatchRuntimeComponentEventWithReporting({
