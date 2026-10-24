@@ -114,7 +114,7 @@ describe('Runtime state repeat reactivity', () => {
 });
 
 describe('Runtime async repeat reactivity', () => {
-  it('resolves a mounted root repeat once per request and refreshes when its context changes', async () => {
+  it('keeps root async repeats stable until their context changes', async () => {
     const pending: Array<(result: RuntimeCapabilityExecutionResult) => void> = [];
     const executeCapability = mock(
       (_args: RuntimeCapabilityExecutionArgs) =>
