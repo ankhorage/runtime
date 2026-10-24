@@ -262,7 +262,7 @@
   "dependencies": {
     "@ankhorage/capability": "^0.2.2",
     "@ankhorage/contracts": "^26.0.2",
-    "@ankhorage/data-sources": "^2.1.2",
+    "@ankhorage/data-sources": "^2.1.3",
     "@ankhorage/utility": "^1.10.0"
   },
   "peerDependencies": {
