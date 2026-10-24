@@ -10,6 +10,10 @@ import type {
 
 type MutableStateRecord = Record<string, StateValue>;
 type StateListenerSet = Set<(value: StateValue | undefined) => void>;
+interface StateListenerEntry {
+  readonly listeners: StateListenerSet;
+  readonly parts: readonly string[];
+}
 
 export interface RuntimeMemoryStateAdapterOptions {
   readonly initialState?: Readonly<Record<string, StateValue>>;
@@ -19,17 +23,19 @@ export function createRuntimeMemoryStateAdapter(
   options: RuntimeMemoryStateAdapterOptions = {},
 ): StateAdapter {
   let rootState: MutableStateRecord = { ...(options.initialState ?? {}) };
-  const listeners = new Map<string, StateListenerSet>();
+  const listeners = new Map<string, StateListenerEntry>();
 
-  const emit = (path: StatePath, value: StateValue | undefined) => {
+  const emit = (path: StatePath) => {
     const pathResult = normalizeStatePath(path);
     if (!pathResult.ok) return;
 
-    const listenersForPath = listeners.get(pathPartsToKey(pathResult.parts));
-    if (listenersForPath === undefined) return;
+    for (const entry of listeners.values()) {
+      if (!areStatePathsRelated(pathResult.parts, entry.parts)) continue;
 
-    for (const listener of listenersForPath) {
-      listener(value);
+      const value = readStatePath(rootState, entry.parts);
+      for (const listener of entry.listeners) {
+        listener(value);
+      }
     }
   };
 
@@ -55,7 +61,7 @@ export function createRuntimeMemoryStateAdapter(
       if (!nextStateResult.ok) return nextStateResult;
 
       rootState = nextStateResult.data;
-      emit(path, value);
+      emit(path);
       return { ok: true };
     },
     subscribe<TValue extends StateValue = StateValue>(
@@ -66,19 +72,21 @@ export function createRuntimeMemoryStateAdapter(
       if (!pathResult.ok) return pathResult;
 
       const key = pathPartsToKey(pathResult.parts);
-      const listenersForPath =
-        listeners.get(key) ?? new Set<(value: StateValue | undefined) => void>();
+      const entry = listeners.get(key) ?? {
+        listeners: new Set<(value: StateValue | undefined) => void>(),
+        parts: pathResult.parts,
+      };
       const wrappedListener = (value: StateValue | undefined) => {
         listener({ path, value: value as TValue | undefined });
       };
 
-      listenersForPath.add(wrappedListener);
-      listeners.set(key, listenersForPath);
+      entry.listeners.add(wrappedListener);
+      listeners.set(key, entry);
 
       return createStateDataResult({
         unsubscribe() {
-          listenersForPath.delete(wrappedListener);
-          if (listenersForPath.size === 0) {
+          entry.listeners.delete(wrappedListener);
+          if (entry.listeners.size === 0) {
             listeners.delete(key);
           }
         },
@@ -92,7 +100,7 @@ export function createRuntimeMemoryStateAdapter(
       if (!nextStateResult.ok) return nextStateResult;
 
       rootState = nextStateResult.data;
-      emit(path, undefined);
+      emit(path);
       return { ok: true };
     },
   };
@@ -126,6 +134,17 @@ function normalizeStatePath(path: StatePath): StatePathResult {
 
 function pathPartsToKey(parts: readonly string[]): string {
   return parts.join('.');
+}
+
+/*** Determines whether a state mutation changes an ancestor, descendant, or exact subscription. */
+function areStatePathsRelated(
+  changedParts: readonly string[],
+  subscribedParts: readonly string[],
+): boolean {
+  const sharedLength = Math.min(changedParts.length, subscribedParts.length);
+  return changedParts
+    .slice(0, sharedLength)
+    .every((part, index) => part === subscribedParts[index]);
 }
 
 function readStatePath(

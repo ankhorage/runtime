@@ -32,6 +32,40 @@ export const CAPABILITIES = [
     label: 'Runtime bindings',
   },
   {
+    id: 'state.set',
+    owner: '@ankhorage/runtime',
+    access: ['invoke', 'write'],
+    binding: {
+      kind: 'state',
+      bindableAs: ['target'],
+    },
+    label: 'Set runtime state',
+    input: {
+      schema: {
+        type: 'object',
+        required: ['path', 'value'],
+        properties: {
+          path: {
+            anyOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+          },
+          value: {},
+        },
+      },
+    },
+    output: {
+      schema: {
+        type: 'object',
+        required: ['path', 'value'],
+        properties: {
+          path: {
+            anyOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+          },
+          value: {},
+        },
+      },
+    },
+  },
+  {
     id: 'runtime.eventOperation',
     owner: '@ankhorage/runtime',
     access: ['read', 'subscribe'],

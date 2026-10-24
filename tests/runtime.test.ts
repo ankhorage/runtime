@@ -22,10 +22,12 @@ describe('runtime contracts', () => {
       'runtime.render',
       'runtime.actions',
       'runtime.bindings',
+      'state.set',
       'runtime.eventOperation',
       'runtime.repeat.item',
     ]);
     expect(CAPABILITIES.map((capability) => capability.owner)).toEqual([
+      '@ankhorage/runtime',
       '@ankhorage/runtime',
       '@ankhorage/runtime',
       '@ankhorage/runtime',
@@ -36,6 +38,7 @@ describe('runtime contracts', () => {
       { kind: 'action', bindableAs: ['target'] },
       { kind: 'action', bindableAs: ['target'] },
       { kind: 'state', bindableAs: ['source', 'target'] },
+      { kind: 'state', bindableAs: ['target'] },
       { kind: 'context', bindableAs: ['source'] },
       { kind: 'context', bindableAs: ['source'] },
     ]);

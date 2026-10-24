@@ -1,6 +1,7 @@
 import type { AppManifest, ScreenSpec, StateAdapter } from '@ankhorage/contracts';
 import React from 'react';
 
+import { useOptionalManifestContext } from './ManifestContext';
 import type { ComponentRegistry } from './registry';
 import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
@@ -19,6 +20,13 @@ export interface RuntimeScreenProps {
 export function RuntimeScreen(props: RuntimeScreenProps) {
   const { manifest, screen, registry, stateAdapter: injectedStateAdapter } = props;
   const runtimeConfig = useRuntimeRendererConfig();
+  const manifestContext = useOptionalManifestContext();
+  const fallbackStateAdapter = React.useMemo(
+    () => (manifest.state?.provider === 'legend' ? createRuntimeMemoryStateAdapter() : undefined),
+    [manifest.state?.provider],
+  );
+  const stateAdapter =
+    injectedStateAdapter ?? manifestContext?.stateAdapter ?? fallbackStateAdapter;
   const apiCapabilityExecutor = React.useMemo(
     () => createRuntimeApiCapabilityExecutor({ apis: manifest.infra.apis ?? {} }),
     [manifest.infra.apis],
@@ -28,11 +36,10 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       composeRuntimeCapabilityExecutor({
         apiCapabilityExecutor,
         capabilityExecutor: runtimeConfig.executeCapability,
+        stateAdapter,
       }),
-    [apiCapabilityExecutor, runtimeConfig.executeCapability],
+    [apiCapabilityExecutor, runtimeConfig.executeCapability, stateAdapter],
   );
-  const fallbackStateAdapter = React.useMemo(() => createRuntimeMemoryStateAdapter(), []);
-  const stateAdapter = injectedStateAdapter ?? fallbackStateAdapter;
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
     bindingContext: runtimeConfig.bindingContext,
     executeCapability,
