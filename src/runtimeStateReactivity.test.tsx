@@ -4,6 +4,10 @@ import React from 'react';
 import { act, create } from 'react-test-renderer';
 
 import type { ComponentRegistry } from './registry';
+import type {
+  RuntimeCapabilityExecutionArgs,
+  RuntimeCapabilityExecutionResult,
+} from './runtimeBindings';
 import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
 
 (
@@ -106,5 +110,76 @@ describe('Runtime state repeat reactivity', () => {
     });
 
     expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(2);
+  });
+});
+
+describe('Runtime async repeat reactivity', () => {
+  it('resolves a mounted root repeat once per request and refreshes when its context changes', async () => {
+    const pending: Array<(result: RuntimeCapabilityExecutionResult) => void> = [];
+    const executeCapability = mock(
+      (_args: RuntimeCapabilityExecutionArgs) =>
+        new Promise<RuntimeCapabilityExecutionResult>((resolve) => {
+          pending.push(resolve);
+        }),
+    );
+    const node = {
+      children: [{ id: 'meal', type: 'ItemProbe' }],
+      id: 'meals',
+      repeat: {
+        itemAlias: 'meal',
+        source: { capability: 'api.meals.list' },
+      },
+      type: 'ListProbe',
+    } satisfies UiNode;
+    const initialContext = { selection: 'today' };
+    const updatedContext = { selection: 'tomorrow' };
+    let renderer: ReturnType<typeof create> | undefined;
+
+    act(() => {
+      renderer = create(
+        <RuntimeRenderer
+          bindingContext={initialContext}
+          executeCapability={executeCapability}
+          isRoot
+          node={node}
+          registry={registry}
+        />,
+      );
+    });
+    if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
+
+    expect(executeCapability).toHaveBeenCalledTimes(1);
+    expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(0);
+
+    await act(async () => {
+      pending[0]?.({ data: ['Breakfast', 'Lunch'], ok: true });
+    });
+
+    expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(2);
+    expect(executeCapability).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      renderer.update(
+        <RuntimeRenderer
+          bindingContext={updatedContext}
+          executeCapability={executeCapability}
+          isRoot
+          node={node}
+          registry={registry}
+        />,
+      );
+    });
+    expect(executeCapability).toHaveBeenCalledTimes(2);
+
+    await act(async () => {
+      pending[1]?.({ data: ['Dinner'], ok: true });
+    });
+
+    expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(1);
+    expect(executeCapability).toHaveBeenCalledTimes(2);
+
+    act(() => {
+      renderer.unmount();
+    });
   });
 });
