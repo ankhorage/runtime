@@ -109,10 +109,13 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       ).bindingContext,
     [bindingContext, inheritedConfig.bindingContext],
   );
-  const effectiveBindingContext =
-    isRoot && eventOperationState !== undefined
-      ? createRuntimeEventOperationBindingContext(rootBindingContext, eventOperationState)
-      : bindingContext;
+  const effectiveBindingContext = React.useMemo(
+    () =>
+      isRoot && eventOperationState !== undefined
+        ? createRuntimeEventOperationBindingContext(rootBindingContext, eventOperationState)
+        : bindingContext,
+    [bindingContext, eventOperationState, isRoot, rootBindingContext],
+  );
   const mediaResolutionCache = useRuntimeMediaResolutionCache();
   const inheritedResultSlots = inheritedConfig.resultSlots;
   const [localResultSlots, setLocalResultSlots] = React.useState<RuntimeBindingResultCache>({});
@@ -228,7 +231,16 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   })();
   const repeatRequestToken = React.useMemo(
     () => (node.repeat && repeatSyncResult?.status === 'pending' ? {} : null),
-    [node.repeat, repeatSyncResult],
+    [
+      node,
+      repeatSyncResult?.status,
+      effectiveConfig.bindingContext,
+      effectiveConfig.dataBindings,
+      effectiveConfig.executeCapability,
+      effectiveConfig.resultSlots,
+      effectiveConfig.stateAdapter,
+      effectiveConfig.writeResultSlot,
+    ],
   );
   const [asyncRepeatResult, setAsyncRepeatResult] = React.useState<{
     readonly requestToken: object;
