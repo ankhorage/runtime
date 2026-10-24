@@ -229,8 +229,20 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       writeResultSlot: effectiveConfig.writeResultSlot,
     });
   })();
-  const repeatRequestToken = React.useMemo(
-    () => (node.repeat && repeatSyncResult?.status === 'pending' ? {} : null),
+  const repeatRequest = React.useMemo(
+    () =>
+      node.repeat && repeatSyncResult?.status === 'pending'
+        ? {
+            context: effectiveConfig.bindingContext,
+            dataBindings: effectiveConfig.dataBindings,
+            executeCapability: effectiveConfig.executeCapability,
+            node,
+            repeat: node.repeat,
+            resultSlots: effectiveConfig.resultSlots,
+            stateAdapter: effectiveConfig.stateAdapter,
+            writeResultSlot: effectiveConfig.writeResultSlot,
+          }
+        : null,
     [
       node,
       repeatSyncResult?.status,
@@ -242,6 +254,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       effectiveConfig.writeResultSlot,
     ],
   );
+  const repeatRequestToken = React.useMemo(() => (repeatRequest ? {} : null), [repeatRequest]);
   const [asyncRepeatResult, setAsyncRepeatResult] = React.useState<{
     readonly requestToken: object;
     readonly items: readonly BindingValue[];
@@ -253,21 +266,19 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   React.useEffect(() => {
     repeatRequestIdRef.current += 1;
     const requestId = repeatRequestIdRef.current;
-    const { repeat } = node;
-
-    if (!repeat || repeatRequestToken === null) {
+    if (repeatRequest === null || repeatRequestToken === null) {
       return undefined;
     }
 
     void (async () => {
-      const result = await resolveRuntimeRepeatItemsAsync(repeat, {
-        context: effectiveConfig.bindingContext,
-        dataBindings: effectiveConfig.dataBindings,
-        executeCapability: effectiveConfig.executeCapability,
-        node,
-        resultSlots: effectiveConfig.resultSlots,
-        stateAdapter: effectiveConfig.stateAdapter,
-        writeResultSlot: effectiveConfig.writeResultSlot,
+      const result = await resolveRuntimeRepeatItemsAsync(repeatRequest.repeat, {
+        context: repeatRequest.context,
+        dataBindings: repeatRequest.dataBindings,
+        executeCapability: repeatRequest.executeCapability,
+        node: repeatRequest.node,
+        resultSlots: repeatRequest.resultSlots,
+        stateAdapter: repeatRequest.stateAdapter,
+        writeResultSlot: repeatRequest.writeResultSlot,
       });
 
       if (repeatRequestIdRef.current !== requestId) {
@@ -280,16 +291,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     return () => {
       repeatRequestIdRef.current += 1;
     };
-  }, [
-    effectiveConfig.bindingContext,
-    effectiveConfig.dataBindings,
-    effectiveConfig.executeCapability,
-    effectiveConfig.resultSlots,
-    effectiveConfig.stateAdapter,
-    effectiveConfig.writeResultSlot,
-    node,
-    repeatRequestToken,
-  ]);
+  }, [repeatRequest, repeatRequestToken]);
   const currentAsyncRepeatResult =
     asyncRepeatResult?.requestToken === repeatRequestToken ? asyncRepeatResult : null;
   const repeatDiagnostics =

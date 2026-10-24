@@ -32,11 +32,43 @@ const ListProbe = ({ children }: { readonly children?: React.ReactNode }): React
 
 const ItemProbe = (): React.ReactElement => <output data-kind="item" />;
 
+const asyncRepeatNode = {
+  children: [{ id: 'meal', type: 'ItemProbe' }],
+  id: 'meals',
+  repeat: {
+    itemAlias: 'meal',
+    source: { capability: 'api.meals.list' },
+  },
+  type: 'ListProbe',
+} satisfies UiNode;
+
 const registry: ComponentRegistry = {
   ItemProbe,
   ListProbe,
   ValueProbe,
 };
+
+function mountAsyncRepeat(
+  bindingContext: Record<string, unknown>,
+  executeCapability: ReturnType<typeof mock>,
+): ReturnType<typeof create> {
+  let renderer: ReturnType<typeof create> | undefined;
+
+  act(() => {
+    renderer = create(
+      <RuntimeRenderer
+        bindingContext={bindingContext}
+        executeCapability={executeCapability}
+        isRoot
+        node={asyncRepeatNode}
+        registry={registry}
+      />,
+    );
+  });
+  if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
+
+  return renderer;
+}
 
 describe('Runtime state binding reactivity', () => {
   it('rerenders a mounted state binding for nested writes and ancestor replacements', () => {
@@ -115,44 +147,23 @@ describe('Runtime state repeat reactivity', () => {
 
 describe('Runtime async repeat reactivity', () => {
   it('keeps root async repeats stable until their context changes', async () => {
-    const pending: Array<(result: RuntimeCapabilityExecutionResult) => void> = [];
+    const pending: ((result: RuntimeCapabilityExecutionResult) => void)[] = [];
     const executeCapability = mock(
       (_args: RuntimeCapabilityExecutionArgs) =>
         new Promise<RuntimeCapabilityExecutionResult>((resolve) => {
           pending.push(resolve);
         }),
     );
-    const node = {
-      children: [{ id: 'meal', type: 'ItemProbe' }],
-      id: 'meals',
-      repeat: {
-        itemAlias: 'meal',
-        source: { capability: 'api.meals.list' },
-      },
-      type: 'ListProbe',
-    } satisfies UiNode;
     const initialContext = { selection: 'today' };
     const updatedContext = { selection: 'tomorrow' };
-    let renderer: ReturnType<typeof create> | undefined;
-
-    act(() => {
-      renderer = create(
-        <RuntimeRenderer
-          bindingContext={initialContext}
-          executeCapability={executeCapability}
-          isRoot
-          node={node}
-          registry={registry}
-        />,
-      );
-    });
-    if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
+    const renderer = mountAsyncRepeat(initialContext, executeCapability);
 
     expect(executeCapability).toHaveBeenCalledTimes(1);
     expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(0);
 
     await act(async () => {
       pending[0]?.({ data: ['Breakfast', 'Lunch'], ok: true });
+      await Promise.resolve();
     });
 
     expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(2);
@@ -164,7 +175,7 @@ describe('Runtime async repeat reactivity', () => {
           bindingContext={updatedContext}
           executeCapability={executeCapability}
           isRoot
-          node={node}
+          node={asyncRepeatNode}
           registry={registry}
         />,
       );
@@ -173,6 +184,7 @@ describe('Runtime async repeat reactivity', () => {
 
     await act(async () => {
       pending[1]?.({ data: ['Dinner'], ok: true });
+      await Promise.resolve();
     });
 
     expect(renderer.root.findAllByProps({ 'data-kind': 'item' })).toHaveLength(1);
