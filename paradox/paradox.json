@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.0.7",
+      "value": "v5.1.0",
       "color": "cb3837"
     },
     {
@@ -82,34 +82,6 @@
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
-      "message": "Exported function ManifestProvider has no documentation description.",
-      "sourcePath": "src/ManifestContext.tsx",
-      "line": 12
-    },
-    {
-      "ruleId": "documentation.public-function.description",
-      "severity": "warning",
-      "message": "Exported function useManifest has no documentation description.",
-      "sourcePath": "src/ManifestContext.tsx",
-      "line": 22
-    },
-    {
-      "ruleId": "documentation.public-function.description",
-      "severity": "warning",
-      "message": "Exported function useManifestContext has no documentation description.",
-      "sourcePath": "src/ManifestContext.tsx",
-      "line": 30
-    },
-    {
-      "ruleId": "documentation.public-function.description",
-      "severity": "warning",
-      "message": "Exported function useOptionalManifestContext has no documentation description.",
-      "sourcePath": "src/ManifestContext.tsx",
-      "line": 38
-    },
-    {
-      "ruleId": "documentation.public-function.description",
-      "severity": "warning",
       "message": "Exported function createComponentRegistry has no documentation description.",
       "sourcePath": "src/componentRegistry.ts",
       "line": 5
@@ -147,7 +119,7 @@
       "severity": "warning",
       "message": "Exported function RuntimeRenderer has no documentation description.",
       "sourcePath": "src/RuntimeRenderer.tsx",
-      "line": 73
+      "line": 74
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -196,14 +168,14 @@
       "severity": "warning",
       "message": "Exported function RuntimeScreen has no documentation description.",
       "sourcePath": "src/RuntimeScreen.tsx",
-      "line": 19
+      "line": 20
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function createRuntimeMemoryStateAdapter has no documentation description.",
       "sourcePath": "src/runtimeStateAdapter.ts",
-      "line": 18
+      "line": 22
     }
   ],
   "config": null,
@@ -382,9 +354,12 @@
     {
       "path": "src/ManifestContext.tsx",
       "isEntrypoint": false,
-      "dependencies": [],
+      "dependencies": [
+        "src/runtimeStateAdapter.ts"
+      ],
       "exports": [
         "ManifestContext",
+        "ManifestContextValue",
         "ManifestProvider",
         "useManifest",
         "useManifestContext",
@@ -518,8 +493,11 @@
       "path": "src/runtimeCapabilityExecutor.test.ts",
       "isEntrypoint": false,
       "dependencies": [
+        "src/runtimeActionRegistry.ts",
         "src/runtimeCapabilityExecutor.ts",
-        "src/runtimeScreenLoaders.ts"
+        "src/runtimeNodeProps.ts",
+        "src/runtimeScreenLoaders.ts",
+        "src/runtimeStateAdapter.ts"
       ],
       "exports": []
     },
@@ -673,7 +651,8 @@
         "src/runtimeRepeat.ts",
         "src/runtimeRepeatDiagnostics.ts",
         "src/runtimeRepeatEmptyState.ts",
-        "src/useRuntimeMediaProps.ts"
+        "src/useRuntimeMediaProps.ts",
+        "src/useRuntimeStateBindings.ts"
       ],
       "exports": [
         "RuntimeRenderer",
@@ -738,6 +717,7 @@
       "path": "src/RuntimeScreen.tsx",
       "isEntrypoint": false,
       "dependencies": [
+        "src/ManifestContext.tsx",
         "src/registry.tsx",
         "src/runtimeApiCapabilities.ts",
         "src/runtimeCapabilityExecutor.ts",
@@ -786,6 +766,16 @@
       ]
     },
     {
+      "path": "src/runtimeStateReactivity.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/registry.tsx",
+        "src/runtimeBindings.ts",
+        "src/runtimeStateAdapter.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/useRuntimeMediaProps.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -793,6 +783,14 @@
       ],
       "exports": [
         "useRuntimeMediaProps"
+      ]
+    },
+    {
+      "path": "src/useRuntimeStateBindings.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "useRuntimeStateBindings"
       ]
     },
     {
@@ -889,7 +887,7 @@
     {
       "name": "composeRuntimeCapabilityExecutor",
       "title": null,
-      "description": "Routes manifest-owned API capabilities before delegating application-owned capabilities.",
+      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -897,7 +895,7 @@
       "modulePath": "src/runtimeCapabilityExecutor.ts",
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 13,
+        "line": 17,
         "column": 1
       },
       "exportPaths": [
@@ -1295,7 +1293,7 @@
       "modulePath": "src/runtimeStateAdapter.ts",
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 18,
+        "line": 22,
         "column": 1
       },
       "exportPaths": [
@@ -1633,7 +1631,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 10,
+        "line": 13,
         "column": 14
       },
       "exportPaths": [
@@ -1647,7 +1645,7 @@
     {
       "name": "ManifestProvider",
       "title": null,
-      "description": null,
+      "description": "Owns one configured state adapter for every Runtime screen in an application tree.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -1655,7 +1653,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 12,
+        "line": 16,
         "column": 1
       },
       "exportPaths": [
@@ -2945,7 +2943,7 @@
       "modulePath": "src/runtimeCapabilityExecutor.ts",
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 7,
+        "line": 10,
         "column": 1
       },
       "exportPaths": [
@@ -2967,6 +2965,13 @@
           "name": "capabilityExecutor",
           "kind": "property",
           "type": "RuntimeCapabilityExecutor | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "stateAdapter",
+          "kind": "property",
+          "type": "StateAdapter | undefined",
           "required": false,
           "description": null
         }
@@ -3713,7 +3718,7 @@
       "modulePath": "src/runtimeStateAdapter.ts",
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 14,
+        "line": 18,
         "column": 1
       },
       "exportPaths": [
@@ -3765,7 +3770,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 73,
+        "line": 74,
         "column": 1
       },
       "exportPaths": [
@@ -3999,7 +4004,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 54,
+        "line": 55,
         "column": 1
       },
       "exportPaths": [
@@ -4242,7 +4247,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 19,
+        "line": 20,
         "column": 1
       },
       "exportPaths": [
@@ -4375,7 +4380,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 12,
+        "line": 13,
         "column": 1
       },
       "exportPaths": [
@@ -4454,7 +4459,7 @@
     {
       "name": "useManifest",
       "title": null,
-      "description": null,
+      "description": "Returns the active application manifest from the owning Runtime provider.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -4462,7 +4467,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 22,
+        "line": 38,
         "column": 1
       },
       "exportPaths": [
@@ -4483,7 +4488,7 @@
     {
       "name": "useManifestContext",
       "title": null,
-      "description": null,
+      "description": "Returns the active manifest scope, including its application-lifetime state adapter.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -4491,7 +4496,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 30,
+        "line": 47,
         "column": 1
       },
       "exportPaths": [
@@ -4512,7 +4517,7 @@
     {
       "name": "useOptionalManifestContext",
       "title": null,
-      "description": null,
+      "description": "Reads an enclosing manifest scope without requiring hosts to provide one.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -4520,7 +4525,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 38,
+        "line": 56,
         "column": 1
       },
       "exportPaths": [
@@ -4658,7 +4663,7 @@
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 10,
+        "line": 13,
         "column": 14
       },
       "exportPaths": [
@@ -4673,7 +4678,7 @@
         },
         {
           "name": "value",
-          "type": "ManifestContextValue | null",
+          "type": "import(\"../../../src/ManifestContext\").ManifestContextValue | null",
           "required": true,
           "description": null
         }
@@ -4681,14 +4686,14 @@
     },
     {
       "name": "ManifestProvider",
-      "description": null,
+      "description": "Owns one configured state adapter for every Runtime screen in an application tree.",
       "isReadme": false,
       "see": [],
       "security": [],
       "modulePath": "src/ManifestContext.tsx",
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 12,
+        "line": 16,
         "column": 1
       },
       "exportPaths": [
@@ -4718,6 +4723,12 @@
           "type": "(screenId: string) => void | undefined",
           "required": false,
           "description": null
+        },
+        {
+          "name": "stateAdapter",
+          "type": "StateAdapter | undefined",
+          "required": false,
+          "description": null
         }
       ]
     },
@@ -4730,7 +4741,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 73,
+        "line": 74,
         "column": 1
       },
       "exportPaths": [
@@ -4874,7 +4885,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 19,
+        "line": 20,
         "column": 1
       },
       "exportPaths": [
@@ -4977,45 +4988,45 @@
     },
     {
       "name": "ManifestProvider",
-      "description": null,
+      "description": "Owns one configured state adapter for every Runtime screen in an application tree.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
-        "line": 12,
+        "line": 16,
         "column": 1
       }
     },
     {
       "name": "useManifest",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/ManifestContext.tsx",
-        "line": 22,
-        "column": 1
-      }
-    },
-    {
-      "name": "useManifestContext",
-      "description": null,
-      "see": [],
-      "security": [],
-      "sourceLocation": {
-        "filePath": "src/ManifestContext.tsx",
-        "line": 30,
-        "column": 1
-      }
-    },
-    {
-      "name": "useOptionalManifestContext",
-      "description": null,
+      "description": "Returns the active application manifest from the owning Runtime provider.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/ManifestContext.tsx",
         "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "useManifestContext",
+      "description": "Returns the active manifest scope, including its application-lifetime state adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/ManifestContext.tsx",
+        "line": 47,
+        "column": 1
+      }
+    },
+    {
+      "name": "useOptionalManifestContext",
+      "description": "Reads an enclosing manifest scope without requiring hosts to provide one.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/ManifestContext.tsx",
+        "line": 56,
         "column": 1
       }
     },
@@ -5648,12 +5659,23 @@
     },
     {
       "name": "composeRuntimeCapabilityExecutor",
-      "description": "Routes manifest-owned API capabilities before delegating application-owned capabilities.",
+      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 13,
+        "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeStateSetCapabilityAsync",
+      "description": "Applies one serializable state value through the configured application state adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 29,
         "column": 1
       }
     },
@@ -5664,7 +5686,73 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 22,
+        "line": 59,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveStateSetInput",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 76,
+        "column": 1
+      }
+    },
+    {
+      "name": "isStatePath",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 85,
+        "column": 1
+      }
+    },
+    {
+      "name": "isStateValue",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 94,
+        "column": 1
+      }
+    },
+    {
+      "name": "stateAdapterSetErrorResult",
+      "description": "Converts thrown adapter failures into capability diagnostics at the public Runtime boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 102,
+        "column": 1
+      }
+    },
+    {
+      "name": "missingStateAdapterResult",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 115,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidStateSetInputResult",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 128,
         "column": 1
       }
     },
@@ -5994,7 +6082,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 73,
+        "line": 74,
         "column": 1
       }
     },
@@ -6159,7 +6247,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 19,
+        "line": 20,
         "column": 1
       }
     },
@@ -6258,7 +6346,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 18,
+        "line": 22,
         "column": 1
       }
     },
@@ -6269,7 +6357,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 24,
+        "line": 28,
         "column": 9
       }
     },
@@ -6280,7 +6368,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 71,
+        "line": 79,
         "column": 13
       }
     },
@@ -6291,7 +6379,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 113,
+        "line": 121,
         "column": 1
       }
     },
@@ -6302,7 +6390,18 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 127,
+        "line": 135,
+        "column": 1
+      }
+    },
+    {
+      "name": "areStatePathsRelated",
+      "description": "Determines whether a state mutation changes an ancestor, descendant, or exact subscription.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStateAdapter.ts",
+        "line": 140,
         "column": 1
       }
     },
@@ -6313,7 +6412,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 131,
+        "line": 150,
         "column": 1
       }
     },
@@ -6324,7 +6423,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 148,
+        "line": 167,
         "column": 1
       }
     },
@@ -6335,7 +6434,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 183,
+        "line": 202,
         "column": 1
       }
     },
@@ -6346,7 +6445,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 224,
+        "line": 243,
         "column": 1
       }
     },
@@ -6357,7 +6456,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 228,
+        "line": 247,
         "column": 1
       }
     },
@@ -6368,7 +6467,51 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeStateAdapter.ts",
-        "line": 233,
+        "line": 252,
+        "column": 1
+      }
+    },
+    {
+      "name": "ValueProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStateReactivity.test.tsx",
+        "line": 25,
+        "column": 7
+      }
+    },
+    {
+      "name": "ListProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStateReactivity.test.tsx",
+        "line": 29,
+        "column": 7
+      }
+    },
+    {
+      "name": "ItemProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStateReactivity.test.tsx",
+        "line": 33,
+        "column": 7
+      }
+    },
+    {
+      "name": "mountAsyncRepeat",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStateReactivity.test.tsx",
+        "line": 51,
         "column": 1
       }
     },
@@ -6393,6 +6536,50 @@
         "line": 64,
         "column": 1
       }
+    },
+    {
+      "name": "useRuntimeStateBindings",
+      "description": "Re-renders a Runtime node when one of its state-backed presentation bindings changes.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/useRuntimeStateBindings.ts",
+        "line": 9,
+        "column": 1
+      }
+    },
+    {
+      "name": "findDataBindingProps",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/useRuntimeStateBindings.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectStateBindingPaths",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/useRuntimeStateBindings.ts",
+        "line": 45,
+        "column": 1
+      }
+    },
+    {
+      "name": "collectStateExpressionPaths",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/useRuntimeStateBindings.ts",
+        "line": 56,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -6409,7 +6596,7 @@
       "name": "composeRuntimeCapabilityExecutor",
       "sourcePath": "src/runtimeCapabilityExecutor.ts",
       "symbolName": "composeRuntimeCapabilityExecutor",
-      "description": "Routes manifest-owned API capabilities before delegating application-owned capabilities.",
+      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
       "isReadme": false
     },
     {
@@ -6553,7 +6740,7 @@
       "name": "ManifestProvider",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "ManifestProvider",
-      "description": null,
+      "description": "Owns one configured state adapter for every Runtime screen in an application tree.",
       "isReadme": false
     },
     {
@@ -6697,7 +6884,7 @@
       "name": "useManifest",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "useManifest",
-      "description": null,
+      "description": "Returns the active application manifest from the owning Runtime provider.",
       "isReadme": false
     },
     {
@@ -6705,7 +6892,7 @@
       "name": "useManifestContext",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "useManifestContext",
-      "description": null,
+      "description": "Returns the active manifest scope, including its application-lifetime state adapter.",
       "isReadme": false
     },
     {
@@ -6713,7 +6900,7 @@
       "name": "useOptionalManifestContext",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "useOptionalManifestContext",
-      "description": null,
+      "description": "Reads an enclosing manifest scope without requiring hosts to provide one.",
       "isReadme": false
     },
     {
@@ -6839,6 +7026,11 @@
         "sourcePath": "src/index.ts"
       },
       {
+        "fromPath": "src/ManifestContext.tsx",
+        "toPath": "src/runtimeStateAdapter.ts",
+        "sourcePath": "src/ManifestContext.tsx"
+      },
+      {
         "fromPath": "src/react19Compatibility.test.tsx",
         "toPath": "src/ManifestContext.tsx",
         "sourcePath": "src/react19Compatibility.test.tsx"
@@ -6915,12 +7107,27 @@
       },
       {
         "fromPath": "src/runtimeCapabilityExecutor.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeCapabilityExecutor.test.ts",
         "toPath": "src/runtimeCapabilityExecutor.ts",
         "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
       },
       {
         "fromPath": "src/runtimeCapabilityExecutor.test.ts",
+        "toPath": "src/runtimeNodeProps.ts",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeCapabilityExecutor.test.ts",
         "toPath": "src/runtimeScreenLoaders.ts",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeCapabilityExecutor.test.ts",
+        "toPath": "src/runtimeStateAdapter.ts",
         "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
       },
       {
@@ -7044,6 +7251,11 @@
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
+        "fromPath": "src/RuntimeRenderer.tsx",
+        "toPath": "src/useRuntimeStateBindings.ts",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
         "fromPath": "src/RuntimeRendererConfig.tsx",
         "toPath": "src/registry.tsx",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
@@ -7072,6 +7284,11 @@
         "fromPath": "src/runtimeRepeat.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeRepeat.ts"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.tsx",
+        "toPath": "src/ManifestContext.tsx",
+        "sourcePath": "src/RuntimeScreen.tsx"
       },
       {
         "fromPath": "src/RuntimeScreen.tsx",
@@ -7119,6 +7336,21 @@
         "sourcePath": "src/runtimeScreenLoaders.ts"
       },
       {
+        "fromPath": "src/runtimeStateReactivity.test.tsx",
+        "toPath": "src/registry.tsx",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeStateReactivity.test.tsx",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeStateReactivity.test.tsx",
+        "toPath": "src/runtimeStateAdapter.ts",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
         "fromPath": "src/useRuntimeMediaProps.ts",
         "toPath": "src/runtimeMedia.ts",
         "sourcePath": "src/useRuntimeMediaProps.ts"
@@ -7160,6 +7392,12 @@
         "fromSymbol": "src/ManifestContext.tsx",
         "toSymbol": "createContext",
         "callExpression": "createContext",
+        "sourcePath": "src/ManifestContext.tsx"
+      },
+      {
+        "fromSymbol": "src/ManifestContext.tsx",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
         "sourcePath": "src/ManifestContext.tsx"
       },
       {
@@ -7769,9 +8007,39 @@
         "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
       },
       {
+        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
+        "toSymbol": "resolveRuntimeNodeProps",
+        "callExpression": "resolveRuntimeNodeProps",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
+        "toSymbol": "executeCapability",
+        "callExpression": "executeCapability",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
         "fromSymbol": "src/runtimeCapabilityExecutor.ts",
         "toSymbol": "apiCapabilityExecutor",
         "callExpression": "composition.apiCapabilityExecutor",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.ts",
+        "toSymbol": "executeStateSetCapabilityAsync",
+        "callExpression": "executeStateSetCapabilityAsync",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
@@ -7781,9 +8049,57 @@
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
+        "fromSymbol": "executeStateSetCapabilityAsync",
+        "toSymbol": "missingStateAdapterResult",
+        "callExpression": "missingStateAdapterResult",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeStateSetCapabilityAsync",
+        "toSymbol": "resolveStateSetInput",
+        "callExpression": "resolveStateSetInput",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeStateSetCapabilityAsync",
+        "toSymbol": "invalidStateSetInputResult",
+        "callExpression": "invalidStateSetInputResult",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeStateSetCapabilityAsync",
+        "toSymbol": "stateAdapterSetErrorResult",
+        "callExpression": "stateAdapterSetErrorResult",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
         "fromSymbol": "executeApplicationCapabilityAsync",
         "toSymbol": "capabilityExecutor",
         "callExpression": "capabilityExecutor",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "resolveStateSetInput",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "resolveStateSetInput",
+        "toSymbol": "isStatePath",
+        "callExpression": "isStatePath",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "resolveStateSetInput",
+        "toSymbol": "isStateValue",
+        "callExpression": "isStateValue",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "isStateValue",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
@@ -8141,7 +8457,7 @@
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
-        "fromSymbol": "RuntimeRenderer",
+        "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "createRuntimeEventOperationBindingContext",
         "callExpression": "createRuntimeEventOperationBindingContext",
         "sourcePath": "src/RuntimeRenderer.tsx"
@@ -8159,6 +8475,12 @@
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
+        "fromSymbol": "RuntimeRenderer",
+        "toSymbol": "useRuntimeStateBindings",
+        "callExpression": "useRuntimeStateBindings",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "dispatchRuntimeComponentEventWithReporting",
         "callExpression": "dispatchRuntimeComponentEventWithReporting",
@@ -8171,6 +8493,12 @@
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
+        "fromSymbol": "RuntimeRenderer",
+        "toSymbol": "__function",
+        "callExpression": "(() => {\n    const { repeat } = node;\n    if (!repeat) {\n      return null;\n    }\n\n    return resolveRuntimeRepeatItemsSync(repeat, {\n      context: effectiveConfig.bindingContext,\n      dataBindings: effectiveConfig.dataBindings,\n      executeCapability: effectiveConfig.executeCapability,\n      node,\n      resultSlots: effectiveConfig.resultSlots,\n      stateAdapter: effectiveConfig.stateAdapter,\n      writeResultSlot: effectiveConfig.writeResultSlot,\n    });\n  })",
+        "sourcePath": "src/RuntimeRenderer.tsx"
+      },
+      {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "resolveRuntimeRepeatItemsSync",
         "callExpression": "resolveRuntimeRepeatItemsSync",
@@ -8179,7 +8507,7 @@
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeat, {\n        context: effectiveConfig.bindingContext,\n        dataBindings: effectiveConfig.dataBindings,\n        executeCapability: effectiveConfig.executeCapability,\n        node,\n        resultSlots: effectiveConfig.resultSlots,\n        stateAdapter: effectiveConfig.stateAdapter,\n        writeResultSlot: effectiveConfig.writeResultSlot,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });\n    })",
+        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeatRequest.repeat, {\n        context: repeatRequest.context,\n        dataBindings: repeatRequest.dataBindings,\n        executeCapability: repeatRequest.executeCapability,\n        node: repeatRequest.node,\n        resultSlots: repeatRequest.resultSlots,\n        stateAdapter: repeatRequest.stateAdapter,\n        writeResultSlot: repeatRequest.writeResultSlot,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });\n    })",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -8369,6 +8697,18 @@
         "sourcePath": "src/RuntimeScreen.tsx"
       },
       {
+        "fromSymbol": "RuntimeScreen",
+        "toSymbol": "useOptionalManifestContext",
+        "callExpression": "useOptionalManifestContext",
+        "sourcePath": "src/RuntimeScreen.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.tsx",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
+        "sourcePath": "src/RuntimeScreen.tsx"
+      },
+      {
         "fromSymbol": "src/RuntimeScreen.tsx",
         "toSymbol": "createRuntimeApiCapabilityExecutor",
         "callExpression": "createRuntimeApiCapabilityExecutor",
@@ -8378,12 +8718,6 @@
         "fromSymbol": "src/RuntimeScreen.tsx",
         "toSymbol": "composeRuntimeCapabilityExecutor",
         "callExpression": "composeRuntimeCapabilityExecutor",
-        "sourcePath": "src/RuntimeScreen.tsx"
-      },
-      {
-        "fromSymbol": "src/RuntimeScreen.tsx",
-        "toSymbol": "createRuntimeMemoryStateAdapter",
-        "callExpression": "createRuntimeMemoryStateAdapter",
         "sourcePath": "src/RuntimeScreen.tsx"
       },
       {
@@ -8526,8 +8860,14 @@
       },
       {
         "fromSymbol": "emit",
-        "toSymbol": "pathPartsToKey",
-        "callExpression": "pathPartsToKey",
+        "toSymbol": "areStatePathsRelated",
+        "callExpression": "areStatePathsRelated",
+        "sourcePath": "src/runtimeStateAdapter.ts"
+      },
+      {
+        "fromSymbol": "emit",
+        "toSymbol": "readStatePath",
+        "callExpression": "readStatePath",
         "sourcePath": "src/runtimeStateAdapter.ts"
       },
       {
@@ -8675,6 +9015,60 @@
         "sourcePath": "src/runtimeStateAdapter.ts"
       },
       {
+        "fromSymbol": "mountAsyncRepeat",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "create",
+        "callExpression": "create",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "mountAsyncRepeat",
+        "callExpression": "mountAsyncRepeat",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
         "fromSymbol": "useRuntimeMediaProps",
         "toSymbol": "collectRuntimeMediaReferenceIds",
         "callExpression": "collectRuntimeMediaReferenceIds",
@@ -8709,6 +9103,42 @@
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
         "sourcePath": "src/useRuntimeMediaProps.ts"
+      },
+      {
+        "fromSymbol": "src/useRuntimeStateBindings.ts",
+        "toSymbol": "collectStateBindingPaths",
+        "callExpression": "collectStateBindingPaths",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "src/useRuntimeStateBindings.ts",
+        "toSymbol": "findDataBindingProps",
+        "callExpression": "findDataBindingProps",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "src/useRuntimeStateBindings.ts",
+        "toSymbol": "setVersion",
+        "callExpression": "setVersion",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "src/useRuntimeStateBindings.ts",
+        "toSymbol": "collectStateExpressionPaths",
+        "callExpression": "collectStateExpressionPaths",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "collectStateBindingPaths",
+        "toSymbol": "collectStateExpressionPaths",
+        "callExpression": "collectStateExpressionPaths",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "collectStateExpressionPaths",
+        "toSymbol": "collectStateExpressionPaths",
+        "callExpression": "collectStateExpressionPaths",
+        "sourcePath": "src/useRuntimeStateBindings.ts"
       },
       {
         "fromSymbol": "renderReactNativeWebRuntimeFixture",
@@ -9439,6 +9869,11 @@
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
+        "fromSymbol": "RuntimeCapabilityExecutorComposition",
+        "toType": "StateAdapter",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
         "fromSymbol": "composeRuntimeCapabilityExecutor",
         "toType": "RuntimeCapabilityExecutor",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
@@ -10038,7 +10473,7 @@
       {
         "fromComponent": "ManifestProvider",
         "toComponent": "ManifestContext",
-        "jsxElement": "<ManifestContext value={{ manifest, activeScreenId, onScreenChange }}>",
+        "jsxElement": "<ManifestContext value={{ manifest, activeScreenId, onScreenChange, stateAdapter }}>",
         "sourcePath": "src/ManifestContext.tsx"
       },
       {

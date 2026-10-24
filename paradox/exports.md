@@ -25,9 +25,9 @@ Source: `src/componentRegistry.ts:3:1`
 
 Kind: `function`
 Module: `src/runtimeCapabilityExecutor.ts`
-Source: `src/runtimeCapabilityExecutor.ts:13:1`
+Source: `src/runtimeCapabilityExecutor.ts:17:1`
 
-Routes manifest-owned API capabilities before delegating application-owned capabilities.
+Routes API and state capabilities before delegating application-owned capabilities.
 
 ### Signatures
 
@@ -158,7 +158,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:40:1`
 
 Kind: `function`
 Module: `src/runtimeStateAdapter.ts`
-Source: `src/runtimeStateAdapter.ts:18:1`
+Source: `src/runtimeStateAdapter.ts:22:1`
 
 ### Signatures
 
@@ -274,13 +274,15 @@ Determines whether a dot-separated path is exposed by a capability output schema
 
 Kind: `value`
 Module: `src/ManifestContext.tsx`
-Source: `src/ManifestContext.tsx:10:14`
+Source: `src/ManifestContext.tsx:13:14`
 
 ## ManifestProvider
 
 Kind: `function`
 Module: `src/ManifestContext.tsx`
-Source: `src/ManifestContext.tsx:12:1`
+Source: `src/ManifestContext.tsx:16:1`
+
+Owns one configured state adapter for every Runtime screen in an application tree.
 
 ### Signatures
 
@@ -676,7 +678,7 @@ Source: `src/runtimeBindings.ts:36:1`
 
 Kind: `type`
 Module: `src/runtimeCapabilityExecutor.ts`
-Source: `src/runtimeCapabilityExecutor.ts:7:1`
+Source: `src/runtimeCapabilityExecutor.ts:10:1`
 
 ### Members
 
@@ -684,6 +686,7 @@ Source: `src/runtimeCapabilityExecutor.ts:7:1`
 | --- | --- | --- | --- | --- |
 | apiCapabilityExecutor | property | `RuntimeCapabilityExecutor` | yes |  |
 | capabilityExecutor | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
+| stateAdapter | property | `StateAdapter \| undefined` | no |  |
 
 ## RuntimeComponentEventDispatchArgs
 
@@ -889,7 +892,7 @@ Source: `src/runtimeMedia.ts:9:1`
 
 Kind: `type`
 Module: `src/runtimeStateAdapter.ts`
-Source: `src/runtimeStateAdapter.ts:14:1`
+Source: `src/runtimeStateAdapter.ts:18:1`
 
 ### Members
 
@@ -907,7 +910,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:6:1`
 
 Kind: `function`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:73:1`
+Source: `src/RuntimeRenderer.tsx:74:1`
 
 ### Signatures
 
@@ -960,7 +963,7 @@ Source: `src/RuntimeRendererConfig.tsx:139:1`
 
 Kind: `type`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:54:1`
+Source: `src/RuntimeRenderer.tsx:55:1`
 
 ### Members
 
@@ -1020,7 +1023,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:2:1`
 
 Kind: `function`
 Module: `src/RuntimeScreen.tsx`
-Source: `src/RuntimeScreen.tsx:19:1`
+Source: `src/RuntimeScreen.tsx:20:1`
 
 ### Signatures
 
@@ -1061,7 +1064,7 @@ Source: `src/runtimeScreenLoaders.ts:17:1`
 
 Kind: `type`
 Module: `src/RuntimeScreen.tsx`
-Source: `src/RuntimeScreen.tsx:12:1`
+Source: `src/RuntimeScreen.tsx:13:1`
 
 ### Members
 
@@ -1088,7 +1091,9 @@ Source: `src/runtimeRepeatEmptyState.ts:3:1`
 
 Kind: `function`
 Module: `src/ManifestContext.tsx`
-Source: `src/ManifestContext.tsx:22:1`
+Source: `src/ManifestContext.tsx:38:1`
+
+Returns the active application manifest from the owning Runtime provider.
 
 ### Signatures
 
@@ -1099,7 +1104,9 @@ Source: `src/ManifestContext.tsx:22:1`
 
 Kind: `function`
 Module: `src/ManifestContext.tsx`
-Source: `src/ManifestContext.tsx:30:1`
+Source: `src/ManifestContext.tsx:47:1`
+
+Returns the active manifest scope, including its application-lifetime state adapter.
 
 ### Signatures
 
@@ -1110,7 +1117,9 @@ Source: `src/ManifestContext.tsx:30:1`
 
 Kind: `function`
 Module: `src/ManifestContext.tsx`
-Source: `src/ManifestContext.tsx:38:1`
+Source: `src/ManifestContext.tsx:56:1`
+
+Reads an enclosing manifest scope without requiring hosts to provide one.
 
 ### Signatures
 

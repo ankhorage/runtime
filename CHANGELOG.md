@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.1.0
+
+### Minor Changes
+
+- 37c56b0: Add the canonical `state.set` binding capability with shared in-memory state ownership and reactive state-backed presentation bindings.
+
 ## 5.0.7
 
 ### Patch Changes

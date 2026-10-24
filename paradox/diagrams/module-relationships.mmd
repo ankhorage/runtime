@@ -39,12 +39,15 @@ graph LR
   module_src_runtimeScreenLoaders_test_ts["src/runtimeScreenLoaders.test.ts"]
   module_src_runtimeScreenLoaders_ts["src/runtimeScreenLoaders.ts"]
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
+  module_src_runtimeStateReactivity_test_tsx["src/runtimeStateReactivity.test.tsx"]
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
+  module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
   module_tests_reactNativeWebCompatibility_test_ts["tests/reactNativeWebCompatibility.test.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --> module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
+  module_src_ManifestContext_tsx --> module_src_runtimeStateAdapter_ts
   module_src_react19Compatibility_test_tsx --> module_src_ManifestContext_tsx
   module_src_react19Compatibility_test_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_registry_test_ts --> module_src_registry_tsx
@@ -59,8 +62,11 @@ graph LR
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeRepeat_ts
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimeCapabilityExecutor_ts --> module_src_runtimeBindings_ts
   module_src_runtimeEventExecution_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
@@ -85,12 +91,14 @@ graph LR
   module_src_RuntimeRenderer_tsx --> module_src_runtimeRepeatDiagnostics_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeRepeatEmptyState_ts
   module_src_RuntimeRenderer_tsx --> module_src_useRuntimeMediaProps_ts
+  module_src_RuntimeRenderer_tsx --> module_src_useRuntimeStateBindings_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_registry_tsx
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeActionRegistry_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeMedia_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeApiCapabilities_ts
   module_src_RuntimeScreen_tsx --> module_src_runtimeCapabilityExecutor_ts
@@ -100,6 +108,9 @@ graph LR
   module_src_RuntimeScreen_tsx --> module_src_runtimeStateAdapter_ts
   module_src_runtimeScreenLoaders_test_ts --> module_src_runtimeScreenLoaders_ts
   module_src_runtimeScreenLoaders_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeStateReactivity_test_tsx --> module_src_registry_tsx
+  module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeBindings_ts
+  module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeStateAdapter_ts
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --> module_src_capabilities_index_ts

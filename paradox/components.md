@@ -2,18 +2,20 @@
 
 ## ManifestContext
 
-Source: `src/ManifestContext.tsx:10:14`
+Source: `src/ManifestContext.tsx:13:14`
 
 Export paths: `src/index.ts`
 
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | children | `ReactNode` | no | — |  |
-| value | `ManifestContextValue \| null` | yes | — |  |
+| value | `import("../../../src/ManifestContext").ManifestContextValue \| null` | yes | — |  |
 
 ## ManifestProvider
 
-Source: `src/ManifestContext.tsx:12:1`
+Source: `src/ManifestContext.tsx:16:1`
+
+Owns one configured state adapter for every Runtime screen in an application tree.
 
 Export paths: `src/index.ts`
 
@@ -23,10 +25,11 @@ Export paths: `src/index.ts`
 | children | `React.ReactNode \| undefined` | no | — |  |
 | manifest | `AppManifest` | yes | — |  |
 | onScreenChange | `(screenId: string) => void \| undefined` | no | — |  |
+| stateAdapter | `StateAdapter \| undefined` | no | — |  |
 
 ## RuntimeRenderer
 
-Source: `src/RuntimeRenderer.tsx:73:1`
+Source: `src/RuntimeRenderer.tsx:74:1`
 
 Export paths: `src/index.ts`
 
@@ -62,7 +65,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeScreen
 
-Source: `src/RuntimeScreen.tsx:19:1`
+Source: `src/RuntimeScreen.tsx:20:1`
 
 Export paths: `src/index.ts`
 

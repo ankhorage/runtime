@@ -66,7 +66,7 @@
   {
     "name": "composeRuntimeCapabilityExecutor",
     "title": null,
-    "description": "Routes manifest-owned API capabilities before delegating application-owned capabilities.",
+    "description": "Routes API and state capabilities before delegating application-owned capabilities.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -74,7 +74,7 @@
     "modulePath": "src/runtimeCapabilityExecutor.ts",
     "sourceLocation": {
       "filePath": "src/runtimeCapabilityExecutor.ts",
-      "line": 13,
+      "line": 17,
       "column": 1
     },
     "exportPaths": [
@@ -472,7 +472,7 @@
     "modulePath": "src/runtimeStateAdapter.ts",
     "sourceLocation": {
       "filePath": "src/runtimeStateAdapter.ts",
-      "line": 18,
+      "line": 22,
       "column": 1
     },
     "exportPaths": [
@@ -810,7 +810,7 @@
     "modulePath": "src/ManifestContext.tsx",
     "sourceLocation": {
       "filePath": "src/ManifestContext.tsx",
-      "line": 10,
+      "line": 13,
       "column": 14
     },
     "exportPaths": [
@@ -824,7 +824,7 @@
   {
     "name": "ManifestProvider",
     "title": null,
-    "description": null,
+    "description": "Owns one configured state adapter for every Runtime screen in an application tree.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -832,7 +832,7 @@
     "modulePath": "src/ManifestContext.tsx",
     "sourceLocation": {
       "filePath": "src/ManifestContext.tsx",
-      "line": 12,
+      "line": 16,
       "column": 1
     },
     "exportPaths": [
@@ -2122,7 +2122,7 @@
     "modulePath": "src/runtimeCapabilityExecutor.ts",
     "sourceLocation": {
       "filePath": "src/runtimeCapabilityExecutor.ts",
-      "line": 7,
+      "line": 10,
       "column": 1
     },
     "exportPaths": [
@@ -2144,6 +2144,13 @@
         "name": "capabilityExecutor",
         "kind": "property",
         "type": "RuntimeCapabilityExecutor | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "stateAdapter",
+        "kind": "property",
+        "type": "StateAdapter | undefined",
         "required": false,
         "description": null
       }
@@ -2890,7 +2897,7 @@
     "modulePath": "src/runtimeStateAdapter.ts",
     "sourceLocation": {
       "filePath": "src/runtimeStateAdapter.ts",
-      "line": 14,
+      "line": 18,
       "column": 1
     },
     "exportPaths": [
@@ -2942,7 +2949,7 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 73,
+      "line": 74,
       "column": 1
     },
     "exportPaths": [
@@ -3176,7 +3183,7 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 54,
+      "line": 55,
       "column": 1
     },
     "exportPaths": [
@@ -3419,7 +3426,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 19,
+      "line": 20,
       "column": 1
     },
     "exportPaths": [
@@ -3552,7 +3559,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 12,
+      "line": 13,
       "column": 1
     },
     "exportPaths": [
@@ -3631,7 +3638,7 @@
   {
     "name": "useManifest",
     "title": null,
-    "description": null,
+    "description": "Returns the active application manifest from the owning Runtime provider.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -3639,7 +3646,7 @@
     "modulePath": "src/ManifestContext.tsx",
     "sourceLocation": {
       "filePath": "src/ManifestContext.tsx",
-      "line": 22,
+      "line": 38,
       "column": 1
     },
     "exportPaths": [
@@ -3660,7 +3667,7 @@
   {
     "name": "useManifestContext",
     "title": null,
-    "description": null,
+    "description": "Returns the active manifest scope, including its application-lifetime state adapter.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -3668,7 +3675,7 @@
     "modulePath": "src/ManifestContext.tsx",
     "sourceLocation": {
       "filePath": "src/ManifestContext.tsx",
-      "line": 30,
+      "line": 47,
       "column": 1
     },
     "exportPaths": [
@@ -3689,7 +3696,7 @@
   {
     "name": "useOptionalManifestContext",
     "title": null,
-    "description": null,
+    "description": "Reads an enclosing manifest scope without requiring hosts to provide one.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -3697,7 +3704,7 @@
     "modulePath": "src/ManifestContext.tsx",
     "sourceLocation": {
       "filePath": "src/ManifestContext.tsx",
-      "line": 38,
+      "line": 56,
       "column": 1
     },
     "exportPaths": [

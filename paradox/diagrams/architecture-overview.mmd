@@ -19,6 +19,7 @@ graph TD
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
   package__ankhorage_runtime -.-> module_src_ManifestContext_tsx
+  module_src_ManifestContext_tsx --> module_src_runtimeStateAdapter_ts
   module_src_react19Compatibility_test_tsx["src/react19Compatibility.test.tsx"]
   package__ankhorage_runtime -.-> module_src_react19Compatibility_test_tsx
   module_src_react19Compatibility_test_tsx --> module_src_ManifestContext_tsx
@@ -55,8 +56,11 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeBindings_ts
   module_src_runtimeCapabilityExecutor_test_ts["src/runtimeCapabilityExecutor.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeCapabilityExecutor_test_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeScreenLoaders_ts
+  module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimeCapabilityExecutor_ts["src/runtimeCapabilityExecutor.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeCapabilityExecutor_ts
   module_src_runtimeCapabilityExecutor_ts --> module_src_runtimeBindings_ts
@@ -107,6 +111,7 @@ graph TD
   module_src_RuntimeRenderer_tsx --> module_src_runtimeRepeatDiagnostics_ts
   module_src_RuntimeRenderer_tsx --> module_src_runtimeRepeatEmptyState_ts
   module_src_RuntimeRenderer_tsx --> module_src_useRuntimeMediaProps_ts
+  module_src_RuntimeRenderer_tsx --> module_src_useRuntimeStateBindings_ts
   module_src_RuntimeRendererConfig_tsx["src/RuntimeRendererConfig.tsx"]
   package__ankhorage_runtime -.-> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeRendererConfig_tsx --> module_src_registry_tsx
@@ -123,6 +128,7 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeRepeatEmptyState_ts
   module_src_RuntimeScreen_tsx["src/RuntimeScreen.tsx"]
   package__ankhorage_runtime -.-> module_src_RuntimeScreen_tsx
+  module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeApiCapabilities_ts
   module_src_RuntimeScreen_tsx --> module_src_runtimeCapabilityExecutor_ts
@@ -138,9 +144,16 @@ graph TD
   module_src_runtimeScreenLoaders_ts --> module_src_runtimeBindings_ts
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeStateAdapter_ts
+  module_src_runtimeStateReactivity_test_tsx["src/runtimeStateReactivity.test.tsx"]
+  package__ankhorage_runtime -.-> module_src_runtimeStateReactivity_test_tsx
+  module_src_runtimeStateReactivity_test_tsx --> module_src_registry_tsx
+  module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeBindings_ts
+  module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeStateAdapter_ts
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   package__ankhorage_runtime -.-> module_src_useRuntimeMediaProps_ts
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
+  module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
+  package__ankhorage_runtime -.-> module_src_useRuntimeStateBindings_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
   package__ankhorage_runtime -.-> module_tests_reactNativeWebCompatibility_fixture_tsx
   module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx
