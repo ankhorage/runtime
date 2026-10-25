@@ -145,6 +145,51 @@ describe('Runtime state repeat reactivity', () => {
   });
 });
 
+describe('Runtime derived state reactivity', () => {
+  it('rerenders a length transform after an atomic append update', () => {
+    const stateAdapter = createRuntimeMemoryStateAdapter({ initialState: { day: { meals: [] } } });
+    const node = { id: 'meal-count', type: 'ValueProbe' } satisfies UiNode;
+    const dataBindings = {
+      'meal-count': {
+        componentId: 'meal-count',
+        props: {
+          value: {
+            value: {
+              kind: 'transform',
+              transforms: ['length'],
+              value: { capability: 'state.day', path: 'meals' },
+            },
+          },
+        },
+      },
+    } satisfies ComponentDataBindingRegistry;
+    let renderer: ReturnType<typeof create> | undefined;
+
+    act(() => {
+      renderer = create(
+        <RuntimeRenderer
+          dataBindings={dataBindings}
+          node={node}
+          registry={registry}
+          stateAdapter={stateAdapter}
+        />,
+      );
+    });
+    if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
+
+    expect(renderer.root.findByType('output').children).toEqual(['0']);
+
+    act(() => {
+      expect(stateAdapter.update?.('day.meals', { kind: 'append', value: 'Breakfast' })).toEqual({
+        data: ['Breakfast'],
+        ok: true,
+      });
+    });
+
+    expect(renderer.root.findByType('output').children).toEqual(['1']);
+  });
+});
+
 describe('Runtime async repeat reactivity', () => {
   it('keeps root async repeats stable until their context changes', async () => {
     const pending: ((result: RuntimeCapabilityExecutionResult) => void)[] = [];

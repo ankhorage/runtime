@@ -16,7 +16,7 @@ import type { Capability } from '@ankhorage/contracts/capability';
 import { isRecord } from '@ankhorage/utility/object';
 
 export type RuntimeBindingResultCache = Readonly<Record<string, BindingValue | undefined>>;
-export type RuntimeBindingResultWriter = (slot: string, value: BindingValue) => void;
+export type RuntimeBindingResultWriter = (slot: string, value: BindingValue | undefined) => void;
 
 export interface RuntimeCapabilityExecutionArgs {
   readonly capability: Capability['id'];
@@ -321,8 +321,10 @@ function applyBindingValueTransforms(
   value: BindingValue | undefined,
   transforms: readonly BindingValueTransform[],
 ): BindingValue | undefined {
-  if (typeof value !== 'string') return value;
   return transforms.reduce((current, transform) => {
+    if (transform === 'length')
+      return typeof current === 'string' || Array.isArray(current) ? current.length : undefined;
+    if (typeof current !== 'string') return undefined;
     if (transform === 'trim') return current.trim();
     if (transform === 'uppercase') return current.toUpperCase();
     return current.toLowerCase();

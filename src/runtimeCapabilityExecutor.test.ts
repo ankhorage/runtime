@@ -1,4 +1,5 @@
 import type {
+  BindingValue,
   ComponentDataBindingRegistry,
   ScreenSpec,
   StateAdapter,
@@ -14,7 +15,7 @@ import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
 
 const node: UiNode = { id: 'root', type: 'View' };
 
-it('prefers the configured executor for API capabilities while delegating application capabilities', async () => {
+it('prefers the host-injected executor for API capabilities while delegating application capabilities', async () => {
   const calls: string[] = [];
   const executeCapability = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: ({ capability }) => {
@@ -114,6 +115,117 @@ it('persists a state.set mutation for a later screen presentation binding', asyn
   expect(diagnostics).toEqual([]);
   expect(laterScreenProps.value).toBe('2 meals logged');
 });
+
+it('returns cumulative state.update results through slots and gates later event bindings', async () => {
+  const stateAdapter = createRuntimeMemoryStateAdapter({ initialState: { day: { meals: [] } } });
+  const navigations: string[] = [];
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    capabilityExecutor: ({ capability }) => {
+      navigations.push(capability);
+      return Promise.resolve({ data: {}, ok: true as const });
+    },
+    stateAdapter,
+  });
+  const bindings = createStateUpdateBindings('day.meals', 'Breakfast');
+  const resultSlots: { updatedMeals?: BindingValue } = {};
+
+  const diagnostics = await dispatchRuntimeComponentEvent({
+    dataBindings: bindings,
+    event: { payload: {}, sourceNodeId: 'log-meal', type: 'button.press' },
+    executeCapability,
+    node: { id: 'log-meal', type: 'Button' },
+    resultSlots,
+    writeResultSlot: (_slot, value) => (resultSlots.updatedMeals = value),
+  });
+
+  expect(diagnostics).toEqual([]);
+  expect(resultSlots.updatedMeals).toEqual({ path: 'day.meals', value: ['Breakfast'] });
+  expect(stateAdapter.get('day.meals')).toEqual({ data: ['Breakfast'], ok: true });
+  expect(navigations).toEqual(['navigator.navigate']);
+});
+
+it('clears a persisted result slot when a later state.update fails', async () => {
+  const navigations: string[] = [];
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    capabilityExecutor: ({ capability }) => {
+      navigations.push(capability);
+      return Promise.resolve({ data: {}, ok: true as const });
+    },
+    stateAdapter: createRuntimeMemoryStateAdapter({ initialState: { meals: [] } }),
+  });
+  const bindings = createStateUpdateBindings('meals', 'Lunch');
+  const resultSlots: { updatedMeals?: BindingValue } = {};
+
+  await dispatchRuntimeComponentEvent({
+    dataBindings: bindings,
+    event: { payload: {}, sourceNodeId: 'log-meal', type: 'button.press' },
+    executeCapability,
+    node: { id: 'log-meal', type: 'Button' },
+    resultSlots,
+    writeResultSlot: (_slot, value) => (resultSlots.updatedMeals = value),
+  });
+  expect(resultSlots.updatedMeals).toEqual({ path: 'meals', value: ['Lunch'] });
+  await executeCapability({
+    capability: 'state.set',
+    input: { path: 'meals', value: 'Breakfast' },
+  });
+
+  const diagnostics = await dispatchRuntimeComponentEvent({
+    dataBindings: bindings,
+    event: { payload: {}, sourceNodeId: 'log-meal', type: 'button.press' },
+    executeCapability,
+    node: { id: 'log-meal', type: 'Button' },
+    resultSlots,
+    writeResultSlot: (_slot, value) => (resultSlots.updatedMeals = value),
+  });
+
+  expect(diagnostics).toEqual([
+    {
+      code: 'incompatible_value',
+      message: 'Append updates require an existing array state value.',
+      severity: 'error',
+    },
+  ]);
+  expect(resultSlots.updatedMeals).toBeUndefined();
+  expect(navigations).toEqual(['navigator.navigate']);
+});
+
+function createStateUpdateBindings(path: string, value: string): ComponentDataBindingRegistry {
+  return {
+    'log-meal': {
+      componentId: 'log-meal',
+      events: {
+        press: [
+          {
+            target: {
+              capability: 'state.update',
+              input: {
+                path: { kind: 'literal', value: path },
+                update: {
+                  fields: {
+                    kind: { kind: 'literal', value: 'append' },
+                    value: { kind: 'literal', value },
+                  },
+                  kind: 'object',
+                },
+              },
+              result: 'updatedMeals',
+            },
+          },
+          {
+            target: { capability: 'navigator.navigate' },
+            when: {
+              operator: 'exists',
+              source: { capability: 'state.update', path: 'value', result: 'updatedMeals' },
+            },
+          },
+        ],
+      },
+    },
+  };
+}
 
 it('reports invalid state.set input without delegating to an application executor', async () => {
   const executeCapability = composeRuntimeCapabilityExecutor({
