@@ -101,12 +101,16 @@ export async function dispatchRuntimeComponentEvent(
       event: args.event,
       executeCapability: args.executeCapability,
       resultSlots,
-      writeResultSlot: (slot: string, value: BindingValue) => {
+      writeResultSlot: (slot: string, value: BindingValue | undefined) => {
         resultSlots[slot] = value;
         args.writeResultSlot?.(slot, value);
       },
     };
     if (!matchesBindingCondition(binding.when, context)) continue;
+
+    if (binding.target.result !== undefined) {
+      context.writeResultSlot(binding.target.result, undefined);
+    }
 
     const lifecycle = args.eventOperationLifecycle?.start({
       capability: binding.target.capability,

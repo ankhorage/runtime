@@ -16,7 +16,7 @@ import type { Capability } from '@ankhorage/contracts/capability';
 import { isRecord } from '@ankhorage/utility/object';
 
 export type RuntimeBindingResultCache = Readonly<Record<string, BindingValue | undefined>>;
-export type RuntimeBindingResultWriter = (slot: string, value: BindingValue) => void;
+export type RuntimeBindingResultWriter = (slot: string, value: BindingValue | undefined) => void;
 
 export interface RuntimeCapabilityExecutionArgs {
   readonly capability: Capability['id'];

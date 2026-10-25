@@ -161,7 +161,7 @@ it('keeps distinct slots for repeated calls to the same capability', async () =>
   const context = {
     executeCapability,
     resultSlots: slots,
-    writeResultSlot: (slot: string, value: BindingValue) => {
+    writeResultSlot: (slot: string, value: BindingValue | undefined) => {
       if (slot === 'one') slots.one = value;
       if (slot === 'two') slots.two = value;
     },

@@ -1,12 +1,13 @@
-import type {
-  StateAdapter,
-  StateAdapterError,
-  StateListener,
-  StatePath,
-  StateResult,
-  StateSubscription,
-  StateUpdate,
-  StateValue,
+import {
+  isSerializableValue,
+  type StateAdapter,
+  type StateAdapterError,
+  type StateListener,
+  type StatePath,
+  type StateResult,
+  type StateSubscription,
+  type StateUpdate,
+  type StateValue,
 } from '@ankhorage/contracts';
 
 type MutableStateRecord = Record<string, StateValue>;
@@ -14,6 +15,11 @@ type StateListenerSet = Set<(value: StateValue | undefined) => void>;
 interface StateListenerEntry {
   readonly listeners: StateListenerSet;
   readonly parts: readonly string[];
+}
+
+interface StateNotification {
+  readonly changedParts: readonly string[];
+  readonly state: MutableStateRecord;
 }
 
 export interface RuntimeMemoryStateAdapterOptions {
@@ -25,18 +31,33 @@ export function createRuntimeMemoryStateAdapter(
 ): StateAdapter {
   let rootState: MutableStateRecord = { ...(options.initialState ?? {}) };
   const listeners = new Map<string, StateListenerEntry>();
+  const notifications: StateNotification[] = [];
+  let isNotifying = false;
 
   const emit = (path: StatePath) => {
     const pathResult = normalizeStatePath(path);
     if (!pathResult.ok) return;
 
-    for (const entry of listeners.values()) {
-      if (!areStatePathsRelated(pathResult.parts, entry.parts)) continue;
+    notifications.push({ changedParts: pathResult.parts, state: rootState });
+    if (isNotifying) return;
 
-      const value = readStatePath(rootState, entry.parts);
-      for (const listener of entry.listeners) {
-        listener(value);
+    isNotifying = true;
+    try {
+      while (notifications.length > 0) {
+        const notification = notifications.shift();
+        if (notification === undefined) continue;
+
+        for (const entry of [...listeners.values()]) {
+          if (!areStatePathsRelated(notification.changedParts, entry.parts)) continue;
+
+          const value = readStatePath(notification.state, entry.parts);
+          for (const listener of [...entry.listeners]) {
+            listener(value);
+          }
+        }
       }
+    } finally {
+      isNotifying = false;
     }
   };
 
@@ -222,14 +243,19 @@ function applyStateUpdate(
   value: StateValue | undefined,
   update: StateUpdate,
 ): StateResult<StateValue> {
-  if (!Array.isArray(value)) {
+  if (value !== undefined && !isStateValueArray(value)) {
     return createStateError(
       'incompatible_value',
       'Append updates require an existing array state value.',
     );
   }
 
-  return createStateDataResult(value.concat(update.value));
+  return createStateDataResult([...(value ?? []), update.value]);
+}
+
+/*** Narrows a serializable value to an element-preserving state array. */
+function isStateValueArray(value: StateValue): value is readonly StateValue[] {
+  return Array.isArray(value) && value.every(isSerializableValue);
 }
 
 function deleteStatePath(

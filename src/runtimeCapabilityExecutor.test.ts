@@ -15,7 +15,7 @@ import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
 
 const node: UiNode = { id: 'root', type: 'View' };
 
-it('prefers the configured executor for API capabilities while delegating application capabilities', async () => {
+it('prefers the host-injected executor for API capabilities while delegating application capabilities', async () => {
   const calls: string[] = [];
   const executeCapability = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: ({ capability }) => {
@@ -145,7 +145,7 @@ it('returns cumulative state.update results through slots and gates later event 
   expect(navigations).toEqual(['navigator.navigate']);
 });
 
-it('does not gate success bindings after a failed state.update', async () => {
+it('clears a persisted result slot when a later state.update fails', async () => {
   const navigations: string[] = [];
   const executeCapability = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
@@ -153,15 +153,32 @@ it('does not gate success bindings after a failed state.update', async () => {
       navigations.push(capability);
       return Promise.resolve({ data: {}, ok: true as const });
     },
-    stateAdapter: createRuntimeMemoryStateAdapter({ initialState: { meals: 'Breakfast' } }),
+    stateAdapter: createRuntimeMemoryStateAdapter({ initialState: { meals: [] } }),
   });
   const bindings = createStateUpdateBindings('meals', 'Lunch');
+  const resultSlots: { updatedMeals?: BindingValue } = {};
+
+  await dispatchRuntimeComponentEvent({
+    dataBindings: bindings,
+    event: { payload: {}, sourceNodeId: 'log-meal', type: 'button.press' },
+    executeCapability,
+    node: { id: 'log-meal', type: 'Button' },
+    resultSlots,
+    writeResultSlot: (_slot, value) => (resultSlots.updatedMeals = value),
+  });
+  expect(resultSlots.updatedMeals).toEqual({ path: 'meals', value: ['Lunch'] });
+  await executeCapability({
+    capability: 'state.set',
+    input: { path: 'meals', value: 'Breakfast' },
+  });
 
   const diagnostics = await dispatchRuntimeComponentEvent({
     dataBindings: bindings,
     event: { payload: {}, sourceNodeId: 'log-meal', type: 'button.press' },
     executeCapability,
     node: { id: 'log-meal', type: 'Button' },
+    resultSlots,
+    writeResultSlot: (_slot, value) => (resultSlots.updatedMeals = value),
   });
 
   expect(diagnostics).toEqual([
@@ -171,7 +188,8 @@ it('does not gate success bindings after a failed state.update', async () => {
       severity: 'error',
     },
   ]);
-  expect(navigations).toEqual([]);
+  expect(resultSlots.updatedMeals).toBeUndefined();
+  expect(navigations).toEqual(['navigator.navigate']);
 });
 
 function createStateUpdateBindings(path: string, value: string): ComponentDataBindingRegistry {

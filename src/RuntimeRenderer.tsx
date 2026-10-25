@@ -119,7 +119,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   const mediaResolutionCache = useRuntimeMediaResolutionCache();
   const inheritedResultSlots = inheritedConfig.resultSlots;
   const [localResultSlots, setLocalResultSlots] = React.useState<RuntimeBindingResultCache>({});
-  const writeLocalResultSlot = React.useCallback((key: string, value: BindingValue) => {
+  const writeLocalResultSlot = React.useCallback((key: string, value: BindingValue | undefined) => {
     setLocalResultSlots((currentResults) => ({
       ...currentResults,
       [key]: value,
