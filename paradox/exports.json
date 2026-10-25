@@ -66,7 +66,7 @@
   {
     "name": "composeRuntimeCapabilityExecutor",
     "title": null,
-    "description": "Routes API and state capabilities before delegating application-owned capabilities.",
+    "description": "Keeps local state mutations while preferring the configured host executor for API capabilities.",
     "isReadme": false,
     "see": [],
     "security": [],

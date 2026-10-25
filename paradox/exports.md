@@ -27,7 +27,7 @@ Kind: `function`
 Module: `src/runtimeCapabilityExecutor.ts`
 Source: `src/runtimeCapabilityExecutor.ts:17:1`
 
-Routes API and state capabilities before delegating application-owned capabilities.
+Keeps local state mutations while preferring the configured host executor for API capabilities.
 
 ### Signatures
 

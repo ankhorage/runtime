@@ -126,6 +126,12 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeRepeatDiagnostics_ts
   module_src_runtimeRepeatEmptyState_ts["src/runtimeRepeatEmptyState.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeRepeatEmptyState_ts
+  module_src_RuntimeScreen_test_tsx["src/RuntimeScreen.test.tsx"]
+  package__ankhorage_runtime -.-> module_src_RuntimeScreen_test_tsx
+  module_src_RuntimeScreen_test_tsx --> module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --> module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --> module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx["src/RuntimeScreen.tsx"]
   package__ankhorage_runtime -.-> module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx

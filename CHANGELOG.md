@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.1.3
+
+### Patch Changes
+
+- 8d799e6: Prefer configured API capability executors so generated hosts provide their injected fetch implementation.
+
 ## 5.1.2
 
 ### Patch Changes

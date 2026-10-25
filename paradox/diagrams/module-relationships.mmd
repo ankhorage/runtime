@@ -35,6 +35,7 @@ graph LR
   module_src_runtimeRepeat_ts["src/runtimeRepeat.ts"]
   module_src_runtimeRepeatDiagnostics_ts["src/runtimeRepeatDiagnostics.ts"]
   module_src_runtimeRepeatEmptyState_ts["src/runtimeRepeatEmptyState.ts"]
+  module_src_RuntimeScreen_test_tsx["src/RuntimeScreen.test.tsx"]
   module_src_RuntimeScreen_tsx["src/RuntimeScreen.tsx"]
   module_src_runtimeScreenLoaders_test_ts["src/runtimeScreenLoaders.test.ts"]
   module_src_runtimeScreenLoaders_ts["src/runtimeScreenLoaders.ts"]
@@ -98,6 +99,10 @@ graph LR
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeMedia_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --> module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --> module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --> module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeApiCapabilities_ts

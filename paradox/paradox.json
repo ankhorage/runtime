@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.1.2",
+      "value": "v5.1.3",
       "color": "cb3837"
     },
     {
@@ -714,6 +714,17 @@
       ]
     },
     {
+      "path": "src/RuntimeScreen.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/registry.tsx",
+        "src/runtimeApiCapabilities.ts",
+        "src/runtimeBindings.ts",
+        "src/RuntimeRendererConfig.tsx"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/RuntimeScreen.tsx",
       "isEntrypoint": false,
       "dependencies": [
@@ -887,7 +898,7 @@
     {
       "name": "composeRuntimeCapabilityExecutor",
       "title": null,
-      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
+      "description": "Keeps local state mutations while preferring the configured host executor for API capabilities.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -5659,12 +5670,23 @@
     },
     {
       "name": "composeRuntimeCapabilityExecutor",
-      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
+      "description": "Keeps local state mutations while preferring the configured host executor for API capabilities.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
         "line": 17,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeApiCapabilityAsync",
+      "description": "Uses the host API executor when supplied, falling back to the manifest executor.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 29,
         "column": 1
       }
     },
@@ -5675,7 +5697,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 29,
+        "line": 37,
         "column": 1
       }
     },
@@ -5686,7 +5708,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 59,
+        "line": 67,
         "column": 1
       }
     },
@@ -5697,7 +5719,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 76,
+        "line": 84,
         "column": 1
       }
     },
@@ -5708,7 +5730,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 85,
+        "line": 93,
         "column": 1
       }
     },
@@ -5719,7 +5741,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 94,
+        "line": 102,
         "column": 1
       }
     },
@@ -5730,7 +5752,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 102,
+        "line": 110,
         "column": 1
       }
     },
@@ -5741,7 +5763,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 115,
+        "line": 123,
         "column": 1
       }
     },
@@ -5752,7 +5774,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 128,
+        "line": 136,
         "column": 1
       }
     },
@@ -6241,6 +6263,28 @@
       }
     },
     {
+      "name": "ButtonProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/RuntimeScreen.test.tsx",
+        "line": 31,
+        "column": 7
+      }
+    },
+    {
+      "name": "executeCapability",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/RuntimeScreen.test.tsx",
+        "line": 147,
+        "column": 9
+      }
+    },
+    {
       "name": "RuntimeScreen",
       "description": null,
       "see": [],
@@ -6596,7 +6640,7 @@
       "name": "composeRuntimeCapabilityExecutor",
       "sourcePath": "src/runtimeCapabilityExecutor.ts",
       "symbolName": "composeRuntimeCapabilityExecutor",
-      "description": "Routes API and state capabilities before delegating application-owned capabilities.",
+      "description": "Keeps local state mutations while preferring the configured host executor for API capabilities.",
       "isReadme": false
     },
     {
@@ -7284,6 +7328,26 @@
         "fromPath": "src/runtimeRepeat.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeRepeat.ts"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.test.tsx",
+        "toPath": "src/registry.tsx",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.test.tsx",
+        "toPath": "src/runtimeApiCapabilities.ts",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.test.tsx",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.test.tsx",
+        "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
       },
       {
         "fromPath": "src/RuntimeScreen.tsx",
@@ -8008,6 +8072,12 @@
       },
       {
         "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
+        "toSymbol": "executeCapability",
+        "callExpression": "executeCapability",
+        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
         "toSymbol": "createRuntimeMemoryStateAdapter",
         "callExpression": "createRuntimeMemoryStateAdapter",
         "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
@@ -8025,18 +8095,6 @@
         "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
       },
       {
-        "fromSymbol": "src/runtimeCapabilityExecutor.test.ts",
-        "toSymbol": "executeCapability",
-        "callExpression": "executeCapability",
-        "sourcePath": "src/runtimeCapabilityExecutor.test.ts"
-      },
-      {
-        "fromSymbol": "src/runtimeCapabilityExecutor.ts",
-        "toSymbol": "apiCapabilityExecutor",
-        "callExpression": "composition.apiCapabilityExecutor",
-        "sourcePath": "src/runtimeCapabilityExecutor.ts"
-      },
-      {
         "fromSymbol": "src/runtimeCapabilityExecutor.ts",
         "toSymbol": "executeStateSetCapabilityAsync",
         "callExpression": "executeStateSetCapabilityAsync",
@@ -8044,8 +8102,26 @@
       },
       {
         "fromSymbol": "src/runtimeCapabilityExecutor.ts",
+        "toSymbol": "executeApiCapabilityAsync",
+        "callExpression": "executeApiCapabilityAsync",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.ts",
         "toSymbol": "executeApplicationCapabilityAsync",
         "callExpression": "executeApplicationCapabilityAsync",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeApiCapabilityAsync",
+        "toSymbol": "capabilityExecutor",
+        "callExpression": "composition.capabilityExecutor",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeApiCapabilityAsync",
+        "toSymbol": "apiCapabilityExecutor",
+        "callExpression": "composition.apiCapabilityExecutor",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
@@ -8689,6 +8765,60 @@
         "toSymbol": "readRepeatPrimitive",
         "callExpression": "readRepeatPrimitive",
         "sourcePath": "src/runtimeRepeat.ts"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "createRuntimeApiCapabilityExecutor",
+        "callExpression": "createRuntimeApiCapabilityExecutor",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "executeCapability",
+        "toSymbol": "executeApi",
+        "callExpression": "executeApi",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "executeCapability",
+        "toSymbol": "navigate",
+        "callExpression": "navigate",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "create",
+        "callExpression": "create",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "pressLevel",
+        "callExpression": "pressLevel",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
       },
       {
         "fromSymbol": "RuntimeScreen",

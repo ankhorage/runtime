@@ -184,7 +184,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeCapabilityExecutor.ts">
       src/runtimeCapabilityExecutor.ts
-      <small>9 functions</small>
+      <small>10 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeEventExecution.ts">
@@ -257,6 +257,11 @@
       <small>1 function</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/RuntimeScreen.test.tsx">
+      src/RuntimeScreen.test.tsx
+      <small>2 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/RuntimeScreen.tsx">
       src/RuntimeScreen.tsx
       <small>1 function</small>
@@ -298,7 +303,7 @@
       <div class="summary">
         <div><strong>88</strong><span class="muted">public exports</span></div>
         <div><strong>5</strong><span class="muted">components</span></div>
-        <div><strong>46</strong><span class="muted">modules</span></div>
+        <div><strong>47</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -569,6 +574,11 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>shouldRenderRuntimeRepeatEmptyState</code></p>
+  </article><article class="item" data-search="src/RuntimeScreen.test.tsx src/registry.tsx src/runtimeApiCapabilities.ts src/runtimeBindings.ts src/RuntimeRendererConfig.tsx">
+    <h3>src/RuntimeScreen.test.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/registry.tsx</code>, <code>src/runtimeApiCapabilities.ts</code>, <code>src/runtimeBindings.ts</code>, <code>src/RuntimeRendererConfig.tsx</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/RuntimeScreen.tsx src/ManifestContext.tsx src/registry.tsx src/runtimeApiCapabilities.ts src/runtimeCapabilityExecutor.ts src/RuntimeRenderer.tsx src/RuntimeRendererConfig.tsx src/runtimeScreenLoaders.ts src/runtimeStateAdapter.ts RuntimeScreen RuntimeScreenProps">
     <h3>src/RuntimeScreen.tsx</h3>
     <p class="muted">Referenced module</p>
@@ -1885,11 +1895,11 @@ inject it at the runtime boundary.</p>
             </section>
             <section>
               <h3>src/runtimeCapabilityExecutor.ts</h3>
-              <article class="item" id="symbol-composeruntimecapabilityexecutor" data-search="composeRuntimeCapabilityExecutor  function src/runtimeCapabilityExecutor.ts Routes API and state capabilities before delegating application-owned capabilities. RuntimeCapabilityExecutor RuntimeCapabilityExecutorComposition (composition: RuntimeCapabilityExecutorComposition) =&gt; RuntimeCapabilityExecutor">
+              <article class="item" id="symbol-composeruntimecapabilityexecutor" data-search="composeRuntimeCapabilityExecutor  function src/runtimeCapabilityExecutor.ts Keeps local state mutations while preferring the configured host executor for API capabilities. RuntimeCapabilityExecutor RuntimeCapabilityExecutorComposition (composition: RuntimeCapabilityExecutorComposition) =&gt; RuntimeCapabilityExecutor">
     <h4>composeRuntimeCapabilityExecutor</h4>
     
     <p class="muted">function • <code>src/runtimeCapabilityExecutor.ts:17:1</code></p>
-    <p>Routes API and state capabilities before delegating application-owned capabilities.</p>
+    <p>Keeps local state mutations while preferring the configured host executor for API capabilities.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">RuntimeCapabilityExecutor</li><li class="chip">RuntimeCapabilityExecutorComposition</li></ul></div>
@@ -3674,6 +3684,12 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_src_runtimeRepeatDiagnostics_ts
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimeRepeatEmptyState_ts
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_RuntimeScreen_test_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   package__ankhorage_runtime -.-&gt; module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_ManifestContext_tsx
@@ -3842,6 +3858,12 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_src_runtimeRepeatDiagnostics_ts
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimeRepeatEmptyState_ts
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_RuntimeScreen_test_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   package__ankhorage_runtime -.-&gt; module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_ManifestContext_tsx
@@ -3921,6 +3943,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeRepeat_ts[&quot;src/runtimeRepeat.ts&quot;]
   module_src_runtimeRepeatDiagnostics_ts[&quot;src/runtimeRepeatDiagnostics.ts&quot;]
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   module_src_runtimeScreenLoaders_test_ts[&quot;src/runtimeScreenLoaders.test.ts&quot;]
   module_src_runtimeScreenLoaders_ts[&quot;src/runtimeScreenLoaders.ts&quot;]
@@ -3984,6 +4007,10 @@ inject it at the runtime boundary.</p>
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeMedia_ts
   module_src_runtimeRepeat_ts --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_runtimeApiCapabilities_ts
@@ -4041,6 +4068,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeRepeat_ts[&quot;src/runtimeRepeat.ts&quot;]
   module_src_runtimeRepeatDiagnostics_ts[&quot;src/runtimeRepeatDiagnostics.ts&quot;]
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   module_src_runtimeScreenLoaders_test_ts[&quot;src/runtimeScreenLoaders.test.ts&quot;]
   module_src_runtimeScreenLoaders_ts[&quot;src/runtimeScreenLoaders.ts&quot;]
@@ -4104,6 +4132,10 @@ inject it at the runtime boundary.</p>
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --&gt; module_src_runtimeMedia_ts
   module_src_runtimeRepeat_ts --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_registry_tsx
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeApiCapabilities_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_RuntimeScreen_test_tsx --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeScreen_tsx --&gt; module_src_runtimeApiCapabilities_ts
@@ -4163,6 +4195,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeRepeat_ts[&quot;src/runtimeRepeat.ts&quot;]
   module_src_runtimeRepeatDiagnostics_ts[&quot;src/runtimeRepeatDiagnostics.ts&quot;]
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   module_src_runtimeScreenLoaders_test_ts[&quot;src/runtimeScreenLoaders.test.ts&quot;]
   module_src_runtimeScreenLoaders_ts[&quot;src/runtimeScreenLoaders.ts&quot;]
@@ -4468,6 +4501,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeRepeat_ts[&quot;src/runtimeRepeat.ts&quot;]
   module_src_runtimeRepeatDiagnostics_ts[&quot;src/runtimeRepeatDiagnostics.ts&quot;]
   module_src_runtimeRepeatEmptyState_ts[&quot;src/runtimeRepeatEmptyState.ts&quot;]
+  module_src_RuntimeScreen_test_tsx[&quot;src/RuntimeScreen.test.tsx&quot;]
   module_src_RuntimeScreen_tsx[&quot;src/RuntimeScreen.tsx&quot;]
   module_src_runtimeScreenLoaders_test_ts[&quot;src/runtimeScreenLoaders.test.ts&quot;]
   module_src_runtimeScreenLoaders_ts[&quot;src/runtimeScreenLoaders.ts&quot;]
@@ -4842,8 +4876,10 @@ inject it at the runtime boundary.</p>
     <p class="muted"><code>diagrams/sequences/execute-runtime-binding-invocation.mmd</code></p>
     <div class="mermaid">sequenceDiagram
   participant participant_createMissingCapabilityExecutorDiagnostic as createMissingCapabilityExecutorDiagnostic
+  participant participant_executeApi as executeApi
   participant participant_executeCapability as executeCapability
   participant participant_executeRuntimeBindingInvocation as executeRuntimeBindingInvocation
+  participant participant_navigate as navigate
   participant participant_resolveBindingInputMap as resolveBindingInputMap
   participant participant_resolveObjectAsync as resolveObjectAsync
   participant participant_writeResultSlot as writeResultSlot
@@ -4854,6 +4890,10 @@ inject it at the runtime boundary.</p>
   participant_resolveObjectAsync--&gt;&gt;participant_resolveBindingInputMap: return
   participant_resolveBindingInputMap--&gt;&gt;participant_executeRuntimeBindingInvocation: return
   participant_executeRuntimeBindingInvocation-&gt;&gt;participant_executeCapability: context.executeCapability()
+  participant_executeCapability-&gt;&gt;participant_executeApi: executeApi()
+  participant_executeApi--&gt;&gt;participant_executeCapability: return
+  participant_executeCapability-&gt;&gt;participant_navigate: navigate()
+  participant_navigate--&gt;&gt;participant_executeCapability: return
   participant_executeCapability--&gt;&gt;participant_executeRuntimeBindingInvocation: return
   participant_executeRuntimeBindingInvocation-&gt;&gt;participant_writeResultSlot: context.writeResultSlot()
   participant_writeResultSlot-&gt;&gt;participant_writeResultSlot: args.writeResultSlot()
@@ -4864,8 +4904,10 @@ inject it at the runtime boundary.</p>
       <summary>View Mermaid source</summary>
       <pre>sequenceDiagram
   participant participant_createMissingCapabilityExecutorDiagnostic as createMissingCapabilityExecutorDiagnostic
+  participant participant_executeApi as executeApi
   participant participant_executeCapability as executeCapability
   participant participant_executeRuntimeBindingInvocation as executeRuntimeBindingInvocation
+  participant participant_navigate as navigate
   participant participant_resolveBindingInputMap as resolveBindingInputMap
   participant participant_resolveObjectAsync as resolveObjectAsync
   participant participant_writeResultSlot as writeResultSlot
@@ -4876,6 +4918,10 @@ inject it at the runtime boundary.</p>
   participant_resolveObjectAsync--&gt;&gt;participant_resolveBindingInputMap: return
   participant_resolveBindingInputMap--&gt;&gt;participant_executeRuntimeBindingInvocation: return
   participant_executeRuntimeBindingInvocation-&gt;&gt;participant_executeCapability: context.executeCapability()
+  participant_executeCapability-&gt;&gt;participant_executeApi: executeApi()
+  participant_executeApi--&gt;&gt;participant_executeCapability: return
+  participant_executeCapability-&gt;&gt;participant_navigate: navigate()
+  participant_navigate--&gt;&gt;participant_executeCapability: return
   participant_executeCapability--&gt;&gt;participant_executeRuntimeBindingInvocation: return
   participant_executeRuntimeBindingInvocation-&gt;&gt;participant_writeResultSlot: context.writeResultSlot()
   participant_writeResultSlot-&gt;&gt;participant_writeResultSlot: args.writeResultSlot()
@@ -5577,49 +5623,54 @@ inject it at the runtime boundary.</p>
   </section><section id="view-src-runtimecapabilityexecutor-ts" class="view" data-view="src/runtimeCapabilityExecutor.ts" hidden>
     <section class="panel">
       <h2>src/runtimeCapabilityExecutor.ts</h2>
-      <article class="item" data-search="composeRuntimeCapabilityExecutor src/runtimeCapabilityExecutor.ts Routes API and state capabilities before delegating application-owned capabilities.">
+      <article class="item" data-search="composeRuntimeCapabilityExecutor src/runtimeCapabilityExecutor.ts Keeps local state mutations while preferring the configured host executor for API capabilities.">
     <h3>composeRuntimeCapabilityExecutor</h3>
     <p class="muted"><code>src/runtimeCapabilityExecutor.ts:17:1</code></p>
-    <p>Routes API and state capabilities before delegating application-owned capabilities.</p>
+    <p>Keeps local state mutations while preferring the configured host executor for API capabilities.</p>
+    
+  </article><article class="item" data-search="executeApiCapabilityAsync src/runtimeCapabilityExecutor.ts Uses the host API executor when supplied, falling back to the manifest executor.">
+    <h3>executeApiCapabilityAsync</h3>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:29:1</code></p>
+    <p>Uses the host API executor when supplied, falling back to the manifest executor.</p>
     
   </article><article class="item" data-search="executeStateSetCapabilityAsync src/runtimeCapabilityExecutor.ts Applies one serializable state value through the configured application state adapter.">
     <h3>executeStateSetCapabilityAsync</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:29:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:37:1</code></p>
     <p>Applies one serializable state value through the configured application state adapter.</p>
     
   </article><article class="item" data-search="executeApplicationCapabilityAsync src/runtimeCapabilityExecutor.ts ">
     <h3>executeApplicationCapabilityAsync</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:59:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:67:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="resolveStateSetInput src/runtimeCapabilityExecutor.ts ">
     <h3>resolveStateSetInput</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:76:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:84:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="isStatePath src/runtimeCapabilityExecutor.ts ">
     <h3>isStatePath</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:85:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:93:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="isStateValue src/runtimeCapabilityExecutor.ts ">
     <h3>isStateValue</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:94:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:102:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="stateAdapterSetErrorResult src/runtimeCapabilityExecutor.ts Converts thrown adapter failures into capability diagnostics at the public Runtime boundary.">
     <h3>stateAdapterSetErrorResult</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:102:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:110:1</code></p>
     <p>Converts thrown adapter failures into capability diagnostics at the public Runtime boundary.</p>
     
   </article><article class="item" data-search="missingStateAdapterResult src/runtimeCapabilityExecutor.ts ">
     <h3>missingStateAdapterResult</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:115:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:123:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="invalidStateSetInputResult src/runtimeCapabilityExecutor.ts ">
     <h3>invalidStateSetInputResult</h3>
-    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:128:1</code></p>
+    <p class="muted"><code>src/runtimeCapabilityExecutor.ts:136:1</code></p>
     <p class="empty">No description available.</p>
     
   </article>
@@ -5910,6 +5961,21 @@ inject it at the runtime boundary.</p>
       <article class="item" data-search="shouldRenderRuntimeRepeatEmptyState src/runtimeRepeatEmptyState.ts ">
     <h3>shouldRenderRuntimeRepeatEmptyState</h3>
     <p class="muted"><code>src/runtimeRepeatEmptyState.ts:3:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article>
+    </section>
+  </section><section id="view-src-runtimescreen-test-tsx" class="view" data-view="src/RuntimeScreen.test.tsx" hidden>
+    <section class="panel">
+      <h2>src/RuntimeScreen.test.tsx</h2>
+      <article class="item" data-search="ButtonProbe src/RuntimeScreen.test.tsx ">
+    <h3>ButtonProbe</h3>
+    <p class="muted"><code>src/RuntimeScreen.test.tsx:31:7</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="executeCapability src/RuntimeScreen.test.tsx ">
+    <h3>executeCapability</h3>
+    <p class="muted"><code>src/RuntimeScreen.test.tsx:147:9</code></p>
     <p class="empty">No description available.</p>
     
   </article>
