@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.2.0
+
+### Minor Changes
+
+- f378dec: Support serializable atomic state append updates and length binding transforms.
+
 ## 5.1.3
 
 ### Patch Changes

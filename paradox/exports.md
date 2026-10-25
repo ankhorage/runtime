@@ -65,7 +65,7 @@ Source: `src/RuntimeRendererConfig.tsx:64:1`
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:179:1`
+Source: `src/runtimeActionRegistry.ts:183:1`
 
 Maps a platform callback invocation to the portable component event representation.
 
@@ -158,7 +158,7 @@ Source: `src/runtimeEventOperationLifecycle.ts:40:1`
 
 Kind: `function`
 Module: `src/runtimeStateAdapter.ts`
-Source: `src/runtimeStateAdapter.ts:22:1`
+Source: `src/runtimeStateAdapter.ts:29:1`
 
 ### Signatures
 
@@ -339,7 +339,7 @@ Resolves an invocation input map without executing a capability.
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:193:1`
+Source: `src/runtimeActionRegistry.ts:197:1`
 
 Resolves an authored expression-shaped payload for imperative consumers.
 
@@ -892,7 +892,7 @@ Source: `src/runtimeMedia.ts:9:1`
 
 Kind: `type`
 Module: `src/runtimeStateAdapter.ts`
-Source: `src/runtimeStateAdapter.ts:18:1`
+Source: `src/runtimeStateAdapter.ts:25:1`
 
 ### Members
 
@@ -1155,7 +1155,7 @@ Runs screen capability invocations when their serialized request input changes.
 
 Kind: `function`
 Module: `src/runtimeActionRegistry.ts`
-Source: `src/runtimeActionRegistry.ts:149:1`
+Source: `src/runtimeActionRegistry.ts:153:1`
 
 Wraps component callbacks so manifest event bindings retain the original callback behavior.
 

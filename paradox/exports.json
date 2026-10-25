@@ -201,7 +201,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 179,
+      "line": 183,
       "column": 1
     },
     "exportPaths": [
@@ -472,7 +472,7 @@
     "modulePath": "src/runtimeStateAdapter.ts",
     "sourceLocation": {
       "filePath": "src/runtimeStateAdapter.ts",
-      "line": 22,
+      "line": 29,
       "column": 1
     },
     "exportPaths": [
@@ -1012,7 +1012,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 193,
+      "line": 197,
       "column": 1
     },
     "exportPaths": [
@@ -2897,7 +2897,7 @@
     "modulePath": "src/runtimeStateAdapter.ts",
     "sourceLocation": {
       "filePath": "src/runtimeStateAdapter.ts",
-      "line": 18,
+      "line": 25,
       "column": 1
     },
     "exportPaths": [
@@ -3804,7 +3804,7 @@
     "modulePath": "src/runtimeActionRegistry.ts",
     "sourceLocation": {
       "filePath": "src/runtimeActionRegistry.ts",
-      "line": 149,
+      "line": 153,
       "column": 1
     },
     "exportPaths": [
