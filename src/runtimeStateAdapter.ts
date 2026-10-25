@@ -5,6 +5,7 @@ import type {
   StatePath,
   StateResult,
   StateSubscription,
+  StateUpdate,
   StateValue,
 } from '@ankhorage/contracts';
 
@@ -63,6 +64,23 @@ export function createRuntimeMemoryStateAdapter(
       rootState = nextStateResult.data;
       emit(path);
       return { ok: true };
+    },
+    update<TValue extends StateValue = StateValue>(
+      path: StatePath,
+      update: StateUpdate,
+    ): StateResult<TValue> {
+      const pathResult = normalizeStatePath(path);
+      if (!pathResult.ok) return pathResult;
+
+      const updateResult = applyStateUpdate(readStatePath(rootState, pathResult.parts), update);
+      if (!updateResult.ok) return updateResult;
+
+      const nextStateResult = setStatePath(rootState, pathResult.parts, updateResult.data);
+      if (!nextStateResult.ok) return nextStateResult;
+
+      rootState = nextStateResult.data;
+      emit(path);
+      return createStateDataResult(updateResult.data as TValue);
     },
     subscribe<TValue extends StateValue = StateValue>(
       path: StatePath,
@@ -197,6 +215,21 @@ function setStatePath(
     ...source,
     [head]: childResult.data,
   });
+}
+
+/*** Applies one supported atomic update without observing an intermediate state. */
+function applyStateUpdate(
+  value: StateValue | undefined,
+  update: StateUpdate,
+): StateResult<StateValue> {
+  if (!Array.isArray(value)) {
+    return createStateError(
+      'incompatible_value',
+      'Append updates require an existing array state value.',
+    );
+  }
+
+  return createStateDataResult(value.concat(update.value));
 }
 
 function deleteStatePath(

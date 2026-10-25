@@ -66,6 +66,47 @@ export const CAPABILITIES = [
     },
   },
   {
+    id: 'state.update',
+    owner: '@ankhorage/runtime',
+    access: ['invoke', 'write'],
+    binding: {
+      kind: 'state',
+      bindableAs: ['target'],
+    },
+    label: 'Update runtime state',
+    input: {
+      schema: {
+        type: 'object',
+        required: ['path', 'update'],
+        properties: {
+          path: {
+            anyOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+          },
+          update: {
+            type: 'object',
+            required: ['kind', 'value'],
+            properties: {
+              kind: { type: 'string', enum: ['append'] },
+              value: {},
+            },
+          },
+        },
+      },
+    },
+    output: {
+      schema: {
+        type: 'object',
+        required: ['path', 'value'],
+        properties: {
+          path: {
+            anyOf: [{ type: 'string' }, { type: 'array', items: { type: 'string' } }],
+          },
+          value: { type: 'array' },
+        },
+      },
+    },
+  },
+  {
     id: 'runtime.eventOperation',
     owner: '@ankhorage/runtime',
     access: ['read', 'subscribe'],

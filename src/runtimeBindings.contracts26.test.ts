@@ -48,6 +48,39 @@ it('resolves literals, nested values, transforms, fallbacks, and readable capabi
   });
 });
 
+it('derives lengths from arrays and strings in authored transform order', () => {
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        transforms: ['trim', 'length'],
+        value: { kind: 'literal', value: ' meal ' },
+      },
+      {},
+    ),
+  ).toBe(4);
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        transforms: ['length'],
+        value: { kind: 'literal', value: ['Breakfast', 'Lunch'] },
+      },
+      {},
+    ),
+  ).toBe(2);
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        transforms: ['length'],
+        value: { kind: 'literal', value: { meal: 'Breakfast' } },
+      },
+      {},
+    ),
+  ).toBeUndefined();
+});
+
 it('resolves canonical emitted capability event DTOs without an event pseudo-namespace', () => {
   const resolveEventValue = (capability: `${string}.${string}`, path: string) =>
     resolveRuntimeBindingExpressionSync(

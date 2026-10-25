@@ -167,6 +167,88 @@
         }
       },
       {
+        "id": "state.update",
+        "owner": "@ankhorage/runtime",
+        "access": [
+          "invoke",
+          "write"
+        ],
+        "binding": {
+          "kind": "state",
+          "bindableAs": [
+            "target"
+          ]
+        },
+        "label": "Update runtime state",
+        "input": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "path",
+              "update"
+            ],
+            "properties": {
+              "path": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "update": {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "append"
+                    ]
+                  },
+                  "value": {}
+                }
+              }
+            }
+          }
+        },
+        "output": {
+          "schema": {
+            "type": "object",
+            "required": [
+              "path",
+              "value"
+            ],
+            "properties": {
+              "path": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
+              },
+              "value": {
+                "type": "array"
+              }
+            }
+          }
+        }
+      },
+      {
         "id": "runtime.eventOperation",
         "owner": "@ankhorage/runtime",
         "access": [
@@ -261,7 +343,7 @@
   },
   "dependencies": {
     "@ankhorage/capability": "^0.2.2",
-    "@ankhorage/contracts": "^26.0.2",
+    "@ankhorage/contracts": "^26.2.0",
     "@ankhorage/data-sources": "^2.1.3",
     "@ankhorage/utility": "^1.10.0"
   },

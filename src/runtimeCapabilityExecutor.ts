@@ -1,4 +1,4 @@
-import type { StateAdapter, StatePath, StateValue } from '@ankhorage/contracts';
+import type { StateAdapter, StatePath, StateUpdate, StateValue } from '@ankhorage/contracts';
 import { isRecord } from '@ankhorage/utility/object';
 
 import type {
@@ -18,11 +18,13 @@ export function composeRuntimeCapabilityExecutor(
   composition: RuntimeCapabilityExecutorComposition,
 ): RuntimeCapabilityExecutor {
   return async (args) =>
-    args.capability === 'state.set'
-      ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
-      : args.capability.startsWith('api.')
-        ? executeApiCapabilityAsync(args, composition)
-        : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
+    args.capability.startsWith('api.')
+      ? executeApiCapabilityAsync(args, composition)
+      : args.capability === 'state.set'
+        ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
+        : args.capability === 'state.update'
+          ? executeStateUpdateCapabilityAsync(args, composition.stateAdapter)
+          : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
 }
 
 /*** Uses the host API executor when supplied, falling back to the manifest executor. */
@@ -64,6 +66,33 @@ function executeStateSetCapabilityAsync(
   }
 }
 
+/*** Applies a serializable atomic state update through the configured state adapter. */
+function executeStateUpdateCapabilityAsync(
+  args: RuntimeCapabilityExecutionArgs,
+  stateAdapter: StateAdapter | undefined,
+): Promise<RuntimeCapabilityExecutionResult> {
+  if (stateAdapter?.update === undefined) return Promise.resolve(missingStateUpdateAdapterResult());
+
+  const input = resolveStateUpdateInput(args.input);
+  if (input === undefined) return Promise.resolve(invalidStateUpdateInputResult());
+
+  try {
+    const result = stateAdapter.update(input.path, input.update);
+    return Promise.resolve(
+      result.ok
+        ? { data: { path: input.path, value: result.data }, ok: true }
+        : {
+            diagnostics: [
+              { code: result.error.code, message: result.error.message, severity: 'error' },
+            ],
+            ok: false,
+          },
+    );
+  } catch (error) {
+    return Promise.resolve(stateAdapterUpdateErrorResult(error));
+  }
+}
+
 async function executeApplicationCapabilityAsync(
   args: RuntimeCapabilityExecutionArgs,
   capabilityExecutor: RuntimeCapabilityExecutor | undefined,
@@ -88,6 +117,21 @@ function resolveStateSetInput(
   const { path, value } = input;
   if (!isStatePath(path) || !isStateValue(value)) return undefined;
   return { path, value };
+}
+
+/*** Validates a portable append update before it reaches the StateAdapter boundary. */
+function resolveStateUpdateInput(
+  input: RuntimeCapabilityExecutionArgs['input'],
+): { readonly path: StatePath; readonly update: StateUpdate } | undefined {
+  if (!isRecord(input)) return undefined;
+  const { path, update } = input;
+  if (!isStatePath(path) || !isStateUpdate(update)) return undefined;
+  return { path, update };
+}
+
+/*** Narrows unknown manifest input to the released serializable append descriptor. */
+function isStateUpdate(value: unknown): value is StateUpdate {
+  return isRecord(value) && value.kind === 'append' && isStateValue(value.value);
 }
 
 function isStatePath(value: unknown): value is StatePath {
@@ -120,6 +164,20 @@ function stateAdapterSetErrorResult(error: unknown): RuntimeCapabilityExecutionR
   };
 }
 
+/*** Converts thrown state-update adapter failures into public Runtime diagnostics. */
+function stateAdapterUpdateErrorResult(error: unknown): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'state-adapter-error',
+        message: error instanceof Error ? error.message : 'StateAdapter.update failed.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
+}
+
 function missingStateAdapterResult(): RuntimeCapabilityExecutionResult {
   return {
     diagnostics: [
@@ -139,6 +197,36 @@ function invalidStateSetInputResult(): RuntimeCapabilityExecutionResult {
       {
         code: 'invalid-input',
         message: "Capability 'state.set' requires a non-empty path and serializable value.",
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
+}
+
+/*** Reports an unavailable atomic-update adapter without delegating application execution. */
+function missingStateUpdateAdapterResult(): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'missing-adapter',
+        message:
+          "Capability 'state.update' requires a configured StateAdapter with update support.",
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
+}
+
+/*** Reports malformed state-update descriptors at the Runtime capability boundary. */
+function invalidStateUpdateInputResult(): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'invalid-input',
+        message:
+          "Capability 'state.update' requires a non-empty path and serializable append update.",
         severity: 'error',
       },
     ],
