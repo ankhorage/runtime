@@ -13,16 +13,24 @@ export interface RuntimeCapabilityExecutorComposition {
   readonly stateAdapter?: StateAdapter;
 }
 
-/*** Routes API and state capabilities before delegating application-owned capabilities. */
+/*** Keeps local state mutations while preferring the configured host executor for API capabilities. */
 export function composeRuntimeCapabilityExecutor(
   composition: RuntimeCapabilityExecutorComposition,
 ): RuntimeCapabilityExecutor {
   return async (args) =>
-    args.capability.startsWith('api.')
-      ? composition.apiCapabilityExecutor(args)
-      : args.capability === 'state.set'
-        ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
+    args.capability === 'state.set'
+      ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
+      : args.capability.startsWith('api.')
+        ? executeApiCapabilityAsync(args, composition)
         : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
+}
+
+/*** Uses the host API executor when supplied, falling back to the manifest executor. */
+function executeApiCapabilityAsync(
+  args: RuntimeCapabilityExecutionArgs,
+  composition: RuntimeCapabilityExecutorComposition,
+): Promise<RuntimeCapabilityExecutionResult> {
+  return composition.capabilityExecutor?.(args) ?? composition.apiCapabilityExecutor(args);
 }
 
 /*** Applies one serializable state value through the configured application state adapter. */

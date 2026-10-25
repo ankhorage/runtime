@@ -14,7 +14,7 @@ import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
 
 const node: UiNode = { id: 'root', type: 'View' };
 
-it('keeps manifest API execution while delegating application capabilities in one loader configuration', async () => {
+it('prefers the configured executor for API capabilities while delegating application capabilities', async () => {
   const calls: string[] = [];
   const executeCapability = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: ({ capability }) => {
@@ -42,10 +42,24 @@ it('keeps manifest API execution while delegating application capabilities in on
     screen,
   });
 
-  expect(calls).toEqual(['application:navigator.navigate', 'api:api.catalog.list']);
+  expect(calls).toEqual(['application:navigator.navigate', 'application:api.catalog.list']);
   expect(result.resultSlots).toEqual({
-    catalog: { source: 'data-operation' },
+    catalog: { source: 'application' },
     navigation: { source: 'application' },
+  });
+});
+
+it('falls back to manifest API execution when no configured executor is available', async () => {
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () =>
+      Promise.resolve({ data: { source: 'data-operation' }, ok: true as const }),
+  });
+
+  const result = await executeCapability({ capability: 'api.catalog.list' });
+
+  expect(result).toEqual({
+    data: { source: 'data-operation' },
+    ok: true,
   });
 });
 
