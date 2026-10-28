@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.2.1
+
+### Patch Changes
+
+- ef9d84f: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`.
+
 ## 5.2.0
 
 ### Minor Changes
