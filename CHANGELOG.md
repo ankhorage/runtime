@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.2.2
+
+### Patch Changes
+
+- fc648cf: Update dependencies: `@ankhorage/contracts`, `@ankhorage/data-sources`.
+
 ## 5.2.1
 
 ### Patch Changes
