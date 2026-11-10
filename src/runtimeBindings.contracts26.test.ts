@@ -81,6 +81,47 @@ it('derives lengths from arrays and strings in authored transform order', () => 
   ).toBeUndefined();
 });
 
+it('converts finite numeric field values without coercing invalid values', () => {
+  const context = {
+    event: {
+      payload: { columns: '10', rows: '13', invalid: '10x13' },
+      sourceNodeId: 'board-controls',
+      type: 'select.valueChange',
+    },
+  };
+
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        value: { capability: 'select.valueChange', path: 'payload.columns' },
+        transforms: ['number'],
+      },
+      context,
+    ),
+  ).toBe(10);
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        value: { capability: 'select.valueChange', path: 'payload.rows' },
+        transforms: ['number'],
+      },
+      context,
+    ),
+  ).toBe(13);
+  expect(
+    resolveRuntimeBindingExpressionSync(
+      {
+        kind: 'transform',
+        value: { capability: 'select.valueChange', path: 'payload.invalid' },
+        transforms: ['number'],
+      },
+      context,
+    ),
+  ).toBeUndefined();
+});
+
 it('resolves canonical emitted capability event DTOs without an event pseudo-namespace', () => {
   const resolveEventValue = (capability: `${string}.${string}`, path: string) =>
     resolveRuntimeBindingExpressionSync(
