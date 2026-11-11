@@ -324,6 +324,12 @@ function applyBindingValueTransforms(
   return transforms.reduce((current, transform) => {
     if (transform === 'length')
       return typeof current === 'string' || Array.isArray(current) ? current.length : undefined;
+    if (transform === 'number') {
+      if (typeof current === 'number') return Number.isFinite(current) ? current : undefined;
+      if (typeof current !== 'string' || current.trim().length === 0) return undefined;
+      const numericValue = Number(current);
+      return Number.isFinite(numericValue) ? numericValue : undefined;
+    }
     if (typeof current !== 'string') return undefined;
     if (transform === 'trim') return current.trim();
     if (transform === 'uppercase') return current.toUpperCase();

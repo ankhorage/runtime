@@ -18,6 +18,16 @@ import { executeRuntimeScreenOperationLoaders } from './runtimeScreenLoaders';
 
 const node: UiNode = { id: 'root', type: 'View' };
 
+function resolveNumberTransform(
+  value: BindingValue,
+  transforms: readonly ('number' | 'trim')[] = ['number'],
+): BindingValue | undefined {
+  return resolveRuntimeBindingExpressionSync(
+    { kind: 'transform', transforms, value: { kind: 'literal', value } },
+    {},
+  );
+}
+
 it('resolves literals, nested values, transforms, fallbacks, and readable capability paths', async () => {
   const expression: BindingExpression = {
     kind: 'object',
@@ -79,6 +89,18 @@ it('derives lengths from arrays and strings in authored transform order', () => 
       {},
     ),
   ).toBeUndefined();
+});
+
+it('converts finite numeric field values in authored transform order', () => {
+  expect(resolveNumberTransform('10')).toBe(10);
+  expect(resolveNumberTransform('-1.25')).toBe(-1.25);
+  expect(resolveNumberTransform(' 13 ', ['trim', 'number'])).toBe(13);
+});
+
+it('rejects empty, malformed, and non-finite numeric transform values', () => {
+  for (const value of ['', '   ', '10x13', 'Infinity', Number.POSITIVE_INFINITY]) {
+    expect(resolveNumberTransform(value)).toBeUndefined();
+  }
 });
 
 it('resolves canonical emitted capability event DTOs without an event pseudo-namespace', () => {
