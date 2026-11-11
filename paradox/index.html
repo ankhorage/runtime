@@ -174,7 +174,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeBindings.contracts26.test.ts">
       src/runtimeBindings.contracts26.test.ts
-      <small>4 functions</small>
+      <small>5 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeBindings.ts">
@@ -308,7 +308,7 @@
       <div class="summary">
         <div><strong>88</strong><span class="muted">public exports</span></div>
         <div><strong>5</strong><span class="muted">components</span></div>
-        <div><strong>48</strong><span class="muted">modules</span></div>
+        <div><strong>49</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -544,6 +544,11 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/runtimeBindings.ts</code>, <code>src/RuntimeRendererConfig.tsx</code></p>
     <p><strong>Exports:</strong> <code>resolveRuntimeNodeProps</code></p>
+  </article><article class="item" data-search="src/runtimeNumberBindings.test.ts src/runtimeActionRegistry.ts src/runtimeCapabilityExecutor.ts src/runtimeStateAdapter.ts">
+    <h3>src/runtimeNumberBindings.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/runtimeActionRegistry.ts</code>, <code>src/runtimeCapabilityExecutor.ts</code>, <code>src/runtimeStateAdapter.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/runtimePackageIsolation.test.ts">
     <h3>src/runtimePackageIsolation.test.ts</h3>
     <p class="muted">Referenced module</p>
@@ -3658,6 +3663,11 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_src_runtimeNodeProps_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeNumberBindings_test_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeStateAdapter_ts
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimePackageIsolation_test_ts
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
@@ -3835,6 +3845,11 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_src_runtimeNodeProps_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeNumberBindings_test_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeStateAdapter_ts
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_runtimePackageIsolation_test_ts
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
@@ -3952,6 +3967,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaCache_tsx[&quot;src/runtimeMediaCache.tsx&quot;]
   module_src_runtimeMediaConfig_test_ts[&quot;src/runtimeMediaConfig.test.ts&quot;]
   module_src_runtimeNodeProps_ts[&quot;src/runtimeNodeProps.ts&quot;]
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
   module_src_RuntimeRenderer_tsx[&quot;src/RuntimeRenderer.tsx&quot;]
@@ -4002,6 +4018,9 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaConfig_test_ts --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_runtimeNodeProps_ts --&gt; module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeStateAdapter_ts
   module_src_RuntimeRenderer_test_ts --&gt; module_src_runtimeRepeatEmptyState_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeRenderer_tsx --&gt; module_src_rendering_ts
@@ -4079,6 +4098,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaCache_tsx[&quot;src/runtimeMediaCache.tsx&quot;]
   module_src_runtimeMediaConfig_test_ts[&quot;src/runtimeMediaConfig.test.ts&quot;]
   module_src_runtimeNodeProps_ts[&quot;src/runtimeNodeProps.ts&quot;]
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
   module_src_RuntimeRenderer_tsx[&quot;src/RuntimeRenderer.tsx&quot;]
@@ -4129,6 +4149,9 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaConfig_test_ts --&gt; module_src_RuntimeRendererConfig_tsx
   module_src_runtimeNodeProps_ts --&gt; module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --&gt; module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeActionRegistry_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeNumberBindings_test_ts --&gt; module_src_runtimeStateAdapter_ts
   module_src_RuntimeRenderer_test_ts --&gt; module_src_runtimeRepeatEmptyState_ts
   module_src_RuntimeRenderer_tsx --&gt; module_src_registry_tsx
   module_src_RuntimeRenderer_tsx --&gt; module_src_rendering_ts
@@ -4208,6 +4231,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaCache_tsx[&quot;src/runtimeMediaCache.tsx&quot;]
   module_src_runtimeMediaConfig_test_ts[&quot;src/runtimeMediaConfig.test.ts&quot;]
   module_src_runtimeNodeProps_ts[&quot;src/runtimeNodeProps.ts&quot;]
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
   module_src_RuntimeRenderer_tsx[&quot;src/RuntimeRenderer.tsx&quot;]
@@ -4515,6 +4539,7 @@ inject it at the runtime boundary.</p>
   module_src_runtimeMediaCache_tsx[&quot;src/runtimeMediaCache.tsx&quot;]
   module_src_runtimeMediaConfig_test_ts[&quot;src/runtimeMediaConfig.test.ts&quot;]
   module_src_runtimeNodeProps_ts[&quot;src/runtimeNodeProps.ts&quot;]
+  module_src_runtimeNumberBindings_test_ts[&quot;src/runtimeNumberBindings.test.ts&quot;]
   module_src_runtimePackageIsolation_test_ts[&quot;src/runtimePackageIsolation.test.ts&quot;]
   module_src_RuntimeRenderer_test_ts[&quot;src/RuntimeRenderer.test.ts&quot;]
   module_src_RuntimeRenderer_tsx[&quot;src/RuntimeRenderer.tsx&quot;]
@@ -5500,24 +5525,29 @@ inject it at the runtime boundary.</p>
   </section><section id="view-src-runtimebindings-contracts26-test-ts" class="view" data-view="src/runtimeBindings.contracts26.test.ts" hidden>
     <section class="panel">
       <h2>src/runtimeBindings.contracts26.test.ts</h2>
-      <article class="item" data-search="resolveEventValue src/runtimeBindings.contracts26.test.ts ">
+      <article class="item" data-search="resolveNumberTransform src/runtimeBindings.contracts26.test.ts ">
+    <h3>resolveNumberTransform</h3>
+    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:21:1</code></p>
+    <p class="empty">No description available.</p>
+    
+  </article><article class="item" data-search="resolveEventValue src/runtimeBindings.contracts26.test.ts ">
     <h3>resolveEventValue</h3>
-    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:85:9</code></p>
+    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:107:9</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="executeCapability src/runtimeBindings.contracts26.test.ts ">
     <h3>executeCapability</h3>
-    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:133:9</code></p>
+    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:155:9</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="executeCapability src/runtimeBindings.contracts26.test.ts ">
     <h3>executeCapability</h3>
-    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:160:9</code></p>
+    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:182:9</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="executeCapability src/runtimeBindings.contracts26.test.ts ">
     <h3>executeCapability</h3>
-    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:180:9</code></p>
+    <p class="muted"><code>src/runtimeBindings.contracts26.test.ts:202:9</code></p>
     <p class="empty">No description available.</p>
     
   </article>
@@ -5622,22 +5652,22 @@ inject it at the runtime boundary.</p>
     
   </article><article class="item" data-search="createMissingCapabilityExecutorDiagnostic src/runtimeBindings.ts ">
     <h3>createMissingCapabilityExecutorDiagnostic</h3>
-    <p class="muted"><code>src/runtimeBindings.ts:334:1</code></p>
+    <p class="muted"><code>src/runtimeBindings.ts:340:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="readPath src/runtimeBindings.ts ">
     <h3>readPath</h3>
-    <p class="muted"><code>src/runtimeBindings.ts:342:1</code></p>
+    <p class="muted"><code>src/runtimeBindings.ts:348:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="asBindingValue src/runtimeBindings.ts ">
     <h3>asBindingValue</h3>
-    <p class="muted"><code>src/runtimeBindings.ts:351:1</code></p>
+    <p class="muted"><code>src/runtimeBindings.ts:357:1</code></p>
     <p class="empty">No description available.</p>
     
   </article><article class="item" data-search="isBindingValue src/runtimeBindings.ts ">
     <h3>isBindingValue</h3>
-    <p class="muted"><code>src/runtimeBindings.ts:355:1</code></p>
+    <p class="muted"><code>src/runtimeBindings.ts:361:1</code></p>
     <p class="empty">No description available.</p>
     
   </article>

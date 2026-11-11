@@ -90,6 +90,11 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeNodeProps_ts
   module_src_runtimeNodeProps_ts --> module_src_runtimeBindings_ts
   module_src_runtimeNodeProps_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeNumberBindings_test_ts["src/runtimeNumberBindings.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeNumberBindings_test_ts
+  module_src_runtimeNumberBindings_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeNumberBindings_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeNumberBindings_test_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimePackageIsolation_test_ts["src/runtimePackageIsolation.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimePackageIsolation_test_ts
   module_src_RuntimeRenderer_test_ts["src/RuntimeRenderer.test.ts"]

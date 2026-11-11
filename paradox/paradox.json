@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.2.6",
+      "value": "v5.3.0",
       "color": "cb3837"
     },
     {
@@ -619,6 +619,16 @@
       "exports": [
         "resolveRuntimeNodeProps"
       ]
+    },
+    {
+      "path": "src/runtimeNumberBindings.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeActionRegistry.ts",
+        "src/runtimeCapabilityExecutor.ts",
+        "src/runtimeStateAdapter.ts"
+      ],
+      "exports": []
     },
     {
       "path": "src/runtimePackageIsolation.test.ts",
@@ -5380,13 +5390,24 @@
       }
     },
     {
+      "name": "resolveNumberTransform",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeBindings.contracts26.test.ts",
+        "line": 21,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveEventValue",
       "description": null,
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 85,
+        "line": 107,
         "column": 9
       }
     },
@@ -5397,7 +5418,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 133,
+        "line": 155,
         "column": 9
       }
     },
@@ -5408,7 +5429,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 160,
+        "line": 182,
         "column": 9
       }
     },
@@ -5419,7 +5440,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 180,
+        "line": 202,
         "column": 9
       }
     },
@@ -5639,7 +5660,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 334,
+        "line": 340,
         "column": 1
       }
     },
@@ -5650,7 +5671,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 342,
+        "line": 348,
         "column": 1
       }
     },
@@ -5661,7 +5682,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 351,
+        "line": 357,
         "column": 1
       }
     },
@@ -5672,7 +5693,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 355,
+        "line": 361,
         "column": 1
       }
     },
@@ -7327,6 +7348,21 @@
         "sourcePath": "src/runtimeNodeProps.ts"
       },
       {
+        "fromPath": "src/runtimeNumberBindings.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeNumberBindings.test.ts",
+        "toPath": "src/runtimeCapabilityExecutor.ts",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeNumberBindings.test.ts",
+        "toPath": "src/runtimeStateAdapter.ts",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
         "fromPath": "src/RuntimeRenderer.test.ts",
         "toPath": "src/runtimeRepeatEmptyState.ts",
         "sourcePath": "src/RuntimeRenderer.test.ts"
@@ -7889,6 +7925,12 @@
         "sourcePath": "src/runtimeApiCapabilities.ts"
       },
       {
+        "fromSymbol": "resolveNumberTransform",
+        "toSymbol": "resolveRuntimeBindingExpressionSync",
+        "callExpression": "resolveRuntimeBindingExpressionSync",
+        "sourcePath": "src/runtimeBindings.contracts26.test.ts"
+      },
+      {
         "fromSymbol": "src/runtimeBindings.contracts26.test.ts",
         "toSymbol": "it",
         "callExpression": "it",
@@ -7910,6 +7952,12 @@
         "fromSymbol": "src/runtimeBindings.contracts26.test.ts",
         "toSymbol": "resolveRuntimeBindingExpressionSync",
         "callExpression": "resolveRuntimeBindingExpressionSync",
+        "sourcePath": "src/runtimeBindings.contracts26.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeBindings.contracts26.test.ts",
+        "toSymbol": "resolveNumberTransform",
+        "callExpression": "resolveNumberTransform",
         "sourcePath": "src/runtimeBindings.contracts26.test.ts"
       },
       {
@@ -8619,6 +8667,36 @@
         "toSymbol": "resolveNodeProps",
         "callExpression": "args.resolveNodeProps",
         "sourcePath": "src/runtimeNodeProps.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeNumberBindings.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeNumberBindings.test.ts",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeNumberBindings.test.ts",
+        "toSymbol": "composeRuntimeCapabilityExecutor",
+        "callExpression": "composeRuntimeCapabilityExecutor",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeNumberBindings.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeNumberBindings.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeNumberBindings.test.ts"
       },
       {
         "fromSymbol": "listSourceFiles",

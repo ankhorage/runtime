@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.3.0
+
+### Minor Changes
+
+- df0857c: Execute the portable `number` binding transform as a finite numeric value.
+
 ## 5.2.6
 
 ### Patch Changes
