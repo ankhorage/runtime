@@ -3,23 +3,11 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v5.3.4](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v5.3.5](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
 
 Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
 
 ## Usage
-
-### CLI
-
-Ankhorage packages expose their command-line interface through `ankh`. Use `ankh --help` to discover available package commands, or run a package command with `--help` for package-specific usage.
-
-```zsh
-# Install the Ankhorage CLI
-bun add --global @ankhorage/ankh
-
-# Show usage information for runtime
-ankh runtime --help
-```
 
 ### Basic Usage
 
