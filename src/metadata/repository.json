@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "kind": "library",
+  "title": "Ankhorage Runtime",
+  "summary": "Renders Ankhorage application manifests and resolves their runtime bindings, capabilities, events, media, screens, and state.",
+  "purpose": "Provide a platform-neutral runtime boundary that turns portable Ankhorage manifests into rendered application behavior without coupling consumers to a particular host application.",
+  "domain": "application runtime rendering",
+  "responsibilities": [
+    "Render manifest-driven screens and component trees through configurable registries and renderer boundaries.",
+    "Resolve bindings, repeat data, state updates, media values, screen loaders, and component event actions.",
+    "Compose capability execution, runtime diagnostics, and authoring overlays through explicit runtime configuration."
+  ],
+  "boundaries": [
+    "Does not define the portable manifest and descriptor contracts it consumes.",
+    "Does not provide product-specific screens, component implementations, or host application navigation.",
+    "Does not own provider-specific capability, data-source, storage, authentication, or deployment implementations."
+  ],
+  "audience": [
+    "Application hosts that render Ankhorage manifests with React and React Native-compatible component registries.",
+    "Runtime and tooling maintainers integrating bindings, capabilities, state, media, or authoring behavior."
+  ],
+  "useCases": [
+    "Render an application screen from a portable manifest and registered component implementations.",
+    "Execute a component event action and expose its operation lifecycle to the rendered UI.",
+    "Resolve stateful bindings, repeated content, media values, and screen operation loaders at runtime."
+  ],
+  "architecture": {
+    "role": "Platform-neutral manifest runtime with explicit React/React Native host and component registry boundaries.",
+    "invariants": [
+      "Consumers provide host components and integrations through declared registries and configuration rather than sibling-source imports.",
+      "Portable contracts remain separate from executable runtime behavior.",
+      "Provider-specific behavior is composed through capability and data-source boundaries rather than embedded in the renderer."
+    ]
+  },
+  "constraints": {
+    "limitations": [
+      "Rendering requires React and compatible React Native or React Native Web peers supplied by the host.",
+      "The runtime can execute only capabilities, data sources, media resolvers, and components supplied through its public configuration boundaries."
+    ]
+  }
+}
