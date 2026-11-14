@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.4
+
+### Patch Changes
+
+- 6b8d247: Add canonical repository metadata for runtime discovery and validation.
+
 ## 5.4.3
 
 ### Patch Changes
