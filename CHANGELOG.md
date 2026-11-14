@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.0
+
+### Minor Changes
+
+- 83b83c2: Expose a platform-neutral authoring overlay adapter for component identity, selection, bounds, gesture arbitration, and edit-mode action suppression.
+
 ## 5.3.10
 
 ### Patch Changes

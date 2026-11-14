@@ -129,6 +129,20 @@ Creates the canonical API capability adapter over Runtime's existing data-operat
   - options: `RuntimeApiCapabilityExecutorOptions`
   - returns: `RuntimeCapabilityExecutor`
 
+## createRuntimeAuthoringOverlayConfig
+
+Kind: `function`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:45:1`
+
+Creates the renderer configuration that connects a host authoring overlay without importing its UI toolkit.
+
+### Signatures
+
+- `(adapter: RuntimeAuthoringOverlayAdapter) => Pick<RuntimeRendererConfig, "disableActions" | "wrapNode">`
+  - adapter: `RuntimeAuthoringOverlayAdapter`
+  - returns: `Pick<RuntimeRendererConfig, "disableActions" | "wrapNode">`
+
 ## createRuntimeEventOperationBindingContext
 
 Kind: `function`
@@ -565,6 +579,81 @@ Source: `src/runtimeApiCapabilities.ts:16:1`
 | apis | property | `ApiDefinitionRegistry` | yes |  |
 | credentialResolver | property | `EndpointTestCredentialResolver \| undefined` | no |  |
 | fetch | property | `EndpointTestFetch \| undefined` | no |  |
+
+## RuntimeAuthoringBounds
+
+Kind: `type`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:8:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| height | property | `number` | yes |  |
+| width | property | `number` | yes |  |
+| x | property | `number` | yes |  |
+| y | property | `number` | yes |  |
+
+## RuntimeAuthoringComponentIdentity
+
+Kind: `type`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:17:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| componentId | property | `string` | yes |  |
+| node | property | `UiNode` | yes |  |
+
+## RuntimeAuthoringGestureDisposition
+
+Kind: `unknown`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:15:1`
+
+## RuntimeAuthoringMode
+
+Kind: `unknown`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:6:1`
+
+## RuntimeAuthoringOverlayAdapter
+
+Kind: `type`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:29:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| arbitrateGesture | property | `((args: RuntimeAuthoringComponentIdentity & { readonly input: unknown; }) => RuntimeAuthoringGestureDisposition) \| undefined` | no |  |
+| getComponentId | property | `(node: UiNode) => string \| undefined` | yes |  |
+| hitTest | property | `((args: RuntimeAuthoringComponentIdentity & { readonly input: unknown; }) => boolean) \| undefined` | no |  |
+| mode | property | `RuntimeAuthoringMode` | yes |  |
+| onBounds | property | `((args: RuntimeAuthoringComponentIdentity & { readonly bounds: RuntimeAuthoringBounds; }) => void) \| undefined` | no |  |
+| wrapNode | property | `(args: RuntimeAuthoringOverlayNodeArgs) => React.ReactNode` | yes |  |
+
+## RuntimeAuthoringOverlayNodeArgs
+
+Kind: `type`
+Module: `src/runtimeAuthoringOverlay.ts`
+Source: `src/runtimeAuthoringOverlay.ts:22:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| arbitrateGesture | property | `(input: unknown) => RuntimeAuthoringGestureDisposition` | yes |  |
+| component | property | `RuntimeAuthoringComponentIdentity` | yes |  |
+| isRoot | property | `boolean` | yes |  |
+| node | property | `UiNode` | yes |  |
+| rendered | property | `React.ReactNode` | yes |  |
+| reportBounds | property | `(bounds: RuntimeAuthoringBounds) => void` | yes |  |
+| select | property | `(input: unknown) => boolean` | yes |  |
 
 ## RuntimeBindingDescriptor
 

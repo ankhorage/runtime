@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.3.10",
+      "value": "v5.4.0",
       "color": "cb3837"
     },
     {
@@ -271,6 +271,7 @@
         "createPendingRuntimeScreenOperationLoaderState",
         "createRuntimeActionRegistry",
         "createRuntimeApiCapabilityExecutor",
+        "createRuntimeAuthoringOverlayConfig",
         "createRuntimeEventOperationBindingContext",
         "createRuntimeEventOperationLifecycle",
         "createRuntimeMemoryStateAdapter",
@@ -303,6 +304,12 @@
         "RuntimeActionResolutionScope",
         "RuntimeAdapterDescriptor",
         "RuntimeApiCapabilityExecutorOptions",
+        "RuntimeAuthoringBounds",
+        "RuntimeAuthoringComponentIdentity",
+        "RuntimeAuthoringGestureDisposition",
+        "RuntimeAuthoringMode",
+        "RuntimeAuthoringOverlayAdapter",
+        "RuntimeAuthoringOverlayNodeArgs",
         "RuntimeBindingDescriptor",
         "RuntimeBindingResolutionArgs",
         "RuntimeBindingResolutionContext",
@@ -451,6 +458,31 @@
       "exports": [
         "createRuntimeApiCapabilityExecutor",
         "RuntimeApiCapabilityExecutorOptions"
+      ]
+    },
+    {
+      "path": "src/runtimeAuthoringOverlay.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeAuthoringOverlay.ts",
+        "src/RuntimeRendererConfig.tsx"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeAuthoringOverlay.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/RuntimeRendererConfig.tsx"
+      ],
+      "exports": [
+        "createRuntimeAuthoringOverlayConfig",
+        "RuntimeAuthoringBounds",
+        "RuntimeAuthoringComponentIdentity",
+        "RuntimeAuthoringGestureDisposition",
+        "RuntimeAuthoringMode",
+        "RuntimeAuthoringOverlayAdapter",
+        "RuntimeAuthoringOverlayNodeArgs"
       ]
     },
     {
@@ -1222,6 +1254,45 @@
             }
           ],
           "returnType": "RuntimeCapabilityExecutor",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "createRuntimeAuthoringOverlayConfig",
+      "title": null,
+      "description": "Creates the renderer configuration that connects a host authoring overlay without importing its UI toolkit.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 45,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "RuntimeAuthoringOverlayAdapter",
+        "RuntimeRendererConfig"
+      ],
+      "signatures": [
+        {
+          "label": "(adapter: RuntimeAuthoringOverlayAdapter) => Pick<RuntimeRendererConfig, \"disableActions\" | \"wrapNode\">",
+          "parameters": [
+            {
+              "name": "adapter",
+              "type": "RuntimeAuthoringOverlayAdapter",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Pick<RuntimeRendererConfig, \"disableActions\" | \"wrapNode\">",
           "returnDescription": null
         }
       ],
@@ -2544,6 +2615,285 @@
           "kind": "property",
           "type": "EndpointTestFetch | undefined",
           "required": false,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringBounds",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 8,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "height",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "width",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "x",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "y",
+          "kind": "property",
+          "type": "number",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringComponentIdentity",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 17,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [
+        {
+          "name": "componentId",
+          "kind": "property",
+          "type": "string",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "node",
+          "kind": "property",
+          "type": "UiNode",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringGestureDisposition",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 15,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringMode",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 6,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringOverlayAdapter",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 29,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "RuntimeAuthoringBounds",
+        "RuntimeAuthoringComponentIdentity",
+        "RuntimeAuthoringGestureDisposition",
+        "RuntimeAuthoringMode",
+        "RuntimeAuthoringOverlayNodeArgs"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "arbitrateGesture",
+          "kind": "property",
+          "type": "((args: RuntimeAuthoringComponentIdentity & { readonly input: unknown; }) => RuntimeAuthoringGestureDisposition) | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "getComponentId",
+          "kind": "property",
+          "type": "(node: UiNode) => string | undefined",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "hitTest",
+          "kind": "property",
+          "type": "((args: RuntimeAuthoringComponentIdentity & { readonly input: unknown; }) => boolean) | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "mode",
+          "kind": "property",
+          "type": "RuntimeAuthoringMode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "onBounds",
+          "kind": "property",
+          "type": "((args: RuntimeAuthoringComponentIdentity & { readonly bounds: RuntimeAuthoringBounds; }) => void) | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "wrapNode",
+          "kind": "property",
+          "type": "(args: RuntimeAuthoringOverlayNodeArgs) => React.ReactNode",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeAuthoringOverlayNodeArgs",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/runtimeAuthoringOverlay.ts",
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 22,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "RuntimeAuthoringBounds",
+        "RuntimeAuthoringComponentIdentity",
+        "RuntimeAuthoringGestureDisposition"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "arbitrateGesture",
+          "kind": "property",
+          "type": "(input: unknown) => RuntimeAuthoringGestureDisposition",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "component",
+          "kind": "property",
+          "type": "RuntimeAuthoringComponentIdentity",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "isRoot",
+          "kind": "property",
+          "type": "boolean",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "node",
+          "kind": "property",
+          "type": "UiNode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "rendered",
+          "kind": "property",
+          "type": "React.ReactNode",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "reportBounds",
+          "kind": "property",
+          "type": "(bounds: RuntimeAuthoringBounds) => void",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "select",
+          "kind": "property",
+          "type": "(input: unknown) => boolean",
+          "required": true,
           "description": null
         }
       ],
@@ -5390,6 +5740,50 @@
       }
     },
     {
+      "name": "createInstrumentedAdapter",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.test.ts",
+        "line": 67,
+        "column": 1
+      }
+    },
+    {
+      "name": "createAdapter",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.test.ts",
+        "line": 93,
+        "column": 1
+      }
+    },
+    {
+      "name": "createRuntimeAuthoringOverlayConfig",
+      "description": "Creates the renderer configuration that connects a host authoring overlay without importing its UI toolkit.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 45,
+        "column": 1
+      }
+    },
+    {
+      "name": "wrapRuntimeAuthoringOverlayNode",
+      "description": "Delivers stable component identity and host callbacks to a concrete overlay wrapper when the node has an identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeAuthoringOverlay.ts",
+        "line": 55,
+        "column": 1
+      }
+    },
+    {
       "name": "resolveNumberTransform",
       "description": null,
       "see": [],
@@ -6829,6 +7223,14 @@
     },
     {
       "kind": "export",
+      "name": "createRuntimeAuthoringOverlayConfig",
+      "sourcePath": "src/runtimeAuthoringOverlay.ts",
+      "symbolName": "createRuntimeAuthoringOverlayConfig",
+      "description": "Creates the renderer configuration that connects a host authoring overlay without importing its UI toolkit.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "createRuntimeEventOperationBindingContext",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "symbolName": "createRuntimeEventOperationBindingContext",
@@ -7139,6 +7541,11 @@
       },
       {
         "fromPath": "src/index.ts",
+        "toPath": "src/runtimeAuthoringOverlay.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/index.ts"
       },
@@ -7256,6 +7663,21 @@
         "fromPath": "src/runtimeApiCapabilities.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeApiCapabilities.ts"
+      },
+      {
+        "fromPath": "src/runtimeAuthoringOverlay.test.ts",
+        "toPath": "src/runtimeAuthoringOverlay.ts",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeAuthoringOverlay.test.ts",
+        "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeAuthoringOverlay.ts",
+        "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
       },
       {
         "fromPath": "src/runtimeBindings.contracts26.test.ts",
@@ -7923,6 +8345,120 @@
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
         "sourcePath": "src/runtimeApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "createInstrumentedAdapter",
+        "callExpression": "createInstrumentedAdapter",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "wrapNode",
+        "callExpression": "fixture.config.wrapNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "select",
+        "callExpression": "fixture.state.wrapped?.select",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "reportBounds",
+        "callExpression": "fixture.state.wrapped?.reportBounds",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "arbitrateGesture",
+        "callExpression": "fixture.state.wrapped?.arbitrateGesture",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "createRuntimeAuthoringOverlayConfig",
+        "callExpression": "createRuntimeAuthoringOverlayConfig",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "wrapNode",
+        "callExpression": "config.wrapNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "createAdapter",
+        "callExpression": "createAdapter",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeAuthoringOverlay.test.ts",
+        "toSymbol": "mergeRuntimeRendererConfig",
+        "callExpression": "mergeRuntimeRendererConfig",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "createInstrumentedAdapter",
+        "toSymbol": "createRuntimeAuthoringOverlayConfig",
+        "callExpression": "createRuntimeAuthoringOverlayConfig",
+        "sourcePath": "src/runtimeAuthoringOverlay.test.ts"
+      },
+      {
+        "fromSymbol": "wrapNode",
+        "toSymbol": "wrapRuntimeAuthoringOverlayNode",
+        "callExpression": "wrapRuntimeAuthoringOverlayNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "wrapRuntimeAuthoringOverlayNode",
+        "toSymbol": "getComponentId",
+        "callExpression": "adapter.getComponentId",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "wrapRuntimeAuthoringOverlayNode",
+        "toSymbol": "wrapNode",
+        "callExpression": "adapter.wrapNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "reportBounds",
+        "toSymbol": "onBounds",
+        "callExpression": "adapter.onBounds",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "select",
+        "toSymbol": "hitTest",
+        "callExpression": "adapter.hitTest",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "arbitrateGesture",
+        "toSymbol": "arbitrateGesture",
+        "callExpression": "adapter.arbitrateGesture",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
       },
       {
         "fromSymbol": "resolveNumberTransform",
@@ -10046,6 +10582,96 @@
         "fromSymbol": "createRuntimeApiCapabilityExecutor",
         "toType": "RuntimeCapabilityExecutor",
         "sourcePath": "src/runtimeApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringComponentIdentity",
+        "toType": "UiNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "React",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "ReactNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "RuntimeAuthoringBounds",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "RuntimeAuthoringComponentIdentity",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "RuntimeAuthoringGestureDisposition",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "RuntimeAuthoringMode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "RuntimeAuthoringOverlayNodeArgs",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayAdapter",
+        "toType": "UiNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "React",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "ReactNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "RuntimeAuthoringBounds",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "RuntimeAuthoringComponentIdentity",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "RuntimeAuthoringGestureDisposition",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "RuntimeAuthoringOverlayNodeArgs",
+        "toType": "UiNode",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeAuthoringOverlayConfig",
+        "toType": "Pick",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeAuthoringOverlayConfig",
+        "toType": "RuntimeAuthoringOverlayAdapter",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
+      },
+      {
+        "fromSymbol": "createRuntimeAuthoringOverlayConfig",
+        "toType": "RuntimeRendererConfig",
+        "sourcePath": "src/runtimeAuthoringOverlay.ts"
       },
       {
         "fromSymbol": "RuntimeBindingResolutionArgs",

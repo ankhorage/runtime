@@ -15,6 +15,8 @@ graph LR
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
   module_src_runtimeApiCapabilities_ts["src/runtimeApiCapabilities.ts"]
+  module_src_runtimeAuthoringOverlay_test_ts["src/runtimeAuthoringOverlay.test.ts"]
+  module_src_runtimeAuthoringOverlay_ts["src/runtimeAuthoringOverlay.ts"]
   module_src_runtimeBindings_contracts26_test_ts["src/runtimeBindings.contracts26.test.ts"]
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
   module_src_runtimeCapabilityExecutor_test_ts["src/runtimeCapabilityExecutor.test.ts"]
@@ -77,6 +79,10 @@ graph LR
   module_src_runtimeApiCapabilities_ts --> export_createRuntimeApiCapabilityExecutor
   export_createRuntimeApiCapabilityExecutor -.-> export_RuntimeApiCapabilityExecutorOptions
   export_createRuntimeApiCapabilityExecutor -.-> export_RuntimeCapabilityExecutor
+  export_createRuntimeAuthoringOverlayConfig["createRuntimeAuthoringOverlayConfig"]
+  module_src_runtimeAuthoringOverlay_ts --> export_createRuntimeAuthoringOverlayConfig
+  export_createRuntimeAuthoringOverlayConfig -.-> export_RuntimeAuthoringOverlayAdapter
+  export_createRuntimeAuthoringOverlayConfig -.-> export_RuntimeRendererConfig
   export_createRuntimeEventOperationBindingContext["createRuntimeEventOperationBindingContext"]
   module_src_runtimeEventOperationLifecycle_ts --> export_createRuntimeEventOperationBindingContext
   export_createRuntimeEventOperationBindingContext -.-> export_RuntimeEventOperationState
@@ -169,6 +175,26 @@ graph LR
   module_src_runtimeManifest_ts --> export_RuntimeAdapterDescriptor
   export_RuntimeApiCapabilityExecutorOptions["RuntimeApiCapabilityExecutorOptions"]
   module_src_runtimeApiCapabilities_ts --> export_RuntimeApiCapabilityExecutorOptions
+  export_RuntimeAuthoringBounds["RuntimeAuthoringBounds"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringBounds
+  export_RuntimeAuthoringComponentIdentity["RuntimeAuthoringComponentIdentity"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringComponentIdentity
+  export_RuntimeAuthoringGestureDisposition["RuntimeAuthoringGestureDisposition"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringGestureDisposition
+  export_RuntimeAuthoringMode["RuntimeAuthoringMode"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringMode
+  export_RuntimeAuthoringOverlayAdapter["RuntimeAuthoringOverlayAdapter"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringOverlayAdapter
+  export_RuntimeAuthoringOverlayAdapter -.-> export_RuntimeAuthoringBounds
+  export_RuntimeAuthoringOverlayAdapter -.-> export_RuntimeAuthoringComponentIdentity
+  export_RuntimeAuthoringOverlayAdapter -.-> export_RuntimeAuthoringGestureDisposition
+  export_RuntimeAuthoringOverlayAdapter -.-> export_RuntimeAuthoringMode
+  export_RuntimeAuthoringOverlayAdapter -.-> export_RuntimeAuthoringOverlayNodeArgs
+  export_RuntimeAuthoringOverlayNodeArgs["RuntimeAuthoringOverlayNodeArgs"]
+  module_src_runtimeAuthoringOverlay_ts --> export_RuntimeAuthoringOverlayNodeArgs
+  export_RuntimeAuthoringOverlayNodeArgs -.-> export_RuntimeAuthoringBounds
+  export_RuntimeAuthoringOverlayNodeArgs -.-> export_RuntimeAuthoringComponentIdentity
+  export_RuntimeAuthoringOverlayNodeArgs -.-> export_RuntimeAuthoringGestureDisposition
   export_RuntimeBindingDescriptor["RuntimeBindingDescriptor"]
   module_src_runtimeManifest_ts --> export_RuntimeBindingDescriptor
   export_RuntimeBindingResolutionArgs["RuntimeBindingResolutionArgs"]

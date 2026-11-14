@@ -15,6 +15,8 @@ graph LR
   module_src_runtimeActionRegistry_test_ts["src/runtimeActionRegistry.test.ts"]
   module_src_runtimeActionRegistry_ts["src/runtimeActionRegistry.ts"]
   module_src_runtimeApiCapabilities_ts["src/runtimeApiCapabilities.ts"]
+  module_src_runtimeAuthoringOverlay_test_ts["src/runtimeAuthoringOverlay.test.ts"]
+  module_src_runtimeAuthoringOverlay_ts["src/runtimeAuthoringOverlay.ts"]
   module_src_runtimeBindings_contracts26_test_ts["src/runtimeBindings.contracts26.test.ts"]
   module_src_runtimeBindings_ts["src/runtimeBindings.ts"]
   module_src_runtimeCapabilityExecutor_test_ts["src/runtimeCapabilityExecutor.test.ts"]
@@ -61,6 +63,9 @@ graph LR
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeEventOperationLifecycle_ts
   module_src_runtimeApiCapabilities_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeAuthoringOverlay_test_ts --> module_src_runtimeAuthoringOverlay_ts
+  module_src_runtimeAuthoringOverlay_test_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeAuthoringOverlay_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeBindings_ts
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeRepeat_ts

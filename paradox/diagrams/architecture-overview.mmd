@@ -46,6 +46,13 @@ graph TD
   module_src_runtimeApiCapabilities_ts["src/runtimeApiCapabilities.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeApiCapabilities_ts
   module_src_runtimeApiCapabilities_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeAuthoringOverlay_test_ts["src/runtimeAuthoringOverlay.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeAuthoringOverlay_test_ts
+  module_src_runtimeAuthoringOverlay_test_ts --> module_src_runtimeAuthoringOverlay_ts
+  module_src_runtimeAuthoringOverlay_test_ts --> module_src_RuntimeRendererConfig_tsx
+  module_src_runtimeAuthoringOverlay_ts["src/runtimeAuthoringOverlay.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeAuthoringOverlay_ts
+  module_src_runtimeAuthoringOverlay_ts --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeBindings_contracts26_test_ts["src/runtimeBindings.contracts26.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeBindings_contracts26_test_ts
   module_src_runtimeBindings_contracts26_test_ts --> module_src_runtimeActionRegistry_ts
