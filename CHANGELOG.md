@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.5
+
+### Patch Changes
+
+- b950b2b: Update dependencies: `@ankhorage/capability`, `@ankhorage/utility`.
+
 ## 5.4.4
 
 ### Patch Changes
