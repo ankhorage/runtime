@@ -3,7 +3,7 @@
 
 # @ankhorage/runtime
 
-![license: MIT](./paradox/badges/license.svg) ![npm: v5.4.1](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
+![license: MIT](./paradox/badges/license.svg) ![npm: v5.4.2](./paradox/badges/npm.svg) ![runtime: bun](./paradox/badges/runtime.svg) ![typescript: strict](./paradox/badges/typescript.svg) ![eslint: checked](./paradox/badges/eslint.svg) ![prettier: checked](./paradox/badges/prettier.svg) ![build: checked](./paradox/badges/build.svg) ![tests: checked](./paradox/badges/tests.svg) ![paradox: warnings](./paradox/badges/docs.svg)
 
 Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
 
@@ -24,28 +24,17 @@ createRuntimeManifest({
 });
 ```
 
-## Generated documentation
+## Documentation
 
-- [Interactive documentation app](./paradox/index.html)
-- [Public API reference](./paradox/exports.md)
-- [Component registry](./paradox/components.md)
-- [Architecture overview](./paradox/diagrams/architecture-overview.mmd)
-- [Module relationships](./paradox/diagrams/module-relationships.mmd)
-- [Export graph](./paradox/diagrams/export-graph.mmd)
-- [applyRuntimeBindingDataPath sequence](./paradox/diagrams/sequences/apply-runtime-binding-data-path.mmd)
-- [createComponentEventFromHandlerArgs sequence](./paradox/diagrams/sequences/create-component-event-from-handler-args.mmd)
-- [createRuntimeEventOperationBindingContext sequence](./paradox/diagrams/sequences/create-runtime-event-operation-binding-context.mmd)
-- [createRuntimeScreenLoaderRequestKey sequence](./paradox/diagrams/sequences/create-runtime-screen-loader-request-key.mmd)
-- [executeRuntimeBindingInvocation sequence](./paradox/diagrams/sequences/execute-runtime-binding-invocation.mmd)
-- [mergeRuntimeRendererConfig sequence](./paradox/diagrams/sequences/merge-runtime-renderer-config.mmd)
-- [resolveBindingInputMap sequence](./paradox/diagrams/sequences/resolve-binding-input-map.mmd)
-- [resolveBindingInputMapSync sequence](./paradox/diagrams/sequences/resolve-binding-input-map-sync.mmd)
-- [resolveRuntimeContextCapability sequence](./paradox/diagrams/sequences/resolve-runtime-context-capability.mmd)
-- [RuntimeRendererConfigProvider sequence](./paradox/diagrams/sequences/runtime-renderer-config-provider.mmd)
-- [RuntimeScreen sequence](./paradox/diagrams/sequences/runtime-screen.mmd)
-- [useManifest sequence](./paradox/diagrams/sequences/use-manifest.mmd)
-- [useManifestContext sequence](./paradox/diagrams/sequences/use-manifest-context.mmd)
-- [useOptionalManifestContext sequence](./paradox/diagrams/sequences/use-optional-manifest-context.mmd)
-- [useRuntimeRendererConfig sequence](./paradox/diagrams/sequences/use-runtime-renderer-config.mmd)
-- [useRuntimeScreenOperationLoaders sequence](./paradox/diagrams/sequences/use-runtime-screen-operation-loaders.mmd)
-- [wrapRuntimeEventProps sequence](./paradox/diagrams/sequences/wrap-runtime-event-props.mmd)
+Open `paradox/index.html` locally in your browser to browse the complete documentation.
+
+## Contributors
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
+
+## Donation
+
+If this project is useful to you, you can support its continued development.
+
+[Support @ankhorage](https://github.com/sponsors/ankhorage)

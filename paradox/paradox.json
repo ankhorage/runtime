@@ -2,8 +2,10 @@
   "packageName": "@ankhorage/runtime",
   "packageId": "@ankhorage/runtime",
   "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
-  "collaborators": null,
-  "donation": null,
+  "collaborators": true,
+  "donation": {
+    "account": "ankhorage"
+  },
   "badges": [
     {
       "id": "license",
@@ -14,7 +16,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.4.1",
+      "value": "v5.4.2",
       "color": "cb3837"
     },
     {
