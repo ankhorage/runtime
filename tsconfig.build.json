@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
+    "jsx": "react-jsx",
     "declaration": true,
     "declarationMap": true,
     "rootDir": "src",
