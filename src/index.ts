@@ -33,6 +33,15 @@ export {
 export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
 export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 export type {
+  RuntimeAuthoringBounds,
+  RuntimeAuthoringComponentIdentity,
+  RuntimeAuthoringGestureDisposition,
+  RuntimeAuthoringMode,
+  RuntimeAuthoringOverlayAdapter,
+  RuntimeAuthoringOverlayNodeArgs,
+} from './runtimeAuthoringOverlay';
+export { createRuntimeAuthoringOverlayConfig } from './runtimeAuthoringOverlay';
+export type {
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
   RuntimeBindingResolutionResult,
