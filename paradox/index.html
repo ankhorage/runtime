@@ -318,7 +318,7 @@
       <div class="summary">
         <div><strong>95</strong><span class="muted">public exports</span></div>
         <div><strong>5</strong><span class="muted">components</span></div>
-        <div><strong>51</strong><span class="muted">modules</span></div>
+        <div><strong>52</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -660,6 +660,11 @@ inject it at the runtime boundary.</p>
     <h3>tests/runtime.test.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code>, <code>src/runtimeManifest.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="tests/runtimeBrowserArtifact.test.ts">
+    <h3>tests/runtimeBrowserArtifact.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article>
     </section>
@@ -3997,6 +4002,8 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_tests_runtime_test_ts
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
   module_tests_runtime_test_ts --&gt; module_src_runtimeManifest_ts
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_tests_runtimeBrowserArtifact_test_ts
 </div>
     <details>
       <summary>View Mermaid source</summary>
@@ -4186,6 +4193,8 @@ inject it at the runtime boundary.</p>
   package__ankhorage_runtime -.-&gt; module_tests_runtime_test_ts
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
   module_tests_runtime_test_ts --&gt; module_src_runtimeManifest_ts
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_tests_runtimeBrowserArtifact_test_ts
 </pre>
     </details>
   </article><article class="item" data-search="Module relationships diagrams/module-relationships.mmd">
@@ -4243,6 +4252,7 @@ inject it at the runtime boundary.</p>
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
   module_src_ManifestContext_tsx --&gt; module_src_runtimeStateAdapter_ts
@@ -4379,6 +4389,7 @@ inject it at the runtime boundary.</p>
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
   module_src_ManifestContext_tsx --&gt; module_src_runtimeStateAdapter_ts
@@ -4517,6 +4528,7 @@ inject it at the runtime boundary.</p>
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
   export_applyRuntimeBindingDataPath[&quot;applyRuntimeBindingDataPath&quot;]
   module_src_runtimeBindings_ts --&gt; export_applyRuntimeBindingDataPath
   export_ComponentRegistry[&quot;ComponentRegistry&quot;]
@@ -4851,6 +4863,7 @@ inject it at the runtime boundary.</p>
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
+  module_tests_runtimeBrowserArtifact_test_ts[&quot;tests/runtimeBrowserArtifact.test.ts&quot;]
   export_applyRuntimeBindingDataPath[&quot;applyRuntimeBindingDataPath&quot;]
   module_src_runtimeBindings_ts --&gt; export_applyRuntimeBindingDataPath
   export_ComponentRegistry[&quot;ComponentRegistry&quot;]

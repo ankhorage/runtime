@@ -14,7 +14,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.4.0",
+      "value": "v5.4.1",
       "color": "cb3837"
     },
     {
@@ -877,6 +877,12 @@
         "src/capabilities/index.ts",
         "src/runtimeManifest.ts"
       ],
+      "exports": []
+    },
+    {
+      "path": "tests/runtimeBrowserArtifact.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
       "exports": []
     }
   ],
@@ -10277,6 +10283,42 @@
         "toSymbol": "createRuntimeManifest",
         "callExpression": "createRuntimeManifest",
         "sourcePath": "tests/runtime.test.ts"
+      },
+      {
+        "fromSymbol": "listJavaScriptArtifactPaths",
+        "toSymbol": "readdirSync",
+        "callExpression": "readdirSync",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeBrowserArtifact.test.ts",
+        "toSymbol": "listJavaScriptArtifactPaths",
+        "callExpression": "listJavaScriptArtifactPaths",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeBrowserArtifact.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeBrowserArtifact.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeBrowserArtifact.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeBrowserArtifact.test.ts",
+        "toSymbol": "spawnSync",
+        "callExpression": "spawnSync",
+        "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
       },
       {
         "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",

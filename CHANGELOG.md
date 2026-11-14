@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.1
+
+### Patch Changes
+
+- c78ddc8: Emit browser-consumable JavaScript without raw JSX in published artifacts.
+
 ## 5.4.0
 
 ### Minor Changes
