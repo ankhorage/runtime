@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.3
+
+### Patch Changes
+
+- e4f6c05: Update dependencies: `@ankhorage/contracts`.
+
 ## 5.4.2
 
 ### Patch Changes
