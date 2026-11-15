@@ -1,7 +1,8 @@
 {
-  "packageName": "@ankhorage/runtime",
+  "packageName": "Ankhorage Runtime",
   "packageId": "@ankhorage/runtime",
-  "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
+  "description": "Renders Ankhorage application manifests and resolves their runtime bindings, capabilities, events, media, screens, and state.",
+  "purpose": "Provide a platform-neutral runtime boundary that turns portable Ankhorage manifests into rendered application behavior without coupling consumers to a particular host application.",
   "collaborators": true,
   "donation": {
     "account": "ankhorage"
@@ -16,7 +17,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.4.5",
+      "value": "v5.4.6",
       "color": "cb3837"
     },
     {
