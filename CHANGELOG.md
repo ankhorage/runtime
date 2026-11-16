@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.5.0
+
+### Minor Changes
+
+- 927d4b2: Add generated-app Flow start, status, cancellation, approval, and event actions through an injected remote Runtime port.
+
 ## 5.4.9
 
 ### Patch Changes

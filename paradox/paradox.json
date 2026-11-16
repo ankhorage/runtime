@@ -17,7 +17,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.4.9",
+      "value": "v5.5.0",
       "color": "cb3837"
     },
     {
@@ -129,35 +129,35 @@
       "severity": "warning",
       "message": "Exported function composeRuntimeNodePropsResolver has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 79
+      "line": 81
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function composeRuntimeRendererWrapNode has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 64
+      "line": 66
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function mergeRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 97
+      "line": 99
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function RuntimeRendererConfigProvider has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 139
+      "line": 142
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function useRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 152
+      "line": 155
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -260,6 +260,17 @@
       ]
     },
     {
+      "path": "src/executeRuntimeFlowCapabilityAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeBindings.ts",
+        "src/types/runtimeFlow.ts"
+      ],
+      "exports": [
+        "executeRuntimeFlowCapabilityAsync"
+      ]
+    },
+    {
       "path": "src/index.ts",
       "isEntrypoint": true,
       "dependencies": [],
@@ -334,6 +345,8 @@
         "RuntimeEventOperationState",
         "RuntimeEventOperationStatus",
         "RuntimeEventPropWrapArgs",
+        "RuntimeFlowPort",
+        "RuntimeFlowStartRequest",
         "RuntimeManifest",
         "RuntimeManifestConfig",
         "RuntimeManifestInput",
@@ -540,7 +553,9 @@
       "path": "src/runtimeCapabilityExecutor.ts",
       "isEntrypoint": false,
       "dependencies": [
-        "src/runtimeBindings.ts"
+        "src/executeRuntimeFlowCapabilityAsync.ts",
+        "src/runtimeBindings.ts",
+        "src/types/runtimeFlow.ts"
       ],
       "exports": [
         "composeRuntimeCapabilityExecutor",
@@ -572,6 +587,26 @@
         "RuntimeEventOperationState",
         "RuntimeEventOperationStatus"
       ]
+    },
+    {
+      "path": "src/runtimeFlowCapabilities.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeActionRegistry.ts",
+        "src/runtimeCapabilityExecutor.ts",
+        "src/runtimeEventOperationLifecycle.ts",
+        "src/types/runtimeFlow.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeFlowSafety.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeCapabilityExecutor.ts",
+        "src/types/runtimeFlow.ts"
+      ],
+      "exports": []
     },
     {
       "path": "src/runtimeImageMedia.test.ts",
@@ -712,7 +747,8 @@
         "src/runtimeActionRegistry.ts",
         "src/runtimeBindings.ts",
         "src/runtimeEventOperationLifecycle.ts",
-        "src/runtimeMedia.ts"
+        "src/runtimeMedia.ts",
+        "src/types/runtimeFlow.ts"
       ],
       "exports": [
         "composeRuntimeNodePropsResolver",
@@ -765,7 +801,8 @@
         "src/registry.tsx",
         "src/runtimeApiCapabilities.ts",
         "src/runtimeBindings.ts",
-        "src/RuntimeRendererConfig.tsx"
+        "src/RuntimeRendererConfig.tsx",
+        "src/types/runtimeFlow.ts"
       ],
       "exports": []
     },
@@ -838,6 +875,15 @@
         "src/runtimeStateAdapter.ts"
       ],
       "exports": []
+    },
+    {
+      "path": "src/types/runtimeFlow.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "RuntimeFlowPort",
+        "RuntimeFlowStartRequest"
+      ]
     },
     {
       "path": "src/useRuntimeMediaProps.ts",
@@ -965,7 +1011,7 @@
       "modulePath": "src/runtimeCapabilityExecutor.ts",
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 17,
+        "line": 20,
         "column": 1
       },
       "exportPaths": [
@@ -1004,7 +1050,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 79,
+        "line": 81,
         "column": 1
       },
       "exportPaths": [
@@ -1048,7 +1094,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 64,
+        "line": 66,
         "column": 1
       },
       "exportPaths": [
@@ -1798,7 +1844,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 97,
+        "line": 99,
         "column": 1
       },
       "exportPaths": [
@@ -3331,14 +3377,15 @@
       "modulePath": "src/runtimeCapabilityExecutor.ts",
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 10,
+        "line": 12,
         "column": 1
       },
       "exportPaths": [
         "src/index.ts"
       ],
       "relatedSymbols": [
-        "RuntimeCapabilityExecutor"
+        "RuntimeCapabilityExecutor",
+        "RuntimeFlowPort"
       ],
       "signatures": [],
       "members": [
@@ -3353,6 +3400,13 @@
           "name": "capabilityExecutor",
           "kind": "property",
           "type": "RuntimeCapabilityExecutor | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "flowPort",
+          "kind": "property",
+          "type": "RuntimeFlowPort | undefined",
           "required": false,
           "description": null
         },
@@ -3858,6 +3912,88 @@
       "structuredRows": []
     },
     {
+      "name": "RuntimeFlowPort",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/runtimeFlow.ts",
+      "sourceLocation": {
+        "filePath": "src/types/runtimeFlow.ts",
+        "line": 17,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "RuntimeFlowStartRequest"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "cancelAsync",
+          "kind": "property",
+          "type": "(runId: string) => Promise<FlowRunSnapshot | undefined>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "eventsAsync",
+          "kind": "property",
+          "type": "(request: { readonly afterId: number; readonly runId?: string; }) => Promise<readonly FlowRunEvent[]>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "resolveApprovalAsync",
+          "kind": "property",
+          "type": "(request: { readonly approvalId: string; readonly approved: boolean; }) => Promise<FlowApprovalRequest | undefined>",
+          "required": true,
+          "description": null
+        },
+        {
+          "name": "startAsync",
+          "kind": "property",
+          "type": "(request: RuntimeFlowStartRequest) => Promise<FlowRunSnapshot>",
+          "required": true,
+          "description": "Enforce the exact requested published Flow id/version before any remote side effect."
+        },
+        {
+          "name": "statusAsync",
+          "kind": "property",
+          "type": "(runId: string) => Promise<FlowRunSnapshot | undefined>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "RuntimeFlowStartRequest",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/runtimeFlow.ts",
+      "sourceLocation": {
+        "filePath": "src/types/runtimeFlow.ts",
+        "line": 9,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "RuntimeManifest",
       "title": null,
       "description": null,
@@ -4196,7 +4332,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 37,
+        "line": 38,
         "column": 1
       },
       "exportPaths": [
@@ -4208,6 +4344,7 @@
         "RuntimeEventCapabilityResolver",
         "RuntimeEventOperationLifecycle",
         "RuntimeEventOperationState",
+        "RuntimeFlowPort",
         "RuntimeMediaAssetResolver",
         "RuntimeNodePropsResolver",
         "RuntimeRendererWrapArgs"
@@ -4267,6 +4404,13 @@
           "name": "executeCapability",
           "kind": "property",
           "type": "RuntimeCapabilityExecutor | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "flowPort",
+          "kind": "property",
+          "type": "RuntimeFlowPort | undefined",
           "required": false,
           "description": null
         },
@@ -4354,7 +4498,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 139,
+        "line": 142,
         "column": 1
       },
       "exportPaths": [
@@ -4532,7 +4676,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 31,
+        "line": 32,
         "column": 1
       },
       "exportPaths": [
@@ -4942,7 +5086,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 152,
+        "line": 155,
         "column": 1
       },
       "exportPaths": [
@@ -5243,7 +5387,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 139,
+        "line": 142,
         "column": 1
       },
       "exportPaths": [
@@ -5371,6 +5515,259 @@
       "sourceLocation": {
         "filePath": "src/componentRegistry.ts",
         "line": 5,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeRuntimeFlowCapabilityAsync",
+      "description": "Executes supported Flow actions through the host-owned remote Flow port.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 21,
+        "column": 1
+      }
+    },
+    {
+      "name": "startFlowAsync",
+      "description": "Starts one published Flow revision after validating its portable binding input.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 41,
+        "column": 1
+      }
+    },
+    {
+      "name": "readFlowStatusAsync",
+      "description": "Reads the current snapshot for a previously started Flow run.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 54,
+        "column": 1
+      }
+    },
+    {
+      "name": "cancelFlowAsync",
+      "description": "Requests cancellation through the remote owner rather than executing a local Flow engine.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 64,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveFlowApprovalAsync",
+      "description": "Resolves one pending human approval through the authenticated remote Flow adapter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 74,
+        "column": 1
+      }
+    },
+    {
+      "name": "readFlowEventsAsync",
+      "description": "Reads resumable, redaction-safe Flow events after the supplied cursor.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 84,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveFlowStartRequest",
+      "description": "Narrows authored flow-start bindings to the released Flow trigger request shape.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 94,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveRunId",
+      "description": "Narrows status and cancellation actions to one stable Flow run identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 115,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveApprovalRequest",
+      "description": "Narrows a portable approval decision without accepting server-owned actor identity.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 120,
+        "column": 1
+      }
+    },
+    {
+      "name": "resolveEventsRequest",
+      "description": "Narrows a resumable event cursor and optional run filter.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 133,
+        "column": 1
+      }
+    },
+    {
+      "name": "isFlowDefinitionRef",
+      "description": "Confirms a published immutable Flow definition reference before calling the host port.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 144,
+        "column": 1
+      }
+    },
+    {
+      "name": "isFlowInput",
+      "description": "Confirms Flow's public inline input envelope without re-declaring its DTO locally.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 155,
+        "column": 1
+      }
+    },
+    {
+      "name": "isEventCursor",
+      "description": "Accepts a nonnegative integer event position so subscriptions can resume deterministically.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 169,
+        "column": 1
+      }
+    },
+    {
+      "name": "isNonEmptyString",
+      "description": "Rejects empty identifiers before a host adapter can issue a remote request.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 174,
+        "column": 1
+      }
+    },
+    {
+      "name": "successfulFlowResult",
+      "description": "Preserves Flow DTOs as runtime binding data after a successful remote operation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 179,
+        "column": 1
+      }
+    },
+    {
+      "name": "isTransportSerializableValue",
+      "description": "Accepts only recursive values that retain their exact meaning across the Flow transport.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 197,
+        "column": 1
+      }
+    },
+    {
+      "name": "hasFiniteSerializableNumbers",
+      "description": "Rejects non-finite numbers and cyclic objects that JSON transport cannot preserve.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 202,
+        "column": 1
+      }
+    },
+    {
+      "name": "foundFlowResult",
+      "description": "Converts an absent Flow resource into a bindable not-found diagnostic.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 215,
+        "column": 1
+      }
+    },
+    {
+      "name": "missingFlowPortResult",
+      "description": "Reports that the host has not configured the remote Flow capability boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 234,
+        "column": 1
+      }
+    },
+    {
+      "name": "invalidFlowInputResult",
+      "description": "Keeps malformed authored Flow inputs from reaching the remote provider boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 248,
+        "column": 1
+      }
+    },
+    {
+      "name": "unsupportedFlowCapabilityResult",
+      "description": "Refuses Flow-prefixed actions that are not part of Runtime's released generated-app contract.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 262,
+        "column": 1
+      }
+    },
+    {
+      "name": "flowRequestErrorResult",
+      "description": "Converts untrusted host failures to fixed public categories without exposing adapter details.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 276,
+        "column": 1
+      }
+    },
+    {
+      "name": "flowRevisionMismatchResult",
+      "description": "Refuses a successful provider response that does not match the requested immutable revision.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "line": 297,
         "column": 1
       }
     },
@@ -6118,7 +6515,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 17,
+        "line": 20,
         "column": 1
       }
     },
@@ -6129,7 +6526,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 31,
+        "line": 36,
         "column": 1
       }
     },
@@ -6140,7 +6537,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 39,
+        "line": 44,
         "column": 1
       }
     },
@@ -6151,7 +6548,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 70,
+        "line": 75,
         "column": 1
       }
     },
@@ -6162,7 +6559,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 96,
+        "line": 101,
         "column": 1
       }
     },
@@ -6173,7 +6570,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 113,
+        "line": 118,
         "column": 1
       }
     },
@@ -6184,7 +6581,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 123,
+        "line": 128,
         "column": 1
       }
     },
@@ -6195,7 +6592,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 133,
+        "line": 138,
         "column": 1
       }
     },
@@ -6206,7 +6603,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 137,
+        "line": 142,
         "column": 1
       }
     },
@@ -6217,7 +6614,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 146,
+        "line": 151,
         "column": 1
       }
     },
@@ -6228,7 +6625,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 154,
+        "line": 159,
         "column": 1
       }
     },
@@ -6239,7 +6636,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 168,
+        "line": 173,
         "column": 1
       }
     },
@@ -6250,7 +6647,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 181,
+        "line": 186,
         "column": 1
       }
     },
@@ -6261,7 +6658,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 194,
+        "line": 199,
         "column": 1
       }
     },
@@ -6272,7 +6669,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 208,
+        "line": 213,
         "column": 1
       }
     },
@@ -6283,7 +6680,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 223,
+        "line": 228,
         "column": 1
       }
     },
@@ -6340,6 +6737,28 @@
         "filePath": "src/runtimeEventOperationLifecycle.ts",
         "line": 114,
         "column": 1
+      }
+    },
+    {
+      "name": "createFlowPort",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeFlowCapabilities.test.ts",
+        "line": 55,
+        "column": 7
+      }
+    },
+    {
+      "name": "createFlowPort",
+      "description": "Provide an injected Flow port whose only mutable behavior is a test-owned start operation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeFlowSafety.test.ts",
+        "line": 17,
+        "column": 7
       }
     },
     {
@@ -6624,7 +7043,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 64,
+        "line": 66,
         "column": 1
       }
     },
@@ -6635,7 +7054,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 79,
+        "line": 81,
         "column": 1
       }
     },
@@ -6646,7 +7065,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 97,
+        "line": 99,
         "column": 1
       }
     },
@@ -6657,7 +7076,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 139,
+        "line": 142,
         "column": 1
       }
     },
@@ -6668,7 +7087,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 152,
+        "line": 155,
         "column": 1
       }
     },
@@ -6679,7 +7098,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 156,
+        "line": 159,
         "column": 1
       }
     },
@@ -6778,7 +7197,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.test.tsx",
-        "line": 31,
+        "line": 33,
         "column": 7
       }
     },
@@ -6789,7 +7208,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.test.tsx",
-        "line": 147,
+        "line": 178,
         "column": 9
       }
     },
@@ -7524,6 +7943,16 @@
         "sourcePath": "src/bindings.ts"
       },
       {
+        "fromPath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromPath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "toPath": "src/types/runtimeFlow.ts",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
         "fromPath": "src/index.ts",
         "toPath": "src/capabilities/resolveRuntimeContextCapability.ts",
         "sourcePath": "src/index.ts"
@@ -7611,6 +8040,11 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/runtimeStateAdapter.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/types/runtimeFlow.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -7735,13 +8169,53 @@
       },
       {
         "fromPath": "src/runtimeCapabilityExecutor.ts",
+        "toPath": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromPath": "src/runtimeCapabilityExecutor.ts",
         "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromPath": "src/runtimeCapabilityExecutor.ts",
+        "toPath": "src/types/runtimeFlow.ts",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
         "fromPath": "src/runtimeEventExecution.ts",
         "toPath": "src/runtimeActionRegistry.ts",
         "sourcePath": "src/runtimeEventExecution.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowCapabilities.test.ts",
+        "toPath": "src/runtimeActionRegistry.ts",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowCapabilities.test.ts",
+        "toPath": "src/runtimeCapabilityExecutor.ts",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowCapabilities.test.ts",
+        "toPath": "src/runtimeEventOperationLifecycle.ts",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowCapabilities.test.ts",
+        "toPath": "src/types/runtimeFlow.ts",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowSafety.test.ts",
+        "toPath": "src/runtimeCapabilityExecutor.ts",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeFlowSafety.test.ts",
+        "toPath": "src/types/runtimeFlow.ts",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
       },
       {
         "fromPath": "src/runtimeImageMedia.test.ts",
@@ -7899,6 +8373,11 @@
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
       {
+        "fromPath": "src/RuntimeRendererConfig.tsx",
+        "toPath": "src/types/runtimeFlow.ts",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
         "fromPath": "src/runtimeRepeat.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeRepeat.ts"
@@ -7921,6 +8400,11 @@
       {
         "fromPath": "src/RuntimeScreen.test.tsx",
         "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromPath": "src/RuntimeScreen.test.tsx",
+        "toPath": "src/types/runtimeFlow.ts",
         "sourcePath": "src/RuntimeScreen.test.tsx"
       },
       {
@@ -8030,6 +8514,312 @@
         "toSymbol": "defineParadoxConfig",
         "callExpression": "defineParadoxConfig",
         "sourcePath": "paradox.config.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "missingFlowPortResult",
+        "callExpression": "missingFlowPortResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "startFlowAsync",
+        "callExpression": "startFlowAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "readFlowStatusAsync",
+        "callExpression": "readFlowStatusAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "cancelFlowAsync",
+        "callExpression": "cancelFlowAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "resolveFlowApprovalAsync",
+        "callExpression": "resolveFlowApprovalAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "readFlowEventsAsync",
+        "callExpression": "readFlowEventsAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "unsupportedFlowCapabilityResult",
+        "callExpression": "unsupportedFlowCapabilityResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeFlowCapabilityAsync",
+        "toSymbol": "flowRequestErrorResult",
+        "callExpression": "flowRequestErrorResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "startFlowAsync",
+        "toSymbol": "resolveFlowStartRequest",
+        "callExpression": "resolveFlowStartRequest",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "startFlowAsync",
+        "toSymbol": "invalidFlowInputResult",
+        "callExpression": "invalidFlowInputResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "startFlowAsync",
+        "toSymbol": "startAsync",
+        "callExpression": "flowPort.startAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "startFlowAsync",
+        "toSymbol": "flowRevisionMismatchResult",
+        "callExpression": "flowRevisionMismatchResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "startFlowAsync",
+        "toSymbol": "successfulFlowResult",
+        "callExpression": "successfulFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowStatusAsync",
+        "toSymbol": "resolveRunId",
+        "callExpression": "resolveRunId",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowStatusAsync",
+        "toSymbol": "invalidFlowInputResult",
+        "callExpression": "invalidFlowInputResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowStatusAsync",
+        "toSymbol": "foundFlowResult",
+        "callExpression": "foundFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowStatusAsync",
+        "toSymbol": "statusAsync",
+        "callExpression": "flowPort.statusAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "cancelFlowAsync",
+        "toSymbol": "resolveRunId",
+        "callExpression": "resolveRunId",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "cancelFlowAsync",
+        "toSymbol": "invalidFlowInputResult",
+        "callExpression": "invalidFlowInputResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "cancelFlowAsync",
+        "toSymbol": "foundFlowResult",
+        "callExpression": "foundFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "cancelFlowAsync",
+        "toSymbol": "cancelAsync",
+        "callExpression": "flowPort.cancelAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowApprovalAsync",
+        "toSymbol": "resolveApprovalRequest",
+        "callExpression": "resolveApprovalRequest",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowApprovalAsync",
+        "toSymbol": "invalidFlowInputResult",
+        "callExpression": "invalidFlowInputResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowApprovalAsync",
+        "toSymbol": "foundFlowResult",
+        "callExpression": "foundFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowApprovalAsync",
+        "toSymbol": "resolveApprovalAsync",
+        "callExpression": "flowPort.resolveApprovalAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowEventsAsync",
+        "toSymbol": "resolveEventsRequest",
+        "callExpression": "resolveEventsRequest",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowEventsAsync",
+        "toSymbol": "invalidFlowInputResult",
+        "callExpression": "invalidFlowInputResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowEventsAsync",
+        "toSymbol": "successfulFlowResult",
+        "callExpression": "successfulFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "readFlowEventsAsync",
+        "toSymbol": "eventsAsync",
+        "callExpression": "flowPort.eventsAsync",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowStartRequest",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowStartRequest",
+        "toSymbol": "isFlowDefinitionRef",
+        "callExpression": "isFlowDefinitionRef",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowStartRequest",
+        "toSymbol": "isNonEmptyString",
+        "callExpression": "isNonEmptyString",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveFlowStartRequest",
+        "toSymbol": "isFlowInput",
+        "callExpression": "isFlowInput",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveRunId",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveRunId",
+        "toSymbol": "isNonEmptyString",
+        "callExpression": "isNonEmptyString",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveApprovalRequest",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveApprovalRequest",
+        "toSymbol": "isNonEmptyString",
+        "callExpression": "isNonEmptyString",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveEventsRequest",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveEventsRequest",
+        "toSymbol": "isEventCursor",
+        "callExpression": "isEventCursor",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "resolveEventsRequest",
+        "toSymbol": "isNonEmptyString",
+        "callExpression": "isNonEmptyString",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "isFlowDefinitionRef",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "isFlowDefinitionRef",
+        "toSymbol": "isNonEmptyString",
+        "callExpression": "isNonEmptyString",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "isFlowInput",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "toSymbol": "isTransportSerializableValue",
+        "callExpression": "isTransportSerializableValue",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "successfulFlowResult",
+        "toSymbol": "isTransportSerializableValue",
+        "callExpression": "isTransportSerializableValue",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "isTransportSerializableValue",
+        "toSymbol": "hasFiniteSerializableNumbers",
+        "callExpression": "hasFiniteSerializableNumbers",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "isTransportSerializableValue",
+        "toSymbol": "isSerializableValue",
+        "callExpression": "isSerializableValue",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "src/executeRuntimeFlowCapabilityAsync.ts",
+        "toSymbol": "hasFiniteSerializableNumbers",
+        "callExpression": "hasFiniteSerializableNumbers",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "foundFlowResult",
+        "toSymbol": "successfulFlowResult",
+        "callExpression": "successfulFlowResult",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
+      },
+      {
+        "fromSymbol": "flowRequestErrorResult",
+        "toSymbol": "isRecord",
+        "callExpression": "isRecord",
+        "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
       },
       {
         "fromSymbol": "src/ManifestContext.tsx",
@@ -8819,6 +9609,12 @@
       },
       {
         "fromSymbol": "src/runtimeCapabilityExecutor.ts",
+        "toSymbol": "executeRuntimeFlowCapabilityAsync",
+        "callExpression": "executeRuntimeFlowCapabilityAsync",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeCapabilityExecutor.ts",
         "toSymbol": "executeStateSetCapabilityAsync",
         "callExpression": "executeStateSetCapabilityAsync",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
@@ -9002,6 +9798,108 @@
         "toSymbol": "isRecord",
         "callExpression": "isRecord",
         "sourcePath": "src/runtimeEventOperationLifecycle.ts"
+      },
+      {
+        "fromSymbol": "createFlowPort",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "createFlowPort",
+        "callExpression": "createFlowPort",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "composeRuntimeCapabilityExecutor",
+        "callExpression": "composeRuntimeCapabilityExecutor",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "executeCapability",
+        "callExpression": "executeCapability",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "configuredExecutor",
+        "callExpression": "configuredExecutor",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "unconfiguredExecutor",
+        "callExpression": "unconfiguredExecutor",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "missingExecutor",
+        "callExpression": "missingExecutor",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "deniedExecutor",
+        "callExpression": "deniedExecutor",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "createRuntimeEventOperationLifecycle",
+        "callExpression": "createRuntimeEventOperationLifecycle",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowCapabilities.test.ts",
+        "toSymbol": "dispatchRuntimeComponentEvent",
+        "callExpression": "dispatchRuntimeComponentEvent",
+        "sourcePath": "src/runtimeFlowCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowSafety.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowSafety.test.ts",
+        "toSymbol": "createFlowPort",
+        "callExpression": "createFlowPort",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowSafety.test.ts",
+        "toSymbol": "composeRuntimeCapabilityExecutor",
+        "callExpression": "composeRuntimeCapabilityExecutor",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowSafety.test.ts",
+        "toSymbol": "execute",
+        "callExpression": "execute",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeFlowSafety.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeFlowSafety.test.ts"
       },
       {
         "fromSymbol": "src/runtimeImageMedia.test.ts",
@@ -9625,6 +10523,12 @@
         "fromSymbol": "src/RuntimeScreen.test.tsx",
         "toSymbol": "pressLevel",
         "callExpression": "pressLevel",
+        "sourcePath": "src/RuntimeScreen.test.tsx"
+      },
+      {
+        "fromSymbol": "src/RuntimeScreen.test.tsx",
+        "toSymbol": "levelPress",
+        "callExpression": "levelPress",
         "sourcePath": "src/RuntimeScreen.test.tsx"
       },
       {
@@ -11011,6 +11915,11 @@
       },
       {
         "fromSymbol": "RuntimeCapabilityExecutorComposition",
+        "toType": "RuntimeFlowPort",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "RuntimeCapabilityExecutorComposition",
         "toType": "StateAdapter",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
@@ -11361,6 +12270,11 @@
       },
       {
         "fromSymbol": "RuntimeRendererConfig",
+        "toType": "RuntimeFlowPort",
+        "sourcePath": "src/RuntimeRendererConfig.tsx"
+      },
+      {
+        "fromSymbol": "RuntimeRendererConfig",
         "toType": "RuntimeMediaAssetResolver",
         "sourcePath": "src/RuntimeRendererConfig.tsx"
       },
@@ -11608,6 +12522,26 @@
         "fromSymbol": "createRuntimeMemoryStateAdapter",
         "toType": "StateAdapter",
         "sourcePath": "src/runtimeStateAdapter.ts"
+      },
+      {
+        "fromSymbol": "RuntimeFlowPort",
+        "toType": "FlowApprovalRequest",
+        "sourcePath": "src/types/runtimeFlow.ts"
+      },
+      {
+        "fromSymbol": "RuntimeFlowPort",
+        "toType": "FlowRunEvent",
+        "sourcePath": "src/types/runtimeFlow.ts"
+      },
+      {
+        "fromSymbol": "RuntimeFlowPort",
+        "toType": "FlowRunSnapshot",
+        "sourcePath": "src/types/runtimeFlow.ts"
+      },
+      {
+        "fromSymbol": "RuntimeFlowPort",
+        "toType": "RuntimeFlowStartRequest",
+        "sourcePath": "src/types/runtimeFlow.ts"
       }
     ],
     "componentComposition": [

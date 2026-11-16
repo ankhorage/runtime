@@ -5,6 +5,7 @@ graph LR
   module_src_capabilities_resolveRuntimeContextCapability_test_ts["src/capabilities/resolveRuntimeContextCapability.test.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
+  module_src_executeRuntimeFlowCapabilityAsync_ts["src/executeRuntimeFlowCapabilityAsync.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
   module_src_react19Compatibility_test_tsx["src/react19Compatibility.test.tsx"]
@@ -23,6 +24,8 @@ graph LR
   module_src_runtimeCapabilityExecutor_ts["src/runtimeCapabilityExecutor.ts"]
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
   module_src_runtimeEventOperationLifecycle_ts["src/runtimeEventOperationLifecycle.ts"]
+  module_src_runtimeFlowCapabilities_test_ts["src/runtimeFlowCapabilities.test.ts"]
+  module_src_runtimeFlowSafety_test_ts["src/runtimeFlowSafety.test.ts"]
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   module_src_runtimeManifest_ts["src/runtimeManifest.ts"]
   module_src_runtimeMedia_test_ts["src/runtimeMedia.test.ts"]
@@ -45,6 +48,7 @@ graph LR
   module_src_runtimeStateAdapter_test_ts["src/runtimeStateAdapter.test.ts"]
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateReactivity_test_tsx["src/runtimeStateReactivity.test.tsx"]
+  module_src_types_runtimeFlow_ts["src/types/runtimeFlow.ts"]
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
@@ -221,6 +225,7 @@ graph LR
   export_RuntimeCapabilityExecutorComposition["RuntimeCapabilityExecutorComposition"]
   module_src_runtimeCapabilityExecutor_ts --> export_RuntimeCapabilityExecutorComposition
   export_RuntimeCapabilityExecutorComposition -.-> export_RuntimeCapabilityExecutor
+  export_RuntimeCapabilityExecutorComposition -.-> export_RuntimeFlowPort
   export_RuntimeComponentEventDispatchArgs["RuntimeComponentEventDispatchArgs"]
   module_src_runtimeActionRegistry_ts --> export_RuntimeComponentEventDispatchArgs
   export_RuntimeComponentEventDispatchArgs -.-> export_RuntimeBindingResultWriter
@@ -250,6 +255,11 @@ graph LR
   module_src_runtimeActionRegistry_ts --> export_RuntimeEventPropWrapArgs
   export_RuntimeEventPropWrapArgs -.-> export_RuntimeComponentEventDispatchArgs
   export_RuntimeEventPropWrapArgs -.-> export_RuntimeEventCapabilityResolver
+  export_RuntimeFlowPort["RuntimeFlowPort"]
+  module_src_types_runtimeFlow_ts --> export_RuntimeFlowPort
+  export_RuntimeFlowPort -.-> export_RuntimeFlowStartRequest
+  export_RuntimeFlowStartRequest["RuntimeFlowStartRequest"]
+  module_src_types_runtimeFlow_ts --> export_RuntimeFlowStartRequest
   export_RuntimeManifest["RuntimeManifest"]
   module_src_runtimeManifest_ts --> export_RuntimeManifest
   export_RuntimeManifest -.-> export_RuntimeActionDescriptor
@@ -284,6 +294,7 @@ graph LR
   export_RuntimeRendererConfig -.-> export_RuntimeEventCapabilityResolver
   export_RuntimeRendererConfig -.-> export_RuntimeEventOperationLifecycle
   export_RuntimeRendererConfig -.-> export_RuntimeEventOperationState
+  export_RuntimeRendererConfig -.-> export_RuntimeFlowPort
   export_RuntimeRendererConfig -.-> export_RuntimeMediaAssetResolver
   export_RuntimeRendererConfig -.-> export_RuntimeNodePropsResolver
   export_RuntimeRendererConfig -.-> export_RuntimeRendererWrapArgs

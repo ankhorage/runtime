@@ -74,7 +74,7 @@
     "modulePath": "src/runtimeCapabilityExecutor.ts",
     "sourceLocation": {
       "filePath": "src/runtimeCapabilityExecutor.ts",
-      "line": 17,
+      "line": 20,
       "column": 1
     },
     "exportPaths": [
@@ -113,7 +113,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 79,
+      "line": 81,
       "column": 1
     },
     "exportPaths": [
@@ -157,7 +157,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 64,
+      "line": 66,
       "column": 1
     },
     "exportPaths": [
@@ -907,7 +907,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 97,
+      "line": 99,
       "column": 1
     },
     "exportPaths": [
@@ -2440,14 +2440,15 @@
     "modulePath": "src/runtimeCapabilityExecutor.ts",
     "sourceLocation": {
       "filePath": "src/runtimeCapabilityExecutor.ts",
-      "line": 10,
+      "line": 12,
       "column": 1
     },
     "exportPaths": [
       "src/index.ts"
     ],
     "relatedSymbols": [
-      "RuntimeCapabilityExecutor"
+      "RuntimeCapabilityExecutor",
+      "RuntimeFlowPort"
     ],
     "signatures": [],
     "members": [
@@ -2462,6 +2463,13 @@
         "name": "capabilityExecutor",
         "kind": "property",
         "type": "RuntimeCapabilityExecutor | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "flowPort",
+        "kind": "property",
+        "type": "RuntimeFlowPort | undefined",
         "required": false,
         "description": null
       },
@@ -2967,6 +2975,88 @@
     "structuredRows": []
   },
   {
+    "name": "RuntimeFlowPort",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/runtimeFlow.ts",
+    "sourceLocation": {
+      "filePath": "src/types/runtimeFlow.ts",
+      "line": 17,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "RuntimeFlowStartRequest"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "cancelAsync",
+        "kind": "property",
+        "type": "(runId: string) => Promise<FlowRunSnapshot | undefined>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "eventsAsync",
+        "kind": "property",
+        "type": "(request: { readonly afterId: number; readonly runId?: string; }) => Promise<readonly FlowRunEvent[]>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "resolveApprovalAsync",
+        "kind": "property",
+        "type": "(request: { readonly approvalId: string; readonly approved: boolean; }) => Promise<FlowApprovalRequest | undefined>",
+        "required": true,
+        "description": null
+      },
+      {
+        "name": "startAsync",
+        "kind": "property",
+        "type": "(request: RuntimeFlowStartRequest) => Promise<FlowRunSnapshot>",
+        "required": true,
+        "description": "Enforce the exact requested published Flow id/version before any remote side effect."
+      },
+      {
+        "name": "statusAsync",
+        "kind": "property",
+        "type": "(runId: string) => Promise<FlowRunSnapshot | undefined>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "RuntimeFlowStartRequest",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/runtimeFlow.ts",
+    "sourceLocation": {
+      "filePath": "src/types/runtimeFlow.ts",
+      "line": 9,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "RuntimeManifest",
     "title": null,
     "description": null,
@@ -3305,7 +3395,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 37,
+      "line": 38,
       "column": 1
     },
     "exportPaths": [
@@ -3317,6 +3407,7 @@
       "RuntimeEventCapabilityResolver",
       "RuntimeEventOperationLifecycle",
       "RuntimeEventOperationState",
+      "RuntimeFlowPort",
       "RuntimeMediaAssetResolver",
       "RuntimeNodePropsResolver",
       "RuntimeRendererWrapArgs"
@@ -3376,6 +3467,13 @@
         "name": "executeCapability",
         "kind": "property",
         "type": "RuntimeCapabilityExecutor | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "flowPort",
+        "kind": "property",
+        "type": "RuntimeFlowPort | undefined",
         "required": false,
         "description": null
       },
@@ -3463,7 +3561,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 139,
+      "line": 142,
       "column": 1
     },
     "exportPaths": [
@@ -3641,7 +3739,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 31,
+      "line": 32,
       "column": 1
     },
     "exportPaths": [
@@ -4051,7 +4149,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 152,
+      "line": 155,
       "column": 1
     },
     "exportPaths": [

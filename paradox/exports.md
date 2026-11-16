@@ -25,7 +25,7 @@ Source: `src/componentRegistry.ts:3:1`
 
 Kind: `function`
 Module: `src/runtimeCapabilityExecutor.ts`
-Source: `src/runtimeCapabilityExecutor.ts:17:1`
+Source: `src/runtimeCapabilityExecutor.ts:20:1`
 
 Keeps local state mutations while preferring the configured host executor for API capabilities.
 
@@ -39,7 +39,7 @@ Keeps local state mutations while preferring the configured host executor for AP
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:79:1`
+Source: `src/RuntimeRendererConfig.tsx:81:1`
 
 ### Signatures
 
@@ -52,7 +52,7 @@ Source: `src/RuntimeRendererConfig.tsx:79:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:64:1`
+Source: `src/RuntimeRendererConfig.tsx:66:1`
 
 ### Signatures
 
@@ -308,7 +308,7 @@ Owns one configured state adapter for every Runtime screen in an application tre
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:97:1`
+Source: `src/RuntimeRendererConfig.tsx:99:1`
 
 ### Signatures
 
@@ -767,7 +767,7 @@ Source: `src/runtimeBindings.ts:36:1`
 
 Kind: `type`
 Module: `src/runtimeCapabilityExecutor.ts`
-Source: `src/runtimeCapabilityExecutor.ts:10:1`
+Source: `src/runtimeCapabilityExecutor.ts:12:1`
 
 ### Members
 
@@ -775,6 +775,7 @@ Source: `src/runtimeCapabilityExecutor.ts:10:1`
 | --- | --- | --- | --- | --- |
 | apiCapabilityExecutor | property | `RuntimeCapabilityExecutor` | yes |  |
 | capabilityExecutor | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
+| flowPort | property | `RuntimeFlowPort \| undefined` | no |  |
 | stateAdapter | property | `StateAdapter \| undefined` | no |  |
 
 ## RuntimeComponentEventDispatchArgs
@@ -911,6 +912,28 @@ Source: `src/runtimeActionRegistry.ts:57:1`
 | resultSlots | property | `Readonly<Record<string, import("@ankhorage/contracts").SerializableValue \| undefined>> \| undefined` | no |  |
 | state | property | `Record<string, unknown> \| undefined` | no |  |
 
+## RuntimeFlowPort
+
+Kind: `type`
+Module: `src/types/runtimeFlow.ts`
+Source: `src/types/runtimeFlow.ts:17:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| cancelAsync | property | `(runId: string) => Promise<FlowRunSnapshot \| undefined>` | yes |  |
+| eventsAsync | property | `(request: { readonly afterId: number; readonly runId?: string; }) => Promise<readonly FlowRunEvent[]>` | yes |  |
+| resolveApprovalAsync | property | `(request: { readonly approvalId: string; readonly approved: boolean; }) => Promise<FlowApprovalRequest \| undefined>` | yes |  |
+| startAsync | property | `(request: RuntimeFlowStartRequest) => Promise<FlowRunSnapshot>` | yes | Enforce the exact requested published Flow id/version before any remote side effect. |
+| statusAsync | property | `(runId: string) => Promise<FlowRunSnapshot \| undefined>` | yes |  |
+
+## RuntimeFlowStartRequest
+
+Kind: `unknown`
+Module: `src/types/runtimeFlow.ts`
+Source: `src/types/runtimeFlow.ts:9:1`
+
 ## RuntimeManifest
 
 Kind: `type`
@@ -1011,7 +1034,7 @@ Source: `src/RuntimeRenderer.tsx:74:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:37:1`
+Source: `src/RuntimeRendererConfig.tsx:38:1`
 
 ### Members
 
@@ -1025,6 +1048,7 @@ Source: `src/RuntimeRendererConfig.tsx:37:1`
 | eventOperationLifecycle | property | `RuntimeEventOperationLifecycle \| undefined` | no |  |
 | eventOperationState | property | `RuntimeEventOperationState \| undefined` | no |  |
 | executeCapability | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
+| flowPort | property | `RuntimeFlowPort \| undefined` | no |  |
 | mediaAssets | property | `MediaAssetRegistry \| undefined` | no |  |
 | onDiagnostics | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined` | no |  |
 | registry | property | `Readonly<Record<string, React.ElementType<any, keyof React.JSX.IntrinsicElements>>> \| undefined` | no |  |
@@ -1040,7 +1064,7 @@ Source: `src/RuntimeRendererConfig.tsx:37:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:139:1`
+Source: `src/RuntimeRendererConfig.tsx:142:1`
 
 ### Signatures
 
@@ -1079,7 +1103,7 @@ Source: `src/RuntimeRenderer.tsx:55:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:31:1`
+Source: `src/RuntimeRendererConfig.tsx:32:1`
 
 ### Members
 
@@ -1219,7 +1243,7 @@ Reads an enclosing manifest scope without requiring hosts to provide one.
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:152:1`
+Source: `src/RuntimeRendererConfig.tsx:155:1`
 
 ### Signatures
 

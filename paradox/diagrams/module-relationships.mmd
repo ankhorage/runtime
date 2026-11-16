@@ -5,6 +5,7 @@ graph LR
   module_src_capabilities_resolveRuntimeContextCapability_test_ts["src/capabilities/resolveRuntimeContextCapability.test.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
+  module_src_executeRuntimeFlowCapabilityAsync_ts["src/executeRuntimeFlowCapabilityAsync.ts"]
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
   module_src_react19Compatibility_test_tsx["src/react19Compatibility.test.tsx"]
@@ -23,6 +24,8 @@ graph LR
   module_src_runtimeCapabilityExecutor_ts["src/runtimeCapabilityExecutor.ts"]
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
   module_src_runtimeEventOperationLifecycle_ts["src/runtimeEventOperationLifecycle.ts"]
+  module_src_runtimeFlowCapabilities_test_ts["src/runtimeFlowCapabilities.test.ts"]
+  module_src_runtimeFlowSafety_test_ts["src/runtimeFlowSafety.test.ts"]
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   module_src_runtimeManifest_ts["src/runtimeManifest.ts"]
   module_src_runtimeMedia_test_ts["src/runtimeMedia.test.ts"]
@@ -45,6 +48,7 @@ graph LR
   module_src_runtimeStateAdapter_test_ts["src/runtimeStateAdapter.test.ts"]
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateReactivity_test_tsx["src/runtimeStateReactivity.test.tsx"]
+  module_src_types_runtimeFlow_ts["src/types/runtimeFlow.ts"]
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
@@ -53,6 +57,8 @@ graph LR
   module_tests_runtimeBrowserArtifact_test_ts["tests/runtimeBrowserArtifact.test.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --> module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
+  module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_runtimeBindings_ts
+  module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_types_runtimeFlow_ts
   module_src_ManifestContext_tsx --> module_src_runtimeStateAdapter_ts
   module_src_react19Compatibility_test_tsx --> module_src_ManifestContext_tsx
   module_src_react19Compatibility_test_tsx --> module_src_RuntimeRendererConfig_tsx
@@ -76,8 +82,16 @@ graph LR
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeScreenLoaders_ts
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeStateAdapter_ts
+  module_src_runtimeCapabilityExecutor_ts --> module_src_executeRuntimeFlowCapabilityAsync_ts
   module_src_runtimeCapabilityExecutor_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeCapabilityExecutor_ts --> module_src_types_runtimeFlow_ts
   module_src_runtimeEventExecution_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_types_runtimeFlow_ts
+  module_src_runtimeFlowSafety_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeFlowSafety_test_ts --> module_src_types_runtimeFlow_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeNodeProps_ts
   module_src_runtimeMedia_test_ts --> module_src_runtimeMedia_ts
@@ -109,11 +123,13 @@ graph LR
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeMedia_ts
+  module_src_RuntimeRendererConfig_tsx --> module_src_types_runtimeFlow_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
   module_src_RuntimeScreen_test_tsx --> module_src_registry_tsx
   module_src_RuntimeScreen_test_tsx --> module_src_runtimeApiCapabilities_ts
   module_src_RuntimeScreen_test_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeScreen_test_tsx --> module_src_RuntimeRendererConfig_tsx
+  module_src_RuntimeScreen_test_tsx --> module_src_types_runtimeFlow_ts
   module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
   module_src_RuntimeScreen_tsx --> module_src_runtimeApiCapabilities_ts

@@ -16,6 +16,10 @@ graph TD
   module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   package__ankhorage_runtime -.-> module_src_componentRegistry_ts
+  module_src_executeRuntimeFlowCapabilityAsync_ts["src/executeRuntimeFlowCapabilityAsync.ts"]
+  package__ankhorage_runtime -.-> module_src_executeRuntimeFlowCapabilityAsync_ts
+  module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_runtimeBindings_ts
+  module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_types_runtimeFlow_ts
   module_src_index_ts["src/index.ts"]
   module_src_ManifestContext_tsx["src/ManifestContext.tsx"]
   package__ankhorage_runtime -.-> module_src_ManifestContext_tsx
@@ -70,12 +74,24 @@ graph TD
   module_src_runtimeCapabilityExecutor_test_ts --> module_src_runtimeStateAdapter_ts
   module_src_runtimeCapabilityExecutor_ts["src/runtimeCapabilityExecutor.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeCapabilityExecutor_ts --> module_src_executeRuntimeFlowCapabilityAsync_ts
   module_src_runtimeCapabilityExecutor_ts --> module_src_runtimeBindings_ts
+  module_src_runtimeCapabilityExecutor_ts --> module_src_types_runtimeFlow_ts
   module_src_runtimeEventExecution_ts["src/runtimeEventExecution.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeEventExecution_ts
   module_src_runtimeEventExecution_ts --> module_src_runtimeActionRegistry_ts
   module_src_runtimeEventOperationLifecycle_ts["src/runtimeEventOperationLifecycle.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeFlowCapabilities_test_ts["src/runtimeFlowCapabilities.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeFlowCapabilities_test_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeActionRegistry_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeFlowCapabilities_test_ts --> module_src_types_runtimeFlow_ts
+  module_src_runtimeFlowSafety_test_ts["src/runtimeFlowSafety.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeFlowSafety_test_ts
+  module_src_runtimeFlowSafety_test_ts --> module_src_runtimeCapabilityExecutor_ts
+  module_src_runtimeFlowSafety_test_ts --> module_src_types_runtimeFlow_ts
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeImageMedia_test_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
@@ -131,6 +147,7 @@ graph TD
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeEventOperationLifecycle_ts
   module_src_RuntimeRendererConfig_tsx --> module_src_runtimeMedia_ts
+  module_src_RuntimeRendererConfig_tsx --> module_src_types_runtimeFlow_ts
   module_src_runtimeRepeat_ts["src/runtimeRepeat.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeRepeat_ts
   module_src_runtimeRepeat_ts --> module_src_runtimeBindings_ts
@@ -144,6 +161,7 @@ graph TD
   module_src_RuntimeScreen_test_tsx --> module_src_runtimeApiCapabilities_ts
   module_src_RuntimeScreen_test_tsx --> module_src_runtimeBindings_ts
   module_src_RuntimeScreen_test_tsx --> module_src_RuntimeRendererConfig_tsx
+  module_src_RuntimeScreen_test_tsx --> module_src_types_runtimeFlow_ts
   module_src_RuntimeScreen_tsx["src/RuntimeScreen.tsx"]
   package__ankhorage_runtime -.-> module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
@@ -170,6 +188,8 @@ graph TD
   module_src_runtimeStateReactivity_test_tsx --> module_src_registry_tsx
   module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeBindings_ts
   module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeStateAdapter_ts
+  module_src_types_runtimeFlow_ts["src/types/runtimeFlow.ts"]
+  package__ankhorage_runtime -.-> module_src_types_runtimeFlow_ts
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   package__ankhorage_runtime -.-> module_src_useRuntimeMediaProps_ts
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
