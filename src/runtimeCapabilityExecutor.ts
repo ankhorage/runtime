@@ -5,7 +5,7 @@ import type {
   RuntimeCapabilityExecutionArgs,
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 
 export interface RuntimeCapabilityExecutorComposition {
   readonly apiCapabilityExecutor: RuntimeCapabilityExecutor;

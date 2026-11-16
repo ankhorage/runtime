@@ -10,18 +10,18 @@ import type {
 import type { RuntimeNodePropsResolver } from '@ankhorage/contracts/runtime';
 import React, { createContext, use } from 'react';
 
-import type { ComponentRegistry } from './registry';
-import type { RuntimeEventCapabilityResolver } from './runtimeActionRegistry';
+import type { ComponentRegistry } from './registry.js';
+import type { RuntimeEventCapabilityResolver } from './runtimeActionRegistry.js';
 import type {
   RuntimeBindingResultCache,
   RuntimeBindingResultWriter,
   RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 import type {
   RuntimeEventOperationLifecycle,
   RuntimeEventOperationState,
-} from './runtimeEventOperationLifecycle';
-import type { RuntimeMediaAssetResolver } from './runtimeMedia';
+} from './runtimeEventOperationLifecycle.js';
+import type { RuntimeMediaAssetResolver } from './runtimeMedia.js';
 
 export type {
   RuntimeNodePropsResolver,

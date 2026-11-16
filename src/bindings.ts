@@ -1,5 +1,5 @@
-export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
-export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
+export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities.js';
+export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities.js';
 export type {
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
@@ -9,7 +9,7 @@ export type {
   RuntimeCapabilityExecutionArgs,
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 export {
   applyRuntimeBindingDataPath,
   executeRuntimeBindingInvocation,
@@ -21,4 +21,4 @@ export {
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
-} from './runtimeBindings';
+} from './runtimeBindings.js';

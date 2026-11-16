@@ -3,7 +3,7 @@ import type { DataSourceDiagnostic } from '@ankhorage/contracts';
 import {
   dispatchRuntimeComponentEvent,
   type RuntimeComponentEventDispatchArgs,
-} from './runtimeActionRegistry';
+} from './runtimeActionRegistry.js';
 
 export interface RuntimeEventDiagnosticsReporter {
   readonly onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;

@@ -11,7 +11,7 @@ import type {
   RuntimeCapabilityExecutionArgs,
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 
 export interface RuntimeApiCapabilityExecutorOptions {
   readonly apis: ApiDefinitionRegistry;

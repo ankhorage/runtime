@@ -434,6 +434,10 @@ jobs:
               case "$loader" in
                 import)
                   runtime_log="$(mktemp "${RUNNER_TEMP}/standalone-runtime.XXXXXX")"
+                  if PACKAGE_SPECIFIER="$specifier" node --input-type=module -e 'await import(process.env.PACKAGE_SPECIFIER)' >"$runtime_log" 2>&1; then
+                    continue
+                  fi
+
                   if PACKAGE_SPECIFIER="$specifier" bun -e 'await import(process.env.PACKAGE_SPECIFIER)' >"$runtime_log" 2>&1; then
                     continue
                   fi

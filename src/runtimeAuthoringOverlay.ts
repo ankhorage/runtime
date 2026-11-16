@@ -1,7 +1,7 @@
 import type { UiNode } from '@ankhorage/contracts';
 import type React from 'react';
 
-import type { RuntimeRendererConfig, RuntimeRendererWrapArgs } from './RuntimeRendererConfig';
+import type { RuntimeRendererConfig, RuntimeRendererWrapArgs } from './RuntimeRendererConfig.js';
 
 export type RuntimeAuthoringMode = 'edit' | 'preview';
 

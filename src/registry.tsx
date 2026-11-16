@@ -1,2 +1,2 @@
-export type { ComponentRegistry } from './componentRegistry';
-export { createComponentRegistry } from './componentRegistry';
+export type { ComponentRegistry } from './componentRegistry.js';
+export { createComponentRegistry } from './componentRegistry.js';
