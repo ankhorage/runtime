@@ -15,6 +15,7 @@ export type RuntimeFlowStartRequest = Omit<
 
 /** A remote Flow boundary selected by the generated app host. Authentication stays in its adapter. */
 export interface RuntimeFlowPort {
+  /*** Enforce the exact requested published Flow id/version before any remote side effect. */
   readonly startAsync: (request: RuntimeFlowStartRequest) => Promise<FlowRunSnapshot>;
   readonly statusAsync: (runId: string) => Promise<FlowRunSnapshot | undefined>;
   readonly cancelAsync: (runId: string) => Promise<FlowRunSnapshot | undefined>;

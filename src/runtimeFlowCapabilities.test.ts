@@ -275,3 +275,56 @@ it('redacts secret-bearing remote adapter failures before exposing app diagnosti
   expect(JSON.stringify(result)).not.toContain(credential);
   expect(JSON.stringify(result)).not.toContain('private.internal');
 });
+
+it('rejects non-serializable inline values without calling the Flow provider', async () => {
+  const port = createFlowPort();
+  const execute = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    flowPort: port,
+  });
+  const result = await execute({
+    capability: 'flow.start',
+    input: {
+      flow: RUN.flow,
+      idempotencyKey: 'invalid-value',
+      input: { recipient: { kind: 'inline', value: Number.NaN } },
+      triggerId: 'manual',
+    },
+  });
+  expect(result).toEqual({
+    diagnostics: [
+      {
+        code: 'invalid-input',
+        message: "Capability 'flow.start' received an invalid Flow request.",
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  });
+  expect(port.startAsync).not.toHaveBeenCalled();
+});
+
+it('rejects a provider response for another published workflow revision', async () => {
+  const flowPort: RuntimeFlowPort = {
+    ...createFlowPort(),
+    startAsync: () => Promise.resolve({ ...RUN, flow: { id: RUN.flow.id, version: 4 } }),
+  };
+  const execute = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    flowPort,
+  });
+  const result = await execute({
+    capability: 'flow.start',
+    input: { flow: RUN.flow, idempotencyKey: 'revision-3', triggerId: 'manual' },
+  });
+  expect(result).toEqual({
+    diagnostics: [
+      {
+        code: 'flow-revision-mismatch',
+        message: 'The Flow provider returned a different published revision.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  });
+});

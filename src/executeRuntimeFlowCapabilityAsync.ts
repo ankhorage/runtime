@@ -13,8 +13,8 @@ import type {
 } from './runtimeBindings.js';
 import type { RuntimeFlowPort, RuntimeFlowStartRequest } from './types/runtimeFlow.js';
 
-/** Executes supported Flow actions through the host-owned remote Flow port. */
-export async function runtimeFlowCapabilities(
+/*** Executes supported Flow actions through the host-owned remote Flow port. */
+export async function executeRuntimeFlowCapabilityAsync(
   args: RuntimeCapabilityExecutionArgs,
   flowPort: RuntimeFlowPort | undefined,
 ): Promise<RuntimeCapabilityExecutionResult> {
@@ -33,17 +33,20 @@ export async function runtimeFlowCapabilities(
   }
 }
 
-/** Starts one published Flow revision after validating its portable binding input. */
+/*** Starts one published Flow revision after validating its portable binding input. */
 async function startFlowAsync(
   input: RuntimeCapabilityExecutionArgs['input'],
   flowPort: RuntimeFlowPort,
 ): Promise<RuntimeCapabilityExecutionResult> {
   const request = resolveFlowStartRequest(input);
   if (request === undefined) return invalidFlowInputResult('flow.start');
-  return successfulFlowResult(await flowPort.startAsync(request));
+  const run = await flowPort.startAsync(request);
+  if (run.flow.id !== request.flow.id || run.flow.version !== request.flow.version)
+    return flowRevisionMismatchResult();
+  return successfulFlowResult(run);
 }
 
-/** Reads the current snapshot for a previously started Flow run. */
+/*** Reads the current snapshot for a previously started Flow run. */
 async function readFlowStatusAsync(
   input: RuntimeCapabilityExecutionArgs['input'],
   flowPort: RuntimeFlowPort,
@@ -53,7 +56,7 @@ async function readFlowStatusAsync(
   return foundFlowResult(await flowPort.statusAsync(runId), 'Flow run');
 }
 
-/** Requests cancellation through the remote owner rather than executing a local Flow engine. */
+/*** Requests cancellation through the remote owner rather than executing a local Flow engine. */
 async function cancelFlowAsync(
   input: RuntimeCapabilityExecutionArgs['input'],
   flowPort: RuntimeFlowPort,
@@ -63,7 +66,7 @@ async function cancelFlowAsync(
   return foundFlowResult(await flowPort.cancelAsync(runId), 'Flow run');
 }
 
-/** Resolves one pending human approval through the authenticated remote Flow adapter. */
+/*** Resolves one pending human approval through the authenticated remote Flow adapter. */
 async function resolveFlowApprovalAsync(
   input: RuntimeCapabilityExecutionArgs['input'],
   flowPort: RuntimeFlowPort,
@@ -73,7 +76,7 @@ async function resolveFlowApprovalAsync(
   return foundFlowResult(await flowPort.resolveApprovalAsync(request), 'Flow approval');
 }
 
-/** Reads resumable, redaction-safe Flow events after the supplied cursor. */
+/*** Reads resumable, redaction-safe Flow events after the supplied cursor. */
 async function readFlowEventsAsync(
   input: RuntimeCapabilityExecutionArgs['input'],
   flowPort: RuntimeFlowPort,
@@ -83,7 +86,7 @@ async function readFlowEventsAsync(
   return successfulFlowResult(await flowPort.eventsAsync(request));
 }
 
-/** Narrows authored flow-start bindings to the released Flow trigger request shape. */
+/*** Narrows authored flow-start bindings to the released Flow trigger request shape. */
 function resolveFlowStartRequest(
   input: RuntimeCapabilityExecutionArgs['input'],
 ): RuntimeFlowStartRequest | undefined {
@@ -104,12 +107,12 @@ function resolveFlowStartRequest(
   };
 }
 
-/** Narrows status and cancellation actions to one stable Flow run identity. */
+/*** Narrows status and cancellation actions to one stable Flow run identity. */
 function resolveRunId(input: RuntimeCapabilityExecutionArgs['input']): string | undefined {
   return isRecord(input) && isNonEmptyString(input.runId) ? input.runId : undefined;
 }
 
-/** Narrows a portable approval decision without accepting server-owned actor identity. */
+/*** Narrows a portable approval decision without accepting server-owned actor identity. */
 function resolveApprovalRequest(
   input: RuntimeCapabilityExecutionArgs['input'],
 ): { readonly approvalId: string; readonly approved: boolean } | undefined {
@@ -122,7 +125,7 @@ function resolveApprovalRequest(
   return { approvalId: input.approvalId, approved: input.approved };
 }
 
-/** Narrows a resumable event cursor and optional run filter. */
+/*** Narrows a resumable event cursor and optional run filter. */
 function resolveEventsRequest(
   input: RuntimeCapabilityExecutionArgs['input'],
 ): { readonly afterId: number; readonly runId?: string } | undefined {
@@ -133,7 +136,7 @@ function resolveEventsRequest(
     : { afterId: input.afterId, runId: input.runId };
 }
 
-/** Confirms a published immutable Flow definition reference before calling the host port. */
+/*** Confirms a published immutable Flow definition reference before calling the host port. */
 function isFlowDefinitionRef(value: unknown): value is FlowDefinitionRef {
   return (
     isRecord(value) &&
@@ -144,27 +147,31 @@ function isFlowDefinitionRef(value: unknown): value is FlowDefinitionRef {
   );
 }
 
-/** Confirms Flow's public inline input envelope without re-declaring its DTO locally. */
+/*** Confirms Flow's public inline input envelope without re-declaring its DTO locally. */
 function isFlowInput(value: unknown): value is RuntimeFlowStartRequest['input'] {
   return (
     isRecord(value) &&
     Object.values(value).every(
-      (entry) => isRecord(entry) && entry.kind === 'inline' && 'value' in entry,
+      (entry) =>
+        isRecord(entry) &&
+        entry.kind === 'inline' &&
+        'value' in entry &&
+        isSerializableValue(entry.value),
     )
   );
 }
 
-/** Accepts a nonnegative integer event position so subscriptions can resume deterministically. */
+/*** Accepts a nonnegative integer event position so subscriptions can resume deterministically. */
 function isEventCursor(value: unknown): value is number {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0;
 }
 
-/** Rejects empty identifiers before a host adapter can issue a remote request. */
+/*** Rejects empty identifiers before a host adapter can issue a remote request. */
 function isNonEmptyString(value: unknown): value is string {
   return typeof value === 'string' && value.trim().length > 0;
 }
 
-/** Preserves Flow DTOs as runtime binding data after a successful remote operation. */
+/*** Preserves Flow DTOs as runtime binding data after a successful remote operation. */
 function successfulFlowResult(
   data: FlowRunSnapshot | FlowApprovalRequest | readonly FlowRunEvent[],
 ): RuntimeCapabilityExecutionResult {
@@ -182,7 +189,7 @@ function successfulFlowResult(
       };
 }
 
-/** Converts an absent Flow resource into a bindable not-found diagnostic. */
+/*** Converts an absent Flow resource into a bindable not-found diagnostic. */
 function foundFlowResult(
   data: FlowRunSnapshot | FlowApprovalRequest | undefined,
   resource: string,
@@ -201,7 +208,7 @@ function foundFlowResult(
     : successfulFlowResult(data);
 }
 
-/** Reports that the host has not configured the remote Flow capability boundary. */
+/*** Reports that the host has not configured the remote Flow capability boundary. */
 function missingFlowPortResult(capability: string): RuntimeCapabilityExecutionResult {
   return {
     diagnostics: [
@@ -215,7 +222,7 @@ function missingFlowPortResult(capability: string): RuntimeCapabilityExecutionRe
   };
 }
 
-/** Keeps malformed authored Flow inputs from reaching the remote provider boundary. */
+/*** Keeps malformed authored Flow inputs from reaching the remote provider boundary. */
 function invalidFlowInputResult(capability: string): RuntimeCapabilityExecutionResult {
   return {
     diagnostics: [
@@ -229,7 +236,7 @@ function invalidFlowInputResult(capability: string): RuntimeCapabilityExecutionR
   };
 }
 
-/** Refuses Flow-prefixed actions that are not part of Runtime's released generated-app contract. */
+/*** Refuses Flow-prefixed actions that are not part of Runtime's released generated-app contract. */
 function unsupportedFlowCapabilityResult(capability: string): RuntimeCapabilityExecutionResult {
   return {
     diagnostics: [
@@ -243,7 +250,7 @@ function unsupportedFlowCapabilityResult(capability: string): RuntimeCapabilityE
   };
 }
 
-/** Converts untrusted host failures to fixed public categories without exposing adapter details. */
+/*** Converts untrusted host failures to fixed public categories without exposing adapter details. */
 function flowRequestErrorResult(error: unknown): RuntimeCapabilityExecutionResult {
   const errorCode = isRecord(error) ? error.code : undefined;
   const safeErrors = [
@@ -262,4 +269,18 @@ function flowRequestErrorResult(error: unknown): RuntimeCapabilityExecutionResul
     severity: 'error',
   };
   return { diagnostics: [diagnostic], ok: false };
+}
+
+/*** Refuses a successful provider response that does not match the requested immutable revision. */
+function flowRevisionMismatchResult(): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'flow-revision-mismatch',
+        message: 'The Flow provider returned a different published revision.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
 }

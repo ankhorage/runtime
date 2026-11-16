@@ -6,7 +6,7 @@ import type {
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
 } from './runtimeBindings.js';
-import { runtimeFlowCapabilities } from './runtimeFlowCapabilities.js';
+import { executeRuntimeFlowCapabilityAsync } from './executeRuntimeFlowCapabilityAsync.js';
 import type { RuntimeFlowPort } from './types/runtimeFlow.js';
 
 export interface RuntimeCapabilityExecutorComposition {
@@ -24,7 +24,7 @@ export function composeRuntimeCapabilityExecutor(
     args.capability.startsWith('api.')
       ? executeApiCapabilityAsync(args, composition)
       : args.capability.startsWith('flow.')
-        ? runtimeFlowCapabilities(args, composition.flowPort)
+        ? executeRuntimeFlowCapabilityAsync(args, composition.flowPort)
         : args.capability === 'state.set'
           ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
           : args.capability === 'state.update'
