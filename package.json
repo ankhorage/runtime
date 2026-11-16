@@ -1,6 +1,6 @@
 {
   "name": "@ankhorage/runtime",
-  "version": "5.4.8",
+  "version": "5.4.9",
   "description": "Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.",
   "license": "MIT",
   "engines": {
@@ -344,7 +344,7 @@
   "dependencies": {
     "@ankhorage/capability": "^0.2.3",
     "@ankhorage/contracts": "^26.11.1",
-    "@ankhorage/data-sources": "^2.2.1",
+    "@ankhorage/data-sources": "^2.2.2",
     "@ankhorage/flow": "^0.7.0",
     "@ankhorage/utility": "^1.10.1"
   },
