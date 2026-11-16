@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.4.7
+
+### Patch Changes
+
+- 3673494: Emit Node-compatible ESM specifiers from Runtime's public capability entrypoint.
+
 ## 5.4.6
 
 ### Patch Changes
