@@ -1,14 +1,14 @@
 import type { AppManifest, ScreenSpec, StateAdapter } from '@ankhorage/contracts';
 import React from 'react';
 
-import { useOptionalManifestContext } from './ManifestContext';
-import type { ComponentRegistry } from './registry';
-import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
-import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
-import { RuntimeRenderer } from './RuntimeRenderer';
-import { useRuntimeRendererConfig } from './RuntimeRendererConfig';
-import { useRuntimeScreenOperationLoaders } from './runtimeScreenLoaders';
-import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
+import { useOptionalManifestContext } from './ManifestContext.js';
+import type { ComponentRegistry } from './registry.js';
+import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities.js';
+import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor.js';
+import { RuntimeRenderer } from './RuntimeRenderer.js';
+import { useRuntimeRendererConfig } from './RuntimeRendererConfig.js';
+import { useRuntimeScreenOperationLoaders } from './runtimeScreenLoaders.js';
+import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter.js';
 
 export interface RuntimeScreenProps {
   readonly manifest: AppManifest;

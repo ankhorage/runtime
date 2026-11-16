@@ -1,20 +1,20 @@
 export type {
   RuntimeContextCapabilityId,
   RuntimeContextCapabilityResolution,
-} from './capabilities/resolveRuntimeContextCapability';
+} from './capabilities/resolveRuntimeContextCapability.js';
 export {
   isRuntimeContextCapabilityOutputPath,
   resolveRuntimeContextCapability,
-} from './capabilities/resolveRuntimeContextCapability';
+} from './capabilities/resolveRuntimeContextCapability.js';
 export {
   ManifestContext,
   ManifestProvider,
   useManifest,
   useManifestContext,
   useOptionalManifestContext,
-} from './ManifestContext';
-export type { ComponentRegistry } from './registry';
-export { createComponentRegistry } from './registry';
+} from './ManifestContext.js';
+export type { ComponentRegistry } from './registry.js';
+export { createComponentRegistry } from './registry.js';
 export type {
   RuntimeActionRegistry,
   RuntimeActionResolutionArgs,
@@ -22,16 +22,16 @@ export type {
   RuntimeComponentEventDispatchArgs,
   RuntimeEventCapabilityResolver,
   RuntimeEventPropWrapArgs,
-} from './runtimeActionRegistry';
+} from './runtimeActionRegistry.js';
 export {
   createComponentEventFromHandlerArgs,
   createRuntimeActionRegistry,
   dispatchRuntimeComponentEvent,
   resolveRuntimeActionValue,
   wrapRuntimeEventProps,
-} from './runtimeActionRegistry';
-export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities';
-export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
+} from './runtimeActionRegistry.js';
+export type { RuntimeApiCapabilityExecutorOptions } from './runtimeApiCapabilities.js';
+export { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities.js';
 export type {
   RuntimeAuthoringBounds,
   RuntimeAuthoringComponentIdentity,
@@ -39,8 +39,8 @@ export type {
   RuntimeAuthoringMode,
   RuntimeAuthoringOverlayAdapter,
   RuntimeAuthoringOverlayNodeArgs,
-} from './runtimeAuthoringOverlay';
-export { createRuntimeAuthoringOverlayConfig } from './runtimeAuthoringOverlay';
+} from './runtimeAuthoringOverlay.js';
+export { createRuntimeAuthoringOverlayConfig } from './runtimeAuthoringOverlay.js';
 export type {
   RuntimeBindingResolutionArgs,
   RuntimeBindingResolutionContext,
@@ -50,7 +50,7 @@ export type {
   RuntimeCapabilityExecutionArgs,
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 export {
   applyRuntimeBindingDataPath,
   executeRuntimeBindingInvocation,
@@ -62,25 +62,25 @@ export {
   resolveRuntimeBindingsAsync,
   resolveRuntimeBindingValue,
   resolveRuntimeBindingValueSync,
-} from './runtimeBindings';
-export type { RuntimeCapabilityExecutorComposition } from './runtimeCapabilityExecutor';
-export { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor';
+} from './runtimeBindings.js';
+export type { RuntimeCapabilityExecutorComposition } from './runtimeCapabilityExecutor.js';
+export { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor.js';
 export {
   dispatchRuntimeComponentEventWithReporting,
   type RuntimeEventDiagnosticsReporter,
-} from './runtimeEventExecution';
+} from './runtimeEventExecution.js';
 export type {
   RuntimeEventOperationInvocation,
   RuntimeEventOperationLifecycle,
   RuntimeEventOperationState,
   RuntimeEventOperationStatus,
-} from './runtimeEventOperationLifecycle';
+} from './runtimeEventOperationLifecycle.js';
 export {
   createRuntimeEventOperationBindingContext,
   createRuntimeEventOperationLifecycle,
   IDLE_RUNTIME_EVENT_OPERATION_STATE,
   resolveRuntimeEventOperationErrorMessage,
-} from './runtimeEventOperationLifecycle';
+} from './runtimeEventOperationLifecycle.js';
 export type {
   RuntimeActionDescriptor,
   RuntimeAdapterDescriptor,
@@ -89,14 +89,14 @@ export type {
   RuntimeManifest,
   RuntimeManifestConfig,
   RuntimeManifestInput,
-} from './runtimeManifest';
+} from './runtimeManifest.js';
 export type {
   RuntimeMediaAssetResolver,
   RuntimeMediaAssetResolverArgs,
   RuntimeResolvedMediaValue,
-} from './runtimeMedia';
-export type { RuntimeRendererProps } from './RuntimeRenderer';
-export { RuntimeRenderer } from './RuntimeRenderer';
+} from './runtimeMedia.js';
+export type { RuntimeRendererProps } from './RuntimeRenderer.js';
+export { RuntimeRenderer } from './RuntimeRenderer.js';
 export {
   composeRuntimeNodePropsResolver,
   composeRuntimeRendererWrapNode,
@@ -107,14 +107,14 @@ export {
   type RuntimeRendererWrapArgs,
   type RuntimeResolveNodePropsArgs,
   useRuntimeRendererConfig,
-} from './RuntimeRendererConfig';
-export { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
-export type { RuntimeScreenProps } from './RuntimeScreen';
-export { RuntimeScreen } from './RuntimeScreen';
+} from './RuntimeRendererConfig.js';
+export { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState.js';
+export type { RuntimeScreenProps } from './RuntimeScreen.js';
+export { RuntimeScreen } from './RuntimeScreen.js';
 export type {
   RuntimeScreenOperationLoaderExecutionResult,
   RuntimeScreenOperationLoaderState,
-} from './runtimeScreenLoaders';
+} from './runtimeScreenLoaders.js';
 export {
   createPendingRuntimeScreenOperationLoaderState,
   createRuntimeScreenLoaderRequestKey,
@@ -122,6 +122,6 @@ export {
   executeRuntimeScreenOperationLoaders,
   resolveScreenOperationLoaders,
   useRuntimeScreenOperationLoaders,
-} from './runtimeScreenLoaders';
-export type { RuntimeMemoryStateAdapterOptions } from './runtimeStateAdapter';
-export { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
+} from './runtimeScreenLoaders.js';
+export type { RuntimeMemoryStateAdapterOptions } from './runtimeStateAdapter.js';
+export { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter.js';

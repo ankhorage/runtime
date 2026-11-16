@@ -12,7 +12,7 @@ import {
   type RuntimeBindingResultCache,
   type RuntimeBindingResultWriter,
   type RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 
 export interface RuntimeScreenOperationLoaderState {
   readonly dependencyKey: string;

@@ -16,11 +16,11 @@ import {
   type RuntimeBindingResultCache,
   type RuntimeBindingResultWriter,
   type RuntimeCapabilityExecutor,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 import {
   resolveRuntimeEventOperationErrorMessage,
   type RuntimeEventOperationLifecycle,
-} from './runtimeEventOperationLifecycle';
+} from './runtimeEventOperationLifecycle.js';
 
 type RuntimeEventPayload = Record<string, unknown>;
 type RuntimeEventHandler = (...args: unknown[]) => unknown;

@@ -3,7 +3,7 @@ import React, { createContext, use, useMemo } from 'react';
 import {
   createRuntimeMediaResolutionCache,
   type RuntimeMediaResolutionCache,
-} from './runtimeMedia';
+} from './runtimeMedia.js';
 
 const RuntimeMediaCacheContext = createContext<RuntimeMediaResolutionCache | null>(null);
 

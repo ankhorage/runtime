@@ -1,7 +1,7 @@
 import type { DataSchema } from '@ankhorage/contracts';
 import type { Capability } from '@ankhorage/contracts/capability';
 
-import { CAPABILITIES } from './index';
+import { CAPABILITIES } from './index.js';
 
 export type RuntimeContextCapabilityId = 'runtime.eventOperation' | 'runtime.repeat.item';
 

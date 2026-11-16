@@ -7,8 +7,8 @@ import type {
 } from '@ankhorage/contracts';
 import { isMediaAssetReference } from '@ankhorage/contracts';
 
-import { resolveRuntimeBindings, type RuntimeBindingResultCache } from './runtimeBindings';
-import type { RuntimeRendererConfig } from './RuntimeRendererConfig';
+import { resolveRuntimeBindings, type RuntimeBindingResultCache } from './runtimeBindings.js';
+import type { RuntimeRendererConfig } from './RuntimeRendererConfig.js';
 
 /*** Resolves a node's authored props and synchronous binding expressions for one render pass. */
 export function resolveRuntimeNodeProps(args: {

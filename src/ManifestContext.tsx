@@ -1,7 +1,7 @@
 import type { AppManifest, StateAdapter } from '@ankhorage/contracts';
 import React, { createContext, use } from 'react';
 
-import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter';
+import { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter.js';
 
 export interface ManifestContextValue {
   manifest: AppManifest;

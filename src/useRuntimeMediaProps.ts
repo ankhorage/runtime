@@ -9,7 +9,7 @@ import {
   type RuntimeMediaAssetResolver,
   type RuntimeMediaResolutionCache,
   type RuntimeResolvedMediaValue,
-} from './runtimeMedia';
+} from './runtimeMedia.js';
 
 export function useRuntimeMediaProps(args: {
   readonly props: Record<string, unknown>;

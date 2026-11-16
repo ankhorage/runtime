@@ -10,7 +10,7 @@ import {
   resolveRuntimeBindingExpressionSync,
   type RuntimeBindingResolutionContext,
   type RuntimeBindingResultWriter,
-} from './runtimeBindings';
+} from './runtimeBindings.js';
 
 export interface RuntimeRepeatResolutionContext extends RuntimeBindingResolutionContext {
   readonly node: UiNode;

@@ -11,46 +11,46 @@ import type {
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import type { ComponentRegistry } from './registry';
+import type { ComponentRegistry } from './registry.js';
 import {
   getUnknownComponentDiagnostic,
   resolveRenderedChildren,
   resolveRuntimeRegistry,
-} from './rendering';
+} from './rendering.js';
 import {
   type RuntimeComponentEventDispatchArgs,
   type RuntimeEventCapabilityResolver,
   wrapRuntimeEventProps,
-} from './runtimeActionRegistry';
-import type { RuntimeBindingResultCache, RuntimeCapabilityExecutor } from './runtimeBindings';
-import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution';
+} from './runtimeActionRegistry.js';
+import type { RuntimeBindingResultCache, RuntimeCapabilityExecutor } from './runtimeBindings.js';
+import { dispatchRuntimeComponentEventWithReporting } from './runtimeEventExecution.js';
 import {
   createRuntimeEventOperationBindingContext,
   createRuntimeEventOperationLifecycle,
   IDLE_RUNTIME_EVENT_OPERATION_STATE,
-} from './runtimeEventOperationLifecycle';
-import type { RuntimeMediaAssetResolver } from './runtimeMedia';
+} from './runtimeEventOperationLifecycle.js';
+import type { RuntimeMediaAssetResolver } from './runtimeMedia.js';
 import {
   RuntimeMediaResolutionCacheProvider,
   useRuntimeMediaResolutionCache,
-} from './runtimeMediaCache';
-import { resolveRuntimeNodeProps } from './runtimeNodeProps';
+} from './runtimeMediaCache.js';
+import { resolveRuntimeNodeProps } from './runtimeNodeProps.js';
 import {
   mergeRuntimeRendererConfig,
   RuntimeRendererConfigProvider,
   type RuntimeRendererWrapArgs,
   useRuntimeRendererConfig,
-} from './RuntimeRendererConfig';
+} from './RuntimeRendererConfig.js';
 import {
   createRuntimeRepeatBindingContext,
   resolveRuntimeRepeatItemKey,
   resolveRuntimeRepeatItemsAsync,
   resolveRuntimeRepeatItemsSync,
-} from './runtimeRepeat';
-import { createRepeatDiagnosticsKey } from './runtimeRepeatDiagnostics';
-import { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState';
-import { useRuntimeMediaProps } from './useRuntimeMediaProps';
-import { useRuntimeStateBindings } from './useRuntimeStateBindings';
+} from './runtimeRepeat.js';
+import { createRepeatDiagnosticsKey } from './runtimeRepeatDiagnostics.js';
+import { shouldRenderRuntimeRepeatEmptyState } from './runtimeRepeatEmptyState.js';
+import { useRuntimeMediaProps } from './useRuntimeMediaProps.js';
+import { useRuntimeStateBindings } from './useRuntimeStateBindings.js';
 
 export interface RuntimeRendererProps {
   node: UiNode;

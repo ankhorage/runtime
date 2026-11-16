@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import type { ComponentRegistry } from './registry';
+import type { ComponentRegistry } from './registry.js';
 
 const EMPTY_COMPONENT_REGISTRY: ComponentRegistry = {};
 
