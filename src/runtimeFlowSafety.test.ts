@@ -22,7 +22,7 @@ const createFlowPort = (startAsync: RuntimeFlowPort['startAsync']): RuntimeFlowP
   statusAsync: () => Promise.resolve(undefined),
 });
 
-it('rejects non-serializable inline values without calling the Flow provider', async () => {
+it('rejects transport-unsafe inline values without calling the Flow provider', async () => {
   const calls: string[] = [];
   const flowPort = createFlowPort(() => {
     calls.push('start');
@@ -32,25 +32,27 @@ it('rejects non-serializable inline values without calling the Flow provider', a
     apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
     flowPort,
   });
-  const result = await execute({
-    capability: 'flow.start',
-    input: {
-      flow: RUN.flow,
-      idempotencyKey: 'invalid-value',
-      input: { recipient: { kind: 'inline', value: Number.NaN } },
-      triggerId: 'manual',
-    },
-  });
-  expect(result).toEqual({
-    diagnostics: [
-      {
-        code: 'invalid-input',
-        message: "Capability 'flow.start' received an invalid Flow request.",
-        severity: 'error',
+  for (const value of [Number.NaN, Number.POSITIVE_INFINITY]) {
+    const result = await execute({
+      capability: 'flow.start',
+      input: {
+        flow: RUN.flow,
+        idempotencyKey: 'invalid-value',
+        input: { recipient: { kind: 'inline', value } },
+        triggerId: 'manual',
       },
-    ],
-    ok: false,
-  });
+    });
+    expect(result).toEqual({
+      diagnostics: [
+        {
+          code: 'invalid-input',
+          message: "Capability 'flow.start' received an invalid Flow request.",
+          severity: 'error',
+        },
+      ],
+      ok: false,
+    });
+  }
   expect(calls).toEqual([]);
 });
 

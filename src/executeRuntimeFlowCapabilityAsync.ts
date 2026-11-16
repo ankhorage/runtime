@@ -1,4 +1,8 @@
-import { type DataSourceDiagnostic, isSerializableValue } from '@ankhorage/contracts';
+import {
+  type DataSourceDiagnostic,
+  isSerializableValue,
+  type SerializableValue,
+} from '@ankhorage/contracts';
 import type {
   FlowApprovalRequest,
   FlowDefinitionRef,
@@ -156,7 +160,7 @@ function isFlowInput(value: unknown): value is RuntimeFlowStartRequest['input'] 
         isRecord(entry) &&
         entry.kind === 'inline' &&
         'value' in entry &&
-        isSerializableValue(entry.value),
+        isTransportSerializableValue(entry.value),
     )
   );
 }
@@ -175,7 +179,7 @@ function isNonEmptyString(value: unknown): value is string {
 function successfulFlowResult(
   data: FlowRunSnapshot | FlowApprovalRequest | readonly FlowRunEvent[],
 ): RuntimeCapabilityExecutionResult {
-  return isSerializableValue(data)
+  return isTransportSerializableValue(data)
     ? { data, ok: true }
     : {
         diagnostics: [
@@ -187,6 +191,24 @@ function successfulFlowResult(
         ],
         ok: false,
       };
+}
+
+/*** Accepts only recursive values that retain their exact meaning across the Flow transport. */
+function isTransportSerializableValue(value: unknown): value is SerializableValue {
+  return hasFiniteSerializableNumbers(value, new Set<object>()) && isSerializableValue(value);
+}
+
+/*** Rejects non-finite numbers and cyclic objects that JSON transport cannot preserve. */
+function hasFiniteSerializableNumbers(value: unknown, ancestors: Set<object>): boolean {
+  if (typeof value === 'number') return Number.isFinite(value);
+  if (value === null || typeof value !== 'object') return true;
+  if (ancestors.has(value)) return false;
+  ancestors.add(value);
+  const valid = Array.isArray(value)
+    ? value.every((entry) => hasFiniteSerializableNumbers(entry, ancestors))
+    : Object.values(value).every((entry) => hasFiniteSerializableNumbers(entry, ancestors));
+  ancestors.delete(value);
+  return valid;
 }
 
 /*** Converts an absent Flow resource into a bindable not-found diagnostic. */
