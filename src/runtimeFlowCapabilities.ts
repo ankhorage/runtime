@@ -243,11 +243,22 @@ function unsupportedFlowCapabilityResult(capability: string): RuntimeCapabilityE
   };
 }
 
-/** Converts adapter failures into serializable diagnostics while preserving typed provider error codes. */
+/** Converts untrusted host failures to fixed public categories without exposing adapter details. */
 function flowRequestErrorResult(error: unknown): RuntimeCapabilityExecutionResult {
+  const errorCode = isRecord(error) ? error.code : undefined;
+  const safeErrors = [
+    { code: 'permission-denied', message: 'Flow access was denied.' },
+    { code: 'timeout', message: 'The Flow request timed out.' },
+    { code: 'unauthenticated', message: 'Flow authentication is required.' },
+    { code: 'offline', message: 'The Flow service is unavailable.' },
+    { code: 'not-found', message: 'The Flow resource was not found.' },
+    { code: 'rate-limited', message: 'The Flow request was rate limited.' },
+    { code: 'cancelled', message: 'The Flow request was cancelled.' },
+  ] as const;
+  const exposed = safeErrors.find(({ code }) => code === errorCode);
   const diagnostic: DataSourceDiagnostic = {
-    code: isRecord(error) && typeof error.code === 'string' ? error.code : 'flow-request-failed',
-    message: error instanceof Error ? error.message : 'The Flow request could not be completed.',
+    code: exposed?.code ?? 'flow-request-failed',
+    message: exposed?.message ?? 'The Flow request could not be completed.',
     severity: 'error',
   };
   return { diagnostics: [diagnostic], ok: false };
