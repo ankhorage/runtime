@@ -195,7 +195,7 @@ it('exposes missing resources and provider failures as binding diagnostics', asy
   });
   expect(deniedStart).toEqual({
     diagnostics: [
-      { code: 'permission-denied', message: 'Approval is required.', severity: 'error' },
+      { code: 'permission-denied', message: 'Flow access was denied.', severity: 'error' },
     ],
     ok: false,
   });
@@ -223,7 +223,7 @@ it('drives the existing event error state when a Flow request times out', async 
   });
 
   expect(diagnostics).toEqual([
-    { code: 'timeout', message: 'The Flow server timed out.', severity: 'error' },
+    { code: 'timeout', message: 'The Flow request timed out.', severity: 'error' },
   ]);
   expect(states).toEqual([
     {
@@ -235,10 +235,43 @@ it('drives the existing event error state when a Flow request times out', async 
     },
     {
       capability: 'flow.cancel',
-      errorMessage: 'The Flow server timed out.',
+      errorMessage: 'The Flow request timed out.',
       loading: false,
       nodeId: 'cancel',
       status: 'error',
     },
   ]);
+});
+
+it('redacts secret-bearing remote adapter failures before exposing app diagnostics', async () => {
+  const credential = 'Bearer secret-provider-credential';
+  const unsafeFlowPort: RuntimeFlowPort = {
+    ...createFlowPort(),
+    startAsync: () =>
+      Promise.reject(
+        Object.assign(new Error(`Authorization: ${credential}; url=https://private.internal`), {
+          code: `private-${credential}`,
+        }),
+      ),
+  };
+  const executeCapability = composeRuntimeCapabilityExecutor({
+    apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
+    flowPort: unsafeFlowPort,
+  });
+  const result = await executeCapability({
+    capability: 'flow.start',
+    input: { flow: RUN.flow, idempotencyKey: 'safe-key', triggerId: 'manual' },
+  });
+  expect(result).toEqual({
+    diagnostics: [
+      {
+        code: 'flow-request-failed',
+        message: 'The Flow request could not be completed.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  });
+  expect(JSON.stringify(result)).not.toContain(credential);
+  expect(JSON.stringify(result)).not.toContain('private.internal');
 });
