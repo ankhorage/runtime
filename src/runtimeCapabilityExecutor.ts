@@ -1,12 +1,12 @@
 import type { StateAdapter, StatePath, StateUpdate, StateValue } from '@ankhorage/contracts';
 import { isRecord } from '@ankhorage/utility/object';
 
+import { executeRuntimeFlowCapabilityAsync } from './executeRuntimeFlowCapabilityAsync.js';
 import type {
   RuntimeCapabilityExecutionArgs,
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
 } from './runtimeBindings.js';
-import { executeRuntimeFlowCapabilityAsync } from './executeRuntimeFlowCapabilityAsync.js';
 import type { RuntimeFlowPort } from './types/runtimeFlow.js';
 
 export interface RuntimeCapabilityExecutorComposition {
