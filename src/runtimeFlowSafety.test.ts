@@ -16,17 +16,17 @@ const RUN = {
 /*** Provide an injected Flow port whose only mutable behavior is a test-owned start operation. */
 const createFlowPort = (startAsync: RuntimeFlowPort['startAsync']): RuntimeFlowPort => ({
   startAsync,
-  cancelAsync: async () => undefined,
-  eventsAsync: async () => [],
-  resolveApprovalAsync: async () => undefined,
-  statusAsync: async () => undefined,
+  cancelAsync: () => Promise.resolve(undefined),
+  eventsAsync: () => Promise.resolve([]),
+  resolveApprovalAsync: () => Promise.resolve(undefined),
+  statusAsync: () => Promise.resolve(undefined),
 });
 
 it('rejects non-serializable inline values without calling the Flow provider', async () => {
   const calls: string[] = [];
-  const flowPort = createFlowPort(async () => {
+  const flowPort = createFlowPort(() => {
     calls.push('start');
-    return RUN;
+    return Promise.resolve(RUN);
   });
   const execute = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
@@ -55,10 +55,9 @@ it('rejects non-serializable inline values without calling the Flow provider', a
 });
 
 it('rejects a provider response for another published workflow revision', async () => {
-  const flowPort = createFlowPort(async () => ({
-    ...RUN,
-    flow: { id: RUN.flow.id, version: 4 },
-  }));
+  const flowPort = createFlowPort(() =>
+    Promise.resolve({ ...RUN, flow: { id: RUN.flow.id, version: 4 } }),
+  );
   const execute = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: () => Promise.resolve({ data: {}, ok: true as const }),
     flowPort,
