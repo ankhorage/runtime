@@ -36,9 +36,10 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
       composeRuntimeCapabilityExecutor({
         apiCapabilityExecutor,
         capabilityExecutor: runtimeConfig.executeCapability,
+        flowPort: runtimeConfig.flowPort,
         stateAdapter,
       }),
-    [apiCapabilityExecutor, runtimeConfig.executeCapability, stateAdapter],
+    [apiCapabilityExecutor, runtimeConfig.executeCapability, runtimeConfig.flowPort, stateAdapter],
   );
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
     bindingContext: runtimeConfig.bindingContext,

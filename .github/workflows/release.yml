@@ -441,6 +441,7 @@ jobs:
                   if grep -Fq 'react-native/index.js' "$runtime_log" && grep -Fq 'Unexpected typeof' "$runtime_log"; then
                     platform_dir="$(mktemp -d "${install_dir}/packed-platform.XXXXXX")"
                     platform_output_dir="$(mktemp -d "${RUNNER_TEMP}/standalone-platform-output.XXXXXX")"
+                    bun add 'expo@58.0.25' --ignore-scripts
                     printf '{"expo":{"name":"packed-platform-verification","slug":"packed-platform-verification"}}\n' > "$platform_dir/app.json"
                     APP_DIR="$platform_dir" PACKAGE_SPECIFIER="$specifier" node - <<'NODE'
           const { writeFileSync } = require('node:fs');

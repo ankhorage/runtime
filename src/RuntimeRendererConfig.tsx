@@ -22,6 +22,7 @@ import type {
   RuntimeEventOperationState,
 } from './runtimeEventOperationLifecycle.js';
 import type { RuntimeMediaAssetResolver } from './runtimeMedia.js';
+import type { RuntimeFlowPort } from './types/runtimeFlow.js';
 
 export type {
   RuntimeNodePropsResolver,
@@ -49,6 +50,7 @@ export interface RuntimeRendererConfig {
   resultSlots?: RuntimeBindingResultCache;
   writeResultSlot?: RuntimeBindingResultWriter;
   executeCapability?: RuntimeCapabilityExecutor;
+  flowPort?: RuntimeFlowPort;
   resolveEventCapability?: RuntimeEventCapabilityResolver;
   onDiagnostics?: (diagnostics: readonly DataSourceDiagnostic[]) => void;
   eventOperationLifecycle?: RuntimeEventOperationLifecycle;
@@ -127,6 +129,7 @@ export function mergeRuntimeRendererConfig(
     resultSlots,
     writeResultSlot: localConfig?.writeResultSlot ?? inheritedConfig?.writeResultSlot,
     executeCapability: localConfig?.executeCapability ?? inheritedConfig?.executeCapability,
+    flowPort: localConfig?.flowPort ?? inheritedConfig?.flowPort,
     resolveEventCapability:
       localConfig?.resolveEventCapability ?? inheritedConfig?.resolveEventCapability,
     onDiagnostics: localConfig?.onDiagnostics ?? inheritedConfig?.onDiagnostics,
