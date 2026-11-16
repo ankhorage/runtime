@@ -6,10 +6,13 @@ import type {
   RuntimeCapabilityExecutionResult,
   RuntimeCapabilityExecutor,
 } from './runtimeBindings.js';
+import { runtimeFlowCapabilities } from './runtimeFlowCapabilities.js';
+import type { RuntimeFlowPort } from './types/runtimeFlow.js';
 
 export interface RuntimeCapabilityExecutorComposition {
   readonly apiCapabilityExecutor: RuntimeCapabilityExecutor;
   readonly capabilityExecutor?: RuntimeCapabilityExecutor;
+  readonly flowPort?: RuntimeFlowPort;
   readonly stateAdapter?: StateAdapter;
 }
 
@@ -20,11 +23,13 @@ export function composeRuntimeCapabilityExecutor(
   return async (args) =>
     args.capability.startsWith('api.')
       ? executeApiCapabilityAsync(args, composition)
-      : args.capability === 'state.set'
-        ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
-        : args.capability === 'state.update'
-          ? executeStateUpdateCapabilityAsync(args, composition.stateAdapter)
-          : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
+      : args.capability.startsWith('flow.')
+        ? runtimeFlowCapabilities(args, composition.flowPort)
+        : args.capability === 'state.set'
+          ? executeStateSetCapabilityAsync(args, composition.stateAdapter)
+          : args.capability === 'state.update'
+            ? executeStateUpdateCapabilityAsync(args, composition.stateAdapter)
+            : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
 }
 
 /*** Uses the host API executor when supplied, falling back to the manifest executor. */

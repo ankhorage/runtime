@@ -5,6 +5,7 @@ import type {
   ScreenSpec,
   UiNode,
 } from '@ankhorage/contracts';
+import type { FlowRunSnapshot } from '@ankhorage/contracts/flow';
 import { expect, it, mock } from 'bun:test';
 import React from 'react';
 import { act, create } from 'react-test-renderer';
@@ -13,6 +14,7 @@ import type { ComponentRegistry } from './registry';
 import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities';
 import type { RuntimeCapabilityExecutionArgs, RuntimeCapabilityExecutor } from './runtimeBindings';
 import { RuntimeRendererConfigProvider } from './RuntimeRendererConfig';
+import type { RuntimeFlowPort } from './types/runtimeFlow';
 
 (
   globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT?: boolean }
@@ -136,6 +138,35 @@ const dataBindings = {
   },
 } satisfies ComponentDataBindingRegistry;
 
+const FLOW_RUN = {
+  createdAt: '2026-11-16T10:00:00.000Z',
+  flow: { id: 'daily-briefing', version: 3 },
+  id: 'run-1',
+  status: 'running',
+  steps: [],
+  trigger: { kind: 'manual', triggerId: 'manual' },
+} satisfies FlowRunSnapshot;
+
+const FLOW_BINDINGS = {
+  'level-1': {
+    componentId: 'level-1',
+    events: {
+      press: [
+        {
+          target: {
+            capability: 'flow.start',
+            input: {
+              flow: { kind: 'literal', value: FLOW_RUN.flow },
+              idempotencyKey: { kind: 'literal', value: 'daily-briefing-2026-11-16' },
+              triggerId: { kind: 'literal', value: 'manual' },
+            },
+          },
+        },
+      ],
+    },
+  },
+} satisfies ComponentDataBindingRegistry;
+
 it('uses the injected API fetch, stores the task result, then allows conditional navigation', async () => {
   const fetch = mock(() =>
     Promise.resolve({ status: 200, text: () => Promise.resolve('{"tasks":[{"id":"task-1"}]}') }),
@@ -178,5 +209,43 @@ it('uses the injected API fetch, stores the task result, then allows conditional
     event: { payload: {}, sourceNodeId: 'level-1', type: 'press' },
     input: { taskId: 'task-1' },
     node: root,
+  });
+});
+
+it('passes generated Flow events through the configured remote Flow port', async () => {
+  const startAsync = mock(() => Promise.resolve(FLOW_RUN));
+  const flowPort: RuntimeFlowPort = {
+    cancelAsync: () => Promise.resolve(undefined),
+    eventsAsync: () => Promise.resolve([]),
+    resolveApprovalAsync: () => Promise.resolve(undefined),
+    startAsync,
+    statusAsync: () => Promise.resolve(undefined),
+  };
+  let renderer: ReturnType<typeof create> | undefined;
+
+  await act(async () => {
+    renderer = create(
+      <RuntimeRendererConfigProvider value={{ flowPort }}>
+        <RuntimeScreen
+          manifest={{ ...manifest, dataBindings: FLOW_BINDINGS }}
+          registry={registry}
+          screen={{ id: 'flow', name: 'Flow', root }}
+        />
+      </RuntimeRendererConfigProvider>,
+    );
+    await Promise.resolve();
+  });
+  if (renderer === undefined || levelPress === undefined)
+    throw new Error('Expected a mounted Flow action.');
+
+  await act(async () => {
+    levelPress?.();
+    await Promise.resolve();
+  });
+
+  expect(startAsync).toHaveBeenCalledWith({
+    flow: { id: 'daily-briefing', version: 3 },
+    idempotencyKey: 'daily-briefing-2026-11-16',
+    triggerId: 'manual',
   });
 });
