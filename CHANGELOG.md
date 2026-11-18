@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.5.4
+
+### Patch Changes
+
+- 716e10d: Update dependencies: `@ankhorage/flow`.
+
 ## 5.5.3
 
 ### Patch Changes
