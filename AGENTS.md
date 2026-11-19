@@ -6,7 +6,38 @@
 
 Package: `@ankhorage/runtime`
 
-Platform-neutral runtime renderer, contracts, and helpers for Ankhorage generated apps.
+Title: Ankhorage Runtime
+
+Renders Ankhorage application manifests and resolves their runtime bindings, capabilities, events, media, screens, and state.
+
+Purpose: Provide a platform-neutral runtime boundary that turns portable Ankhorage manifests into rendered application behavior without coupling consumers to a particular host application.
+
+Audience:
+
+- Application hosts that render Ankhorage manifests with React and React Native-compatible component registries.
+- Runtime and tooling maintainers integrating bindings, capabilities, state, media, or authoring behavior.
+
+## Scope and boundaries
+
+Responsibilities:
+
+- Render manifest-driven screens and component trees through configurable registries and renderer boundaries.
+- Resolve bindings, repeat data, state updates, media values, screen loaders, and component event actions.
+- Compose capability execution, runtime diagnostics, and authoring overlays through explicit runtime configuration.
+
+Boundaries:
+
+- Does not define the portable manifest and descriptor contracts it consumes.
+- Does not provide product-specific screens, component implementations, or host application navigation.
+- Does not own provider-specific capability, data-source, storage, authentication, or deployment implementations.
+
+Architecture role: Platform-neutral manifest runtime with explicit React/React Native host and component registry boundaries.
+
+Architectural invariants:
+
+- Consumers provide host components and integrations through declared registries and configuration rather than sibling-source imports.
+- Portable contracts remain separate from executable runtime behavior.
+- Provider-specific behavior is composed through capability and data-source boundaries rather than embedded in the renderer.
 
 ## Current architecture only
 
@@ -64,6 +95,26 @@ Paradox `/*** ... */` comments in `src` and leading `@usage` comments in real
 `examples/<example>/...` source files, plus any repository-owned manual documentation outside the
 generated output. The managed release workflow runs `bun run docs` after the package version bump
 and commits the regenerated artifacts in the release commit.
+
+## GitHub task lifecycle and workspace cleanup
+
+- **Start.** Treat each issue implementation, PR implementation, review, and change request (CR)
+  as an independent task. Fetch the current remote default branch and read the applicable issue,
+  PR, HEAD, review feedback, and CI state. Use a fresh, uniquely named task checkout or worktree.
+  Concurrent tasks must have distinct writable checkout, temporary, build, and cache paths.
+- **CRs.** Fetch and check out the current remote PR branch in the new workspace. Preserve PR
+  history and scope. Push corrections to the existing PR branch.
+- **Delivery.** Run applicable checks. Commit and push all intended changes, then verify that
+  GitHub has the intended commit on the correct remote branch. Report the exact HEAD, checks, CI,
+  findings, and blockers. Report acceptance that was not run as unverified. Read-only reviews hand
+  off their findings without creating a commit. Merge requires explicit authorization.
+- **Cleanup.** After handoff, resolve every candidate path and remove only task-owned directories
+  whose resolved paths are strictly under the resolved system path for `/tmp` (`/private/tmp` on
+  macOS). Refuse candidates that resolve outside that boundary, including through a symlink. Use
+  Git-aware removal for worktrees. Preserve workspaces outside the boundary, shared directories,
+  other tasks' directories, uncommitted changes, and unpushed commits. If blocked, persist
+  recoverable work first and document what must be retained. Report whether cleanup succeeded, was
+  skipped, or was blocked.
 
 ## Pull requests
 
