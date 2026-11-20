@@ -3,6 +3,7 @@
   "packageId": "@ankhorage/runtime",
   "description": "Renders Ankhorage application manifests and resolves their runtime bindings, capabilities, events, media, screens, and state.",
   "purpose": "Provide a platform-neutral runtime boundary that turns portable Ankhorage manifests into rendered application behavior without coupling consumers to a particular host application.",
+  "productDocumentation": null,
   "collaborators": true,
   "donation": {
     "account": "ankhorage"
@@ -17,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.5.6",
+      "value": "v5.5.7",
       "color": "cb3837"
     },
     {
@@ -53,8 +54,8 @@
     {
       "id": "tests",
       "label": "tests",
-      "value": "checked",
-      "color": "0a7f3f"
+      "value": "configured",
+      "color": "6f42c1"
     },
     {
       "id": "docs",
