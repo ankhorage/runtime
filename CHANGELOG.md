@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.5.9
+
+### Patch Changes
+
+- 1399cfc: Update dependencies: `@ankhorage/contracts`.
+
 ## 5.5.8
 
 ### Patch Changes
