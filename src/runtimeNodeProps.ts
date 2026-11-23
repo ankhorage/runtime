@@ -1,4 +1,5 @@
 import type {
+  BindingValue,
   ComponentDataBindingRegistry,
   DbAdapter,
   DbRealtimeAdapter,
@@ -18,6 +19,7 @@ export function resolveRuntimeNodeProps(args: {
   readonly dbAdapter?: DbAdapter;
   readonly dbRealtimeAdapter?: DbRealtimeAdapter;
   readonly bindingContext?: Record<string, unknown>;
+  readonly capabilityValues?: Readonly<Record<string, BindingValue | undefined>>;
   readonly dataBindings?: ComponentDataBindingRegistry;
   readonly resultSlots?: RuntimeBindingResultCache;
 }): Record<string, unknown> {
@@ -31,6 +33,7 @@ export function resolveRuntimeNodeProps(args: {
 
   const binding = resolveRuntimeBindings({
     context: args.bindingContext,
+    capabilityValues: args.capabilityValues,
     dataBindings: args.dataBindings,
     node: args.node,
     props,
