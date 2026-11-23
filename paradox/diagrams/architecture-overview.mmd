@@ -47,6 +47,9 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeActionRegistry_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeBindings_ts
   module_src_runtimeActionRegistry_ts --> module_src_runtimeEventOperationLifecycle_ts
+  module_src_runtimeApiCapabilities_test_ts["src/runtimeApiCapabilities.test.ts"]
+  package__ankhorage_runtime -.-> module_src_runtimeApiCapabilities_test_ts
+  module_src_runtimeApiCapabilities_test_ts --> module_src_runtimeApiCapabilities_ts
   module_src_runtimeApiCapabilities_ts["src/runtimeApiCapabilities.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeApiCapabilities_ts
   module_src_runtimeApiCapabilities_ts --> module_src_runtimeBindings_ts
@@ -92,6 +95,11 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeFlowSafety_test_ts
   module_src_runtimeFlowSafety_test_ts --> module_src_runtimeCapabilityExecutor_ts
   module_src_runtimeFlowSafety_test_ts --> module_src_types_runtimeFlow_ts
+  module_src_runtimeHostApiExecution_test_tsx["src/runtimeHostApiExecution.test.tsx"]
+  package__ankhorage_runtime -.-> module_src_runtimeHostApiExecution_test_tsx
+  module_src_runtimeHostApiExecution_test_tsx --> module_src_registry_tsx
+  module_src_runtimeHostApiExecution_test_tsx --> module_src_runtimeApiCapabilities_ts
+  module_src_runtimeHostApiExecution_test_tsx --> module_src_RuntimeRendererConfig_tsx
   module_src_runtimeImageMedia_test_ts["src/runtimeImageMedia.test.ts"]
   package__ankhorage_runtime -.-> module_src_runtimeImageMedia_test_ts
   module_src_runtimeImageMedia_test_ts --> module_src_runtimeMedia_ts
@@ -166,7 +174,6 @@ graph TD
   package__ankhorage_runtime -.-> module_src_RuntimeScreen_tsx
   module_src_RuntimeScreen_tsx --> module_src_ManifestContext_tsx
   module_src_RuntimeScreen_tsx --> module_src_registry_tsx
-  module_src_RuntimeScreen_tsx --> module_src_runtimeApiCapabilities_ts
   module_src_RuntimeScreen_tsx --> module_src_runtimeCapabilityExecutor_ts
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRenderer_tsx
   module_src_RuntimeScreen_tsx --> module_src_RuntimeRendererConfig_tsx

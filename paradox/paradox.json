@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.5.10",
+      "value": "v5.5.11",
       "color": "cb3837"
     },
     {
@@ -123,42 +123,42 @@
       "severity": "warning",
       "message": "Exported function RuntimeRenderer has no documentation description.",
       "sourcePath": "src/RuntimeRenderer.tsx",
-      "line": 74
+      "line": 75
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function composeRuntimeNodePropsResolver has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 81
+      "line": 91
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function composeRuntimeRendererWrapNode has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 66
+      "line": 76
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function mergeRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 99
+      "line": 109
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function RuntimeRendererConfigProvider has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 142
+      "line": 157
     },
     {
       "ruleId": "documentation.public-function.description",
       "severity": "warning",
       "message": "Exported function useRuntimeRendererConfig has no documentation description.",
       "sourcePath": "src/RuntimeRendererConfig.tsx",
-      "line": 155
+      "line": 170
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -172,7 +172,7 @@
       "severity": "warning",
       "message": "Exported function RuntimeScreen has no documentation description.",
       "sourcePath": "src/RuntimeScreen.tsx",
-      "line": 20
+      "line": 19
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -467,6 +467,14 @@
       ]
     },
     {
+      "path": "src/runtimeApiCapabilities.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/runtimeApiCapabilities.ts"
+      ],
+      "exports": []
+    },
+    {
       "path": "src/runtimeApiCapabilities.ts",
       "isEntrypoint": false,
       "dependencies": [
@@ -606,6 +614,16 @@
       "dependencies": [
         "src/runtimeCapabilityExecutor.ts",
         "src/types/runtimeFlow.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeHostApiExecution.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/registry.tsx",
+        "src/runtimeApiCapabilities.ts",
+        "src/RuntimeRendererConfig.tsx"
       ],
       "exports": []
     },
@@ -813,7 +831,6 @@
       "dependencies": [
         "src/ManifestContext.tsx",
         "src/registry.tsx",
-        "src/runtimeApiCapabilities.ts",
         "src/runtimeCapabilityExecutor.ts",
         "src/RuntimeRenderer.tsx",
         "src/RuntimeRendererConfig.tsx",
@@ -948,7 +965,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 206,
+        "line": 224,
         "column": 1
       },
       "exportPaths": [
@@ -1051,7 +1068,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 81,
+        "line": 91,
         "column": 1
       },
       "exportPaths": [
@@ -1095,7 +1112,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 66,
+        "line": 76,
         "column": 1
       },
       "exportPaths": [
@@ -1288,7 +1305,7 @@
       "modulePath": "src/runtimeApiCapabilities.ts",
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 23,
+        "line": 24,
         "column": 1
       },
       "exportPaths": [
@@ -1631,7 +1648,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 179,
+        "line": 197,
         "column": 1
       },
       "exportPaths": [
@@ -1845,7 +1862,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 99,
+        "line": 109,
         "column": 1
       },
       "exportPaths": [
@@ -1889,7 +1906,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 159,
+        "line": 177,
         "column": 1
       },
       "exportPaths": [
@@ -1939,7 +1956,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 170,
+        "line": 188,
         "column": 1
       },
       "exportPaths": [
@@ -2083,7 +2100,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 116,
+        "line": 125,
         "column": 1
       },
       "exportPaths": [
@@ -2211,7 +2228,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 141,
+        "line": 159,
         "column": 1
       },
       "exportPaths": [
@@ -2261,7 +2278,7 @@
       "modulePath": "src/runtimeBindings.ts",
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 150,
+        "line": 168,
         "column": 1
       },
       "exportPaths": [
@@ -2664,7 +2681,7 @@
           "kind": "property",
           "type": "EndpointTestCredentialResolver | undefined",
           "required": false,
-          "description": null
+          "description": "Resolves credential references only within a trusted host execution boundary."
         },
         {
           "name": "fetch",
@@ -3393,8 +3410,8 @@
         {
           "name": "apiCapabilityExecutor",
           "kind": "property",
-          "type": "RuntimeCapabilityExecutor",
-          "required": true,
+          "type": "RuntimeCapabilityExecutor | undefined",
+          "required": false,
           "description": null
         },
         {
@@ -4295,7 +4312,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 74,
+        "line": 75,
         "column": 1
       },
       "exportPaths": [
@@ -4333,7 +4350,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 38,
+        "line": 39,
         "column": 1
       },
       "exportPaths": [
@@ -4356,6 +4373,13 @@
           "name": "bindingContext",
           "kind": "property",
           "type": "Record<string, unknown> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "capabilityValues",
+          "kind": "property",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -4406,7 +4430,7 @@
           "kind": "property",
           "type": "RuntimeCapabilityExecutor | undefined",
           "required": false,
-          "description": null
+          "description": "Executes side-effecting capabilities in the trusted application host.\n\nAPI capabilities are never created from manifest configuration by RuntimeScreen. A host that\nresolves credentials must compose its server-side resolver and transport here; browser hosts\nmust not provide credential resolution."
         },
         {
           "name": "flowPort",
@@ -4499,7 +4523,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 142,
+        "line": 157,
         "column": 1
       },
       "exportPaths": [
@@ -4555,6 +4579,13 @@
           "name": "bindingContext",
           "kind": "property",
           "type": "Record<string, unknown> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "capabilityValues",
+          "kind": "property",
+          "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
           "required": false,
           "description": null
         },
@@ -4677,7 +4708,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 32,
+        "line": 33,
         "column": 1
       },
       "exportPaths": [
@@ -4780,7 +4811,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 20,
+        "line": 19,
         "column": 1
       },
       "exportPaths": [
@@ -4913,7 +4944,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 13,
+        "line": 12,
         "column": 1
       },
       "exportPaths": [
@@ -5087,7 +5118,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 155,
+        "line": 170,
         "column": 1
       },
       "exportPaths": [
@@ -5274,7 +5305,7 @@
       "modulePath": "src/RuntimeRenderer.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 74,
+        "line": 75,
         "column": 1
       },
       "exportPaths": [
@@ -5284,6 +5315,12 @@
         {
           "name": "bindingContext",
           "type": "Record<string, unknown> | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "capabilityValues",
+          "type": "Readonly<Record<string, BindingValue | undefined>>",
           "required": false,
           "description": null
         },
@@ -5388,7 +5425,7 @@
       "modulePath": "src/RuntimeRendererConfig.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 142,
+        "line": 157,
         "column": 1
       },
       "exportPaths": [
@@ -5418,7 +5455,7 @@
       "modulePath": "src/RuntimeScreen.tsx",
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 20,
+        "line": 19,
         "column": 1
       },
       "exportPaths": [
@@ -6076,7 +6113,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 23,
+        "line": 24,
         "column": 1
       }
     },
@@ -6087,7 +6124,29 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 29,
+        "line": 30,
+        "column": 1
+      }
+    },
+    {
+      "name": "redactRuntimeApiDiagnostics",
+      "description": "Removes remote transport detail before API diagnostics can reach Runtime bindings or props.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeApiCapabilities.ts",
+        "line": 58,
+        "column": 1
+      }
+    },
+    {
+      "name": "remoteApiFailure",
+      "description": "Converts resolver failures into a credential-safe Runtime diagnostic.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeApiCapabilities.ts",
+        "line": 69,
         "column": 1
       }
     },
@@ -6098,7 +6157,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 52,
+        "line": 82,
         "column": 1
       }
     },
@@ -6109,7 +6168,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 76,
+        "line": 106,
         "column": 1
       }
     },
@@ -6120,7 +6179,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 82,
+        "line": 112,
         "column": 1
       }
     },
@@ -6131,7 +6190,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 88,
+        "line": 118,
         "column": 1
       }
     },
@@ -6142,7 +6201,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeApiCapabilities.ts",
-        "line": 101,
+        "line": 131,
         "column": 1
       }
     },
@@ -6208,7 +6267,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 107,
+        "line": 159,
         "column": 9
       }
     },
@@ -6219,7 +6278,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 155,
+        "line": 207,
         "column": 9
       }
     },
@@ -6230,7 +6289,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 182,
+        "line": 234,
         "column": 9
       }
     },
@@ -6241,7 +6300,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.contracts26.test.ts",
-        "line": 202,
+        "line": 254,
         "column": 9
       }
     },
@@ -6285,7 +6344,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 116,
+        "line": 125,
         "column": 1
       }
     },
@@ -6296,7 +6355,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 141,
+        "line": 159,
         "column": 1
       }
     },
@@ -6307,7 +6366,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 150,
+        "line": 168,
         "column": 1
       }
     },
@@ -6318,7 +6377,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 159,
+        "line": 177,
         "column": 1
       }
     },
@@ -6329,7 +6388,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 170,
+        "line": 188,
         "column": 1
       }
     },
@@ -6340,7 +6399,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 179,
+        "line": 197,
         "column": 1
       }
     },
@@ -6351,7 +6410,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 206,
+        "line": 224,
         "column": 1
       }
     },
@@ -6362,7 +6421,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 213,
+        "line": 231,
         "column": 1
       }
     },
@@ -6373,7 +6432,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 219,
+        "line": 237,
         "column": 1
       }
     },
@@ -6384,7 +6443,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 233,
+        "line": 251,
         "column": 1
       }
     },
@@ -6395,7 +6454,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 253,
+        "line": 271,
         "column": 1
       }
     },
@@ -6406,7 +6465,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 269,
+        "line": 287,
         "column": 1
       }
     },
@@ -6417,7 +6476,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 280,
+        "line": 298,
         "column": 1
       }
     },
@@ -6428,7 +6487,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 290,
+        "line": 308,
         "column": 1
       }
     },
@@ -6439,7 +6498,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 306,
+        "line": 324,
         "column": 1
       }
     },
@@ -6450,7 +6509,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 320,
+        "line": 338,
         "column": 1
       }
     },
@@ -6461,7 +6520,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 340,
+        "line": 358,
         "column": 1
       }
     },
@@ -6472,7 +6531,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 348,
+        "line": 366,
         "column": 1
       }
     },
@@ -6483,7 +6542,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 357,
+        "line": 375,
         "column": 1
       }
     },
@@ -6494,7 +6553,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeBindings.ts",
-        "line": 361,
+        "line": 379,
         "column": 1
       }
     },
@@ -6522,12 +6581,23 @@
     },
     {
       "name": "executeApiCapabilityAsync",
-      "description": "Uses the host API executor when supplied, falling back to the manifest executor.",
+      "description": "Requires the host execution boundary for API capabilities.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
         "line": 36,
+        "column": 1
+      }
+    },
+    {
+      "name": "missingApiCapabilityExecutorResult",
+      "description": "Reports an API invocation that has not crossed an explicitly injected host boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeCapabilityExecutor.ts",
+        "line": 48,
         "column": 1
       }
     },
@@ -6538,7 +6608,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 44,
+        "line": 62,
         "column": 1
       }
     },
@@ -6549,7 +6619,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 75,
+        "line": 93,
         "column": 1
       }
     },
@@ -6560,7 +6630,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 101,
+        "line": 119,
         "column": 1
       }
     },
@@ -6571,7 +6641,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 118,
+        "line": 136,
         "column": 1
       }
     },
@@ -6582,7 +6652,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 128,
+        "line": 146,
         "column": 1
       }
     },
@@ -6593,7 +6663,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 138,
+        "line": 156,
         "column": 1
       }
     },
@@ -6604,7 +6674,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 142,
+        "line": 160,
         "column": 1
       }
     },
@@ -6615,7 +6685,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 151,
+        "line": 169,
         "column": 1
       }
     },
@@ -6626,7 +6696,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 159,
+        "line": 177,
         "column": 1
       }
     },
@@ -6637,7 +6707,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 173,
+        "line": 191,
         "column": 1
       }
     },
@@ -6648,7 +6718,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 186,
+        "line": 204,
         "column": 1
       }
     },
@@ -6659,7 +6729,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 199,
+        "line": 217,
         "column": 1
       }
     },
@@ -6670,7 +6740,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 213,
+        "line": 231,
         "column": 1
       }
     },
@@ -6681,7 +6751,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeCapabilityExecutor.ts",
-        "line": 228,
+        "line": 246,
         "column": 1
       }
     },
@@ -6759,6 +6829,17 @@
       "sourceLocation": {
         "filePath": "src/runtimeFlowSafety.test.ts",
         "line": 17,
+        "column": 7
+      }
+    },
+    {
+      "name": "ButtonProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeHostApiExecution.test.tsx",
+        "line": 28,
         "column": 7
       }
     },
@@ -6989,7 +7070,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 14,
+        "line": 15,
         "column": 1
       }
     },
@@ -7000,7 +7081,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeNodeProps.ts",
-        "line": 45,
+        "line": 48,
         "column": 1
       }
     },
@@ -7033,7 +7114,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRenderer.tsx",
-        "line": 74,
+        "line": 75,
         "column": 1
       }
     },
@@ -7044,7 +7125,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 66,
+        "line": 76,
         "column": 1
       }
     },
@@ -7055,7 +7136,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 81,
+        "line": 91,
         "column": 1
       }
     },
@@ -7066,7 +7147,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 99,
+        "line": 109,
         "column": 1
       }
     },
@@ -7077,7 +7158,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 142,
+        "line": 157,
         "column": 1
       }
     },
@@ -7088,7 +7169,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 155,
+        "line": 170,
         "column": 1
       }
     },
@@ -7099,7 +7180,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeRendererConfig.tsx",
-        "line": 159,
+        "line": 174,
         "column": 1
       }
     },
@@ -7220,7 +7301,7 @@
       "security": [],
       "sourceLocation": {
         "filePath": "src/RuntimeScreen.tsx",
-        "line": 20,
+        "line": 19,
         "column": 1
       }
     },
@@ -8104,6 +8185,11 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
+        "fromPath": "src/runtimeApiCapabilities.test.ts",
+        "toPath": "src/runtimeApiCapabilities.ts",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
         "fromPath": "src/runtimeApiCapabilities.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/runtimeApiCapabilities.ts"
@@ -8217,6 +8303,21 @@
         "fromPath": "src/runtimeFlowSafety.test.ts",
         "toPath": "src/types/runtimeFlow.ts",
         "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromPath": "src/runtimeHostApiExecution.test.tsx",
+        "toPath": "src/registry.tsx",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeHostApiExecution.test.tsx",
+        "toPath": "src/runtimeApiCapabilities.ts",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeHostApiExecution.test.tsx",
+        "toPath": "src/RuntimeRendererConfig.tsx",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
       },
       {
         "fromPath": "src/runtimeImageMedia.test.ts",
@@ -8416,11 +8517,6 @@
       {
         "fromPath": "src/RuntimeScreen.tsx",
         "toPath": "src/registry.tsx",
-        "sourcePath": "src/RuntimeScreen.tsx"
-      },
-      {
-        "fromPath": "src/RuntimeScreen.tsx",
-        "toPath": "src/runtimeApiCapabilities.ts",
         "sourcePath": "src/RuntimeScreen.tsx"
       },
       {
@@ -9099,6 +9195,42 @@
         "sourcePath": "src/runtimeActionRegistry.ts"
       },
       {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "createRuntimeApiCapabilityExecutor",
+        "callExpression": "createRuntimeApiCapabilityExecutor",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "execute",
+        "callExpression": "execute",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeApiCapabilities.test.ts",
+        "toSymbol": "failingResolver",
+        "callExpression": "failingResolver",
+        "sourcePath": "src/runtimeApiCapabilities.test.ts"
+      },
+      {
         "fromSymbol": "src/runtimeApiCapabilities.ts",
         "toSymbol": "executeRuntimeApiCapabilityAsync",
         "callExpression": "executeRuntimeApiCapabilityAsync",
@@ -9132,6 +9264,18 @@
         "fromSymbol": "executeRuntimeApiCapabilityAsync",
         "toSymbol": "testEndpoint",
         "callExpression": "testEndpoint",
+        "sourcePath": "src/runtimeApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeApiCapabilityAsync",
+        "toSymbol": "redactRuntimeApiDiagnostics",
+        "callExpression": "redactRuntimeApiDiagnostics",
+        "sourcePath": "src/runtimeApiCapabilities.ts"
+      },
+      {
+        "fromSymbol": "executeRuntimeApiCapabilityAsync",
+        "toSymbol": "remoteApiFailure",
+        "callExpression": "remoteApiFailure",
         "sourcePath": "src/runtimeApiCapabilities.ts"
       },
       {
@@ -9370,14 +9514,14 @@
       },
       {
         "fromSymbol": "resolveRuntimeBindingExpression",
-        "toSymbol": "applyBindingValueTransforms",
-        "callExpression": "applyBindingValueTransforms",
+        "toSymbol": "resolveRuntimeBindingExpression",
+        "callExpression": "resolveRuntimeBindingExpression",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
         "fromSymbol": "resolveRuntimeBindingExpression",
-        "toSymbol": "resolveRuntimeBindingExpression",
-        "callExpression": "resolveRuntimeBindingExpression",
+        "toSymbol": "applyBindingValueTransforms",
+        "callExpression": "applyBindingValueTransforms",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -9406,14 +9550,14 @@
       },
       {
         "fromSymbol": "resolveRuntimeBindingExpressionSync",
-        "toSymbol": "applyBindingValueTransforms",
-        "callExpression": "applyBindingValueTransforms",
+        "toSymbol": "resolveRuntimeBindingExpressionSync",
+        "callExpression": "resolveRuntimeBindingExpressionSync",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
         "fromSymbol": "resolveRuntimeBindingExpressionSync",
-        "toSymbol": "resolveRuntimeBindingExpressionSync",
-        "callExpression": "resolveRuntimeBindingExpressionSync",
+        "toSymbol": "applyBindingValueTransforms",
+        "callExpression": "applyBindingValueTransforms",
         "sourcePath": "src/runtimeBindings.ts"
       },
       {
@@ -9642,6 +9786,12 @@
         "fromSymbol": "executeApiCapabilityAsync",
         "toSymbol": "apiCapabilityExecutor",
         "callExpression": "composition.apiCapabilityExecutor",
+        "sourcePath": "src/runtimeCapabilityExecutor.ts"
+      },
+      {
+        "fromSymbol": "executeApiCapabilityAsync",
+        "toSymbol": "missingApiCapabilityExecutorResult",
+        "callExpression": "missingApiCapabilityExecutorResult",
         "sourcePath": "src/runtimeCapabilityExecutor.ts"
       },
       {
@@ -9901,6 +10051,42 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "src/runtimeFlowSafety.test.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "create",
+        "callExpression": "create",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "mock",
+        "callExpression": "mock",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeHostApiExecution.test.tsx",
+        "toSymbol": "createRuntimeApiCapabilityExecutor",
+        "callExpression": "createRuntimeApiCapabilityExecutor",
+        "sourcePath": "src/runtimeHostApiExecution.test.tsx"
       },
       {
         "fromSymbol": "src/runtimeImageMedia.test.ts",
@@ -10277,7 +10463,7 @@
       {
         "fromSymbol": "RuntimeRenderer",
         "toSymbol": "__function",
-        "callExpression": "(() => {\n    const { repeat } = node;\n    if (!repeat) {\n      return null;\n    }\n\n    return resolveRuntimeRepeatItemsSync(repeat, {\n      context: effectiveConfig.bindingContext,\n      dataBindings: effectiveConfig.dataBindings,\n      executeCapability: effectiveConfig.executeCapability,\n      node,\n      resultSlots: effectiveConfig.resultSlots,\n      stateAdapter: effectiveConfig.stateAdapter,\n      writeResultSlot: effectiveConfig.writeResultSlot,\n    });\n  })",
+        "callExpression": "(() => {\n    const { repeat } = node;\n    if (!repeat) {\n      return null;\n    }\n\n    return resolveRuntimeRepeatItemsSync(repeat, {\n      capabilityValues: effectiveConfig.capabilityValues,\n      context: effectiveConfig.bindingContext,\n      dataBindings: effectiveConfig.dataBindings,\n      executeCapability: effectiveConfig.executeCapability,\n      node,\n      resultSlots: effectiveConfig.resultSlots,\n      stateAdapter: effectiveConfig.stateAdapter,\n      writeResultSlot: effectiveConfig.writeResultSlot,\n    });\n  })",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -10289,7 +10475,7 @@
       {
         "fromSymbol": "src/RuntimeRenderer.tsx",
         "toSymbol": "__function",
-        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeatRequest.repeat, {\n        context: repeatRequest.context,\n        dataBindings: repeatRequest.dataBindings,\n        executeCapability: repeatRequest.executeCapability,\n        node: repeatRequest.node,\n        resultSlots: repeatRequest.resultSlots,\n        stateAdapter: repeatRequest.stateAdapter,\n        writeResultSlot: repeatRequest.writeResultSlot,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });\n    })",
+        "callExpression": "(async () => {\n      const result = await resolveRuntimeRepeatItemsAsync(repeatRequest.repeat, {\n        capabilityValues: repeatRequest.capabilityValues,\n        context: repeatRequest.context,\n        dataBindings: repeatRequest.dataBindings,\n        executeCapability: repeatRequest.executeCapability,\n        node: repeatRequest.node,\n        resultSlots: repeatRequest.resultSlots,\n        stateAdapter: repeatRequest.stateAdapter,\n        writeResultSlot: repeatRequest.writeResultSlot,\n      });\n\n      if (repeatRequestIdRef.current !== requestId) {\n        return;\n      }\n\n      setAsyncRepeatResult({ ...result, requestToken: repeatRequestToken });\n    })",
         "sourcePath": "src/RuntimeRenderer.tsx"
       },
       {
@@ -10548,12 +10734,6 @@
         "fromSymbol": "src/RuntimeScreen.tsx",
         "toSymbol": "createRuntimeMemoryStateAdapter",
         "callExpression": "createRuntimeMemoryStateAdapter",
-        "sourcePath": "src/RuntimeScreen.tsx"
-      },
-      {
-        "fromSymbol": "src/RuntimeScreen.tsx",
-        "toSymbol": "createRuntimeApiCapabilityExecutor",
-        "callExpression": "createRuntimeApiCapabilityExecutor",
         "sourcePath": "src/RuntimeScreen.tsx"
       },
       {
@@ -10942,20 +11122,8 @@
       },
       {
         "fromSymbol": "src/runtimeStateReactivity.test.tsx",
-        "toSymbol": "describe",
-        "callExpression": "describe",
-        "sourcePath": "src/runtimeStateReactivity.test.tsx"
-      },
-      {
-        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
         "toSymbol": "it",
         "callExpression": "it",
-        "sourcePath": "src/runtimeStateReactivity.test.tsx"
-      },
-      {
-        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
-        "toSymbol": "createRuntimeMemoryStateAdapter",
-        "callExpression": "createRuntimeMemoryStateAdapter",
         "sourcePath": "src/runtimeStateReactivity.test.tsx"
       },
       {
@@ -10968,6 +11136,18 @@
         "fromSymbol": "src/runtimeStateReactivity.test.tsx",
         "toSymbol": "expect",
         "callExpression": "expect",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStateReactivity.test.tsx",
+        "toSymbol": "createRuntimeMemoryStateAdapter",
+        "callExpression": "createRuntimeMemoryStateAdapter",
         "sourcePath": "src/runtimeStateReactivity.test.tsx"
       },
       {

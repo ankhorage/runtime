@@ -4,7 +4,7 @@
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:206:1`
+Source: `src/runtimeBindings.ts:224:1`
 
 Applies a dotted path to a serializable binding value.
 
@@ -39,7 +39,7 @@ Keeps local state mutations while preferring the configured host executor for AP
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:81:1`
+Source: `src/RuntimeRendererConfig.tsx:91:1`
 
 ### Signatures
 
@@ -52,7 +52,7 @@ Source: `src/RuntimeRendererConfig.tsx:81:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:66:1`
+Source: `src/RuntimeRendererConfig.tsx:76:1`
 
 ### Signatures
 
@@ -119,7 +119,7 @@ Creates a registry that dispatches every authored event through one capability e
 
 Kind: `function`
 Module: `src/runtimeApiCapabilities.ts`
-Source: `src/runtimeApiCapabilities.ts:23:1`
+Source: `src/runtimeApiCapabilities.ts:24:1`
 
 Creates the canonical API capability adapter over Runtime's existing data-operation executor.
 
@@ -237,7 +237,7 @@ Source: `src/runtimeEventExecution.ts:13:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:179:1`
+Source: `src/runtimeBindings.ts:197:1`
 
 Invokes one capability and records its structured result under its declared local slot.
 
@@ -308,7 +308,7 @@ Owns one configured state adapter for every Runtime screen in an application tre
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:99:1`
+Source: `src/RuntimeRendererConfig.tsx:109:1`
 
 ### Signatures
 
@@ -321,7 +321,7 @@ Source: `src/RuntimeRendererConfig.tsx:99:1`
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:159:1`
+Source: `src/runtimeBindings.ts:177:1`
 
 Resolves an invocation input map recursively.
 
@@ -337,7 +337,7 @@ Resolves an invocation input map recursively.
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:170:1`
+Source: `src/runtimeBindings.ts:188:1`
 
 Resolves an invocation input map without executing a capability.
 
@@ -384,7 +384,7 @@ Resolves one recursive Contracts expression, executing a capability only when ne
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:116:1`
+Source: `src/runtimeBindings.ts:125:1`
 
 Resolves one expression without side effects for synchronous rendering.
 
@@ -428,7 +428,7 @@ Resolves every property binding through the canonical expression boundary.
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:141:1`
+Source: `src/runtimeBindings.ts:159:1`
 
 Resolves a property binding expression.
 
@@ -444,7 +444,7 @@ Resolves a property binding expression.
 
 Kind: `function`
 Module: `src/runtimeBindings.ts`
-Source: `src/runtimeBindings.ts:150:1`
+Source: `src/runtimeBindings.ts:168:1`
 
 Resolves a property binding expression without executing a capability.
 
@@ -577,7 +577,7 @@ Source: `src/runtimeApiCapabilities.ts:16:1`
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | apis | property | `ApiDefinitionRegistry` | yes |  |
-| credentialResolver | property | `EndpointTestCredentialResolver \| undefined` | no |  |
+| credentialResolver | property | `EndpointTestCredentialResolver \| undefined` | no | Resolves credential references only within a trusted host execution boundary. |
 | fetch | property | `EndpointTestFetch \| undefined` | no |  |
 
 ## RuntimeAuthoringBounds
@@ -773,7 +773,7 @@ Source: `src/runtimeCapabilityExecutor.ts:12:1`
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
-| apiCapabilityExecutor | property | `RuntimeCapabilityExecutor` | yes |  |
+| apiCapabilityExecutor | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
 | capabilityExecutor | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
 | flowPort | property | `RuntimeFlowPort \| undefined` | no |  |
 | stateAdapter | property | `StateAdapter \| undefined` | no |  |
@@ -1022,7 +1022,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:6:1`
 
 Kind: `function`
 Module: `src/RuntimeRenderer.tsx`
-Source: `src/RuntimeRenderer.tsx:74:1`
+Source: `src/RuntimeRenderer.tsx:75:1`
 
 ### Signatures
 
@@ -1034,20 +1034,25 @@ Source: `src/RuntimeRenderer.tsx:74:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:38:1`
+Source: `src/RuntimeRendererConfig.tsx:39:1`
 
 ### Members
 
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | bindingContext | property | `Record<string, unknown> \| undefined` | no |  |
+| capabilityValues | property | `Readonly<Record<string, import("@ankhorage/contracts").SerializableValue \| undefined>> \| undefined` | no |  |
 | dataBindings | property | `ComponentDataBindingRegistry \| undefined` | no |  |
 | dbAdapter | property | `DbAdapter \| undefined` | no |  |
 | dbRealtimeAdapter | property | `DbRealtimeAdapter \| undefined` | no |  |
 | disableActions | property | `boolean \| undefined` | no |  |
 | eventOperationLifecycle | property | `RuntimeEventOperationLifecycle \| undefined` | no |  |
 | eventOperationState | property | `RuntimeEventOperationState \| undefined` | no |  |
-| executeCapability | property | `RuntimeCapabilityExecutor \| undefined` | no |  |
+| executeCapability | property | `RuntimeCapabilityExecutor \| undefined` | no | Executes side-effecting capabilities in the trusted application host.
+
+API capabilities are never created from manifest configuration by RuntimeScreen. A host that
+resolves credentials must compose its server-side resolver and transport here; browser hosts
+must not provide credential resolution. |
 | flowPort | property | `RuntimeFlowPort \| undefined` | no |  |
 | mediaAssets | property | `MediaAssetRegistry \| undefined` | no |  |
 | onDiagnostics | property | `((diagnostics: readonly DataSourceDiagnostic[]) => void) \| undefined` | no |  |
@@ -1064,7 +1069,7 @@ Source: `src/RuntimeRendererConfig.tsx:38:1`
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:142:1`
+Source: `src/RuntimeRendererConfig.tsx:157:1`
 
 ### Signatures
 
@@ -1083,6 +1088,7 @@ Source: `src/RuntimeRenderer.tsx:55:1`
 | Name | Kind | Type | Required | Description |
 | --- | --- | --- | --- | --- |
 | bindingContext | property | `Record<string, unknown> \| undefined` | no |  |
+| capabilityValues | property | `Readonly<Record<string, import("@ankhorage/contracts").SerializableValue \| undefined>> \| undefined` | no |  |
 | dataBindings | property | `ComponentDataBindingRegistry \| undefined` | no |  |
 | dbAdapter | property | `DbAdapter \| undefined` | no |  |
 | dbRealtimeAdapter | property | `DbRealtimeAdapter \| undefined` | no |  |
@@ -1103,7 +1109,7 @@ Source: `src/RuntimeRenderer.tsx:55:1`
 
 Kind: `type`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:32:1`
+Source: `src/RuntimeRendererConfig.tsx:33:1`
 
 ### Members
 
@@ -1136,7 +1142,7 @@ Source: `node_modules/@ankhorage/contracts/dist/runtimeCallbacks.d.ts:2:1`
 
 Kind: `function`
 Module: `src/RuntimeScreen.tsx`
-Source: `src/RuntimeScreen.tsx:20:1`
+Source: `src/RuntimeScreen.tsx:19:1`
 
 ### Signatures
 
@@ -1177,7 +1183,7 @@ Source: `src/runtimeScreenLoaders.ts:17:1`
 
 Kind: `type`
 Module: `src/RuntimeScreen.tsx`
-Source: `src/RuntimeScreen.tsx:13:1`
+Source: `src/RuntimeScreen.tsx:12:1`
 
 ### Members
 
@@ -1243,7 +1249,7 @@ Reads an enclosing manifest scope without requiring hosts to provide one.
 
 Kind: `function`
 Module: `src/RuntimeRendererConfig.tsx`
-Source: `src/RuntimeRendererConfig.tsx:155:1`
+Source: `src/RuntimeRendererConfig.tsx:170:1`
 
 ### Signatures
 

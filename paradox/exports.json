@@ -10,7 +10,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 206,
+      "line": 224,
       "column": 1
     },
     "exportPaths": [
@@ -113,7 +113,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 81,
+      "line": 91,
       "column": 1
     },
     "exportPaths": [
@@ -157,7 +157,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 66,
+      "line": 76,
       "column": 1
     },
     "exportPaths": [
@@ -350,7 +350,7 @@
     "modulePath": "src/runtimeApiCapabilities.ts",
     "sourceLocation": {
       "filePath": "src/runtimeApiCapabilities.ts",
-      "line": 23,
+      "line": 24,
       "column": 1
     },
     "exportPaths": [
@@ -693,7 +693,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 179,
+      "line": 197,
       "column": 1
     },
     "exportPaths": [
@@ -907,7 +907,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 99,
+      "line": 109,
       "column": 1
     },
     "exportPaths": [
@@ -951,7 +951,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 159,
+      "line": 177,
       "column": 1
     },
     "exportPaths": [
@@ -1001,7 +1001,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 170,
+      "line": 188,
       "column": 1
     },
     "exportPaths": [
@@ -1145,7 +1145,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 116,
+      "line": 125,
       "column": 1
     },
     "exportPaths": [
@@ -1273,7 +1273,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 141,
+      "line": 159,
       "column": 1
     },
     "exportPaths": [
@@ -1323,7 +1323,7 @@
     "modulePath": "src/runtimeBindings.ts",
     "sourceLocation": {
       "filePath": "src/runtimeBindings.ts",
-      "line": 150,
+      "line": 168,
       "column": 1
     },
     "exportPaths": [
@@ -1726,7 +1726,7 @@
         "kind": "property",
         "type": "EndpointTestCredentialResolver | undefined",
         "required": false,
-        "description": null
+        "description": "Resolves credential references only within a trusted host execution boundary."
       },
       {
         "name": "fetch",
@@ -2455,8 +2455,8 @@
       {
         "name": "apiCapabilityExecutor",
         "kind": "property",
-        "type": "RuntimeCapabilityExecutor",
-        "required": true,
+        "type": "RuntimeCapabilityExecutor | undefined",
+        "required": false,
         "description": null
       },
       {
@@ -3357,7 +3357,7 @@
     "modulePath": "src/RuntimeRenderer.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRenderer.tsx",
-      "line": 74,
+      "line": 75,
       "column": 1
     },
     "exportPaths": [
@@ -3395,7 +3395,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 38,
+      "line": 39,
       "column": 1
     },
     "exportPaths": [
@@ -3418,6 +3418,13 @@
         "name": "bindingContext",
         "kind": "property",
         "type": "Record<string, unknown> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "capabilityValues",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -3468,7 +3475,7 @@
         "kind": "property",
         "type": "RuntimeCapabilityExecutor | undefined",
         "required": false,
-        "description": null
+        "description": "Executes side-effecting capabilities in the trusted application host.\n\nAPI capabilities are never created from manifest configuration by RuntimeScreen. A host that\nresolves credentials must compose its server-side resolver and transport here; browser hosts\nmust not provide credential resolution."
       },
       {
         "name": "flowPort",
@@ -3561,7 +3568,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 142,
+      "line": 157,
       "column": 1
     },
     "exportPaths": [
@@ -3617,6 +3624,13 @@
         "name": "bindingContext",
         "kind": "property",
         "type": "Record<string, unknown> | undefined",
+        "required": false,
+        "description": null
+      },
+      {
+        "name": "capabilityValues",
+        "kind": "property",
+        "type": "Readonly<Record<string, import(\"@ankhorage/contracts\").SerializableValue | undefined>> | undefined",
         "required": false,
         "description": null
       },
@@ -3739,7 +3753,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 32,
+      "line": 33,
       "column": 1
     },
     "exportPaths": [
@@ -3842,7 +3856,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 20,
+      "line": 19,
       "column": 1
     },
     "exportPaths": [
@@ -3975,7 +3989,7 @@
     "modulePath": "src/RuntimeScreen.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeScreen.tsx",
-      "line": 13,
+      "line": 12,
       "column": 1
     },
     "exportPaths": [
@@ -4149,7 +4163,7 @@
     "modulePath": "src/RuntimeRendererConfig.tsx",
     "sourceLocation": {
       "filePath": "src/RuntimeRendererConfig.tsx",
-      "line": 155,
+      "line": 170,
       "column": 1
     },
     "exportPaths": [

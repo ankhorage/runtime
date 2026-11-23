@@ -1,5 +1,15 @@
 # @ankhorage/runtime
 
+## 5.5.11
+
+### Patch Changes
+
+- 4cef8e2: Expose host-materialized readable capability values and evaluate closed lookup expressions in renderer bindings.
+- 0e77808: Update dependencies: `@ankhorage/data-sources`.
+- d9520ab: Update dependencies: `@ankhorage/contracts`.
+- 265bd89: Update dependencies: `@ankhorage/contracts`.
+- 60fdaaa: Require Runtime API capability execution to cross an injected host boundary and redact credential-bearing adapter failures.
+
 ## 5.5.10
 
 ### Patch Changes

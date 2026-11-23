@@ -29,13 +29,14 @@ Export paths: `src/index.ts`
 
 ## RuntimeRenderer
 
-Source: `src/RuntimeRenderer.tsx:74:1`
+Source: `src/RuntimeRenderer.tsx:75:1`
 
 Export paths: `src/index.ts`
 
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | bindingContext | `Record<string, unknown> \| undefined` | no | — |  |
+| capabilityValues | `Readonly<Record<string, BindingValue \| undefined>>` | no | — |  |
 | dataBindings | `ComponentDataBindingRegistry \| undefined` | no | — |  |
 | dbAdapter | `DbAdapter \| undefined` | no | — |  |
 | dbRealtimeAdapter | `DbRealtimeAdapter \| undefined` | no | — |  |
@@ -54,7 +55,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeRendererConfigProvider
 
-Source: `src/RuntimeRendererConfig.tsx:142:1`
+Source: `src/RuntimeRendererConfig.tsx:157:1`
 
 Export paths: `src/index.ts`
 
@@ -65,7 +66,7 @@ Export paths: `src/index.ts`
 
 ## RuntimeScreen
 
-Source: `src/RuntimeScreen.tsx:20:1`
+Source: `src/RuntimeScreen.tsx:19:1`
 
 Export paths: `src/index.ts`
 
