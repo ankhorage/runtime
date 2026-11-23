@@ -58,6 +58,58 @@ it('resolves literals, nested values, transforms, fallbacks, and readable capabi
   });
 });
 
+it('evaluates closed lookups by primitive identity with nested results and an unknown fallback', async () => {
+  const expression: BindingExpression = {
+    cases: [
+      { key: 1, value: { kind: 'literal', value: 'number' } },
+      {
+        key: '1',
+        value: {
+          kind: 'object',
+          fields: {
+            label: {
+              kind: 'transform',
+              transforms: ['uppercase'],
+              value: { kind: 'literal', value: 'master' },
+            },
+          },
+        },
+      },
+      { key: true, value: { kind: 'array', items: [{ kind: 'literal', value: 'detail' }] } },
+      { key: null, value: { kind: 'literal', value: 'empty' } },
+    ],
+    fallback: { kind: 'literal', value: 'unknown' },
+    kind: 'lookup',
+    source: { capability: 'host.currentRoute', path: 'pane' },
+  };
+
+  expect(
+    await resolveRuntimeBindingExpression(expression, {
+      capabilityValues: { 'host.currentRoute': { pane: '1' } },
+    }),
+  ).toEqual({ label: 'MASTER' });
+  expect(
+    resolveRuntimeBindingExpressionSync(expression, {
+      capabilityValues: { 'host.currentRoute': { pane: true } },
+    }),
+  ).toEqual(['detail']);
+  expect(
+    resolveRuntimeBindingExpressionSync(expression, {
+      capabilityValues: { 'host.currentRoute': { pane: 1 } },
+    }),
+  ).toBe('number');
+  expect(
+    resolveRuntimeBindingExpressionSync(expression, {
+      capabilityValues: { 'host.currentRoute': { pane: null } },
+    }),
+  ).toBe('empty');
+  expect(
+    resolveRuntimeBindingExpressionSync(expression, {
+      capabilityValues: { 'host.currentRoute': { pane: false } },
+    }),
+  ).toBe('unknown');
+});
+
 it('derives lengths from arrays and strings in authored transform order', () => {
   expect(
     resolveRuntimeBindingExpressionSync(

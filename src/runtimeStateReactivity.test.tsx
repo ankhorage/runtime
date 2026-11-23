@@ -76,7 +76,17 @@ it('rerenders a prop from an updated host-injected readable capability value', (
     'active-pane': {
       componentId: 'active-pane',
       props: {
-        value: { value: { capability: 'host.currentRoute', path: 'pane' } },
+        value: {
+          value: {
+            cases: [
+              { key: 'master', value: { kind: 'literal', value: 'Master' } },
+              { key: 'detail', value: { kind: 'literal', value: 'Detail' } },
+            ],
+            fallback: { kind: 'literal', value: 'Unknown' },
+            kind: 'lookup',
+            source: { capability: 'host.currentRoute', path: 'pane' },
+          },
+        },
       },
     },
   } satisfies ComponentDataBindingRegistry;
@@ -95,7 +105,7 @@ it('rerenders a prop from an updated host-injected readable capability value', (
   if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
   const mounted = renderer;
 
-  expect(mounted.root.findByType('output').children).toEqual(['master']);
+  expect(mounted.root.findByType('output').children).toEqual(['Master']);
 
   act(() => {
     mounted.update(
@@ -108,7 +118,7 @@ it('rerenders a prop from an updated host-injected readable capability value', (
     );
   });
 
-  expect(mounted.root.findByType('output').children).toEqual(['detail']);
+  expect(mounted.root.findByType('output').children).toEqual(['Detail']);
 });
 
 describe('Runtime state binding reactivity', () => {
