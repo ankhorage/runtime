@@ -57,7 +57,7 @@ export interface RuntimeRendererConfig {
    * resolves credentials must compose its server-side resolver and transport here; browser hosts
    * must not provide credential resolution.
    *
-   * @security
+   * @security runtimeHostApiExecution.test.tsx#requires an injected host executor before a credentialed manifest API can populate client props or result slots
    */
   executeCapability?: RuntimeCapabilityExecutor;
   flowPort?: RuntimeFlowPort;
