@@ -210,7 +210,7 @@
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeEventExecution.ts">
       src/runtimeEventExecution.ts
-      <small>1 function</small>
+      <small>3 functions</small>
     </button>
   </li><li>
     <button class="nav-button" type="button" data-target="src/runtimeEventOperationLifecycle.ts">
@@ -318,6 +318,11 @@
       <small>4 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/runtimeStructuredResultProjection.test.tsx">
+      src/runtimeStructuredResultProjection.test.tsx
+      <small>7 functions</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/useRuntimeMediaProps.ts">
       src/useRuntimeMediaProps.ts
       <small>2 functions</small>
@@ -339,7 +344,7 @@
       <div class="summary">
         <div><strong>97</strong><span class="muted">public exports</span></div>
         <div><strong>5</strong><span class="muted">components</span></div>
-        <div><strong>58</strong><span class="muted">modules</span></div>
+        <div><strong>59</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -384,10 +389,6 @@ inject it at the runtime boundary.</p>
           <h3>documentation.public-function.description</h3>
           <p><strong>warning</strong> — Exported function createRuntimeEventOperationLifecycle has no documentation description.</p>
           <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:40</code></p>
-        </article><article class="item" data-search="documentation.public-function.description warning Exported function resolveRuntimeEventOperationErrorMessage has no documentation description. src/runtimeEventOperationLifecycle.ts">
-          <h3>documentation.public-function.description</h3>
-          <p><strong>warning</strong> — Exported function resolveRuntimeEventOperationErrorMessage has no documentation description.</p>
-          <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:114</code></p>
         </article><article class="item" data-search="documentation.public-function.description warning Exported function RuntimeRenderer has no documentation description. src/RuntimeRenderer.tsx">
           <h3>documentation.public-function.description</h3>
           <p><strong>warning</strong> — Exported function RuntimeRenderer has no documentation description.</p>
@@ -682,6 +683,11 @@ inject it at the runtime boundary.</p>
     <h3>src/runtimeStateReactivity.test.tsx</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/registry.tsx</code>, <code>src/runtimeBindings.ts</code>, <code>src/runtimeStateAdapter.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/runtimeStructuredResultProjection.test.tsx src/registry.tsx src/runtimeBindings.ts">
+    <h3>src/runtimeStructuredResultProjection.test.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/registry.tsx</code>, <code>src/runtimeBindings.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
   </article><article class="item" data-search="src/types/runtimeFlow.ts RuntimeFlowPort RuntimeFlowStartRequest">
     <h3>src/types/runtimeFlow.ts</h3>
@@ -2396,22 +2402,22 @@ inject it at the runtime boundary.</p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
     
-  </article><article class="item" id="symbol-resolveruntimeeventoperationerrormessage" data-search="resolveRuntimeEventOperationErrorMessage  function src/runtimeEventOperationLifecycle.ts  (diagnostics: readonly DataSourceDiagnostic[]) =&gt; string">
+  </article><article class="item" id="symbol-resolveruntimeeventoperationerrormessage" data-search="resolveRuntimeEventOperationErrorMessage  function src/runtimeEventOperationLifecycle.ts Returns the credential-safe error copy exposed through the public renderer context. (_diagnostics: readonly DataSourceDiagnostic[]) =&gt; string">
     <h4>resolveRuntimeEventOperationErrorMessage</h4>
     
-    <p class="muted">function • <code>src/runtimeEventOperationLifecycle.ts:114:1</code></p>
-    
+    <p class="muted">function • <code>src/runtimeEventOperationLifecycle.ts:109:1</code></p>
+    <p>Returns the credential-safe error copy exposed through the public renderer context.</p>
     
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     <div>
         <h5>Signature</h5>
-        <pre>(diagnostics: readonly DataSourceDiagnostic[]) =&gt; string</pre>
+        <pre>(_diagnostics: readonly DataSourceDiagnostic[]) =&gt; string</pre>
         <table>
                 <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
                 <tbody>
                   <tr>
-                        <td><code>diagnostics</code></td>
+                        <td><code>_diagnostics</code></td>
                         <td><code>readonly DataSourceDiagnostic[]</code></td>
                         <td>yes</td>
                         <td></td>
@@ -4157,6 +4163,10 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeStructuredResultProjection_test_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_types_runtimeFlow_ts
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
@@ -4375,6 +4385,10 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_runtimeStructuredResultProjection_test_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_types_runtimeFlow_ts
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
@@ -4450,6 +4464,7 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_test_ts[&quot;src/runtimeStateAdapter.test.ts&quot;]
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
@@ -4549,6 +4564,8 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
@@ -4608,6 +4625,7 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_test_ts[&quot;src/runtimeStateAdapter.test.ts&quot;]
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
@@ -4707,6 +4725,8 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
+  module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
@@ -4768,6 +4788,7 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_test_ts[&quot;src/runtimeStateAdapter.test.ts&quot;]
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
@@ -5116,6 +5137,7 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_test_ts[&quot;src/runtimeStateAdapter.test.ts&quot;]
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
+  module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
@@ -6424,6 +6446,14 @@ must not provide credential resolution.</td>
     <h3>dispatchRuntimeComponentEventWithReporting</h3>
     <p class="muted"><code>src/runtimeEventExecution.ts:13:1</code></p>
     <p class="empty">No description available.</p>
+</article><article class="item" data-search="redactRuntimeEventDiagnostics src/runtimeEventExecution.ts Redacts credential and endpoint details before event diagnostics leave the trusted host boundary.">
+    <h3>redactRuntimeEventDiagnostics</h3>
+    <p class="muted"><code>src/runtimeEventExecution.ts:38:1</code></p>
+    <p>Redacts credential and endpoint details before event diagnostics leave the trusted host boundary.</p>
+</article><article class="item" data-search="containsSensitiveDiagnosticDetail src/runtimeEventExecution.ts Detects diagnostic fields that could disclose a server credential or private transport endpoint.">
+    <h3>containsSensitiveDiagnosticDetail</h3>
+    <p class="muted"><code>src/runtimeEventExecution.ts:53:1</code></p>
+    <p>Detects diagnostic fields that could disclose a server credential or private transport endpoint.</p>
 </article>
     </section>
   </section><section id="view-src-runtimeeventoperationlifecycle-ts" class="view" data-view="src/runtimeEventOperationLifecycle.ts" hidden>
@@ -6441,10 +6471,10 @@ must not provide credential resolution.</td>
     <h3>createRuntimeEventOperationBindingContext</h3>
     <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:93:1</code></p>
     <p class="empty">No description available.</p>
-</article><article class="item" data-search="resolveRuntimeEventOperationErrorMessage src/runtimeEventOperationLifecycle.ts ">
+</article><article class="item" data-search="resolveRuntimeEventOperationErrorMessage src/runtimeEventOperationLifecycle.ts Returns the credential-safe error copy exposed through the public renderer context.">
     <h3>resolveRuntimeEventOperationErrorMessage</h3>
-    <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:114:1</code></p>
-    <p class="empty">No description available.</p>
+    <p class="muted"><code>src/runtimeEventOperationLifecycle.ts:109:1</code></p>
+    <p>Returns the credential-safe error copy exposed through the public renderer context.</p>
 </article>
     </section>
   </section><section id="view-src-runtimeflowcapabilities-test-ts" class="view" data-view="src/runtimeFlowCapabilities.test.ts" hidden>
@@ -6828,6 +6858,39 @@ must not provide credential resolution.</td>
 </article><article class="item" data-search="mountAsyncRepeat src/runtimeStateReactivity.test.tsx ">
     <h3>mountAsyncRepeat</h3>
     <p class="muted"><code>src/runtimeStateReactivity.test.tsx:51:1</code></p>
+    <p class="empty">No description available.</p>
+</article>
+    </section>
+  </section><section id="view-src-runtimestructuredresultprojection-test-tsx" class="view" data-view="src/runtimeStructuredResultProjection.test.tsx" hidden>
+    <section class="panel">
+      <h2>src/runtimeStructuredResultProjection.test.tsx</h2>
+      <article class="item" data-search="SearchButton src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>SearchButton</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:28:7</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="DataTableProbe src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>DataTableProbe</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:33:7</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="mountGeneratedSearch src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>mountGeneratedSearch</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:119:1</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="executeCapability src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>executeCapability</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:123:9</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="startGeneratedSearch src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>startGeneratedSearch</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:147:1</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="settleGeneratedSearch src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>settleGeneratedSearch</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:154:1</code></p>
+    <p class="empty">No description available.</p>
+</article><article class="item" data-search="dataTableProps src/runtimeStructuredResultProjection.test.tsx ">
+    <h3>dataTableProps</h3>
+    <p class="muted"><code>src/runtimeStructuredResultProjection.test.tsx:166:1</code></p>
     <p class="empty">No description available.</p>
 </article>
     </section>

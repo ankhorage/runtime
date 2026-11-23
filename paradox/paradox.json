@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.5.12",
+      "value": "v5.6.0",
       "color": "cb3837"
     },
     {
@@ -110,13 +110,6 @@
       "message": "Exported function createRuntimeEventOperationLifecycle has no documentation description.",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "line": 40
-    },
-    {
-      "ruleId": "documentation.public-function.description",
-      "severity": "warning",
-      "message": "Exported function resolveRuntimeEventOperationErrorMessage has no documentation description.",
-      "sourcePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 114
     },
     {
       "ruleId": "documentation.public-function.description",
@@ -891,6 +884,15 @@
         "src/registry.tsx",
         "src/runtimeBindings.ts",
         "src/runtimeStateAdapter.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/runtimeStructuredResultProjection.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/registry.tsx",
+        "src/runtimeBindings.ts"
       ],
       "exports": []
     },
@@ -2358,7 +2360,7 @@
     {
       "name": "resolveRuntimeEventOperationErrorMessage",
       "title": null,
-      "description": null,
+      "description": "Returns the credential-safe error copy exposed through the public renderer context.",
       "isReadme": false,
       "see": [],
       "security": [],
@@ -2366,7 +2368,7 @@
       "modulePath": "src/runtimeEventOperationLifecycle.ts",
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 114,
+        "line": 109,
         "column": 1
       },
       "exportPaths": [
@@ -2375,10 +2377,10 @@
       "relatedSymbols": [],
       "signatures": [
         {
-          "label": "(diagnostics: readonly DataSourceDiagnostic[]) => string",
+          "label": "(_diagnostics: readonly DataSourceDiagnostic[]) => string",
           "parameters": [
             {
-              "name": "diagnostics",
+              "name": "_diagnostics",
               "type": "readonly DataSourceDiagnostic[]",
               "required": true,
               "description": null
@@ -6767,6 +6769,28 @@
       }
     },
     {
+      "name": "redactRuntimeEventDiagnostics",
+      "description": "Redacts credential and endpoint details before event diagnostics leave the trusted host boundary.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeEventExecution.ts",
+        "line": 38,
+        "column": 1
+      }
+    },
+    {
+      "name": "containsSensitiveDiagnosticDetail",
+      "description": "Detects diagnostic fields that could disclose a server credential or private transport endpoint.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeEventExecution.ts",
+        "line": 53,
+        "column": 1
+      }
+    },
+    {
       "name": "createRuntimeEventOperationLifecycle",
       "description": null,
       "see": [],
@@ -6801,12 +6825,12 @@
     },
     {
       "name": "resolveRuntimeEventOperationErrorMessage",
-      "description": null,
+      "description": "Returns the credential-safe error copy exposed through the public renderer context.",
       "see": [],
       "security": [],
       "sourceLocation": {
         "filePath": "src/runtimeEventOperationLifecycle.ts",
-        "line": 114,
+        "line": 109,
         "column": 1
       }
     },
@@ -7592,6 +7616,83 @@
       }
     },
     {
+      "name": "SearchButton",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 28,
+        "column": 7
+      }
+    },
+    {
+      "name": "DataTableProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 33,
+        "column": 7
+      }
+    },
+    {
+      "name": "mountGeneratedSearch",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 119,
+        "column": 1
+      }
+    },
+    {
+      "name": "executeCapability",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 123,
+        "column": 9
+      }
+    },
+    {
+      "name": "startGeneratedSearch",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 147,
+        "column": 1
+      }
+    },
+    {
+      "name": "settleGeneratedSearch",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 154,
+        "column": 1
+      }
+    },
+    {
+      "name": "dataTableProps",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/runtimeStructuredResultProjection.test.tsx",
+        "line": 166,
+        "column": 1
+      }
+    },
+    {
       "name": "useRuntimeMediaProps",
       "description": null,
       "see": [],
@@ -7920,7 +8021,7 @@
       "name": "resolveRuntimeEventOperationErrorMessage",
       "sourcePath": "src/runtimeEventOperationLifecycle.ts",
       "symbolName": "resolveRuntimeEventOperationErrorMessage",
-      "description": null,
+      "description": "Returns the credential-safe error copy exposed through the public renderer context.",
       "isReadme": false
     },
     {
@@ -8573,6 +8674,16 @@
         "fromPath": "src/runtimeStateReactivity.test.tsx",
         "toPath": "src/runtimeStateAdapter.ts",
         "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeStructuredResultProjection.test.tsx",
+        "toPath": "src/registry.tsx",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromPath": "src/runtimeStructuredResultProjection.test.tsx",
+        "toPath": "src/runtimeBindings.ts",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
       },
       {
         "fromPath": "src/useRuntimeMediaProps.ts",
@@ -9910,6 +10021,12 @@
       },
       {
         "fromSymbol": "dispatchRuntimeComponentEventWithReporting",
+        "toSymbol": "redactRuntimeEventDiagnostics",
+        "callExpression": "redactRuntimeEventDiagnostics",
+        "sourcePath": "src/runtimeEventExecution.ts"
+      },
+      {
+        "fromSymbol": "dispatchRuntimeComponentEventWithReporting",
         "toSymbol": "onDiagnostics",
         "callExpression": "args.onDiagnostics",
         "sourcePath": "src/runtimeEventExecution.ts"
@@ -9918,6 +10035,12 @@
         "fromSymbol": "dispatchRuntimeComponentEventWithReporting",
         "toSymbol": "report",
         "callExpression": "report",
+        "sourcePath": "src/runtimeEventExecution.ts"
+      },
+      {
+        "fromSymbol": "src/runtimeEventExecution.ts",
+        "toSymbol": "containsSensitiveDiagnosticDetail",
+        "callExpression": "containsSensitiveDiagnosticDetail",
         "sourcePath": "src/runtimeEventExecution.ts"
       },
       {
@@ -11161,6 +11284,84 @@
         "toSymbol": "mountAsyncRepeat",
         "callExpression": "mountAsyncRepeat",
         "sourcePath": "src/runtimeStateReactivity.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "resolveRuntimeBindingExpressionSync",
+        "callExpression": "resolveRuntimeBindingExpressionSync",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "mountGeneratedSearch",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "create",
+        "callExpression": "create",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "startGeneratedSearch",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "submit",
+        "callExpression": "submit",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "settleGeneratedSearch",
+        "toSymbol": "act",
+        "callExpression": "act",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "resolve",
+        "callExpression": "resolve",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "mountGeneratedSearch",
+        "callExpression": "mountGeneratedSearch",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "dataTableProps",
+        "callExpression": "dataTableProps",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "startGeneratedSearch",
+        "callExpression": "startGeneratedSearch",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
+      },
+      {
+        "fromSymbol": "src/runtimeStructuredResultProjection.test.tsx",
+        "toSymbol": "settleGeneratedSearch",
+        "callExpression": "settleGeneratedSearch",
+        "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
       },
       {
         "fromSymbol": "useRuntimeMediaProps",

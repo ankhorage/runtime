@@ -1403,7 +1403,7 @@
   {
     "name": "resolveRuntimeEventOperationErrorMessage",
     "title": null,
-    "description": null,
+    "description": "Returns the credential-safe error copy exposed through the public renderer context.",
     "isReadme": false,
     "see": [],
     "security": [],
@@ -1411,7 +1411,7 @@
     "modulePath": "src/runtimeEventOperationLifecycle.ts",
     "sourceLocation": {
       "filePath": "src/runtimeEventOperationLifecycle.ts",
-      "line": 114,
+      "line": 109,
       "column": 1
     },
     "exportPaths": [
@@ -1420,10 +1420,10 @@
     "relatedSymbols": [],
     "signatures": [
       {
-        "label": "(diagnostics: readonly DataSourceDiagnostic[]) => string",
+        "label": "(_diagnostics: readonly DataSourceDiagnostic[]) => string",
         "parameters": [
           {
-            "name": "diagnostics",
+            "name": "_diagnostics",
             "type": "readonly DataSourceDiagnostic[]",
             "required": true,
             "description": null

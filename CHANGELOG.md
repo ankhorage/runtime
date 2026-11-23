@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.6.0
+
+### Minor Changes
+
+- 05d7cb7: Expose generic structured result-slot projection with reactive, credential-safe operation state for generated UI.
+
 ## 5.5.12
 
 ### Patch Changes

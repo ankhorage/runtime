@@ -474,12 +474,14 @@ Materializes a Runtime-owned context capability for the active renderer scope.
 
 Kind: `function`
 Module: `src/runtimeEventOperationLifecycle.ts`
-Source: `src/runtimeEventOperationLifecycle.ts:114:1`
+Source: `src/runtimeEventOperationLifecycle.ts:109:1`
+
+Returns the credential-safe error copy exposed through the public renderer context.
 
 ### Signatures
 
-- `(diagnostics: readonly DataSourceDiagnostic[]) => string`
-  - diagnostics: `readonly DataSourceDiagnostic[]`
+- `(_diagnostics: readonly DataSourceDiagnostic[]) => string`
+  - _diagnostics: `readonly DataSourceDiagnostic[]`
   - returns: `string`
 
 ## resolveScreenOperationLoaders
