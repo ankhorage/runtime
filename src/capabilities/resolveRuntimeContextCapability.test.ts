@@ -25,7 +25,7 @@ describe('runtime.eventOperation capability', () => {
     expect(
       isRuntimeContextCapabilityOutputPath({
         capability: result.capability,
-        path: 'operation.apiId',
+        path: 'capability',
       }),
     ).toBe(true);
     expect(
