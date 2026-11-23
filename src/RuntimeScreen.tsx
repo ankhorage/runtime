@@ -3,7 +3,6 @@ import React from 'react';
 
 import { useOptionalManifestContext } from './ManifestContext.js';
 import type { ComponentRegistry } from './registry.js';
-import { createRuntimeApiCapabilityExecutor } from './runtimeApiCapabilities.js';
 import { composeRuntimeCapabilityExecutor } from './runtimeCapabilityExecutor.js';
 import { RuntimeRenderer } from './RuntimeRenderer.js';
 import { useRuntimeRendererConfig } from './RuntimeRendererConfig.js';
@@ -27,19 +26,14 @@ export function RuntimeScreen(props: RuntimeScreenProps) {
   );
   const stateAdapter =
     injectedStateAdapter ?? manifestContext?.stateAdapter ?? fallbackStateAdapter;
-  const apiCapabilityExecutor = React.useMemo(
-    () => createRuntimeApiCapabilityExecutor({ apis: manifest.infra.apis ?? {} }),
-    [manifest.infra.apis],
-  );
   const executeCapability = React.useMemo(
     () =>
       composeRuntimeCapabilityExecutor({
-        apiCapabilityExecutor,
         capabilityExecutor: runtimeConfig.executeCapability,
         flowPort: runtimeConfig.flowPort,
         stateAdapter,
       }),
-    [apiCapabilityExecutor, runtimeConfig.executeCapability, runtimeConfig.flowPort, stateAdapter],
+    [runtimeConfig.executeCapability, runtimeConfig.flowPort, stateAdapter],
   );
   const screenOperationLoaders = useRuntimeScreenOperationLoaders({
     bindingContext: runtimeConfig.bindingContext,

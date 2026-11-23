@@ -50,7 +50,7 @@ it('prefers the host-injected executor for API capabilities while delegating app
   });
 });
 
-it('falls back to manifest API execution when no configured executor is available', async () => {
+it('executes an explicitly composed API executor when no application executor is configured', async () => {
   const executeCapability = composeRuntimeCapabilityExecutor({
     apiCapabilityExecutor: () =>
       Promise.resolve({ data: { source: 'data-operation' }, ok: true as const }),

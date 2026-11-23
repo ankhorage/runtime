@@ -10,7 +10,7 @@ import type {
 import type { RuntimeFlowPort } from './types/runtimeFlow.js';
 
 export interface RuntimeCapabilityExecutorComposition {
-  readonly apiCapabilityExecutor: RuntimeCapabilityExecutor;
+  readonly apiCapabilityExecutor?: RuntimeCapabilityExecutor;
   readonly capabilityExecutor?: RuntimeCapabilityExecutor;
   readonly flowPort?: RuntimeFlowPort;
   readonly stateAdapter?: StateAdapter;
@@ -32,12 +32,30 @@ export function composeRuntimeCapabilityExecutor(
             : executeApplicationCapabilityAsync(args, composition.capabilityExecutor);
 }
 
-/*** Uses the host API executor when supplied, falling back to the manifest executor. */
+/*** Requires the host execution boundary for API capabilities. */
 function executeApiCapabilityAsync(
   args: RuntimeCapabilityExecutionArgs,
   composition: RuntimeCapabilityExecutorComposition,
 ): Promise<RuntimeCapabilityExecutionResult> {
-  return composition.capabilityExecutor?.(args) ?? composition.apiCapabilityExecutor(args);
+  return (
+    composition.capabilityExecutor?.(args) ??
+    composition.apiCapabilityExecutor?.(args) ??
+    Promise.resolve(missingApiCapabilityExecutorResult(args.capability))
+  );
+}
+
+/*** Reports an API invocation that has not crossed an explicitly injected host boundary. */
+function missingApiCapabilityExecutorResult(capability: string): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'missing-adapter',
+        message: `API capability '${capability}' requires an injected host executor.`,
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
 }
 
 /*** Applies one serializable state value through the configured application state adapter. */
