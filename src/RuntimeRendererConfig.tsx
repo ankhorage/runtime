@@ -1,4 +1,5 @@
 import type {
+  BindingValue,
   ComponentDataBindingRegistry,
   DataSourceDiagnostic,
   DbAdapter,
@@ -46,6 +47,7 @@ export interface RuntimeRendererConfig {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
+  capabilityValues?: Readonly<Record<string, BindingValue | undefined>>;
   dataBindings?: ComponentDataBindingRegistry;
   resultSlots?: RuntimeBindingResultCache;
   writeResultSlot?: RuntimeBindingResultWriter;
@@ -108,6 +110,10 @@ export function mergeRuntimeRendererConfig(
     inheritedConfig?.bindingContext,
     localConfig?.bindingContext,
   );
+  const capabilityValues = mergeRecordConfig(
+    inheritedConfig?.capabilityValues,
+    localConfig?.capabilityValues,
+  );
   const resultSlots = mergeRecordConfig(inheritedConfig?.resultSlots, localConfig?.resultSlots);
 
   return {
@@ -125,6 +131,7 @@ export function mergeRuntimeRendererConfig(
     dbRealtimeAdapter: localConfig?.dbRealtimeAdapter ?? inheritedConfig?.dbRealtimeAdapter,
     stateAdapter: localConfig?.stateAdapter ?? inheritedConfig?.stateAdapter,
     bindingContext,
+    capabilityValues,
     dataBindings: localConfig?.dataBindings ?? inheritedConfig?.dataBindings,
     resultSlots,
     writeResultSlot: localConfig?.writeResultSlot ?? inheritedConfig?.writeResultSlot,

@@ -99,6 +99,15 @@ export async function resolveRuntimeBindingExpression(
   if (expression.kind === 'array') return resolveArrayAsync(expression.items, context, diagnostics);
   if (expression.kind === 'object')
     return resolveObjectAsync(expression.fields, context, diagnostics);
+  if (expression.kind === 'lookup') {
+    const source = await resolveRuntimeBindingExpression(expression.source, context, diagnostics);
+    const match = expression.cases.find((entry) => entry.key === source);
+    return resolveRuntimeBindingExpression(
+      match?.value ?? expression.fallback,
+      context,
+      diagnostics,
+    );
+  }
   if (expression.kind === 'transform') {
     return applyBindingValueTransforms(
       await resolveRuntimeBindingExpression(expression.value, context, diagnostics),
@@ -124,6 +133,15 @@ export function resolveRuntimeBindingExpressionSync(
   if (expression.kind === 'array') return resolveArraySync(expression.items, context, diagnostics);
   if (expression.kind === 'object')
     return resolveObjectSync(expression.fields, context, diagnostics);
+  if (expression.kind === 'lookup') {
+    const source = resolveRuntimeBindingExpressionSync(expression.source, context, diagnostics);
+    const match = expression.cases.find((entry) => entry.key === source);
+    return resolveRuntimeBindingExpressionSync(
+      match?.value ?? expression.fallback,
+      context,
+      diagnostics,
+    );
+  }
   if (expression.kind === 'transform') {
     return applyBindingValueTransforms(
       resolveRuntimeBindingExpressionSync(expression.value, context, diagnostics),

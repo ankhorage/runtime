@@ -70,6 +70,57 @@ function mountAsyncRepeat(
   return renderer;
 }
 
+it('rerenders a prop from an updated host-injected readable capability value', () => {
+  const node = { id: 'active-pane', type: 'ValueProbe' } satisfies UiNode;
+  const dataBindings = {
+    'active-pane': {
+      componentId: 'active-pane',
+      props: {
+        value: {
+          value: {
+            cases: [
+              { key: 'master', value: { kind: 'literal', value: 'Master' } },
+              { key: 'detail', value: { kind: 'literal', value: 'Detail' } },
+            ],
+            fallback: { kind: 'literal', value: 'Unknown' },
+            kind: 'lookup',
+            source: { capability: 'host.currentRoute', path: 'pane' },
+          },
+        },
+      },
+    },
+  } satisfies ComponentDataBindingRegistry;
+  let renderer: ReturnType<typeof create> | undefined;
+
+  act(() => {
+    renderer = create(
+      <RuntimeRenderer
+        capabilityValues={{ 'host.currentRoute': { pane: 'master' } }}
+        dataBindings={dataBindings}
+        node={node}
+        registry={registry}
+      />,
+    );
+  });
+  if (renderer === undefined) throw new Error('Expected mounted RuntimeRenderer.');
+  const mounted = renderer;
+
+  expect(mounted.root.findByType('output').children).toEqual(['Master']);
+
+  act(() => {
+    mounted.update(
+      <RuntimeRenderer
+        capabilityValues={{ 'host.currentRoute': { pane: 'detail' } }}
+        dataBindings={dataBindings}
+        node={node}
+        registry={registry}
+      />,
+    );
+  });
+
+  expect(mounted.root.findByType('output').children).toEqual(['Detail']);
+});
+
 describe('Runtime state binding reactivity', () => {
   it('rerenders a mounted state binding for nested writes and ancestor replacements', () => {
     const stateAdapter = createRuntimeMemoryStateAdapter({

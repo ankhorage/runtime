@@ -62,6 +62,12 @@ function collectStateExpressionPaths(expression: BindingExpression): readonly st
   if (expression.kind === 'array') return expression.items.flatMap(collectStateExpressionPaths);
   if (expression.kind === 'object')
     return Object.values(expression.fields).flatMap(collectStateExpressionPaths);
+  if (expression.kind === 'lookup')
+    return [
+      ...collectStateExpressionPaths(expression.source),
+      ...expression.cases.flatMap((entry) => collectStateExpressionPaths(entry.value)),
+      ...collectStateExpressionPaths(expression.fallback),
+    ];
   if (expression.kind === 'transform') return collectStateExpressionPaths(expression.value);
   return [
     ...collectStateExpressionPaths(expression.value),

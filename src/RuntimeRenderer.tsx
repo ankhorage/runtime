@@ -62,6 +62,7 @@ export interface RuntimeRendererProps {
   dbRealtimeAdapter?: DbRealtimeAdapter;
   stateAdapter?: StateAdapter;
   bindingContext?: Record<string, unknown>;
+  capabilityValues?: Readonly<Record<string, BindingValue | undefined>>;
   dataBindings?: ComponentDataBindingRegistry;
   mediaAssets?: MediaAssetRegistry;
   resolveMediaAsset?: RuntimeMediaAssetResolver;
@@ -82,6 +83,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     dbRealtimeAdapter,
     stateAdapter,
     bindingContext,
+    capabilityValues,
     dataBindings,
     mediaAssets,
     resolveMediaAsset,
@@ -136,6 +138,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
   const explicitConfig = React.useMemo(
     () => ({
       bindingContext: effectiveBindingContext,
+      capabilityValues,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
@@ -157,6 +160,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     }),
     [
       effectiveBindingContext,
+      capabilityValues,
       dataBindings,
       dbAdapter,
       dbRealtimeAdapter,
@@ -220,6 +224,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
     }
 
     return resolveRuntimeRepeatItemsSync(repeat, {
+      capabilityValues: effectiveConfig.capabilityValues,
       context: effectiveConfig.bindingContext,
       dataBindings: effectiveConfig.dataBindings,
       executeCapability: effectiveConfig.executeCapability,
@@ -234,6 +239,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       node.repeat && repeatSyncResult?.status === 'pending'
         ? {
             context: effectiveConfig.bindingContext,
+            capabilityValues: effectiveConfig.capabilityValues,
             dataBindings: effectiveConfig.dataBindings,
             executeCapability: effectiveConfig.executeCapability,
             node,
@@ -247,6 +253,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
       node,
       repeatSyncResult?.status,
       effectiveConfig.bindingContext,
+      effectiveConfig.capabilityValues,
       effectiveConfig.dataBindings,
       effectiveConfig.executeCapability,
       effectiveConfig.resultSlots,
@@ -272,6 +279,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
     void (async () => {
       const result = await resolveRuntimeRepeatItemsAsync(repeatRequest.repeat, {
+        capabilityValues: repeatRequest.capabilityValues,
         context: repeatRequest.context,
         dataBindings: repeatRequest.dataBindings,
         executeCapability: repeatRequest.executeCapability,
@@ -315,6 +323,7 @@ export function RuntimeRenderer(props: RuntimeRendererProps) {
 
   const bindingResolvedProps = resolveRuntimeNodeProps({
     bindingContext: effectiveConfig.bindingContext,
+    capabilityValues: effectiveConfig.capabilityValues,
     dataBindings: effectiveConfig.dataBindings,
     dbAdapter: effectiveConfig.dbAdapter,
     dbRealtimeAdapter: effectiveConfig.dbRealtimeAdapter,
