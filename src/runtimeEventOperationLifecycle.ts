@@ -105,17 +105,9 @@ export function createRuntimeEventOperationBindingContext(
   };
 }
 
-/**
- * Selects a stable, human-readable error for inline presentation.
- *
- * @param diagnostics - Diagnostics produced while resolving or executing the operation.
- * @returns The first error message, or a safe generic fallback.
- */
+/*** Returns the credential-safe error copy exposed through the public renderer context. */
 export function resolveRuntimeEventOperationErrorMessage(
-  diagnostics: readonly DataSourceDiagnostic[],
+  _diagnostics: readonly DataSourceDiagnostic[],
 ): string {
-  return (
-    diagnostics.find((diagnostic) => diagnostic.severity === 'error')?.message ??
-    'The operation could not be completed. Please try again.'
-  );
+  return 'The operation could not be completed. Please try again.';
 }

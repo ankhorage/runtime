@@ -235,7 +235,7 @@ it('drives the existing event error state when a Flow request times out', async 
     },
     {
       capability: 'flow.cancel',
-      errorMessage: 'The Flow request timed out.',
+      errorMessage: 'The operation could not be completed. Please try again.',
       loading: false,
       nodeId: 'cancel',
       status: 'error',

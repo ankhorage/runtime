@@ -124,15 +124,7 @@ export const CAPABILITIES = [
           loading: { type: 'boolean' },
           errorMessage: { type: 'string' },
           nodeId: { type: 'string' },
-          operation: {
-            type: 'object',
-            required: ['apiId', 'operationId'],
-            properties: {
-              apiId: { type: 'string' },
-              endpointId: { type: 'string' },
-              operationId: { type: 'string' },
-            },
-          },
+          capability: { type: 'string' },
         },
       },
     },
