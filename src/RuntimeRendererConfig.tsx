@@ -51,6 +51,14 @@ export interface RuntimeRendererConfig {
   dataBindings?: ComponentDataBindingRegistry;
   resultSlots?: RuntimeBindingResultCache;
   writeResultSlot?: RuntimeBindingResultWriter;
+  /*** Executes side-effecting capabilities in the trusted application host.
+   *
+   * API capabilities are never created from manifest configuration by RuntimeScreen. A host that
+   * resolves credentials must compose its server-side resolver and transport here; browser hosts
+   * must not provide credential resolution.
+   *
+   * @security
+   */
   executeCapability?: RuntimeCapabilityExecutor;
   flowPort?: RuntimeFlowPort;
   resolveEventCapability?: RuntimeEventCapabilityResolver;

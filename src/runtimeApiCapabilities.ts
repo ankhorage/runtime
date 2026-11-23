@@ -16,6 +16,7 @@ import type {
 export interface RuntimeApiCapabilityExecutorOptions {
   readonly apis: ApiDefinitionRegistry;
   readonly fetch?: EndpointTestFetch;
+  /*** Resolves credential references only within a trusted host execution boundary. */
   readonly credentialResolver?: EndpointTestCredentialResolver;
 }
 
@@ -36,17 +37,46 @@ async function executeRuntimeApiCapabilityAsync(
   if (args.input !== undefined && values === undefined)
     return invalidApiCapabilityInput(args.capability);
 
-  const result = await testEndpoint({
-    api: target.api,
-    credentialResolver: options.credentialResolver,
-    endpointId: target.endpointId,
-    fetch: options.fetch,
-    operationId: target.operationId,
-    values,
-  });
-  return result.ok
-    ? { data: result.data ?? null, diagnostics: result.diagnostics, ok: true }
-    : { diagnostics: result.diagnostics, ok: false };
+  try {
+    const result = await testEndpoint({
+      api: target.api,
+      credentialResolver: options.credentialResolver,
+      endpointId: target.endpointId,
+      fetch: options.fetch,
+      operationId: target.operationId,
+      values,
+    });
+    return result.ok
+      ? { data: result.data ?? null, diagnostics: result.diagnostics, ok: true }
+      : { diagnostics: redactRuntimeApiDiagnostics(result.diagnostics), ok: false };
+  } catch {
+    return remoteApiFailure();
+  }
+}
+
+/*** Removes remote transport detail before API diagnostics can reach Runtime bindings or props. */
+function redactRuntimeApiDiagnostics(
+  diagnostics: readonly DataSourceDiagnostic[],
+): readonly DataSourceDiagnostic[] {
+  return diagnostics.map((diagnostic) =>
+    diagnostic.code === 'network-error'
+      ? { ...diagnostic, message: 'The API operation could not be completed. Please try again.' }
+      : diagnostic,
+  );
+}
+
+/*** Converts resolver failures into a credential-safe Runtime diagnostic. */
+function remoteApiFailure(): RuntimeCapabilityExecutionResult {
+  return {
+    diagnostics: [
+      {
+        code: 'adapter-error',
+        message: 'The API operation could not be completed. Please try again.',
+        severity: 'error',
+      },
+    ],
+    ok: false,
+  };
 }
 
 function resolveApiCapabilityTarget(
