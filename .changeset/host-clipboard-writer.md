@@ -2,4 +2,4 @@
 '@ankhorage/runtime': minor
 ---
 
-Add the host-backed ClipboardWriterProvider and useClipboardWriter boundary for plain-text clipboard writes.
+Add the host-backed ClipboardWriterProvider, useClipboardWriter, and rejection-safe writeClipboardTextAsync boundary for plain-text clipboard writes.
