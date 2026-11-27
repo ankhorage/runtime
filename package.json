@@ -331,7 +331,7 @@
     "@ankhorage/contracts": "^26.17.0",
     "@ankhorage/data-sources": "^2.3.0",
     "@ankhorage/flow": "^0.10.1",
-    "@ankhorage/utility": "^1.10.1"
+    "@ankhorage/utility": "^1.11.0"
   },
   "peerDependencies": {
     "react": ">=19.2.0 <20",
