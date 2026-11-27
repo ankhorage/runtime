@@ -6,6 +6,7 @@ export {
   isRuntimeContextCapabilityOutputPath,
   resolveRuntimeContextCapability,
 } from './capabilities/resolveRuntimeContextCapability.js';
+export { ClipboardWriterProvider } from './ClipboardWriterProvider.js';
 export {
   ManifestContext,
   ManifestProvider,
@@ -125,4 +126,7 @@ export {
 } from './runtimeScreenLoaders.js';
 export type { RuntimeMemoryStateAdapterOptions } from './runtimeStateAdapter.js';
 export { createRuntimeMemoryStateAdapter } from './runtimeStateAdapter.js';
+export type { ClipboardWriter, ClipboardWriteResult } from './types/clipboard.js';
 export type { RuntimeFlowPort, RuntimeFlowStartRequest } from './types/runtimeFlow.js';
+export { useClipboardWriter } from './useClipboardWriter.js';
+export { writeClipboardTextAsync } from './writeClipboardTextAsync.js';
