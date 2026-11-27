@@ -1,0 +1,5 @@
+sequenceDiagram
+  participant participant_writeClipboardTextAsync as writeClipboardTextAsync
+  participant participant_writeTextAsync as writeTextAsync
+  participant_writeClipboardTextAsync->>participant_writeTextAsync: writer.writeTextAsync()
+  participant_writeTextAsync-->>participant_writeClipboardTextAsync: return

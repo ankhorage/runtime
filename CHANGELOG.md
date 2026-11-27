@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.7.0
+
+### Minor Changes
+
+- d12fb00: Add the host-backed ClipboardWriterProvider, useClipboardWriter, and rejection-safe writeClipboardTextAsync boundary for plain-text clipboard writes.
+
 ## 5.6.4
 
 ### Patch Changes

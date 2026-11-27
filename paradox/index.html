@@ -138,6 +138,16 @@
       <small>5 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/ClipboardWriterProvider.test.tsx">
+      src/ClipboardWriterProvider.test.tsx
+      <small>1 function</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/ClipboardWriterProvider.tsx">
+      src/ClipboardWriterProvider.tsx
+      <small>1 function</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/componentRegistry.ts">
       src/componentRegistry.ts
       <small>1 function</small>
@@ -328,6 +338,11 @@
       <small>7 functions</small>
     </button>
   </li><li>
+    <button class="nav-button" type="button" data-target="src/useClipboardWriter.ts">
+      src/useClipboardWriter.ts
+      <small>1 function</small>
+    </button>
+  </li><li>
     <button class="nav-button" type="button" data-target="src/useRuntimeMediaProps.ts">
       src/useRuntimeMediaProps.ts
       <small>2 functions</small>
@@ -336,6 +351,11 @@
     <button class="nav-button" type="button" data-target="src/useRuntimeStateBindings.ts">
       src/useRuntimeStateBindings.ts
       <small>4 functions</small>
+    </button>
+  </li><li>
+    <button class="nav-button" type="button" data-target="src/writeClipboardTextAsync.ts">
+      src/writeClipboardTextAsync.ts
+      <small>1 function</small>
     </button>
   </li>
           </ul>
@@ -347,9 +367,9 @@
     <section class="panel">
       <h2>Package overview</h2>
       <div class="summary">
-        <div><strong>97</strong><span class="muted">public exports</span></div>
-        <div><strong>5</strong><span class="muted">components</span></div>
-        <div><strong>62</strong><span class="muted">modules</span></div>
+        <div><strong>102</strong><span class="muted">public exports</span></div>
+        <div><strong>6</strong><span class="muted">components</span></div>
+        <div><strong>69</strong><span class="muted">modules</span></div>
         <div><strong>1</strong><span class="muted">entrypoints</span></div>
       </div>
       <h3>Entrypoints</h3>
@@ -469,6 +489,21 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/capabilities/index.ts</code></p>
     <p><strong>Exports:</strong> <code>isRuntimeContextCapabilityOutputPath</code>, <code>resolveRuntimeContextCapability</code>, <code>RuntimeContextCapabilityId</code>, <code>RuntimeContextCapabilityResolution</code></p>
+  </article><article class="item" data-search="src/ClipboardWriterContext.tsx src/types/clipboard.ts ClipboardWriterContext">
+    <h3>src/ClipboardWriterContext.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/clipboard.ts</code></p>
+    <p><strong>Exports:</strong> <code>ClipboardWriterContext</code></p>
+  </article><article class="item" data-search="src/ClipboardWriterProvider.test.tsx src/ClipboardWriterProvider.tsx src/useClipboardWriter.ts">
+    <h3>src/ClipboardWriterProvider.test.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/ClipboardWriterProvider.tsx</code>, <code>src/useClipboardWriter.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/ClipboardWriterProvider.tsx src/ClipboardWriterContext.tsx src/types/clipboard.ts ClipboardWriterProvider">
+    <h3>src/ClipboardWriterProvider.tsx</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/ClipboardWriterContext.tsx</code>, <code>src/types/clipboard.ts</code></p>
+    <p><strong>Exports:</strong> <code>ClipboardWriterProvider</code></p>
   </article><article class="item" data-search="src/componentRegistry.ts ComponentRegistry createComponentRegistry">
     <h3>src/componentRegistry.ts</h3>
     <p class="muted">Referenced module</p>
@@ -479,11 +514,11 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/runtimeBindings.ts</code>, <code>src/types/runtimeFlow.ts</code></p>
     <p><strong>Exports:</strong> <code>executeRuntimeFlowCapabilityAsync</code></p>
-  </article><article class="item" data-search="src/index.ts applyRuntimeBindingDataPath ComponentRegistry composeRuntimeCapabilityExecutor composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode createComponentEventFromHandlerArgs createComponentRegistry createPendingRuntimeScreenOperationLoaderState createRuntimeActionRegistry createRuntimeApiCapabilityExecutor createRuntimeAuthoringOverlayConfig createRuntimeEventOperationBindingContext createRuntimeEventOperationLifecycle createRuntimeMemoryStateAdapter createRuntimeScreenLoaderRequestKey createRuntimeScreenOperationLoaderRequestLifecycle dispatchRuntimeComponentEvent dispatchRuntimeComponentEventWithReporting executeRuntimeBindingInvocation executeRuntimeScreenOperationLoaders IDLE_RUNTIME_EVENT_OPERATION_STATE isRuntimeContextCapabilityOutputPath ManifestContext ManifestProvider mergeRuntimeRendererConfig resolveBindingInputMap resolveBindingInputMapSync resolveRuntimeActionValue resolveRuntimeBindingExpression resolveRuntimeBindingExpressionSync resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync resolveRuntimeContextCapability resolveRuntimeEventOperationErrorMessage resolveScreenOperationLoaders RuntimeActionDescriptor RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeAdapterDescriptor RuntimeApiCapabilityExecutorOptions RuntimeAuthoringBounds RuntimeAuthoringComponentIdentity RuntimeAuthoringGestureDisposition RuntimeAuthoringMode RuntimeAuthoringOverlayAdapter RuntimeAuthoringOverlayNodeArgs RuntimeBindingDescriptor RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult RuntimeBindingResultCache RuntimeBindingResultWriter RuntimeCapabilityExecutionArgs RuntimeCapabilityExecutionResult RuntimeCapabilityExecutor RuntimeCapabilityExecutorComposition RuntimeComponentEventDispatchArgs RuntimeContextCapabilityId RuntimeContextCapabilityResolution RuntimeDiagnostic RuntimeEventCapabilityResolver RuntimeEventDiagnosticsReporter RuntimeEventOperationInvocation RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeEventOperationStatus RuntimeEventPropWrapArgs RuntimeFlowPort RuntimeFlowStartRequest RuntimeManifest RuntimeManifestConfig RuntimeManifestInput RuntimeMediaAssetResolver RuntimeMediaAssetResolverArgs RuntimeMemoryStateAdapterOptions RuntimeNodePropsResolver RuntimeRenderer RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererProps RuntimeRendererWrapArgs RuntimeResolvedMediaValue RuntimeResolveNodePropsArgs RuntimeScreen RuntimeScreenOperationLoaderExecutionResult RuntimeScreenOperationLoaderState RuntimeScreenProps shouldRenderRuntimeRepeatEmptyState useManifest useManifestContext useOptionalManifestContext useRuntimeRendererConfig useRuntimeScreenOperationLoaders wrapRuntimeEventProps">
+  </article><article class="item" data-search="src/index.ts applyRuntimeBindingDataPath ClipboardWriter ClipboardWriteResult ClipboardWriterProvider ComponentRegistry composeRuntimeCapabilityExecutor composeRuntimeNodePropsResolver composeRuntimeRendererWrapNode createComponentEventFromHandlerArgs createComponentRegistry createPendingRuntimeScreenOperationLoaderState createRuntimeActionRegistry createRuntimeApiCapabilityExecutor createRuntimeAuthoringOverlayConfig createRuntimeEventOperationBindingContext createRuntimeEventOperationLifecycle createRuntimeMemoryStateAdapter createRuntimeScreenLoaderRequestKey createRuntimeScreenOperationLoaderRequestLifecycle dispatchRuntimeComponentEvent dispatchRuntimeComponentEventWithReporting executeRuntimeBindingInvocation executeRuntimeScreenOperationLoaders IDLE_RUNTIME_EVENT_OPERATION_STATE isRuntimeContextCapabilityOutputPath ManifestContext ManifestProvider mergeRuntimeRendererConfig resolveBindingInputMap resolveBindingInputMapSync resolveRuntimeActionValue resolveRuntimeBindingExpression resolveRuntimeBindingExpressionSync resolveRuntimeBindings resolveRuntimeBindingsAsync resolveRuntimeBindingValue resolveRuntimeBindingValueSync resolveRuntimeContextCapability resolveRuntimeEventOperationErrorMessage resolveScreenOperationLoaders RuntimeActionDescriptor RuntimeActionRegistry RuntimeActionResolutionArgs RuntimeActionResolutionScope RuntimeAdapterDescriptor RuntimeApiCapabilityExecutorOptions RuntimeAuthoringBounds RuntimeAuthoringComponentIdentity RuntimeAuthoringGestureDisposition RuntimeAuthoringMode RuntimeAuthoringOverlayAdapter RuntimeAuthoringOverlayNodeArgs RuntimeBindingDescriptor RuntimeBindingResolutionArgs RuntimeBindingResolutionContext RuntimeBindingResolutionResult RuntimeBindingResultCache RuntimeBindingResultWriter RuntimeCapabilityExecutionArgs RuntimeCapabilityExecutionResult RuntimeCapabilityExecutor RuntimeCapabilityExecutorComposition RuntimeComponentEventDispatchArgs RuntimeContextCapabilityId RuntimeContextCapabilityResolution RuntimeDiagnostic RuntimeEventCapabilityResolver RuntimeEventDiagnosticsReporter RuntimeEventOperationInvocation RuntimeEventOperationLifecycle RuntimeEventOperationState RuntimeEventOperationStatus RuntimeEventPropWrapArgs RuntimeFlowPort RuntimeFlowStartRequest RuntimeManifest RuntimeManifestConfig RuntimeManifestInput RuntimeMediaAssetResolver RuntimeMediaAssetResolverArgs RuntimeMemoryStateAdapterOptions RuntimeNodePropsResolver RuntimeRenderer RuntimeRendererConfig RuntimeRendererConfigProvider RuntimeRendererProps RuntimeRendererWrapArgs RuntimeResolvedMediaValue RuntimeResolveNodePropsArgs RuntimeScreen RuntimeScreenOperationLoaderExecutionResult RuntimeScreenOperationLoaderState RuntimeScreenProps shouldRenderRuntimeRepeatEmptyState useClipboardWriter useManifest useManifestContext useOptionalManifestContext useRuntimeRendererConfig useRuntimeScreenOperationLoaders wrapRuntimeEventProps writeClipboardTextAsync">
     <h3>src/index.ts</h3>
     <p class="muted">Configured entrypoint</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
-    <p><strong>Exports:</strong> <code>applyRuntimeBindingDataPath</code>, <code>ComponentRegistry</code>, <code>composeRuntimeCapabilityExecutor</code>, <code>composeRuntimeNodePropsResolver</code>, <code>composeRuntimeRendererWrapNode</code>, <code>createComponentEventFromHandlerArgs</code>, <code>createComponentRegistry</code>, <code>createPendingRuntimeScreenOperationLoaderState</code>, <code>createRuntimeActionRegistry</code>, <code>createRuntimeApiCapabilityExecutor</code>, <code>createRuntimeAuthoringOverlayConfig</code>, <code>createRuntimeEventOperationBindingContext</code>, <code>createRuntimeEventOperationLifecycle</code>, <code>createRuntimeMemoryStateAdapter</code>, <code>createRuntimeScreenLoaderRequestKey</code>, <code>createRuntimeScreenOperationLoaderRequestLifecycle</code>, <code>dispatchRuntimeComponentEvent</code>, <code>dispatchRuntimeComponentEventWithReporting</code>, <code>executeRuntimeBindingInvocation</code>, <code>executeRuntimeScreenOperationLoaders</code>, <code>IDLE_RUNTIME_EVENT_OPERATION_STATE</code>, <code>isRuntimeContextCapabilityOutputPath</code>, <code>ManifestContext</code>, <code>ManifestProvider</code>, <code>mergeRuntimeRendererConfig</code>, <code>resolveBindingInputMap</code>, <code>resolveBindingInputMapSync</code>, <code>resolveRuntimeActionValue</code>, <code>resolveRuntimeBindingExpression</code>, <code>resolveRuntimeBindingExpressionSync</code>, <code>resolveRuntimeBindings</code>, <code>resolveRuntimeBindingsAsync</code>, <code>resolveRuntimeBindingValue</code>, <code>resolveRuntimeBindingValueSync</code>, <code>resolveRuntimeContextCapability</code>, <code>resolveRuntimeEventOperationErrorMessage</code>, <code>resolveScreenOperationLoaders</code>, <code>RuntimeActionDescriptor</code>, <code>RuntimeActionRegistry</code>, <code>RuntimeActionResolutionArgs</code>, <code>RuntimeActionResolutionScope</code>, <code>RuntimeAdapterDescriptor</code>, <code>RuntimeApiCapabilityExecutorOptions</code>, <code>RuntimeAuthoringBounds</code>, <code>RuntimeAuthoringComponentIdentity</code>, <code>RuntimeAuthoringGestureDisposition</code>, <code>RuntimeAuthoringMode</code>, <code>RuntimeAuthoringOverlayAdapter</code>, <code>RuntimeAuthoringOverlayNodeArgs</code>, <code>RuntimeBindingDescriptor</code>, <code>RuntimeBindingResolutionArgs</code>, <code>RuntimeBindingResolutionContext</code>, <code>RuntimeBindingResolutionResult</code>, <code>RuntimeBindingResultCache</code>, <code>RuntimeBindingResultWriter</code>, <code>RuntimeCapabilityExecutionArgs</code>, <code>RuntimeCapabilityExecutionResult</code>, <code>RuntimeCapabilityExecutor</code>, <code>RuntimeCapabilityExecutorComposition</code>, <code>RuntimeComponentEventDispatchArgs</code>, <code>RuntimeContextCapabilityId</code>, <code>RuntimeContextCapabilityResolution</code>, <code>RuntimeDiagnostic</code>, <code>RuntimeEventCapabilityResolver</code>, <code>RuntimeEventDiagnosticsReporter</code>, <code>RuntimeEventOperationInvocation</code>, <code>RuntimeEventOperationLifecycle</code>, <code>RuntimeEventOperationState</code>, <code>RuntimeEventOperationStatus</code>, <code>RuntimeEventPropWrapArgs</code>, <code>RuntimeFlowPort</code>, <code>RuntimeFlowStartRequest</code>, <code>RuntimeManifest</code>, <code>RuntimeManifestConfig</code>, <code>RuntimeManifestInput</code>, <code>RuntimeMediaAssetResolver</code>, <code>RuntimeMediaAssetResolverArgs</code>, <code>RuntimeMemoryStateAdapterOptions</code>, <code>RuntimeNodePropsResolver</code>, <code>RuntimeRenderer</code>, <code>RuntimeRendererConfig</code>, <code>RuntimeRendererConfigProvider</code>, <code>RuntimeRendererProps</code>, <code>RuntimeRendererWrapArgs</code>, <code>RuntimeResolvedMediaValue</code>, <code>RuntimeResolveNodePropsArgs</code>, <code>RuntimeScreen</code>, <code>RuntimeScreenOperationLoaderExecutionResult</code>, <code>RuntimeScreenOperationLoaderState</code>, <code>RuntimeScreenProps</code>, <code>shouldRenderRuntimeRepeatEmptyState</code>, <code>useManifest</code>, <code>useManifestContext</code>, <code>useOptionalManifestContext</code>, <code>useRuntimeRendererConfig</code>, <code>useRuntimeScreenOperationLoaders</code>, <code>wrapRuntimeEventProps</code></p>
+    <p><strong>Exports:</strong> <code>applyRuntimeBindingDataPath</code>, <code>ClipboardWriter</code>, <code>ClipboardWriteResult</code>, <code>ClipboardWriterProvider</code>, <code>ComponentRegistry</code>, <code>composeRuntimeCapabilityExecutor</code>, <code>composeRuntimeNodePropsResolver</code>, <code>composeRuntimeRendererWrapNode</code>, <code>createComponentEventFromHandlerArgs</code>, <code>createComponentRegistry</code>, <code>createPendingRuntimeScreenOperationLoaderState</code>, <code>createRuntimeActionRegistry</code>, <code>createRuntimeApiCapabilityExecutor</code>, <code>createRuntimeAuthoringOverlayConfig</code>, <code>createRuntimeEventOperationBindingContext</code>, <code>createRuntimeEventOperationLifecycle</code>, <code>createRuntimeMemoryStateAdapter</code>, <code>createRuntimeScreenLoaderRequestKey</code>, <code>createRuntimeScreenOperationLoaderRequestLifecycle</code>, <code>dispatchRuntimeComponentEvent</code>, <code>dispatchRuntimeComponentEventWithReporting</code>, <code>executeRuntimeBindingInvocation</code>, <code>executeRuntimeScreenOperationLoaders</code>, <code>IDLE_RUNTIME_EVENT_OPERATION_STATE</code>, <code>isRuntimeContextCapabilityOutputPath</code>, <code>ManifestContext</code>, <code>ManifestProvider</code>, <code>mergeRuntimeRendererConfig</code>, <code>resolveBindingInputMap</code>, <code>resolveBindingInputMapSync</code>, <code>resolveRuntimeActionValue</code>, <code>resolveRuntimeBindingExpression</code>, <code>resolveRuntimeBindingExpressionSync</code>, <code>resolveRuntimeBindings</code>, <code>resolveRuntimeBindingsAsync</code>, <code>resolveRuntimeBindingValue</code>, <code>resolveRuntimeBindingValueSync</code>, <code>resolveRuntimeContextCapability</code>, <code>resolveRuntimeEventOperationErrorMessage</code>, <code>resolveScreenOperationLoaders</code>, <code>RuntimeActionDescriptor</code>, <code>RuntimeActionRegistry</code>, <code>RuntimeActionResolutionArgs</code>, <code>RuntimeActionResolutionScope</code>, <code>RuntimeAdapterDescriptor</code>, <code>RuntimeApiCapabilityExecutorOptions</code>, <code>RuntimeAuthoringBounds</code>, <code>RuntimeAuthoringComponentIdentity</code>, <code>RuntimeAuthoringGestureDisposition</code>, <code>RuntimeAuthoringMode</code>, <code>RuntimeAuthoringOverlayAdapter</code>, <code>RuntimeAuthoringOverlayNodeArgs</code>, <code>RuntimeBindingDescriptor</code>, <code>RuntimeBindingResolutionArgs</code>, <code>RuntimeBindingResolutionContext</code>, <code>RuntimeBindingResolutionResult</code>, <code>RuntimeBindingResultCache</code>, <code>RuntimeBindingResultWriter</code>, <code>RuntimeCapabilityExecutionArgs</code>, <code>RuntimeCapabilityExecutionResult</code>, <code>RuntimeCapabilityExecutor</code>, <code>RuntimeCapabilityExecutorComposition</code>, <code>RuntimeComponentEventDispatchArgs</code>, <code>RuntimeContextCapabilityId</code>, <code>RuntimeContextCapabilityResolution</code>, <code>RuntimeDiagnostic</code>, <code>RuntimeEventCapabilityResolver</code>, <code>RuntimeEventDiagnosticsReporter</code>, <code>RuntimeEventOperationInvocation</code>, <code>RuntimeEventOperationLifecycle</code>, <code>RuntimeEventOperationState</code>, <code>RuntimeEventOperationStatus</code>, <code>RuntimeEventPropWrapArgs</code>, <code>RuntimeFlowPort</code>, <code>RuntimeFlowStartRequest</code>, <code>RuntimeManifest</code>, <code>RuntimeManifestConfig</code>, <code>RuntimeManifestInput</code>, <code>RuntimeMediaAssetResolver</code>, <code>RuntimeMediaAssetResolverArgs</code>, <code>RuntimeMemoryStateAdapterOptions</code>, <code>RuntimeNodePropsResolver</code>, <code>RuntimeRenderer</code>, <code>RuntimeRendererConfig</code>, <code>RuntimeRendererConfigProvider</code>, <code>RuntimeRendererProps</code>, <code>RuntimeRendererWrapArgs</code>, <code>RuntimeResolvedMediaValue</code>, <code>RuntimeResolveNodePropsArgs</code>, <code>RuntimeScreen</code>, <code>RuntimeScreenOperationLoaderExecutionResult</code>, <code>RuntimeScreenOperationLoaderState</code>, <code>RuntimeScreenProps</code>, <code>shouldRenderRuntimeRepeatEmptyState</code>, <code>useClipboardWriter</code>, <code>useManifest</code>, <code>useManifestContext</code>, <code>useOptionalManifestContext</code>, <code>useRuntimeRendererConfig</code>, <code>useRuntimeScreenOperationLoaders</code>, <code>wrapRuntimeEventProps</code>, <code>writeClipboardTextAsync</code></p>
   </article><article class="item" data-search="src/ManifestContext.tsx src/runtimeStateAdapter.ts ManifestContext ManifestContextValue ManifestProvider useManifest useManifestContext useOptionalManifestContext">
     <h3>src/ManifestContext.tsx</h3>
     <p class="muted">Referenced module</p>
@@ -704,11 +739,21 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <code>src/registry.tsx</code>, <code>src/runtimeBindings.ts</code></p>
     <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/types/clipboard.ts ClipboardWriter ClipboardWriteResult">
+    <h3>src/types/clipboard.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
+    <p><strong>Exports:</strong> <code>ClipboardWriter</code>, <code>ClipboardWriteResult</code></p>
   </article><article class="item" data-search="src/types/runtimeFlow.ts RuntimeFlowPort RuntimeFlowStartRequest">
     <h3>src/types/runtimeFlow.ts</h3>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>RuntimeFlowPort</code>, <code>RuntimeFlowStartRequest</code></p>
+  </article><article class="item" data-search="src/useClipboardWriter.ts src/ClipboardWriterContext.tsx src/types/clipboard.ts useClipboardWriter">
+    <h3>src/useClipboardWriter.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/ClipboardWriterContext.tsx</code>, <code>src/types/clipboard.ts</code></p>
+    <p><strong>Exports:</strong> <code>useClipboardWriter</code></p>
   </article><article class="item" data-search="src/useRuntimeMediaProps.ts src/runtimeMedia.ts useRuntimeMediaProps">
     <h3>src/useRuntimeMediaProps.ts</h3>
     <p class="muted">Referenced module</p>
@@ -719,6 +764,16 @@ inject it at the runtime boundary.</p>
     <p class="muted">Referenced module</p>
     <p><strong>Dependencies:</strong> <span class="empty">None</span></p>
     <p><strong>Exports:</strong> <code>useRuntimeStateBindings</code></p>
+  </article><article class="item" data-search="src/writeClipboardTextAsync.test.ts src/writeClipboardTextAsync.ts">
+    <h3>src/writeClipboardTextAsync.test.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/writeClipboardTextAsync.ts</code></p>
+    <p><strong>Exports:</strong> <span class="empty">None</span></p>
+  </article><article class="item" data-search="src/writeClipboardTextAsync.ts src/types/clipboard.ts writeClipboardTextAsync">
+    <h3>src/writeClipboardTextAsync.ts</h3>
+    <p class="muted">Referenced module</p>
+    <p><strong>Dependencies:</strong> <code>src/types/clipboard.ts</code></p>
+    <p><strong>Exports:</strong> <code>writeClipboardTextAsync</code></p>
   </article><article class="item" data-search="tests/reactNativeWebCompatibility.fixture.tsx src/RuntimeRenderer.tsx renderReactNativeWebRuntimeFixture">
     <h3>tests/reactNativeWebCompatibility.fixture.tsx</h3>
     <p class="muted">Referenced module</p>
@@ -861,6 +916,35 @@ inject it at the runtime boundary.</p>
     <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
     <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
     
+    
+  </article>
+            </section>
+            <section>
+              <h3>src/ClipboardWriterProvider.tsx</h3>
+              <article class="item" id="symbol-clipboardwriterprovider" data-search="ClipboardWriterProvider  function src/ClipboardWriterProvider.tsx Supplies the host-owned clipboard writer without selecting a browser or native implementation. ClipboardWriter (props: { readonly children: React.ReactNode; readonly writer: ClipboardWriter; }) =&gt; React.JSX.Element">
+    <h4>ClipboardWriterProvider</h4>
+    
+    <p class="muted">function • <code>src/ClipboardWriterProvider.tsx:7:1</code></p>
+    <p>Supplies the host-owned clipboard writer without selecting a browser or native implementation.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ClipboardWriter</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(props: { readonly children: React.ReactNode; readonly writer: ClipboardWriter; }) =&gt; React.JSX.Element</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>props</code></td>
+                        <td><code>{ readonly children: React.ReactNode; readonly writer: ClipboardWriter; }</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>React.JSX.Element</code></p>
+      </div>
     
   </article>
             </section>
@@ -3708,6 +3792,41 @@ must not provide credential resolution.</td>
   </article>
             </section>
             <section>
+              <h3>src/types/clipboard.ts</h3>
+              <article class="item" id="symbol-clipboardwriter" data-search="ClipboardWriter  type src/types/clipboard.ts  ClipboardWriteResult">
+    <h4>ClipboardWriter</h4>
+    
+    <p class="muted">type • <code>src/types/clipboard.ts:5:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ClipboardWriteResult</li></ul></div>
+    
+    <table>
+    <thead><tr><th>Member</th><th>Kind</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr>
+            <td><code>writeTextAsync</code></td>
+            <td>property</td>
+            <td><code>(text: string) =&gt; Promise&lt;ClipboardWriteResult&gt;</code></td>
+            <td>yes</td>
+            <td></td>
+          </tr>
+    </tbody>
+  </table>
+  </article><article class="item" id="symbol-clipboardwriteresult" data-search="ClipboardWriteResult  unknown src/types/clipboard.ts ">
+    <h4>ClipboardWriteResult</h4>
+    
+    <p class="muted">unknown • <code>src/types/clipboard.ts:2:1</code></p>
+    
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <span class="empty">None</span></div>
+    
+    
+  </article>
+            </section>
+            <section>
               <h3>src/types/runtimeFlow.ts</h3>
               <article class="item" id="symbol-runtimeflowport" data-search="RuntimeFlowPort  type src/types/runtimeFlow.ts  RuntimeFlowStartRequest">
     <h4>RuntimeFlowPort</h4>
@@ -3766,10 +3885,85 @@ must not provide credential resolution.</td>
     
   </article>
             </section>
+            <section>
+              <h3>src/useClipboardWriter.ts</h3>
+              <article class="item" id="symbol-useclipboardwriter" data-search="useClipboardWriter  function src/useClipboardWriter.ts Reads an optional host clipboard writer so components can report unavailable access without a local fallback. ClipboardWriter () =&gt; ClipboardWriter | undefined">
+    <h4>useClipboardWriter</h4>
+    
+    <p class="muted">function • <code>src/useClipboardWriter.ts:7:1</code></p>
+    <p>Reads an optional host clipboard writer so components can report unavailable access without a local fallback.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ClipboardWriter</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>() =&gt; ClipboardWriter | undefined</pre>
+        
+        <p><strong>Returns:</strong> <code>ClipboardWriter | undefined</code></p>
+      </div>
+    
+  </article>
+            </section>
+            <section>
+              <h3>src/writeClipboardTextAsync.ts</h3>
+              <article class="item" id="symbol-writeclipboardtextasync" data-search="writeClipboardTextAsync  function src/writeClipboardTextAsync.ts Requests a host clipboard write while converting missing and rejected host access into explicit outcomes. ClipboardWriter ClipboardWriteResult (writer: ClipboardWriter | undefined, text: string) =&gt; Promise&lt;ClipboardWriteResult&gt;">
+    <h4>writeClipboardTextAsync</h4>
+    
+    <p class="muted">function • <code>src/writeClipboardTextAsync.ts:4:1</code></p>
+    <p>Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <div><strong>Related symbols:</strong> <ul class="chips"><li class="chip">ClipboardWriter</li><li class="chip">ClipboardWriteResult</li></ul></div>
+    <div>
+        <h5>Signature</h5>
+        <pre>(writer: ClipboardWriter | undefined, text: string) =&gt; Promise&lt;ClipboardWriteResult&gt;</pre>
+        <table>
+                <thead><tr><th>Parameter</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+                <tbody>
+                  <tr>
+                        <td><code>text</code></td>
+                        <td><code>string</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr><tr>
+                        <td><code>writer</code></td>
+                        <td><code>ClipboardWriter | undefined</code></td>
+                        <td>yes</td>
+                        <td></td>
+                      </tr>
+                </tbody>
+              </table>
+        <p><strong>Returns:</strong> <code>Promise&lt;ClipboardWriteResult&gt;</code></p>
+      </div>
+    
+  </article>
+            </section>
     </section>
     <section class="panel">
       <h2>Component registry</h2>
-      <article class="item" id="component-manifestcontext" data-search="ManifestContext src/ManifestContext.tsx  children ReactNode value import(&quot;../../../src/ManifestContext&quot;).ManifestContextValue | null">
+      <article class="item" id="component-clipboardwriterprovider" data-search="ClipboardWriterProvider src/ClipboardWriterProvider.tsx Supplies the host-owned clipboard writer without selecting a browser or native implementation. children React.ReactNode | undefined writer ClipboardWriter">
+    <h3>ClipboardWriterProvider</h3>
+    <p class="muted"><code>src/ClipboardWriterProvider.tsx:7:1</code></p>
+    <p>Supplies the host-owned clipboard writer without selecting a browser or native implementation.</p>
+    
+    <p><strong>Export paths:</strong> <code>src/index.ts</code></p>
+    <table>
+      <thead><tr><th>Prop</th><th>Type</th><th>Required</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr>
+              <td><code>children</code></td>
+              <td><code>React.ReactNode | undefined</code></td>
+              <td>no</td>
+              <td></td>
+            </tr><tr>
+              <td><code>writer</code></td>
+              <td><code>ClipboardWriter</code></td>
+              <td>yes</td>
+              <td></td>
+            </tr>
+      </tbody>
+    </table>
+  </article><article class="item" id="component-manifestcontext" data-search="ManifestContext src/ManifestContext.tsx  children ReactNode value import(&quot;../../../src/ManifestContext&quot;).ManifestContextValue | null">
     <h3>ManifestContext</h3>
     <p class="muted"><code>src/ManifestContext.tsx:13:14</code></p>
     
@@ -4007,6 +4201,17 @@ must not provide credential resolution.</td>
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterContext_tsx --&gt; module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterProvider_test_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_types_clipboard_ts
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_componentRegistry_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
@@ -4192,13 +4397,25 @@ must not provide credential resolution.</td>
   package__ankhorage_runtime -.-&gt; module_src_runtimeStructuredResultProjection_test_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_types_clipboard_ts
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_types_runtimeFlow_ts
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_useClipboardWriter_ts
+  module_src_useClipboardWriter_ts --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --&gt; module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_useRuntimeMediaProps_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_useRuntimeStateBindings_ts
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_writeClipboardTextAsync_test_ts
+  module_src_writeClipboardTextAsync_test_ts --&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --&gt; module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   package__ankhorage_runtime -.-&gt; module_tests_reactNativeWebCompatibility_fixture_tsx
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
@@ -4236,6 +4453,17 @@ must not provide credential resolution.</td>
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterContext_tsx --&gt; module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterProvider_test_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_types_clipboard_ts
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_componentRegistry_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
@@ -4421,13 +4649,25 @@ must not provide credential resolution.</td>
   package__ankhorage_runtime -.-&gt; module_src_runtimeStructuredResultProjection_test_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_types_clipboard_ts
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_types_runtimeFlow_ts
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_useClipboardWriter_ts
+  module_src_useClipboardWriter_ts --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --&gt; module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_useRuntimeMediaProps_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
   package__ankhorage_runtime -.-&gt; module_src_useRuntimeStateBindings_ts
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_writeClipboardTextAsync_test_ts
+  module_src_writeClipboardTextAsync_test_ts --&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
+  package__ankhorage_runtime -.-&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --&gt; module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   package__ankhorage_runtime -.-&gt; module_tests_reactNativeWebCompatibility_fixture_tsx
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
@@ -4454,6 +4694,9 @@ must not provide credential resolution.</td>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts[&quot;src/capabilities/resolveRuntimeContextCapability.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -4501,9 +4744,13 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
   module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
@@ -4512,6 +4759,11 @@ must not provide credential resolution.</td>
   module_src_apiCapabilities_test_ts --&gt; module_src_apiCapabilities_ts
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx --&gt; module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_types_clipboard_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --&gt; module_src_runtimeBindings_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --&gt; module_src_types_runtimeFlow_ts
   module_src_ManifestContext_tsx --&gt; module_src_runtimeStateAdapter_ts
@@ -4604,7 +4856,11 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_useClipboardWriter_ts --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --&gt; module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
+  module_src_writeClipboardTextAsync_test_ts --&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --&gt; module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
   module_tests_runtime_test_ts --&gt; module_src_runtimeManifest_ts
@@ -4619,6 +4875,9 @@ must not provide credential resolution.</td>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts[&quot;src/capabilities/resolveRuntimeContextCapability.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -4666,9 +4925,13 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
   module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
@@ -4677,6 +4940,11 @@ must not provide credential resolution.</td>
   module_src_apiCapabilities_test_ts --&gt; module_src_apiCapabilities_ts
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --&gt; module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --&gt; module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx --&gt; module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --&gt; module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --&gt; module_src_types_clipboard_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --&gt; module_src_runtimeBindings_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --&gt; module_src_types_runtimeFlow_ts
   module_src_ManifestContext_tsx --&gt; module_src_runtimeStateAdapter_ts
@@ -4769,7 +5037,11 @@ must not provide credential resolution.</td>
   module_src_runtimeStateReactivity_test_tsx --&gt; module_src_runtimeStateAdapter_ts
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --&gt; module_src_runtimeBindings_ts
+  module_src_useClipboardWriter_ts --&gt; module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --&gt; module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts --&gt; module_src_runtimeMedia_ts
+  module_src_writeClipboardTextAsync_test_ts --&gt; module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --&gt; module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --&gt; module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --&gt; module_src_capabilities_index_ts
   module_tests_runtime_test_ts --&gt; module_src_runtimeManifest_ts
@@ -4786,6 +5058,9 @@ must not provide credential resolution.</td>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts[&quot;src/capabilities/resolveRuntimeContextCapability.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -4833,9 +5108,13 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
   module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
@@ -4843,6 +5122,14 @@ must not provide credential resolution.</td>
   module_tests_runtimeServerApiArtifact_test_ts[&quot;tests/runtimeServerApiArtifact.test.ts&quot;]
   export_applyRuntimeBindingDataPath[&quot;applyRuntimeBindingDataPath&quot;]
   module_src_runtimeBindings_ts --&gt; export_applyRuntimeBindingDataPath
+  export_ClipboardWriter[&quot;ClipboardWriter&quot;]
+  module_src_types_clipboard_ts --&gt; export_ClipboardWriter
+  export_ClipboardWriter -.-&gt; export_ClipboardWriteResult
+  export_ClipboardWriteResult[&quot;ClipboardWriteResult&quot;]
+  module_src_types_clipboard_ts --&gt; export_ClipboardWriteResult
+  export_ClipboardWriterProvider[&quot;ClipboardWriterProvider&quot;]
+  module_src_ClipboardWriterProvider_tsx --&gt; export_ClipboardWriterProvider
+  export_ClipboardWriterProvider -.-&gt; export_ClipboardWriter
   export_ComponentRegistry[&quot;ComponentRegistry&quot;]
   module_src_componentRegistry_ts --&gt; export_ComponentRegistry
   export_composeRuntimeCapabilityExecutor[&quot;composeRuntimeCapabilityExecutor&quot;]
@@ -5110,6 +5397,9 @@ must not provide credential resolution.</td>
   module_src_RuntimeScreen_tsx --&gt; export_RuntimeScreenProps
   export_shouldRenderRuntimeRepeatEmptyState[&quot;shouldRenderRuntimeRepeatEmptyState&quot;]
   module_src_runtimeRepeatEmptyState_ts --&gt; export_shouldRenderRuntimeRepeatEmptyState
+  export_useClipboardWriter[&quot;useClipboardWriter&quot;]
+  module_src_useClipboardWriter_ts --&gt; export_useClipboardWriter
+  export_useClipboardWriter -.-&gt; export_ClipboardWriter
   export_useManifest[&quot;useManifest&quot;]
   module_src_ManifestContext_tsx --&gt; export_useManifest
   export_useManifestContext[&quot;useManifestContext&quot;]
@@ -5127,6 +5417,10 @@ must not provide credential resolution.</td>
   export_wrapRuntimeEventProps[&quot;wrapRuntimeEventProps&quot;]
   module_src_runtimeActionRegistry_ts --&gt; export_wrapRuntimeEventProps
   export_wrapRuntimeEventProps -.-&gt; export_RuntimeEventPropWrapArgs
+  export_writeClipboardTextAsync[&quot;writeClipboardTextAsync&quot;]
+  module_src_writeClipboardTextAsync_ts --&gt; export_writeClipboardTextAsync
+  export_writeClipboardTextAsync -.-&gt; export_ClipboardWriter
+  export_writeClipboardTextAsync -.-&gt; export_ClipboardWriteResult
 </div>
     <details>
       <summary>View Mermaid source</summary>
@@ -5138,6 +5432,9 @@ must not provide credential resolution.</td>
   module_src_capabilities_index_ts[&quot;src/capabilities/index.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts[&quot;src/capabilities/resolveRuntimeContextCapability.test.ts&quot;]
   module_src_capabilities_resolveRuntimeContextCapability_ts[&quot;src/capabilities/resolveRuntimeContextCapability.ts&quot;]
+  module_src_ClipboardWriterContext_tsx[&quot;src/ClipboardWriterContext.tsx&quot;]
+  module_src_ClipboardWriterProvider_test_tsx[&quot;src/ClipboardWriterProvider.test.tsx&quot;]
+  module_src_ClipboardWriterProvider_tsx[&quot;src/ClipboardWriterProvider.tsx&quot;]
   module_src_componentRegistry_ts[&quot;src/componentRegistry.ts&quot;]
   module_src_executeRuntimeFlowCapabilityAsync_ts[&quot;src/executeRuntimeFlowCapabilityAsync.ts&quot;]
   module_src_index_ts[&quot;src/index.ts&quot;]
@@ -5185,9 +5482,13 @@ must not provide credential resolution.</td>
   module_src_runtimeStateAdapter_ts[&quot;src/runtimeStateAdapter.ts&quot;]
   module_src_runtimeStateReactivity_test_tsx[&quot;src/runtimeStateReactivity.test.tsx&quot;]
   module_src_runtimeStructuredResultProjection_test_tsx[&quot;src/runtimeStructuredResultProjection.test.tsx&quot;]
+  module_src_types_clipboard_ts[&quot;src/types/clipboard.ts&quot;]
   module_src_types_runtimeFlow_ts[&quot;src/types/runtimeFlow.ts&quot;]
+  module_src_useClipboardWriter_ts[&quot;src/useClipboardWriter.ts&quot;]
   module_src_useRuntimeMediaProps_ts[&quot;src/useRuntimeMediaProps.ts&quot;]
   module_src_useRuntimeStateBindings_ts[&quot;src/useRuntimeStateBindings.ts&quot;]
+  module_src_writeClipboardTextAsync_test_ts[&quot;src/writeClipboardTextAsync.test.ts&quot;]
+  module_src_writeClipboardTextAsync_ts[&quot;src/writeClipboardTextAsync.ts&quot;]
   module_tests_reactNativeWebCompatibility_fixture_tsx[&quot;tests/reactNativeWebCompatibility.fixture.tsx&quot;]
   module_tests_reactNativeWebCompatibility_test_ts[&quot;tests/reactNativeWebCompatibility.test.ts&quot;]
   module_tests_runtime_test_ts[&quot;tests/runtime.test.ts&quot;]
@@ -5195,6 +5496,14 @@ must not provide credential resolution.</td>
   module_tests_runtimeServerApiArtifact_test_ts[&quot;tests/runtimeServerApiArtifact.test.ts&quot;]
   export_applyRuntimeBindingDataPath[&quot;applyRuntimeBindingDataPath&quot;]
   module_src_runtimeBindings_ts --&gt; export_applyRuntimeBindingDataPath
+  export_ClipboardWriter[&quot;ClipboardWriter&quot;]
+  module_src_types_clipboard_ts --&gt; export_ClipboardWriter
+  export_ClipboardWriter -.-&gt; export_ClipboardWriteResult
+  export_ClipboardWriteResult[&quot;ClipboardWriteResult&quot;]
+  module_src_types_clipboard_ts --&gt; export_ClipboardWriteResult
+  export_ClipboardWriterProvider[&quot;ClipboardWriterProvider&quot;]
+  module_src_ClipboardWriterProvider_tsx --&gt; export_ClipboardWriterProvider
+  export_ClipboardWriterProvider -.-&gt; export_ClipboardWriter
   export_ComponentRegistry[&quot;ComponentRegistry&quot;]
   module_src_componentRegistry_ts --&gt; export_ComponentRegistry
   export_composeRuntimeCapabilityExecutor[&quot;composeRuntimeCapabilityExecutor&quot;]
@@ -5462,6 +5771,9 @@ must not provide credential resolution.</td>
   module_src_RuntimeScreen_tsx --&gt; export_RuntimeScreenProps
   export_shouldRenderRuntimeRepeatEmptyState[&quot;shouldRenderRuntimeRepeatEmptyState&quot;]
   module_src_runtimeRepeatEmptyState_ts --&gt; export_shouldRenderRuntimeRepeatEmptyState
+  export_useClipboardWriter[&quot;useClipboardWriter&quot;]
+  module_src_useClipboardWriter_ts --&gt; export_useClipboardWriter
+  export_useClipboardWriter -.-&gt; export_ClipboardWriter
   export_useManifest[&quot;useManifest&quot;]
   module_src_ManifestContext_tsx --&gt; export_useManifest
   export_useManifestContext[&quot;useManifestContext&quot;]
@@ -5479,6 +5791,10 @@ must not provide credential resolution.</td>
   export_wrapRuntimeEventProps[&quot;wrapRuntimeEventProps&quot;]
   module_src_runtimeActionRegistry_ts --&gt; export_wrapRuntimeEventProps
   export_wrapRuntimeEventProps -.-&gt; export_RuntimeEventPropWrapArgs
+  export_writeClipboardTextAsync[&quot;writeClipboardTextAsync&quot;]
+  module_src_writeClipboardTextAsync_ts --&gt; export_writeClipboardTextAsync
+  export_writeClipboardTextAsync -.-&gt; export_ClipboardWriter
+  export_writeClipboardTextAsync -.-&gt; export_ClipboardWriteResult
 </pre>
     </details>
   </article><article class="item" data-search="applyRuntimeBindingDataPath sequence diagrams/sequences/apply-runtime-binding-data-path.mmd">
@@ -5825,6 +6141,24 @@ must not provide credential resolution.</td>
   participant_useRuntimeScreenOperationLoaders--&gt;&gt;participant_RuntimeScreen: return
 </pre>
     </details>
+  </article><article class="item" data-search="useClipboardWriter sequence diagrams/sequences/use-clipboard-writer.mmd">
+    <h3>useClipboardWriter sequence</h3>
+    <p class="muted"><code>diagrams/sequences/use-clipboard-writer.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_use as use
+  participant participant_useClipboardWriter as useClipboardWriter
+  participant_useClipboardWriter-&gt;&gt;participant_use: use()
+  participant_use--&gt;&gt;participant_useClipboardWriter: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_use as use
+  participant participant_useClipboardWriter as useClipboardWriter
+  participant_useClipboardWriter-&gt;&gt;participant_use: use()
+  participant_use--&gt;&gt;participant_useClipboardWriter: return
+</pre>
+    </details>
   </article><article class="item" data-search="useManifest sequence diagrams/sequences/use-manifest.mmd">
     <h3>useManifest sequence</h3>
     <p class="muted"><code>diagrams/sequences/use-manifest.mmd</code></p>
@@ -5939,6 +6273,24 @@ must not provide credential resolution.</td>
   participant_eventNameToCallbackProp--&gt;&gt;participant_wrapRuntimeEventProps: return
 </pre>
     </details>
+  </article><article class="item" data-search="writeClipboardTextAsync sequence diagrams/sequences/write-clipboard-text-async.mmd">
+    <h3>writeClipboardTextAsync sequence</h3>
+    <p class="muted"><code>diagrams/sequences/write-clipboard-text-async.mmd</code></p>
+    <div class="mermaid">sequenceDiagram
+  participant participant_writeClipboardTextAsync as writeClipboardTextAsync
+  participant participant_writeTextAsync as writeTextAsync
+  participant_writeClipboardTextAsync-&gt;&gt;participant_writeTextAsync: writer.writeTextAsync()
+  participant_writeTextAsync--&gt;&gt;participant_writeClipboardTextAsync: return
+</div>
+    <details>
+      <summary>View Mermaid source</summary>
+      <pre>sequenceDiagram
+  participant participant_writeClipboardTextAsync as writeClipboardTextAsync
+  participant participant_writeTextAsync as writeTextAsync
+  participant_writeClipboardTextAsync-&gt;&gt;participant_writeTextAsync: writer.writeTextAsync()
+  participant_writeTextAsync--&gt;&gt;participant_writeClipboardTextAsync: return
+</pre>
+    </details>
   </article>
     </section>
           <section class="panel" data-search="donation sponsor support">
@@ -5979,6 +6331,24 @@ must not provide credential resolution.</td>
     <h3>resolveRepeatItemSchema</h3>
     <p class="muted"><code>src/capabilities/resolveRuntimeContextCapability.ts:81:1</code></p>
     <p>Derives the item schema only from an enclosing declared repeat-source array.</p>
+</article>
+    </section>
+  </section><section id="view-src-clipboardwriterprovider-test-tsx" class="view" data-view="src/ClipboardWriterProvider.test.tsx" hidden>
+    <section class="panel">
+      <h2>src/ClipboardWriterProvider.test.tsx</h2>
+      <article class="item" data-search="ClipboardWriterProbe src/ClipboardWriterProvider.test.tsx ">
+    <h3>ClipboardWriterProbe</h3>
+    <p class="muted"><code>src/ClipboardWriterProvider.test.tsx:8:1</code></p>
+    <p class="empty">No description available.</p>
+</article>
+    </section>
+  </section><section id="view-src-clipboardwriterprovider-tsx" class="view" data-view="src/ClipboardWriterProvider.tsx" hidden>
+    <section class="panel">
+      <h2>src/ClipboardWriterProvider.tsx</h2>
+      <article class="item" data-search="ClipboardWriterProvider src/ClipboardWriterProvider.tsx Supplies the host-owned clipboard writer without selecting a browser or native implementation.">
+    <h3>ClipboardWriterProvider</h3>
+    <p class="muted"><code>src/ClipboardWriterProvider.tsx:7:1</code></p>
+    <p>Supplies the host-owned clipboard writer without selecting a browser or native implementation.</p>
 </article>
     </section>
   </section><section id="view-src-componentregistry-ts" class="view" data-view="src/componentRegistry.ts" hidden>
@@ -6951,6 +7321,15 @@ must not provide credential resolution.</td>
     <p class="empty">No description available.</p>
 </article>
     </section>
+  </section><section id="view-src-useclipboardwriter-ts" class="view" data-view="src/useClipboardWriter.ts" hidden>
+    <section class="panel">
+      <h2>src/useClipboardWriter.ts</h2>
+      <article class="item" data-search="useClipboardWriter src/useClipboardWriter.ts Reads an optional host clipboard writer so components can report unavailable access without a local fallback.">
+    <h3>useClipboardWriter</h3>
+    <p class="muted"><code>src/useClipboardWriter.ts:7:1</code></p>
+    <p>Reads an optional host clipboard writer so components can report unavailable access without a local fallback.</p>
+</article>
+    </section>
   </section><section id="view-src-useruntimemediaprops-ts" class="view" data-view="src/useRuntimeMediaProps.ts" hidden>
     <section class="panel">
       <h2>src/useRuntimeMediaProps.ts</h2>
@@ -6983,6 +7362,15 @@ must not provide credential resolution.</td>
     <h3>collectStateExpressionPaths</h3>
     <p class="muted"><code>src/useRuntimeStateBindings.ts:56:1</code></p>
     <p class="empty">No description available.</p>
+</article>
+    </section>
+  </section><section id="view-src-writeclipboardtextasync-ts" class="view" data-view="src/writeClipboardTextAsync.ts" hidden>
+    <section class="panel">
+      <h2>src/writeClipboardTextAsync.ts</h2>
+      <article class="item" data-search="writeClipboardTextAsync src/writeClipboardTextAsync.ts Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.">
+    <h3>writeClipboardTextAsync</h3>
+    <p class="muted"><code>src/writeClipboardTextAsync.ts:4:1</code></p>
+    <p>Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.</p>
 </article>
     </section>
   </section>

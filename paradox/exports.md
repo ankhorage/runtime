@@ -15,6 +15,38 @@ Applies a dotted path to a serializable binding value.
   - value: `import("@ankhorage/contracts").SerializableValue | undefined`
   - returns: `import("@ankhorage/contracts").SerializableValue | undefined`
 
+## ClipboardWriter
+
+Kind: `type`
+Module: `src/types/clipboard.ts`
+Source: `src/types/clipboard.ts:5:1`
+
+### Members
+
+| Name | Kind | Type | Required | Description |
+| --- | --- | --- | --- | --- |
+| writeTextAsync | property | `(text: string) => Promise<ClipboardWriteResult>` | yes |  |
+
+## ClipboardWriteResult
+
+Kind: `unknown`
+Module: `src/types/clipboard.ts`
+Source: `src/types/clipboard.ts:2:1`
+
+## ClipboardWriterProvider
+
+Kind: `function`
+Module: `src/ClipboardWriterProvider.tsx`
+Source: `src/ClipboardWriterProvider.tsx:7:1`
+
+Supplies the host-owned clipboard writer without selecting a browser or native implementation.
+
+### Signatures
+
+- `(props: { readonly children: React.ReactNode; readonly writer: ClipboardWriter; }) => React.JSX.Element`
+  - props: `{ readonly children: React.ReactNode; readonly writer: ClipboardWriter; }`
+  - returns: `React.JSX.Element`
+
 ## ComponentRegistry
 
 Kind: `unknown`
@@ -1208,6 +1240,19 @@ Source: `src/runtimeRepeatEmptyState.ts:3:1`
   - args: `{ readonly diagnostics?: readonly DataSourceDiagnostic[]; readonly items?: readonly BindingValue[]; readonly status?: "pending" | "ready"; }`
   - returns: `boolean`
 
+## useClipboardWriter
+
+Kind: `function`
+Module: `src/useClipboardWriter.ts`
+Source: `src/useClipboardWriter.ts:7:1`
+
+Reads an optional host clipboard writer so components can report unavailable access without a local fallback.
+
+### Signatures
+
+- `() => ClipboardWriter | undefined`
+  - returns: `ClipboardWriter | undefined`
+
 ## useManifest
 
 Kind: `function`
@@ -1285,3 +1330,18 @@ Wraps component callbacks so manifest event bindings retain the original callbac
 - `(args: RuntimeEventPropWrapArgs) => Record<string, unknown>`
   - args: `RuntimeEventPropWrapArgs`
   - returns: `Record<string, unknown>`
+
+## writeClipboardTextAsync
+
+Kind: `function`
+Module: `src/writeClipboardTextAsync.ts`
+Source: `src/writeClipboardTextAsync.ts:4:1`
+
+Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.
+
+### Signatures
+
+- `(writer: ClipboardWriter | undefined, text: string) => Promise<ClipboardWriteResult>`
+  - text: `string`
+  - writer: `ClipboardWriter | undefined`
+  - returns: `Promise<ClipboardWriteResult>`

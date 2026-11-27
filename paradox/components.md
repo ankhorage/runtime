@@ -1,5 +1,18 @@
 # Components
 
+## ClipboardWriterProvider
+
+Source: `src/ClipboardWriterProvider.tsx:7:1`
+
+Supplies the host-owned clipboard writer without selecting a browser or native implementation.
+
+Export paths: `src/index.ts`
+
+| Prop | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| children | `React.ReactNode \| undefined` | no | — |  |
+| writer | `ClipboardWriter` | yes | — |  |
+
 ## ManifestContext
 
 Source: `src/ManifestContext.tsx:13:14`

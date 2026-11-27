@@ -42,6 +42,98 @@
     "structuredRows": []
   },
   {
+    "name": "ClipboardWriter",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "type",
+    "modulePath": "src/types/clipboard.ts",
+    "sourceLocation": {
+      "filePath": "src/types/clipboard.ts",
+      "line": 5,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ClipboardWriteResult"
+    ],
+    "signatures": [],
+    "members": [
+      {
+        "name": "writeTextAsync",
+        "kind": "property",
+        "type": "(text: string) => Promise<ClipboardWriteResult>",
+        "required": true,
+        "description": null
+      }
+    ],
+    "structuredRows": []
+  },
+  {
+    "name": "ClipboardWriteResult",
+    "title": null,
+    "description": null,
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "unknown",
+    "modulePath": "src/types/clipboard.ts",
+    "sourceLocation": {
+      "filePath": "src/types/clipboard.ts",
+      "line": 2,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [],
+    "signatures": [],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "ClipboardWriterProvider",
+    "title": null,
+    "description": "Supplies the host-owned clipboard writer without selecting a browser or native implementation.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/ClipboardWriterProvider.tsx",
+    "sourceLocation": {
+      "filePath": "src/ClipboardWriterProvider.tsx",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ClipboardWriter"
+    ],
+    "signatures": [
+      {
+        "label": "(props: { readonly children: React.ReactNode; readonly writer: ClipboardWriter; }) => React.JSX.Element",
+        "parameters": [
+          {
+            "name": "props",
+            "type": "{ readonly children: React.ReactNode; readonly writer: ClipboardWriter; }",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "React.JSX.Element",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "ComponentRegistry",
     "title": null,
     "description": null,
@@ -4066,6 +4158,37 @@
     "structuredRows": []
   },
   {
+    "name": "useClipboardWriter",
+    "title": null,
+    "description": "Reads an optional host clipboard writer so components can report unavailable access without a local fallback.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/useClipboardWriter.ts",
+    "sourceLocation": {
+      "filePath": "src/useClipboardWriter.ts",
+      "line": 7,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ClipboardWriter"
+    ],
+    "signatures": [
+      {
+        "label": "() => ClipboardWriter | undefined",
+        "parameters": [],
+        "returnType": "ClipboardWriter | undefined",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
     "name": "useManifest",
     "title": null,
     "description": "Returns the active application manifest from the owning Runtime provider.",
@@ -4255,6 +4378,51 @@
           }
         ],
         "returnType": "Record<string, unknown>",
+        "returnDescription": null
+      }
+    ],
+    "members": [],
+    "structuredRows": []
+  },
+  {
+    "name": "writeClipboardTextAsync",
+    "title": null,
+    "description": "Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.",
+    "isReadme": false,
+    "see": [],
+    "security": [],
+    "kind": "function",
+    "modulePath": "src/writeClipboardTextAsync.ts",
+    "sourceLocation": {
+      "filePath": "src/writeClipboardTextAsync.ts",
+      "line": 4,
+      "column": 1
+    },
+    "exportPaths": [
+      "src/index.ts"
+    ],
+    "relatedSymbols": [
+      "ClipboardWriter",
+      "ClipboardWriteResult"
+    ],
+    "signatures": [
+      {
+        "label": "(writer: ClipboardWriter | undefined, text: string) => Promise<ClipboardWriteResult>",
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "required": true,
+            "description": null
+          },
+          {
+            "name": "writer",
+            "type": "ClipboardWriter | undefined",
+            "required": true,
+            "description": null
+          }
+        ],
+        "returnType": "Promise<ClipboardWriteResult>",
         "returnDescription": null
       }
     ],

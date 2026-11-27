@@ -19,6 +19,17 @@ graph TD
   module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
   package__ankhorage_runtime -.-> module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx["src/ClipboardWriterContext.tsx"]
+  package__ankhorage_runtime -.-> module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterContext_tsx --> module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx["src/ClipboardWriterProvider.test.tsx"]
+  package__ankhorage_runtime -.-> module_src_ClipboardWriterProvider_test_tsx
+  module_src_ClipboardWriterProvider_test_tsx --> module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --> module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx["src/ClipboardWriterProvider.tsx"]
+  package__ankhorage_runtime -.-> module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_tsx --> module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --> module_src_types_clipboard_ts
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   package__ankhorage_runtime -.-> module_src_componentRegistry_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts["src/executeRuntimeFlowCapabilityAsync.ts"]
@@ -204,13 +215,25 @@ graph TD
   package__ankhorage_runtime -.-> module_src_runtimeStructuredResultProjection_test_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --> module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --> module_src_runtimeBindings_ts
+  module_src_types_clipboard_ts["src/types/clipboard.ts"]
+  package__ankhorage_runtime -.-> module_src_types_clipboard_ts
   module_src_types_runtimeFlow_ts["src/types/runtimeFlow.ts"]
   package__ankhorage_runtime -.-> module_src_types_runtimeFlow_ts
+  module_src_useClipboardWriter_ts["src/useClipboardWriter.ts"]
+  package__ankhorage_runtime -.-> module_src_useClipboardWriter_ts
+  module_src_useClipboardWriter_ts --> module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --> module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   package__ankhorage_runtime -.-> module_src_useRuntimeMediaProps_ts
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
   module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
   package__ankhorage_runtime -.-> module_src_useRuntimeStateBindings_ts
+  module_src_writeClipboardTextAsync_test_ts["src/writeClipboardTextAsync.test.ts"]
+  package__ankhorage_runtime -.-> module_src_writeClipboardTextAsync_test_ts
+  module_src_writeClipboardTextAsync_test_ts --> module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts["src/writeClipboardTextAsync.ts"]
+  package__ankhorage_runtime -.-> module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --> module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
   package__ankhorage_runtime -.-> module_tests_reactNativeWebCompatibility_fixture_tsx
   module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx

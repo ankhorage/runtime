@@ -6,6 +6,9 @@ graph LR
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_test_ts["src/capabilities/resolveRuntimeContextCapability.test.ts"]
   module_src_capabilities_resolveRuntimeContextCapability_ts["src/capabilities/resolveRuntimeContextCapability.ts"]
+  module_src_ClipboardWriterContext_tsx["src/ClipboardWriterContext.tsx"]
+  module_src_ClipboardWriterProvider_test_tsx["src/ClipboardWriterProvider.test.tsx"]
+  module_src_ClipboardWriterProvider_tsx["src/ClipboardWriterProvider.tsx"]
   module_src_componentRegistry_ts["src/componentRegistry.ts"]
   module_src_executeRuntimeFlowCapabilityAsync_ts["src/executeRuntimeFlowCapabilityAsync.ts"]
   module_src_index_ts["src/index.ts"]
@@ -53,9 +56,13 @@ graph LR
   module_src_runtimeStateAdapter_ts["src/runtimeStateAdapter.ts"]
   module_src_runtimeStateReactivity_test_tsx["src/runtimeStateReactivity.test.tsx"]
   module_src_runtimeStructuredResultProjection_test_tsx["src/runtimeStructuredResultProjection.test.tsx"]
+  module_src_types_clipboard_ts["src/types/clipboard.ts"]
   module_src_types_runtimeFlow_ts["src/types/runtimeFlow.ts"]
+  module_src_useClipboardWriter_ts["src/useClipboardWriter.ts"]
   module_src_useRuntimeMediaProps_ts["src/useRuntimeMediaProps.ts"]
   module_src_useRuntimeStateBindings_ts["src/useRuntimeStateBindings.ts"]
+  module_src_writeClipboardTextAsync_test_ts["src/writeClipboardTextAsync.test.ts"]
+  module_src_writeClipboardTextAsync_ts["src/writeClipboardTextAsync.ts"]
   module_tests_reactNativeWebCompatibility_fixture_tsx["tests/reactNativeWebCompatibility.fixture.tsx"]
   module_tests_reactNativeWebCompatibility_test_ts["tests/reactNativeWebCompatibility.test.ts"]
   module_tests_runtime_test_ts["tests/runtime.test.ts"]
@@ -64,6 +71,11 @@ graph LR
   module_src_apiCapabilities_test_ts --> module_src_apiCapabilities_ts
   module_src_capabilities_resolveRuntimeContextCapability_test_ts --> module_src_capabilities_resolveRuntimeContextCapability_ts
   module_src_capabilities_resolveRuntimeContextCapability_ts --> module_src_capabilities_index_ts
+  module_src_ClipboardWriterContext_tsx --> module_src_types_clipboard_ts
+  module_src_ClipboardWriterProvider_test_tsx --> module_src_ClipboardWriterProvider_tsx
+  module_src_ClipboardWriterProvider_test_tsx --> module_src_useClipboardWriter_ts
+  module_src_ClipboardWriterProvider_tsx --> module_src_ClipboardWriterContext_tsx
+  module_src_ClipboardWriterProvider_tsx --> module_src_types_clipboard_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_runtimeBindings_ts
   module_src_executeRuntimeFlowCapabilityAsync_ts --> module_src_types_runtimeFlow_ts
   module_src_ManifestContext_tsx --> module_src_runtimeStateAdapter_ts
@@ -156,7 +168,11 @@ graph LR
   module_src_runtimeStateReactivity_test_tsx --> module_src_runtimeStateAdapter_ts
   module_src_runtimeStructuredResultProjection_test_tsx --> module_src_registry_tsx
   module_src_runtimeStructuredResultProjection_test_tsx --> module_src_runtimeBindings_ts
+  module_src_useClipboardWriter_ts --> module_src_ClipboardWriterContext_tsx
+  module_src_useClipboardWriter_ts --> module_src_types_clipboard_ts
   module_src_useRuntimeMediaProps_ts --> module_src_runtimeMedia_ts
+  module_src_writeClipboardTextAsync_test_ts --> module_src_writeClipboardTextAsync_ts
+  module_src_writeClipboardTextAsync_ts --> module_src_types_clipboard_ts
   module_tests_reactNativeWebCompatibility_fixture_tsx --> module_src_RuntimeRenderer_tsx
   module_tests_runtime_test_ts --> module_src_capabilities_index_ts
   module_tests_runtime_test_ts --> module_src_runtimeManifest_ts

@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.6.4",
+      "value": "v5.7.0",
       "color": "cb3837"
     },
     {
@@ -262,6 +262,36 @@
       ]
     },
     {
+      "path": "src/ClipboardWriterContext.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/clipboard.ts"
+      ],
+      "exports": [
+        "ClipboardWriterContext"
+      ]
+    },
+    {
+      "path": "src/ClipboardWriterProvider.test.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/ClipboardWriterProvider.tsx",
+        "src/useClipboardWriter.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/ClipboardWriterProvider.tsx",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/ClipboardWriterContext.tsx",
+        "src/types/clipboard.ts"
+      ],
+      "exports": [
+        "ClipboardWriterProvider"
+      ]
+    },
+    {
       "path": "src/componentRegistry.ts",
       "isEntrypoint": false,
       "dependencies": [],
@@ -287,6 +317,9 @@
       "dependencies": [],
       "exports": [
         "applyRuntimeBindingDataPath",
+        "ClipboardWriter",
+        "ClipboardWriteResult",
+        "ClipboardWriterProvider",
         "ComponentRegistry",
         "composeRuntimeCapabilityExecutor",
         "composeRuntimeNodePropsResolver",
@@ -377,12 +410,14 @@
         "RuntimeScreenOperationLoaderState",
         "RuntimeScreenProps",
         "shouldRenderRuntimeRepeatEmptyState",
+        "useClipboardWriter",
         "useManifest",
         "useManifestContext",
         "useOptionalManifestContext",
         "useRuntimeRendererConfig",
         "useRuntimeScreenOperationLoaders",
-        "wrapRuntimeEventProps"
+        "wrapRuntimeEventProps",
+        "writeClipboardTextAsync"
       ]
     },
     {
@@ -914,12 +949,32 @@
       "exports": []
     },
     {
+      "path": "src/types/clipboard.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "ClipboardWriter",
+        "ClipboardWriteResult"
+      ]
+    },
+    {
       "path": "src/types/runtimeFlow.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": [
         "RuntimeFlowPort",
         "RuntimeFlowStartRequest"
+      ]
+    },
+    {
+      "path": "src/useClipboardWriter.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/ClipboardWriterContext.tsx",
+        "src/types/clipboard.ts"
+      ],
+      "exports": [
+        "useClipboardWriter"
       ]
     },
     {
@@ -938,6 +993,24 @@
       "dependencies": [],
       "exports": [
         "useRuntimeStateBindings"
+      ]
+    },
+    {
+      "path": "src/writeClipboardTextAsync.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/writeClipboardTextAsync.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/writeClipboardTextAsync.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/types/clipboard.ts"
+      ],
+      "exports": [
+        "writeClipboardTextAsync"
       ]
     },
     {
@@ -1015,6 +1088,98 @@
             }
           ],
           "returnType": "import(\"@ankhorage/contracts\").SerializableValue | undefined",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ClipboardWriter",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "type",
+      "modulePath": "src/types/clipboard.ts",
+      "sourceLocation": {
+        "filePath": "src/types/clipboard.ts",
+        "line": 5,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ClipboardWriteResult"
+      ],
+      "signatures": [],
+      "members": [
+        {
+          "name": "writeTextAsync",
+          "kind": "property",
+          "type": "(text: string) => Promise<ClipboardWriteResult>",
+          "required": true,
+          "description": null
+        }
+      ],
+      "structuredRows": []
+    },
+    {
+      "name": "ClipboardWriteResult",
+      "title": null,
+      "description": null,
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "unknown",
+      "modulePath": "src/types/clipboard.ts",
+      "sourceLocation": {
+        "filePath": "src/types/clipboard.ts",
+        "line": 2,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [],
+      "signatures": [],
+      "members": [],
+      "structuredRows": []
+    },
+    {
+      "name": "ClipboardWriterProvider",
+      "title": null,
+      "description": "Supplies the host-owned clipboard writer without selecting a browser or native implementation.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/ClipboardWriterProvider.tsx",
+      "sourceLocation": {
+        "filePath": "src/ClipboardWriterProvider.tsx",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ClipboardWriter"
+      ],
+      "signatures": [
+        {
+          "label": "(props: { readonly children: React.ReactNode; readonly writer: ClipboardWriter; }) => React.JSX.Element",
+          "parameters": [
+            {
+              "name": "props",
+              "type": "{ readonly children: React.ReactNode; readonly writer: ClipboardWriter; }",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "React.JSX.Element",
           "returnDescription": null
         }
       ],
@@ -5046,6 +5211,37 @@
       "structuredRows": []
     },
     {
+      "name": "useClipboardWriter",
+      "title": null,
+      "description": "Reads an optional host clipboard writer so components can report unavailable access without a local fallback.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/useClipboardWriter.ts",
+      "sourceLocation": {
+        "filePath": "src/useClipboardWriter.ts",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ClipboardWriter"
+      ],
+      "signatures": [
+        {
+          "label": "() => ClipboardWriter | undefined",
+          "parameters": [],
+          "returnType": "ClipboardWriter | undefined",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
+    },
+    {
       "name": "useManifest",
       "title": null,
       "description": "Returns the active application manifest from the owning Runtime provider.",
@@ -5240,9 +5436,84 @@
       ],
       "members": [],
       "structuredRows": []
+    },
+    {
+      "name": "writeClipboardTextAsync",
+      "title": null,
+      "description": "Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "kind": "function",
+      "modulePath": "src/writeClipboardTextAsync.ts",
+      "sourceLocation": {
+        "filePath": "src/writeClipboardTextAsync.ts",
+        "line": 4,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "relatedSymbols": [
+        "ClipboardWriter",
+        "ClipboardWriteResult"
+      ],
+      "signatures": [
+        {
+          "label": "(writer: ClipboardWriter | undefined, text: string) => Promise<ClipboardWriteResult>",
+          "parameters": [
+            {
+              "name": "text",
+              "type": "string",
+              "required": true,
+              "description": null
+            },
+            {
+              "name": "writer",
+              "type": "ClipboardWriter | undefined",
+              "required": true,
+              "description": null
+            }
+          ],
+          "returnType": "Promise<ClipboardWriteResult>",
+          "returnDescription": null
+        }
+      ],
+      "members": [],
+      "structuredRows": []
     }
   ],
   "components": [
+    {
+      "name": "ClipboardWriterProvider",
+      "description": "Supplies the host-owned clipboard writer without selecting a browser or native implementation.",
+      "isReadme": false,
+      "see": [],
+      "security": [],
+      "modulePath": "src/ClipboardWriterProvider.tsx",
+      "sourceLocation": {
+        "filePath": "src/ClipboardWriterProvider.tsx",
+        "line": 7,
+        "column": 1
+      },
+      "exportPaths": [
+        "src/index.ts"
+      ],
+      "props": [
+        {
+          "name": "children",
+          "type": "React.ReactNode | undefined",
+          "required": false,
+          "description": null
+        },
+        {
+          "name": "writer",
+          "type": "ClipboardWriter",
+          "required": true,
+          "description": null
+        }
+      ]
+    },
     {
       "name": "ManifestContext",
       "description": null,
@@ -5578,6 +5849,28 @@
       "sourceLocation": {
         "filePath": "src/capabilities/resolveRuntimeContextCapability.ts",
         "line": 81,
+        "column": 1
+      }
+    },
+    {
+      "name": "ClipboardWriterProbe",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/ClipboardWriterProvider.test.tsx",
+        "line": 8,
+        "column": 1
+      }
+    },
+    {
+      "name": "ClipboardWriterProvider",
+      "description": "Supplies the host-owned clipboard writer without selecting a browser or native implementation.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/ClipboardWriterProvider.tsx",
+        "line": 7,
         "column": 1
       }
     },
@@ -7727,6 +8020,17 @@
       }
     },
     {
+      "name": "useClipboardWriter",
+      "description": "Reads an optional host clipboard writer so components can report unavailable access without a local fallback.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/useClipboardWriter.ts",
+        "line": 7,
+        "column": 1
+      }
+    },
+    {
       "name": "useRuntimeMediaProps",
       "description": null,
       "see": [],
@@ -7791,6 +8095,17 @@
         "line": 56,
         "column": 1
       }
+    },
+    {
+      "name": "writeClipboardTextAsync",
+      "description": "Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.",
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/writeClipboardTextAsync.ts",
+        "line": 4,
+        "column": 1
+      }
     }
   ],
   "sequenceScenarios": [
@@ -7800,6 +8115,14 @@
       "sourcePath": "src/runtimeBindings.ts",
       "symbolName": "applyRuntimeBindingDataPath",
       "description": "Applies a dotted path to a serializable binding value.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "ClipboardWriterProvider",
+      "sourcePath": "src/ClipboardWriterProvider.tsx",
+      "symbolName": "ClipboardWriterProvider",
+      "description": "Supplies the host-owned clipboard writer without selecting a browser or native implementation.",
       "isReadme": false
     },
     {
@@ -8100,6 +8423,14 @@
     },
     {
       "kind": "export",
+      "name": "useClipboardWriter",
+      "sourcePath": "src/useClipboardWriter.ts",
+      "symbolName": "useClipboardWriter",
+      "description": "Reads an optional host clipboard writer so components can report unavailable access without a local fallback.",
+      "isReadme": false
+    },
+    {
+      "kind": "export",
       "name": "useManifest",
       "sourcePath": "src/ManifestContext.tsx",
       "symbolName": "useManifest",
@@ -8145,6 +8476,14 @@
       "symbolName": "wrapRuntimeEventProps",
       "description": "Wraps component callbacks so manifest event bindings retain the original callback behavior.",
       "isReadme": false
+    },
+    {
+      "kind": "export",
+      "name": "writeClipboardTextAsync",
+      "sourcePath": "src/writeClipboardTextAsync.ts",
+      "symbolName": "writeClipboardTextAsync",
+      "description": "Requests a host clipboard write while converting missing and rejected host access into explicit outcomes.",
+      "isReadme": false
     }
   ],
   "graphs": {
@@ -8170,6 +8509,31 @@
         "sourcePath": "src/bindings.ts"
       },
       {
+        "fromPath": "src/ClipboardWriterContext.tsx",
+        "toPath": "src/types/clipboard.ts",
+        "sourcePath": "src/ClipboardWriterContext.tsx"
+      },
+      {
+        "fromPath": "src/ClipboardWriterProvider.test.tsx",
+        "toPath": "src/ClipboardWriterProvider.tsx",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
+      },
+      {
+        "fromPath": "src/ClipboardWriterProvider.test.tsx",
+        "toPath": "src/useClipboardWriter.ts",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
+      },
+      {
+        "fromPath": "src/ClipboardWriterProvider.tsx",
+        "toPath": "src/ClipboardWriterContext.tsx",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
+      },
+      {
+        "fromPath": "src/ClipboardWriterProvider.tsx",
+        "toPath": "src/types/clipboard.ts",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
+      },
+      {
         "fromPath": "src/executeRuntimeFlowCapabilityAsync.ts",
         "toPath": "src/runtimeBindings.ts",
         "sourcePath": "src/executeRuntimeFlowCapabilityAsync.ts"
@@ -8182,6 +8546,11 @@
       {
         "fromPath": "src/index.ts",
         "toPath": "src/capabilities/resolveRuntimeContextCapability.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/ClipboardWriterProvider.tsx",
         "sourcePath": "src/index.ts"
       },
       {
@@ -8271,7 +8640,22 @@
       },
       {
         "fromPath": "src/index.ts",
+        "toPath": "src/types/clipboard.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
         "toPath": "src/types/runtimeFlow.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/useClipboardWriter.ts",
+        "sourcePath": "src/index.ts"
+      },
+      {
+        "fromPath": "src/index.ts",
+        "toPath": "src/writeClipboardTextAsync.ts",
         "sourcePath": "src/index.ts"
       },
       {
@@ -8730,9 +9114,29 @@
         "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
       },
       {
+        "fromPath": "src/useClipboardWriter.ts",
+        "toPath": "src/ClipboardWriterContext.tsx",
+        "sourcePath": "src/useClipboardWriter.ts"
+      },
+      {
+        "fromPath": "src/useClipboardWriter.ts",
+        "toPath": "src/types/clipboard.ts",
+        "sourcePath": "src/useClipboardWriter.ts"
+      },
+      {
         "fromPath": "src/useRuntimeMediaProps.ts",
         "toPath": "src/runtimeMedia.ts",
         "sourcePath": "src/useRuntimeMediaProps.ts"
+      },
+      {
+        "fromPath": "src/writeClipboardTextAsync.test.ts",
+        "toPath": "src/writeClipboardTextAsync.ts",
+        "sourcePath": "src/writeClipboardTextAsync.test.ts"
+      },
+      {
+        "fromPath": "src/writeClipboardTextAsync.ts",
+        "toPath": "src/types/clipboard.ts",
+        "sourcePath": "src/writeClipboardTextAsync.ts"
       },
       {
         "fromPath": "tests/reactNativeWebCompatibility.fixture.tsx",
@@ -8778,6 +9182,36 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "src/apiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/ClipboardWriterContext.tsx",
+        "toSymbol": "createContext",
+        "callExpression": "createContext",
+        "sourcePath": "src/ClipboardWriterContext.tsx"
+      },
+      {
+        "fromSymbol": "ClipboardWriterProbe",
+        "toSymbol": "useClipboardWriter",
+        "callExpression": "useClipboardWriter",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
+      },
+      {
+        "fromSymbol": "src/ClipboardWriterProvider.test.tsx",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
+      },
+      {
+        "fromSymbol": "src/ClipboardWriterProvider.test.tsx",
+        "toSymbol": "renderToStaticMarkup",
+        "callExpression": "renderToStaticMarkup",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
+      },
+      {
+        "fromSymbol": "src/ClipboardWriterProvider.test.tsx",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/ClipboardWriterProvider.test.tsx"
       },
       {
         "fromSymbol": "executeRuntimeFlowCapabilityAsync",
@@ -11420,6 +11854,12 @@
         "sourcePath": "src/runtimeStructuredResultProjection.test.tsx"
       },
       {
+        "fromSymbol": "useClipboardWriter",
+        "toSymbol": "use",
+        "callExpression": "use",
+        "sourcePath": "src/useClipboardWriter.ts"
+      },
+      {
         "fromSymbol": "useRuntimeMediaProps",
         "toSymbol": "collectRuntimeMediaReferenceIds",
         "callExpression": "collectRuntimeMediaReferenceIds",
@@ -11490,6 +11930,30 @@
         "toSymbol": "collectStateExpressionPaths",
         "callExpression": "collectStateExpressionPaths",
         "sourcePath": "src/useRuntimeStateBindings.ts"
+      },
+      {
+        "fromSymbol": "src/writeClipboardTextAsync.test.ts",
+        "toSymbol": "test",
+        "callExpression": "test",
+        "sourcePath": "src/writeClipboardTextAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/writeClipboardTextAsync.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/writeClipboardTextAsync.test.ts"
+      },
+      {
+        "fromSymbol": "src/writeClipboardTextAsync.test.ts",
+        "toSymbol": "writeClipboardTextAsync",
+        "callExpression": "writeClipboardTextAsync",
+        "sourcePath": "src/writeClipboardTextAsync.test.ts"
+      },
+      {
+        "fromSymbol": "writeClipboardTextAsync",
+        "toSymbol": "writeTextAsync",
+        "callExpression": "writer.writeTextAsync",
+        "sourcePath": "src/writeClipboardTextAsync.ts"
       },
       {
         "fromSymbol": "renderReactNativeWebRuntimeFixture",
@@ -11783,6 +12247,21 @@
         "fromSymbol": "resolveRuntimeContextCapability",
         "toType": "RuntimeContextCapabilityResolution",
         "sourcePath": "src/capabilities/resolveRuntimeContextCapability.ts"
+      },
+      {
+        "fromSymbol": "ClipboardWriterProvider",
+        "toType": "ClipboardWriter",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
+      },
+      {
+        "fromSymbol": "ClipboardWriterProvider",
+        "toType": "React",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
+      },
+      {
+        "fromSymbol": "ClipboardWriterProvider",
+        "toType": "ReactNode",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
       },
       {
         "fromSymbol": "ManifestProvider",
@@ -13010,6 +13489,11 @@
         "sourcePath": "src/runtimeStateAdapter.ts"
       },
       {
+        "fromSymbol": "ClipboardWriter",
+        "toType": "ClipboardWriteResult",
+        "sourcePath": "src/types/clipboard.ts"
+      },
+      {
         "fromSymbol": "RuntimeFlowPort",
         "toType": "FlowApprovalRequest",
         "sourcePath": "src/types/runtimeFlow.ts"
@@ -13028,9 +13512,30 @@
         "fromSymbol": "RuntimeFlowPort",
         "toType": "RuntimeFlowStartRequest",
         "sourcePath": "src/types/runtimeFlow.ts"
+      },
+      {
+        "fromSymbol": "useClipboardWriter",
+        "toType": "ClipboardWriter",
+        "sourcePath": "src/useClipboardWriter.ts"
+      },
+      {
+        "fromSymbol": "writeClipboardTextAsync",
+        "toType": "ClipboardWriter",
+        "sourcePath": "src/writeClipboardTextAsync.ts"
+      },
+      {
+        "fromSymbol": "writeClipboardTextAsync",
+        "toType": "ClipboardWriteResult",
+        "sourcePath": "src/writeClipboardTextAsync.ts"
       }
     ],
     "componentComposition": [
+      {
+        "fromComponent": "ClipboardWriterProvider",
+        "toComponent": "ClipboardWriterContext",
+        "jsxElement": "<ClipboardWriterContext value={props.writer}>",
+        "sourcePath": "src/ClipboardWriterProvider.tsx"
+      },
       {
         "fromComponent": "ManifestProvider",
         "toComponent": "ManifestContext",
