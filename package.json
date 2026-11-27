@@ -44,6 +44,10 @@
     "./capabilities": {
       "types": "./dist/capabilities/index.d.ts",
       "import": "./dist/capabilities/index.js"
+    },
+    "./api-capabilities": {
+      "types": "./dist/apiCapabilities.d.ts",
+      "import": "./dist/apiCapabilities.js"
     }
   },
   "files": [
