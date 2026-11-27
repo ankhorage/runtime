@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.6.1
+
+### Patch Changes
+
+- 478593c: Update dependencies: `@ankhorage/utility`.
+
 ## 5.6.0
 
 ### Minor Changes
