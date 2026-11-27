@@ -18,7 +18,7 @@
     {
       "id": "npm",
       "label": "npm",
-      "value": "v5.6.3",
+      "value": "v5.6.4",
       "color": "cb3837"
     },
     {
@@ -186,6 +186,23 @@
       "dependencies": [],
       "exports": [
         "default"
+      ]
+    },
+    {
+      "path": "src/apiCapabilities.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [
+        "src/apiCapabilities.ts"
+      ],
+      "exports": []
+    },
+    {
+      "path": "src/apiCapabilities.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": [
+        "createRuntimeApiCapabilityExecutor",
+        "RuntimeApiCapabilityExecutorOptions"
       ]
     },
     {
@@ -950,6 +967,12 @@
     },
     {
       "path": "tests/runtimeBrowserArtifact.test.ts",
+      "isEntrypoint": false,
+      "dependencies": [],
+      "exports": []
+    },
+    {
+      "path": "tests/runtimeServerApiArtifact.test.ts",
       "isEntrypoint": false,
       "dependencies": [],
       "exports": []
@@ -5493,6 +5516,17 @@
   ],
   "sourceFunctions": [
     {
+      "name": "acceptsOptions",
+      "description": null,
+      "see": [],
+      "security": [],
+      "sourceLocation": {
+        "filePath": "src/apiCapabilities.test.ts",
+        "line": 7,
+        "column": 9
+      }
+    },
+    {
       "name": "resolveRuntimeContextCapability",
       "description": "Materializes a Runtime-owned context capability for the active renderer scope.",
       "see": [],
@@ -8116,6 +8150,16 @@
   "graphs": {
     "imports": [
       {
+        "fromPath": "src/apiCapabilities.test.ts",
+        "toPath": "src/apiCapabilities.ts",
+        "sourcePath": "src/apiCapabilities.test.ts"
+      },
+      {
+        "fromPath": "src/apiCapabilities.ts",
+        "toPath": "src/runtimeApiCapabilities.ts",
+        "sourcePath": "src/apiCapabilities.ts"
+      },
+      {
         "fromPath": "src/bindings.ts",
         "toPath": "src/runtimeApiCapabilities.ts",
         "sourcePath": "src/bindings.ts"
@@ -8722,6 +8766,18 @@
         "toSymbol": "defineParadoxConfig",
         "callExpression": "defineParadoxConfig",
         "sourcePath": "paradox.config.ts"
+      },
+      {
+        "fromSymbol": "src/apiCapabilities.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "src/apiCapabilities.test.ts"
+      },
+      {
+        "fromSymbol": "src/apiCapabilities.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "src/apiCapabilities.test.ts"
       },
       {
         "fromSymbol": "executeRuntimeFlowCapabilityAsync",
@@ -11614,6 +11670,54 @@
         "toSymbol": "expect",
         "callExpression": "expect",
         "sourcePath": "tests/runtimeBrowserArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "packRuntimeArtifactAsync",
+        "toSymbol": "tmpdir",
+        "callExpression": "tmpdir",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "packRuntimeArtifactAsync",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "packRuntimeArtifactAsync",
+        "toSymbol": "readdir",
+        "callExpression": "readdir",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeServerApiArtifact.test.ts",
+        "toSymbol": "describe",
+        "callExpression": "describe",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeServerApiArtifact.test.ts",
+        "toSymbol": "it",
+        "callExpression": "it",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeServerApiArtifact.test.ts",
+        "toSymbol": "packRuntimeArtifactAsync",
+        "callExpression": "packRuntimeArtifactAsync",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeServerApiArtifact.test.ts",
+        "toSymbol": "expect",
+        "callExpression": "expect",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
+      },
+      {
+        "fromSymbol": "tests/runtimeServerApiArtifact.test.ts",
+        "toSymbol": "rm",
+        "callExpression": "rm",
+        "sourcePath": "tests/runtimeServerApiArtifact.test.ts"
       },
       {
         "fromSymbol": "src/capabilities/resolveRuntimeContextCapability.test.ts",

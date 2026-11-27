@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.6.4
+
+### Patch Changes
+
+- 4aa1a26: Expose a server-safe API capability executor subpath for trusted hosts.
+
 ## 5.6.3
 
 ### Patch Changes

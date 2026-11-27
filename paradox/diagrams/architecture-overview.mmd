@@ -4,6 +4,11 @@ graph TD
   package__ankhorage_runtime --> entrypoint_src_index_ts
   module_paradox_config_ts["paradox.config.ts"]
   package__ankhorage_runtime -.-> module_paradox_config_ts
+  module_src_apiCapabilities_test_ts["src/apiCapabilities.test.ts"]
+  package__ankhorage_runtime -.-> module_src_apiCapabilities_test_ts
+  module_src_apiCapabilities_test_ts --> module_src_apiCapabilities_ts
+  module_src_apiCapabilities_ts["src/apiCapabilities.ts"]
+  package__ankhorage_runtime -.-> module_src_apiCapabilities_ts
   module_src_bindings_ts["src/bindings.ts"]
   package__ankhorage_runtime -.-> module_src_bindings_ts
   module_src_capabilities_index_ts["src/capabilities/index.ts"]
@@ -217,3 +222,5 @@ graph TD
   module_tests_runtime_test_ts --> module_src_runtimeManifest_ts
   module_tests_runtimeBrowserArtifact_test_ts["tests/runtimeBrowserArtifact.test.ts"]
   package__ankhorage_runtime -.-> module_tests_runtimeBrowserArtifact_test_ts
+  module_tests_runtimeServerApiArtifact_test_ts["tests/runtimeServerApiArtifact.test.ts"]
+  package__ankhorage_runtime -.-> module_tests_runtimeServerApiArtifact_test_ts
