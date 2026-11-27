@@ -6,7 +6,7 @@
       "name": "@ankhorage/runtime",
       "dependencies": {
         "@ankhorage/capability": "^0.2.3",
-        "@ankhorage/contracts": "^26.17.1",
+        "@ankhorage/contracts": "^26.19.0",
         "@ankhorage/data-sources": "^2.4.0",
         "@ankhorage/flow": "^0.10.1",
         "@ankhorage/utility": "^1.11.0",
