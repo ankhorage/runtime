@@ -1,5 +1,11 @@
 # @ankhorage/runtime
 
+## 5.7.1
+
+### Patch Changes
+
+- 3dc1966: Update dependencies: `@ankhorage/contracts`.
+
 ## 5.7.0
 
 ### Minor Changes
